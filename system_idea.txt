@@ -1,0 +1,47 @@
+Core Architecture
+The system consists of specialized, communicating AI agents that work both independently and collaboratively:
+
+Coordinator Agent: Orchestrates workflows and facilitates communication between agents
+Scraper Agent: Collects reviews from Shopee API with intelligent rate limiting
+Preprocessor Agent: Cleans and normalizes text data for analysis
+Analyzer Agent: Performs baseline sentiment analysis using GPT-4
+Topic Modeler Agent: Discovers hidden themes and topics in reviews using LDA
+Emotion Detector Agent: Identifies specific emotions using Plutchik's wheel
+Persona Identifier Agent: Segments customers into psychological profiles
+Temporal Analyzer Agent: Tracks sentiment and emotion changes over time
+Reporter Agent: Generates comprehensive visualizations and insights
+Memory Manager Agent: Maintains context and enables learning across analyses
+Communication Framework
+The heart of the system is a sophisticated communication framework enabling agent collaboration:
+
+Message Protocol: Standardized format with message types (requests, responses, proposals, etc.)
+Message Broker: Central hub for routing messages between agents
+Protocol Handlers: Specialized modules implementing coordination protocols
+Communication Patterns: Request-Response, Voting, Consensus Building, Broadcasting
+Key Psychological Frameworks
+The system integrates established psychological models:
+
+Plutchik's Wheel of Emotions: For nuanced emotion detection beyond basic sentiment
+Maslow's Hierarchy of Needs: For mapping customer priorities and motivations
+Cognitive Bias Detection: For identifying distortions in customer perceptions
+Net Promoter Score (NPS): For business-oriented customer categorization
+Advanced Capabilities
+Collaborative Decision-Making: Agents vote and build consensus on ambiguous reviews
+Semantic Memory: Vector-based storage of analysis insights for future reference
+Conflict Resolution: Protocols for resolving disagreements between agents
+Proactive Information Sharing: Agents broadcast discoveries to the collective
+Continuous Learning: System improves through memory consolidation over time
+Technical Implementation
+Language: Python for agent implementation
+Embedding Models: OpenAI's text-embedding-3-small/large for semantic understanding
+LLM Integration: GPT-4 for sophisticated text analysis
+Vector Database: Qdrant for similarity search in the memory system
+Visualization: Matplotlib/Seaborn for insight presentation
+Business Value
+The system delivers actionable e-commerce intelligence:
+
+Deeper understanding of customer sentiment beyond star ratings
+Identification of specific emotion patterns in product reception
+Discovery of emerging topics and trends in customer feedback
+Psychological profiling of customer segments
+Temporal analysis of changing customer perceptions

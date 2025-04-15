@@ -1,0 +1,51 @@
+Nội dung đề tài:(Mô tả chi tiết mục tiêu, phạm vi, đối tượng, phương pháp thực hiện, kết quả mong đợi của đề tài)
+1. Giới thiệu:
+-	AI Agent đã đang trở thành xu thế của năm 2025, đem lại những sự cách mạng trong nhiều lĩnh vực nhờ khả năng tự chủ cũng như thích nghĩ với môi trường liên tục của mình giúp xử lý các nhiệm vụ khó hơn, thực tế hơn, có nhiều tiện ích trong thế giới thực hơn [1] như: tự động hóa các công việc hằng ngày, hỗ trợ người dùng... Tiềm năng của công nghệ này là không thể đong đếm được. Gần đây việc kết hợp các AI Agent này đang đem đến những kết quả rất đáng mong đợi trong các lĩnh vực chuyên môn cao [2]. Việc cho các AI Agent "làm việc nhóm" có thể đem đến những kết quả tốt hơn rất nhiều và đưa các công nghệ AI ngày 1 gần với cách hoạt động của loài người.
+-	Song song với đó việc phân tích tâm lý để có những quyết định đúng đắn trong kinh doanh từ lâu đã là yếu tố được chú trọng. Việc phân tích cảm xúc của dùng là hết sức phức tạp và cần sự nghiên cứu từ các chuyên gia có kiến thức và kinh nghiệm, xem xét từ nhiều mặt của vấn đề.
+-	Từ những lý do trên người ta nhận thấy việc sử dụng multi-Agent AI để giải quyết bài toán phân tích cảm xúc là rất có tiềm năng. Từ những năm 2012-2013 người ta đã đề xuất hướng đi cho bài toán phân tích cảm xúc [3]. Tuy nhiên gần đây, với sự phát triển cực kỳ mạnh mẽ của các các mô hình LLMs như GPT4, Gemini, Llama… các nhà nghiên cứu đã tiếp tục thực hiện các công trình nghiên cứu về việc xây dựng các Multi-Agent System với các AI Agent dựa trên các mô hình LLMs này với ví dụ kết hợp các AI Agent là LLMs Agent như BLOOMZ-560m to LlaMa3-70b to GPT-3.5 thông qua các cơ chế MD (Multi-agent, homogeneous, Debate) , MSV (Multi-agent, homogeneous, Simple Voting) , and HSV (multi-agent, Heterogeneous, Simple Voting) để nâng cao chỉ số FSA trong tài chính đã đem lại những kết quả hết sức khả quan [4]. Từ những công trình này, nhóm nghiên cứu nhận thấy việc phân tích cảm xúc từ các phản hồi từ người dùng từ các nền tảng thương mại điện tử, các trang mạng xã hội hay các nền tảng chia sẻ thông tin… là rất cần thiết cho việc đánh giá chất lượng sản phẩm cũng như có những thay đổi về chiến lược hợp lý để nâng cao hiệu qua kinh doanh. Vì vậy nhóm nghiên cứu quyết định sẽ tiến hành nghiên cứu về việc sử dụng việc kết hợp các AI Agent để xử lý bài toán phân tích cảm xúc người dùnga từ nhiều nguồn dữ liệu phản hồi từ người dùng bằng các AI Agent mới để cải thiện chất lượng cho sản phẩm.
+2. Mục tiêu:
+-	Nghiên cứu và xây dựng hệ thống Multi-Agent AI System (MAS) có khả năng phân tích cảm xúc khách hàng từ dữ liệu văn bản đa nguồn (Shopee và YouTube reviews).
+-	Đề xuất kiến trúc MAS phù hợp (dọc, ngang, kết hợp…) để tối ưu hóa hiệu quả phân tích cảm xúc.
+-	Xây dựng mô hình thử nghiệm và đánh giá khả năng của hệ thống trong việc cung cấp thông tin hữu ích (ưu/nhược điểm sản phẩm, thái độ người dùng) phục vụ ra quyết định kinh doanh cho trang web bán hàng.
+3. Phạm vi:
+-	Dữ liệu:
+o	Dữ liệu đánh giá sản phẩm và bình luận từ Shopee (tập trung vào một số ngành hàng cụ thể để đảm bảo tính khả thi).
+o	Dữ liệu video review sản phẩm từ YouTube (bao gồm transcript của video và bình luận của người xem).
+-	Phân tích cảm xúc:
+o	Xác định cực tính cảm xúc (tích cực, tiêu cực, trung tính).
+o	Phân loại cảm xúc (vui, buồn, giận, thích, không thích...).
+o	Phát hiện các sắc thái biểu cảm (ví dụ: mỉa mai, hài hước).
+-	Kiến trúc MAS: Tập trung vào kiến trúc (ngang, dọc, kết hợp), cơ chế giao tiếp, và ra quyết định dựa trên dữ liệu văn bản.
+-	Ứng dụng:
+o	Xây dựng hệ thống thử nghiệm tích hợp với trang web bán hàng.
+o	Đánh giá khả năng hỗ trợ ra quyết định kinh doanh (ví dụ: cải thiện sản phẩm, tối ưu chiến dịch marketing).
+4. Đối tượng:
+-	Các sản phẩm và dịch vụ được bán trên Shopee và được review trên YouTube.
+-	Khách hàng tiềm năng và khách hàng hiện tại của trang web bán hàng.
+-	Nhân viên marketing, quản lý sản phẩm và các bộ phận liên quan đến ra quyết định kinh doanh.
+5. Phương pháp thực hiện:
+-	Nghiên cứu lý thuyết:
+o	Tổng quan về AI Agent và Multi-Agent System.
+o	Các kiến trúc MAS phổ biến (dọc, ngang, kết hợp…) và ưu nhược điểm của từng kiến trúc.
+o	Các phương pháp phân tích cảm xúc đa phương thức (multimodal sentiment analysis).
+o	Các phương pháp phân tích cảm xúc
+o	Các công nghệ và công cụ hỗ trợ xây dựng MAS.
+-	Thu thập và xử lý dữ liệu:
+o	Sử dụng các công cụ web scraping để thu thập dữ liệu từ Shopee và YouTube.
+o	Tiền xử lý dữ liệu (làm sạch, chuẩn hóa, loại bỏ nhiễu).
+o	Gán nhãn dữ liệu (nếu cần) để huấn luyện mô hình học máy.
+-	Xây dựng hệ thống MAS:
+o	Lựa chọn kiến trúc MAS phù hợp với bài toán.
+o	Thiết kế và triển khai các AI Agent
+o	Xây dựng cơ chế giao tiếp giữa các Agent.
+o	Tích hợp các mô hình phân tích cảm xúc 
+o	Xây dựng cơ chế ra quyết định dựa trên kết quả phân tích cảm xúc.
+-	Đánh giá và thử nghiệm:
+o	Đánh giá hiệu năng của hệ thống (độ chính xác, tốc độ xử lý).
+o	Thử nghiệm hệ thống trên trang web bán hàng và đánh giá khả năng hỗ trợ ra quyết định kinh doanh.
+o	So sánh kết quả với các phương pháp phân tích cảm xúc truyền thống.
+6. Kết quả mong đợi:
+-	Xây dựng được hệ thống MAS có khả năng phân tích cảm xúc khách hàng từ đa nguồn dữ liệu với độ chính xác cao.
+-	Đề xuất được kiến trúc MAS phù hợp cho bài toán phân tích cảm xúc đa nguồn dữ liệu.
+-	Chứng minh được khả năng của hệ thống trong việc cung cấp thông tin hữu ích hỗ trợ ra quyết định kinh doanh.
+-	Đánh giá tiềm năng và đề xuất hướng phát triển của hệ thống trong tương lai.
