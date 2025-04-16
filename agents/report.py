@@ -1,6 +1,7 @@
 class ReportAgent:
-    def __init__(self):
-        pass
+    def __init__(self, config=None):
+        # Store config for future use if needed
+        self.config = config or {}
 
     def compile(self, product_analysis):
         """

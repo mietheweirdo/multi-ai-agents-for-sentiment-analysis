@@ -4,7 +4,10 @@ from langchain.schema import SystemMessage
 class EnhancedMemory:
     """Memory agent that maintains context and history for all agents."""
     
-    def __init__(self):
+    def __init__(self, config=None):
+        # Store config for future use if needed
+        self.config = config or {}
+        
         self.general_memory = ConversationBufferMemory(return_messages=True)
         self.product_insights = {}
         self.sentiment_history = {}

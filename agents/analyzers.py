@@ -1,22 +1,29 @@
 from langchain.schema import HumanMessage, AIMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 import json
+import os
 
 class BaseAnalyzer:
     """Base class for sentiment analysis agents."""
     
-    def __init__(self, model_name="o3-mini", temperature=0, config=None):
+    def __init__(self, model_name=None, temperature=0, config=None):
         self.config = config or {}
-        if config and "model_name" in config:
-            model_name = config.get("model_name")
+        
+        # Use model_name from config first, then parameter, then default
+        self.model_name = self.config.get("model_name") or model_name or "o3-mini"
+        
+        # Set API key from config
+        self.api_key = self.config.get("api_key")
+        if self.api_key:
+            os.environ["OPENAI_API_KEY"] = self.api_key
         
         # Check if model supports temperature (o3-mini doesn't)
         kwargs = {}
-        if not model_name.startswith("o3-"):
+        if not self.model_name.startswith("o"):
             kwargs["temperature"] = temperature
         
-        # Initialize LLM without temperature for o3 models
-        self.llm = ChatOpenAI(model_name=model_name, **kwargs)
+        # Initialize LLM with the model from config
+        self.llm = ChatOpenAI(model_name=self.model_name, **kwargs)
         self.system_prompt = ""
     
     def analyze(self, text):
@@ -34,7 +41,7 @@ class BaseAnalyzer:
 class DetailedAnalyzer(BaseAnalyzer):
     """Detailed analyzer that focuses on identifying specific emotions and aspects."""
     
-    def __init__(self, model_name="o3-mini", temperature=0, config=None):
+    def __init__(self, model_name=None, temperature=0, config=None):
         super().__init__(model_name, temperature, config)
         self.system_prompt = """
         You are a detailed sentiment analyzer specialized in product reviews.
@@ -58,7 +65,7 @@ class DetailedAnalyzer(BaseAnalyzer):
     def analyze(self, review_data):
         """Analyze the review data and extract detailed sentiment information."""
         # For o3-mini models, provide mock data to avoid API errors
-        if self.config.get("model_name", "").startswith("o3-"):
+        if self.model_name.startswith("o"):
             if isinstance(review_data, dict):
                 review_text = review_data.get("review_text", "") or review_data.get("comment", "")
             else:
@@ -112,7 +119,7 @@ class DetailedAnalyzer(BaseAnalyzer):
 class ContextualAnalyzer(BaseAnalyzer):
     """Contextual analyzer that focuses on understanding nuanced language and context."""
     
-    def __init__(self, model_name="o3-mini", temperature=0, config=None):
+    def __init__(self, model_name=None, temperature=0, config=None):
         super().__init__(model_name, temperature, config)
         self.system_prompt = """
         You are a contextual sentiment analyzer specialized in detecting nuanced language.
@@ -139,7 +146,7 @@ class ContextualAnalyzer(BaseAnalyzer):
     def analyze(self, review_data):
         """Analyze the review data with focus on contextual elements."""
         # For o3-mini models, provide mock data to avoid API errors
-        if self.config.get("model_name", "").startswith("o3-"):
+        if self.model_name.startswith("o"):
             if isinstance(review_data, dict):
                 review_text = review_data.get("review_text", "") or review_data.get("comment", "")
             else:

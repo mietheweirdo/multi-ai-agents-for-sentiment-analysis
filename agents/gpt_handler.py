@@ -1,8 +1,16 @@
+import os
+
 class GPTHandler:
     def __init__(self, config=None):
         self.config = config or {}
+        
+        # Get API key and model from config
         self.api_key = self.config.get("api_key")
-        self.model_name = self.config.get("model_name")
+        self.model_name = self.config.get("model_name", "o3-mini")
+        
+        # Set API key in environment variable if available
+        if self.api_key:
+            os.environ["OPENAI_API_KEY"] = self.api_key
     
     def generate_summary(self, report):
         """

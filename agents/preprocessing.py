@@ -1,6 +1,10 @@
 import copy
 
 class PreprocessingAgent:
+    def __init__(self, config=None):
+        # Store config for future use if needed
+        self.config = config or {}
+    
     def preprocess(self, reviews):
         """
         Cleans and normalizes a list of review dicts.

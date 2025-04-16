@@ -1,27 +1,32 @@
 from langchain.schema import HumanMessage, AIMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 import json
+import os
 from .analyzers import DetailedAnalyzer, ContextualAnalyzer
 from .memory_utils import EnhancedMemory
 
 class CoordinatorAgent:
     """Coordinator agent that orchestrates the analysis process between analyzer agents."""
     
-    def __init__(self, config=None, model_name="gpt-4o", temperature=0.2):
+    def __init__(self, config=None, model_name=None, temperature=0.2):
         # Accept config dict for model_name and temperature
         self.config = config or {}
         
-        if config:
-            model_name = config.get("model_name", model_name)
-            temperature = config.get("temperature", temperature)
+        # Use model_name from config first, then parameter, then default
+        self.model_name = self.config.get("model_name") or model_name or "gpt-4o"
+        
+        # Set API key from config
+        self.api_key = self.config.get("api_key")
+        if self.api_key:
+            os.environ["OPENAI_API_KEY"] = self.api_key
         
         # Check if model supports temperature (o3-mini doesn't)
         kwargs = {}
-        if not model_name.startswith("o3-"):
+        if not self.model_name.startswith("o"):
             kwargs["temperature"] = temperature
         
-        # Initialize LLM without temperature for o3 models
-        self.llm = ChatOpenAI(model_name=model_name, **kwargs)
+        # Initialize LLM with the model from config
+        self.llm = ChatOpenAI(model_name=self.model_name, **kwargs)
         
         # Pass config to analyzers
         self.detailed_analyzer = DetailedAnalyzer(config=self.config)
@@ -158,7 +163,7 @@ class CoordinatorAgent:
         product_memory = self.memory.get_product_memory(product_id)
         
         # For o3-mini models, provide a simplified summary to avoid API calls
-        if self.config.get("model_name", "").startswith("o3-"):
+        if self.model_name.startswith("o"):
             return {
                 "product_id": product_id,
                 "product_name": product_name,
