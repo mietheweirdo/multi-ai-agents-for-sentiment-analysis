@@ -1,49 +1,74 @@
-import random
+# agents/analyzer.py
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
 
 class AnalyzerAgent:
-    def __init__(self, name="AnalyzerAgent", config=None):
-        self.name = name
-        self.config = config or {}
-        # Example: self.api_key = self.config.get("api_key")
-        # Example: self.model_name = self.config.get("model_name")
+    """LLM-based sentiment analyzer using OpenAI GPT-4 via LangChain."""
+    def __init__(self, config=None):
+        config = config or {}
+        self.model_name = config.get("model_name")
+        self.api_key = config.get("api_key")
+        self.llm = ChatOpenAI(model=self.model_name, api_key=self.api_key)
+        self.prompt = ChatPromptTemplate.from_messages([
+            (
+                "system",
+                """
+You are a Senior Customer Insights Analyst at a leading e-commerce company. Your job is to deeply understand customer feedback and extract actionable business intelligence from product reviews.
 
-    def analyze(self, review):
-        """
-        Perform sentiment analysis on a review.
-        Stub: randomly assigns sentiment and intensity, extracts key phrases.
-        """
-        text = review.get("review_text") or review.get("comment") or ""
-        # Stub: Replace with GPT-4 or other LLM call
-        sentiment = random.choice(["positive", "negative", "neutral"])
-        intensity = random.choice(["strong", "moderate", "weak"])
-        key_phrases = self.extract_key_phrases(text)
-        return {
-            "agent": self.name,
-            "sentiment": sentiment,
-            "intensity": intensity,
-            "key_phrases": key_phrases,
-            "text": text
-        }
+For each review, do the following:
 
-    def extract_key_phrases(self, text):
-        # Very basic: split into words, pick a few as "key phrases"
-        words = [w for w in text.split() if len(w) > 4]
-        return words[:3]
+1. Classify the overall sentiment as Positive, Negative, or Neutral.
 
-    def debate(self, other_agent, review):
-        """
-        Debate protocol: both agents analyze and compare results.
-        Returns a dict with both opinions and a simple resolution.
-        """
-        my_opinion = self.analyze(review)
-        other_opinion = other_agent.analyze(review)
-        # Simple debate: if sentiments differ, mark as "disagreement"
-        if my_opinion["sentiment"] != other_opinion["sentiment"]:
-            resolution = "disagreement"
-        else:
-            resolution = "agreement"
-        return {
-            "agent_1": my_opinion,
-            "agent_2": other_opinion,
-            "resolution": resolution
-        }
+2. Identify and list any specific emotions expressed (e.g., joy, frustration, disappointment, excitement, gratitude, etc.).
+
+3. Extract any notable topics or trends mentioned in the review (e.g., product quality, delivery, customer service, price, packaging, etc.).
+
+4. Provide a short explanation for your sentiment classification.
+
+5. Go beyond star ratings: Look for subtle cues, recurring patterns, and emerging issues or opportunities in the feedback.
+
+Return your answer in this JSON format:
+{{
+  "sentiment": ...,
+  "emotions": [...],
+  "topics": [...],
+  "explanation": ...
+}}
+"""
+            ),
+            ("human", "Review: {review}")
+        ])
+
+    def analyze(self, reviews):
+        analyzed = []
+        for r in reviews:
+            text = r["cleaned_text"]
+            prompt = self.prompt.format(review=text)
+            result = self.llm.invoke(prompt)
+            try:
+                parsed = self._parse_json_response(result.content)
+            except Exception:
+                sentiment, explanation = self._parse_response(result.content)
+                parsed = {"sentiment": sentiment, "emotions": [], "topics": [], "explanation": explanation}
+            analyzed.append({**r, **parsed})
+        return analyzed
+
+    def _parse_json_response(self, response):
+        import json
+        data = json.loads(response)
+        sentiment = data.get("sentiment", "Unknown")
+        emotions = data.get("emotions", [])
+        topics = data.get("topics", [])
+        explanation = data.get("explanation", response)
+        return {"sentiment": sentiment, "emotions": emotions, "topics": topics, "explanation": explanation}
+
+    def _parse_response(self, response):
+        # Simple parsing: expects 'Sentiment: ... Explanation: ...'
+        sentiment = "Unknown"
+        explanation = response
+        if "Sentiment:" in response:
+            parts = response.split("Sentiment:")[-1].split("Explanation:")
+            sentiment = parts[0].strip()
+            if len(parts) > 1:
+                explanation = parts[1].strip()
+        return sentiment, explanation
