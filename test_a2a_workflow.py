@@ -6,16 +6,16 @@ url = "http://127.0.0.1:8000/tasks/send"
 
 # Example: more complicated review comments for richer analysis
 test_reviews = [
-    "The product arrived on time but the packaging was damaged. The item itself works fine, but I expected better quality for the price.",
-    "Absolutely love it! The color is vibrant and it fits perfectly. Will definitely buy again.",
-    "Customer service was unhelpful when I reported a missing part. Not sure if I would recommend this to others.",
-    "It's okay, not great. Some features are useful, but others are confusing and the manual is hard to follow.",
-    "I bought this for my mom and she was thrilled! She said it made her day. Thank you!",
-    "The product stopped working after a week. Very disappointed. I wish I could get a refund.",
-    "Surprisingly good for the price. There are a few minor issues, but overall I'm satisfied.",
-    "The design is beautiful, but the material feels cheap. Hoping it lasts longer than it looks.",
-    "Received the wrong color, but the seller responded quickly and sent a replacement. Happy with the resolution.",
-    "There are so many similar products, but this one stands out for its ease of use and thoughtful features."
+    "These running shoes are incredibly comfortable and lightweight. My feet don't hurt even after hours of jogging. Love the breathable material!",
+    "The shoes look stylish but the sole started coming off after just two weeks. Disappointed with the quality.",
+    "Great value for the price. The grip is excellent and they fit perfectly. Will buy again for my family.",
+    "I ordered a size 9 but received a size 8. Customer service was quick to resolve the issue, but the process was a hassle.",
+    "The color is vibrant and matches the pictures. However, the laces are too short and keep coming undone.",
+    "After a month of use, the shoes still look brand new. Very satisfied with the durability.",
+    "The arch support is lacking, which caused discomfort during long walks. Would not recommend for people with flat feet.",
+    "Delivery was delayed by a week, but the seller kept me updated. Packaging was secure.",
+    "My son loves these shoes for his basketball games. He says they help him jump higher and run faster!",
+    "The shoes have a strong chemical smell out of the box. It faded after a few days, but it was unpleasant at first."
 ]
 
 for idx, review in enumerate(test_reviews):

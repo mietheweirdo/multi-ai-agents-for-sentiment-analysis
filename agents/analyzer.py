@@ -23,15 +23,18 @@ For each review, do the following:
 
 3. Extract any notable topics or trends mentioned in the review (e.g., product quality, delivery, customer service, price, packaging, etc.).
 
-4. Provide a short explanation for your sentiment classification.
+4. For each topic, map the most relevant emotion(s) expressed about that topic (if any). Return as a dictionary: topic -> [emotions].
 
-5. Go beyond star ratings: Look for subtle cues, recurring patterns, and emerging issues or opportunities in the feedback.
+5. Provide a short explanation for your sentiment classification.
+
+6. Go beyond star ratings: Look for subtle cues, recurring patterns, and emerging issues or opportunities in the feedback.
 
 Return your answer in this JSON format:
 {{
   "sentiment": ...,
   "emotions": [...],
   "topics": [...],
+  "topic_emotions": {{topic1: [emotions], ...}},
   "explanation": ...
 }}
 """
@@ -49,7 +52,7 @@ Return your answer in this JSON format:
                 parsed = self._parse_json_response(result.content)
             except Exception:
                 sentiment, explanation = self._parse_response(result.content)
-                parsed = {"sentiment": sentiment, "emotions": [], "topics": [], "explanation": explanation}
+                parsed = {"sentiment": sentiment, "emotions": [], "topics": [], "topic_emotions": {}, "explanation": explanation}
             analyzed.append({**r, **parsed})
         return analyzed
 
@@ -59,8 +62,9 @@ Return your answer in this JSON format:
         sentiment = data.get("sentiment", "Unknown")
         emotions = data.get("emotions", [])
         topics = data.get("topics", [])
+        topic_emotions = data.get("topic_emotions", {})
         explanation = data.get("explanation", response)
-        return {"sentiment": sentiment, "emotions": emotions, "topics": topics, "explanation": explanation}
+        return {"sentiment": sentiment, "emotions": emotions, "topics": topics, "topic_emotions": topic_emotions, "explanation": explanation}
 
     def _parse_response(self, response):
         # Simple parsing: expects 'Sentiment: ... Explanation: ...'
