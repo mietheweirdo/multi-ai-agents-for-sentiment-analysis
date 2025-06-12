@@ -1,65 +1,13 @@
 Business Insights Report
 Total Reviews Analyzed: 10
-Sentiment Summary: {'positive': 4, 'neutral': 3, 'negative': 3}
-Sentiment Percentages: {'positive': 40.0, 'neutral': 30.0, 'negative': 30.0}
-Emotion Percentages: {'excited': 30.0, 'happy': 40.0, 'satisfied': 60.0, 'disappointed': 20.0, 'appreciative': 20.0, 'frustrated': 50.0, 'frustration': 10.0, 'disappointment': 10.0, 'discomfort': 10.0, 'excitement': 10.0, 'love': 10.0, 'unpleasant': 10.0}
-Topic Percentages: {'material': 10.0, 'weight': 10.0, 'comfort': 30.0, 'lightweight': 10.0, 'breathability': 10.0, 'style': 10.0, 'quality': 30.0, 'value': 10.0, 'grip': 10.0, 'fit': 20.0, 're-purchase intent': 10.0, 'size': 10.0, 'customer service': 10.0, 'process': 10.0, 'delivery process': 10.0, 'laces': 10.0, 'color': 10.0, 'durability': 10.0, 'recommendation': 10.0, 'arch support': 10.0, 'delivery': 20.0, 'packaging': 10.0, 'communication': 10.0, 'performance': 10.0, 'initial experience': 10.0, 'odor': 10.0}
-Most Common Emotion per Topic: {'comfort': 'excited', 'weight': 'happy', 'material': 'excited', 'lightweight': 'excited', 'breathability': 'happy', 'style': 'happy', 'quality': 'disappointed', 'value': 'happy', 'grip': 'excited', 'fit': 'excited', 're-purchase intent': 'excited', 'size': 'frustrated', 'customer service': 'appreciative', 'process': 'frustrated', 'delivery process': 'frustrated', 'color': 'happy', 'laces': 'frustrated', 'durability': 'satisfied', 'arch support': 'frustrated', 'recommendation': 'disappointed', 'delivery': 'frustrated', 'packaging': 'appreciative', 'communication': 'appreciative', 'performance': 'excitement', 'odor': 'unpleasant', 'initial experience': 'frustrated'}
+Sentiment Summary: {'positive': 0, 'neutral': 10, 'negative': 0}
+Sentiment Percentages: {'positive': 0.0, 'neutral': 100.0, 'negative': 0.0}
+Emotion Percentages: {}
+Topic Percentages: {}
+Most Common Emotion per Topic: {}
 
 ---
 
 Topic-Emotion Trends (counts):
-- comfort: {'excited': 2, 'happy': 2, 'satisfied': 1, 'frustrated': 1, 'discomfort': 1, 'disappointed': 1}
-- weight: {'happy': 1, 'satisfied': 1}
-- material: {'excited': 1, 'happy': 1, 'satisfied': 1}
-- lightweight: {'excited': 1}
-- breathability: {'happy': 1}
-- style: {'happy': 1}
-- quality: {'disappointed': 1, 'happy': 1, 'unpleasant': 1}
-- value: {'happy': 1, 'satisfied': 1}
-- grip: {'excited': 1, 'happy': 1}
-- fit: {'excited': 1, 'happy': 1}
-- re-purchase intent: {'excited': 1}
-- size: {'frustrated': 1}
-- customer service: {'appreciative': 1, 'happy': 1, 'satisfied': 1}
-- process: {'frustrated': 1}
-- delivery process: {'frustrated': 1}
-- color: {'happy': 1, 'satisfied': 1}
-- laces: {'frustrated': 1}
-- durability: {'satisfied': 1}
-- arch support: {'frustrated': 1, 'disappointment': 1, 'frustration': 1, 'disappointed': 1}
-- recommendation: {'disappointed': 1}
-- delivery: {'frustrated': 1}
-- packaging: {'appreciative': 1, 'satisfied': 1}
-- communication: {'appreciative': 1, 'satisfied': 1}
-- performance: {'excitement': 1, 'excited': 1, 'happy': 1, 'love': 1}
-- odor: {'unpleasant': 1}
-- initial experience: {'frustrated': 1}
 
 Most Common Emotion per Topic:
-- comfort: excited
-- weight: happy
-- material: excited
-- lightweight: excited
-- breathability: happy
-- style: happy
-- quality: disappointed
-- value: happy
-- grip: excited
-- fit: excited
-- re-purchase intent: excited
-- size: frustrated
-- customer service: appreciative
-- process: frustrated
-- delivery process: frustrated
-- color: happy
-- laces: frustrated
-- durability: satisfied
-- arch support: frustrated
-- recommendation: disappointed
-- delivery: frustrated
-- packaging: appreciative
-- communication: appreciative
-- performance: excitement
-- odor: unpleasant
-- initial experience: frustrated
