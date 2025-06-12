@@ -47,12 +47,15 @@ async def a2a_task_send(request: Request):
     message = params.get("message", {})
     # Extract product_id or review text from message
     product_id = None
-    text = None
+    review_texts = []
     for part in message.get("parts", []):
         if part.get("type") == "text":
-            text = part.get("text")
-    # For demo: treat text as product_id or review
-    result = coordinator.run_workflow(product_id=text)
+            review_texts.append(part.get("text"))
+    # If review_texts is not empty, use them; else use product_id
+    if review_texts:
+        result = coordinator.run_workflow(reviews=review_texts)
+    else:
+        result = coordinator.run_workflow(product_id=product_id)
     return JSONResponse(make_task_result(task_id, result))
 
 @app.get("/.well-known/agent.json")

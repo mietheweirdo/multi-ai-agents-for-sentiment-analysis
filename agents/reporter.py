@@ -4,8 +4,22 @@ import os
 from collections import defaultdict
 
 class ReporterAgent:
-    """Business Insights Reporter: Summarizes sentiment analysis and generates visual insights and recommendations for stakeholders."""
+    """Business Insights Reporter: Aggregates and summarizes product review analysis, calculates percentages, and returns per-review facet_emotions mapping. Always uses LLM for summary/recommendation."""
+    def __init__(self, config=None, persona=None):
+        self.config = config or {}
+        self.persona = persona or "You are a Business Insights Reporter. Aggregate and summarize product review analysis, calculate percentages, and generate actionable recommendations and visualizations for business stakeholders."
+        from langchain_openai import ChatOpenAI
+        from langchain_core.prompts import ChatPromptTemplate
+        self.model_name = self.config.get("model_name")
+        self.api_key = self.config.get("api_key")
+        self.llm = ChatOpenAI(model=self.model_name, api_key=self.api_key)
+        self.prompt = ChatPromptTemplate.from_messages([
+            ("system", self.persona + "\nGiven the following product review analysis (sentiment, facets, facet_emotions, etc.), write a concise summary and actionable recommendations for the business. Highlight key trends, issues, and opportunities."),
+            ("human", "Analysis: {analysis}")
+        ])
+
     def report(self, analyzed_reviews):
+        print(f"[ReporterAgent] Aggregating and summarizing {len(analyzed_reviews)} reviews...")
         summary = {"positive": 0, "neutral": 0, "negative": 0}
         emotion_counts = {}
         topic_counts = {}
@@ -40,16 +54,47 @@ class ReporterAgent:
             if emotion_counts:
                 most_common = max(emotion_counts.items(), key=lambda x: x[1])[0]
                 most_common_emotion_per_topic[topic] = most_common
-        # Generate recommendation
-        recommendation = self._generate_recommendation(sentiment_pct, emotion_pct, topic_pct, most_common_emotion_per_topic)
         # Generate and save chart
         chart_path = self._save_sentiment_chart(summary)
+        print(f"[ReporterAgent] Sentiment chart saved to {chart_path}")
+        print(f"[ReporterAgent] Generating LLM-based summary and recommendations...")
+        # Collect per-review facet→emotions mapping, sentiment, and explanation
+        per_review_analysis = []
+        for r in analyzed_reviews:
+            per_review_analysis.append({
+                "review_id": r.get("review_id"),
+                "text": r.get("text"),
+                "facets": r.get("facets", []),
+                "facet_emotions": r.get("facet_emotions", {}),
+                "sentiment": r.get("sentiment", "Unknown"),
+                "explanation": r.get("explanation", "")
+            })
+        # LLM-based summary/recommendation (always enabled)
         summary_text = (
             f"Out of {total} reviews for this product: "
             f"{summary['positive']} positive ({sentiment_pct['positive']:.1f}%), "
             f"{summary['neutral']} neutral ({sentiment_pct['neutral']:.1f}%), "
             f"{summary['negative']} negative ({sentiment_pct['negative']:.1f}%)."
         )
+        insight = summary_text
+        recommendation = self._generate_recommendation(sentiment_pct, emotion_pct, topic_pct, most_common_emotion_per_topic)
+        print(f"[ReporterAgent] Generating LLM-based summary and recommendations...")
+        try:
+            llm_input = {
+                "summary": summary,
+                "sentiment_percent": sentiment_pct,
+                "emotion_percent": emotion_pct,
+                "topic_percent": topic_pct,
+                "most_common_emotion_per_topic": most_common_emotion_per_topic,
+                "per_review_analysis": per_review_analysis
+            }
+            prompt = self.prompt.format(analysis=str(llm_input))
+            result = self.llm.invoke(prompt)
+            insight = result.content.strip()
+            recommendation = insight  # Optionally use LLM output for both
+        except Exception as e:
+            insight += f"\n[LLM summary error: {e}]"
+        print(f"[ReporterAgent] Report generation complete.")
         return {
             "total_reviews": total,
             "summary": summary,
@@ -57,11 +102,12 @@ class ReporterAgent:
             "emotion_percent": emotion_pct,
             "topic_percent": topic_pct,
             "summary_text": summary_text,
-            "insight": summary_text,  # for backward compatibility
+            "insight": insight,
             "recommendation": recommendation,
             "visualization": chart_path,  # path to the chart image for this product analysis
             "topic_emotion_counts": {k: dict(v) for k, v in topic_emotion_counts.items()},
-            "most_common_emotion_per_topic": most_common_emotion_per_topic
+            "most_common_emotion_per_topic": most_common_emotion_per_topic,
+            "per_review_analysis": per_review_analysis
         }
 
     def _generate_recommendation(self, sentiment_pct, emotion_pct, topic_pct, most_common_emotion_per_topic=None):
