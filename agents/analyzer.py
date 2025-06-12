@@ -75,30 +75,5 @@ class AnalyzerAgent:
                     "facet_emotions": {},
                     "explanation": f"AnalyzerAgent error: {str(e)}"
                 })
-        result = super().analyze(reviews)
-        print(f"[AnalyzerAgent] ({self.persona.split('.')[0]}) Result: {result}")
         print(f"[AnalyzerAgent] Analysis complete.")
         return results
-
-# ...existing code...
-class PreprocessorAgent:
-    # ...existing code...
-    def clean(self, reviews):
-        print(f"[PreprocessorAgent] Cleaning {len(reviews)} reviews...")
-        # ...existing code...
-        print(f"[PreprocessorAgent] Cleaning complete.")
-        return cleaned
-
-# ...existing code...
-class ReporterAgent:
-    # ...existing code...
-    def report(self, analyzed_reviews):
-        print(f"[ReporterAgent] Aggregating and summarizing {len(analyzed_reviews)} reviews...")
-        # ...existing code...
-        print(f"[ReporterAgent] Sentiment chart saved to {chart_path}")
-        print(f"[ReporterAgent] Generating LLM-based summary and recommendations...")
-        # ...existing code...
-        print(f"[ReporterAgent] Report generation complete.")
-        return {
-            # ...existing code...
-        }

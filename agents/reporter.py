@@ -94,6 +94,15 @@ class ReporterAgent:
             recommendation = insight  # Optionally use LLM output for both
         except Exception as e:
             insight += f"\n[LLM summary error: {e}]"
+        # Export human-readable report
+        agg = self.aggregate(analyzed_reviews)
+        human_report = self.generate_report(agg)
+        report_dir = os.path.join(os.path.dirname(__file__), "..", "charts")
+        os.makedirs(report_dir, exist_ok=True)
+        report_path = os.path.join(report_dir, "sentiment_report.txt")
+        with open(report_path, "w", encoding="utf-8") as f:
+            f.write(human_report)
+        print(f"[ReporterAgent] Human-readable report exported to {report_path}")
         print(f"[ReporterAgent] Report generation complete.")
         return {
             "total_reviews": total,
