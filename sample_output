@@ -1,0 +1,291 @@
+➜  multi-ai-agents-for-sentiment-analysis git:(main) ✗ python demo_enhanced_system.py 
+🚀 STARTING ENHANCED MULTI-AGENT SENTIMENT ANALYSIS DEMO
+This demo showcases the new FinRobot-like prompt organization
+
+============================================================
+PROMPT ORGANIZATION DEMO (FinRobot-like Structure)
+============================================================
+
+📁 PROMPT STRUCTURE:
+agents/prompts/
+├── __init__.py          # Module initialization
+├── base_prompts.py      # Common templates and utilities
+├── agent_prompts.py     # Agent-specific prompts
+├── product_prompts.py   # Product-category customizations
+└── coordinator_prompts.py # Consensus and discussion prompts
+
+🔧 AVAILABLE AGENT TYPES:
+  • quality: Product Quality Specialist - focuses on quality, durability, and manufacturing aspects
+  • experience: Customer Experience Specialist - focuses on service, delivery, and support experiences
+  • user_experience: User Experience Specialist - focuses on emotional responses and user satisfaction
+  • business: Business Intelligence Analyst - focuses on market impact and business implications
+  • technical: Technical Product Specialist - focuses on technical specifications and features
+
+🏷️  AVAILABLE PRODUCT CATEGORIES:
+  • electronics: Electronic devices, gadgets, and technology products
+  • fashion: Clothing, accessories, and fashion items
+  • home_garden: Home improvement, furniture, and garden products
+  • beauty_health: Beauty products, health supplements, and wellness items
+  • sports_outdoors: Sports equipment, outdoor gear, and fitness products
+  • books_media: Books, digital media, and educational content
+
+💡 PROMPT CUSTOMIZATION EXAMPLE:
+Base Quality Agent Prompt:
+  Length: 1260 characters
+
+Customized for Electronics:
+  Length: 1343 characters
+  Added electronics-specific focus areas
+============================================================
+ENHANCED MULTI-AGENT SENTIMENT ANALYSIS DEMO
+============================================================
+
+==================== TESTING ELECTRONICS CATEGORY ====================
+[EnhancedCoordinator] Initialized for electronics products with 4 agents
+[EnhancedCoordinator] Token limit per agent: 150
+[EnhancedCoordinator] Available categories: ['electronics', 'fashion', 'home_garden', 'beauty_health', 'sports_outdoors', 'books_media']
+[EnhancedCoordinator] Changed to electronics category and recreated agents
+
+[EnhancedCoordinator] Analyzing review: This smartphone is absolutely amazing! The camera quality is outstanding and the battery life lasts ...
+[EnhancedCoordinator] quality agent analyzing...
+[EnhancedCoordinator] quality: positive (confidence: 0.90)
+[EnhancedCoordinator] experience agent analyzing...
+[EnhancedCoordinator] experience: neutral (confidence: 0.75)
+[EnhancedCoordinator] user_experience agent analyzing...
+[EnhancedCoordinator] user_experience: positive (confidence: 0.85)
+[EnhancedCoordinator] business agent analyzing...
+[EnhancedCoordinator] business: positive (confidence: 0.85)
+
+[EnhancedCoordinator] Discussion round 1
+
+[EnhancedCoordinator] Discussion round 2
+
+[EnhancedCoordinator] Building consensus...
+[EnhancedCoordinator] Consensus: positive (confidence: 0.82)
+
+📊 ANALYSIS RESULTS FOR ELECTRONICS:
+Review: This smartphone is absolutely amazing! The camera quality is outstanding and the battery life lasts ...
+
+🤖 AGENT ANALYSES:
+  1. QUALITY: positive (confidence: 0.90)
+     Reasoning: The review highlights strong positive aspects such as outstanding camera quality, all-day battery...
+  2. EXPERIENCE: neutral (confidence: 0.75)
+     Reasoning: While the reviewer praises the smartphone's features, the negative experiences with delivery time...
+  3. USER_EXPERIENCE: positive (confidence: 0.85)
+     Reasoning: The review expresses strong positive feelings towards the smartphone's features, particularly the...
+  4. BUSINESS: positive (confidence: 0.85)
+     Reasoning: The review highlights strong product features like camera quality and battery life, indicating hi...
+
+🎯 CONSENSUS:
+  Overall Sentiment: positive
+  Confidence: 0.82
+  Agreement Level: medium
+  Key Insights: {'positive_aspects': ['Outstanding camera quality', 'All-day battery life', 'Strong product features'], 'neutral_aspects': ['Negative experiences with delivery time']}
+  Business Recommendations: Address delivery issues to enhance customer satisfaction. Leverage positive feedback on features in marketing strategies to attract more customers.
+
+📈 METADATA:
+  Total Agents: 4
+  Discussion Rounds: 2
+  Average Confidence: 0.84
+
+==================== TESTING FASHION CATEGORY ====================
+[EnhancedCoordinator] Initialized for fashion products with 4 agents
+[EnhancedCoordinator] Token limit per agent: 150
+[EnhancedCoordinator] Available categories: ['electronics', 'fashion', 'home_garden', 'beauty_health', 'sports_outdoors', 'books_media']
+[EnhancedCoordinator] Changed to fashion category and recreated agents
+
+[EnhancedCoordinator] Analyzing review: I love this dress! The fabric is soft and comfortable, and the fit is perfect. The color is exactly ...
+[EnhancedCoordinator] quality agent analyzing...
+[EnhancedCoordinator] quality: positive (confidence: 0.95)
+[EnhancedCoordinator] experience agent analyzing...
+[EnhancedCoordinator] experience: positive (confidence: 0.95)
+[EnhancedCoordinator] user_experience agent analyzing...
+[EnhancedCoordinator] user_experience: positive (confidence: 0.95)
+[EnhancedCoordinator] business agent analyzing...
+[EnhancedCoordinator] business: positive (confidence: 0.95)
+
+[EnhancedCoordinator] Discussion round 1
+
+[EnhancedCoordinator] Building consensus...
+[EnhancedCoordinator] Consensus: positive (confidence: 0.95)
+
+📊 ANALYSIS RESULTS FOR FASHION:
+Review: I love this dress! The fabric is soft and comfortable, and the fit is perfect. The color is exactly ...
+
+🤖 AGENT ANALYSES:
+  1. QUALITY: positive (confidence: 0.95)
+     Reasoning: The review highlights high-quality fabric, perfect fit, and accurate color representation, indica...
+  2. EXPERIENCE: positive (confidence: 0.95)
+     Reasoning: The review highlights multiple positive aspects of the product and service, including comfort, fi...
+  3. USER_EXPERIENCE: positive (confidence: 0.95)
+     Reasoning: The review expresses strong positive feelings about the dress's comfort, fit, and color, along wi...
+  4. BUSINESS: positive (confidence: 0.95)
+     Reasoning: The review highlights multiple positive aspects of the dress, including comfort, fit, and aesthet...
+
+🎯 CONSENSUS:
+  Overall Sentiment: positive
+  Confidence: 0.95
+  Agreement Level: high
+  Key Insights: ['All agents agree on a positive sentiment regarding the product.', 'Key positive aspects highlighted include quality of fabric, comfort, fit, and color representation.', 'The review reflects strong satisfaction with both the product and service.']
+  Business Recommendations: Leverage the positive feedback to enhance marketing strategies. Highlight the quality and comfort in promotional materials to attract more customers.
+
+📈 METADATA:
+  Total Agents: 4
+  Discussion Rounds: 1
+  Average Confidence: 0.95
+
+==================== TESTING HOME_GARDEN CATEGORY ====================
+[EnhancedCoordinator] Initialized for home_garden products with 4 agents
+[EnhancedCoordinator] Token limit per agent: 150
+[EnhancedCoordinator] Available categories: ['electronics', 'fashion', 'home_garden', 'beauty_health', 'sports_outdoors', 'books_media']
+[EnhancedCoordinator] Changed to home_garden category and recreated agents
+
+[EnhancedCoordinator] Analyzing review: This coffee maker is a disappointment. The build quality feels cheap and it broke after just 2 weeks...
+[EnhancedCoordinator] quality agent analyzing...
+[EnhancedCoordinator] quality: negative (confidence: 0.95)
+[EnhancedCoordinator] experience agent analyzing...
+[EnhancedCoordinator] experience: negative (confidence: 0.85)
+[EnhancedCoordinator] user_experience agent analyzing...
+[EnhancedCoordinator] user_experience: negative (confidence: 0.95)
+[EnhancedCoordinator] business agent analyzing...
+[EnhancedCoordinator] business: negative (confidence: 0.95)
+
+[EnhancedCoordinator] Discussion round 1
+
+[EnhancedCoordinator] Building consensus...
+[EnhancedCoordinator] Consensus: negative (confidence: 0.95)
+
+📊 ANALYSIS RESULTS FOR HOME_GARDEN:
+Review: This coffee maker is a disappointment. The build quality feels cheap and it broke after just 2 weeks...
+
+🤖 AGENT ANALYSES:
+  1. QUALITY: negative (confidence: 0.95)
+     Reasoning: The review highlights poor build quality and durability issues, with the product breaking within ...
+  2. EXPERIENCE: negative (confidence: 0.85)
+     Reasoning: The review expresses disappointment with the product's quality and repeated issues, despite posit...
+  3. USER_EXPERIENCE: negative (confidence: 0.95)
+     Reasoning: The review expresses strong disappointment due to poor build quality and repeated issues with the...
+  4. BUSINESS: negative (confidence: 0.95)
+     Reasoning: The review highlights significant issues with product quality and reliability, leading to custome...
+
+🎯 CONSENSUS:
+  Overall Sentiment: negative
+  Confidence: 0.95
+  Agreement Level: high
+  Key Insights: ['All agents agree on a negative sentiment regarding the product.', 'Common themes include poor build quality and reliability issues.', 'Agents express strong disappointment from users due to repeated problems.']
+  Business Recommendations: Focus on improving product quality and durability to enhance customer satisfaction. Consider implementing a quality assurance process to address the highlighted issues and prevent future complaints.
+
+📈 METADATA:
+  Total Agents: 4
+  Discussion Rounds: 1
+  Average Confidence: 0.92
+
+============================================================
+TOKEN OPTIMIZATION DEMO
+============================================================
+
+🔢 TESTING WITH 100 TOKENS PER AGENT:
+[EnhancedCoordinator] Initialized for electronics products with 4 agents
+[EnhancedCoordinator] Token limit per agent: 100
+[EnhancedCoordinator] Available categories: ['electronics', 'fashion', 'home_garden', 'beauty_health', 'sports_outdoors', 'books_media']
+
+[EnhancedCoordinator] Analyzing review: This product exceeded my expectations! The quality is excellent and the customer service was outstan...
+[EnhancedCoordinator] quality agent analyzing...
+[EnhancedCoordinator] quality: positive (confidence: 0.95)
+[EnhancedCoordinator] experience agent analyzing...
+[EnhancedCoordinator] experience: positive (confidence: 0.95)
+[EnhancedCoordinator] user_experience agent analyzing...
+[EnhancedCoordinator] user_experience: positive (confidence: 0.95)
+[EnhancedCoordinator] business agent analyzing...
+[EnhancedCoordinator] business: positive (confidence: 0.95)
+
+[EnhancedCoordinator] Discussion round 1
+
+[EnhancedCoordinator] Building consensus...
+[EnhancedCoordinator] Consensus: positive (confidence: 0.95)
+  Total Agents: 4
+  Estimated Token Usage: 400
+  Consensus: positive
+  quality reasoning length: 100 chars
+  experience reasoning length: 100 chars
+  user_experience reasoning length: 100 chars
+  business reasoning length: 100 chars
+
+🔢 TESTING WITH 150 TOKENS PER AGENT:
+[EnhancedCoordinator] Initialized for electronics products with 4 agents
+[EnhancedCoordinator] Token limit per agent: 150
+[EnhancedCoordinator] Available categories: ['electronics', 'fashion', 'home_garden', 'beauty_health', 'sports_outdoors', 'books_media']
+
+[EnhancedCoordinator] Analyzing review: This product exceeded my expectations! The quality is excellent and the customer service was outstan...
+[EnhancedCoordinator] quality agent analyzing...
+[EnhancedCoordinator] quality: positive (confidence: 0.95)
+[EnhancedCoordinator] experience agent analyzing...
+[EnhancedCoordinator] experience: positive (confidence: 0.95)
+[EnhancedCoordinator] user_experience agent analyzing...
+[EnhancedCoordinator] user_experience: positive (confidence: 0.95)
+[EnhancedCoordinator] business agent analyzing...
+[EnhancedCoordinator] business: positive (confidence: 0.95)
+
+[EnhancedCoordinator] Discussion round 1
+
+[EnhancedCoordinator] Building consensus...
+[EnhancedCoordinator] Consensus: positive (confidence: 0.95)
+  Total Agents: 4
+  Estimated Token Usage: 600
+  Consensus: positive
+  quality reasoning length: 100 chars
+  experience reasoning length: 100 chars
+  user_experience reasoning length: 100 chars
+  business reasoning length: 100 chars
+
+🔢 TESTING WITH 200 TOKENS PER AGENT:
+[EnhancedCoordinator] Initialized for electronics products with 4 agents
+[EnhancedCoordinator] Token limit per agent: 200
+[EnhancedCoordinator] Available categories: ['electronics', 'fashion', 'home_garden', 'beauty_health', 'sports_outdoors', 'books_media']
+
+[EnhancedCoordinator] Analyzing review: This product exceeded my expectations! The quality is excellent and the customer service was outstan...
+[EnhancedCoordinator] quality agent analyzing...
+[EnhancedCoordinator] quality: positive (confidence: 0.95)
+[EnhancedCoordinator] experience agent analyzing...
+[EnhancedCoordinator] experience: positive (confidence: 0.95)
+[EnhancedCoordinator] user_experience agent analyzing...
+[EnhancedCoordinator] user_experience: positive (confidence: 0.95)
+[EnhancedCoordinator] business agent analyzing...
+[EnhancedCoordinator] business: positive (confidence: 0.95)
+
+[EnhancedCoordinator] Discussion round 1
+
+[EnhancedCoordinator] Building consensus...
+[EnhancedCoordinator] Consensus: positive (confidence: 0.95)
+  Total Agents: 4
+  Estimated Token Usage: 800
+  Consensus: positive
+  quality reasoning length: 100 chars
+  experience reasoning length: 100 chars
+  user_experience reasoning length: 100 chars
+  business reasoning length: 100 chars
+
+============================================================
+ERROR HANDLING DEMO
+============================================================
+
+🚫 TESTING INVALID PRODUCT CATEGORY:
+[EnhancedCoordinator] Initialized for invalid_category products with 4 agents
+[EnhancedCoordinator] Token limit per agent: 150
+[EnhancedCoordinator] Available categories: ['electronics', 'fashion', 'home_garden', 'beauty_health', 'sports_outdoors', 'books_media']
+
+🚫 TESTING INVALID AGENT TYPE:
+  Error caught: Unknown agent type: invalid_agent_type. Available types: ['quality', 'experience', 'user_experience', 'business', 'technical']
+  ✅ Proper error handling for invalid agent types
+
+============================================================
+✅ DEMO COMPLETED SUCCESSFULLY!
+============================================================
+
+Key Improvements:
+• Organized prompts in dedicated files (FinRobot-like structure)
+• Better separation of concerns
+• Improved maintainability and readability
+• Product-category-specific prompt customization
+• Token optimization with configurable limits
+• Enhanced error handling and validation
