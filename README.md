@@ -1,76 +1,277 @@
 # Multi-AI Agents for Sentiment Analysis
 
-This project implements a modular, multi-agent system for advanced sentiment analysis of e-commerce product reviews. It leverages the LangChain and LangGraph frameworks, OpenAI LLMs, and the A2A protocol for agent-to-agent communication.
+A sophisticated multi-agent sentiment analysis system inspired by FinRobot, using LangChain and LangGraph with OpenAI LLMs and the A2A protocol. The system features specialized agents for different aspects of sentiment analysis with product-category-specific prompt customization and cost optimization.
 
-## Features
+## 🏗️ Architecture Overview
 
-- **Scraper Agent (Data Acquisition Specialist):** Collects product reviews (mocked for demo, can be extended for Lazada API). Shows progress in terminal.
-- **Preprocessor Agent (Text Data Specialist):** Cleans and normalizes review text for analysis, optionally using LLMs. Shows progress in terminal.
-- **Analyzer Agents (Customer Insights Analysts):** Multiple LLM-based agents analyze each review for sentiment, emotion, and topics. Results are combined using a voting/consensus mechanism (LangGraph orchestrated). Each agent's analysis and group chat/discussion are printed in the terminal for transparency and debugging.
-- **Memory Manager Agent:** Placeholder for semantic memory (Qdrant/embeddings integration planned). Shows storing progress in terminal.
-- **Reporter Agent (Business Insights Reporter):** Summarizes results, generates actionable recommendations, and creates visualizations (charts). Shows progress and chart generation in terminal.
-- **A2A Protocol Server:** Exposes the workflow via a FastAPI endpoint, supporting standardized agent-to-agent communication.
+The system uses a **FinRobot-like architecture** with organized, maintainable prompt management:
 
-## Architecture
+```
+agents/
+├── prompts/                    # 🆕 Organized prompt structure
+│   ├── __init__.py            # Module initialization
+│   ├── base_prompts.py        # Common templates and utilities
+│   ├── agent_prompts.py       # Agent-specific prompts
+│   ├── product_prompts.py     # Product-category customizations
+│   └── coordinator_prompts.py # Consensus and discussion prompts
+├── sentiment_agents.py        # Specialized sentiment analysis agents
+├── enhanced_coordinator.py    # Multi-agent coordination with LangGraph
+├── product_prompts.py         # Legacy product prompt manager
+├── scraper.py                 # Review scraping functionality
+├── preprocessor.py            # Text preprocessing
+├── memory_manager.py          # Memory management
+└── reporter.py                # Report generation
+```
 
-- **Workflow:**
-  1. Scraper collects all reviews for a product.
-  2. Preprocessor cleans each review.
-  3. Each review is analyzed by multiple Analyzer agents (LLMs).
-  4. Results are consolidated via voting/consensus (LangGraph). Group chat/discussion and consensus process are visible in the terminal.
-  5. Reporter aggregates, summarizes, and visualizes the overall product sentiment.
+## 🎯 Key Features
 
-- **Visualization:**
-  - Generates a sentiment distribution chart for each product (saved as PNG in `charts/`).
-  - Chart can be served via an API endpoint.
+### **FinRobot-like Prompt Organization** 🆕
+- **Dedicated prompt files** for better maintainability
+- **Separation of concerns** with base, agent, product, and coordinator prompts
+- **Easy to read, understand, and maintain** prompt structure
+- **Product-category-specific customization** for specialized analysis
 
-## How to Run
+### **Specialized Agents**
+- **Product Quality Agent**: Analyzes quality, durability, and manufacturing aspects
+- **Customer Experience Agent**: Focuses on service, delivery, and support experiences
+- **User Experience Agent**: Evaluates emotional responses and user satisfaction
+- **Business Impact Agent**: Assesses market implications and business metrics
+- **Technical Specification Agent**: Analyzes technical features and performance
 
-1. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. **Configure OpenAI API Key:**
-   - Edit `config.json` with your OpenAI API key and model name.
+### **Cost Optimization**
+- **Configurable token limits** per agent (default: 150 tokens)
+- **Efficient prompt design** to minimize API costs
+- **Token usage tracking** and optimization
 
-3. **Start the A2A server:**
-   ```bash
-   uvicorn a2a_server:app --reload
-   ```
+### **Product-Category Customization**
+- **Electronics**: Technical performance, battery life, build quality
+- **Fashion**: Fabric quality, fit, style, comfort
+- **Home & Garden**: Durability, functionality, safety
+- **Beauty & Health**: Effectiveness, ingredients, results
+- **Sports & Outdoors**: Performance, durability, safety
+- **Books & Media**: Content quality, educational value
 
-4. **Test the workflow:**
-   - Run the test script:
-     ```bash
-     python test_a2a_workflow.py
-     ```
-   - Or send a POST request to `http://127.0.0.1:8000/tasks/send` with a review or product ID.
-   - **Debugging:** All agent progress, analysis, and group chat/discussion will be printed in the terminal for each review.
+### **Multi-Agent Consensus**
+- **LangGraph workflow** for agent coordination
+- **Discussion rounds** for consensus building
+- **Weighted confidence scoring**
+- **Business impact assessment**
 
-5. **View the chart:**
-   - The sentiment chart is saved in the `charts/` directory (e.g., `charts/sentiment_chart.png`).
-   - (Optional) Access the chart via an API endpoint (see `a2a_server.py`).
+## 🚀 Quick Start
 
-## Project Structure
+### 1. Installation
 
-- `agents/` - All agent implementations (scraper, preprocessor, analyzer, memory manager, reporter)
-- `a2a_server.py` - FastAPI server exposing the workflow via A2A protocol
-- `test_a2a_workflow.py` - Test script for sending sample reviews
-- `charts/` - Output directory for generated sentiment charts
-- `config.json` - Configuration for API keys and model
+```bash
+pip install -r requirements.txt
+```
 
-## TODO (from system_idea.txt)
-- [x] Add collaborative decision-making: agent voting/consensus for ambiguous reviews
-- [x] Enhance visualization with Matplotlib/Seaborn in ReporterAgent
-- [x] Modularize agents for independent and collaborative workflows
-- [x] Enable proactive information sharing and broadcasting between agents (basic group chat/discussion visible in terminal)
-- [x] Implement conflict resolution protocols for agent disagreements (basic consensus mechanism)
-- [x] Show agent progress and group chat/discussion in terminal for debugging
-- [ ] Implement advanced agent communication framework (message protocol, broker, protocol handlers)
-- [ ] Integrate semantic memory with vector DB (Qdrant) and OpenAI embeddings
-- [ ] Add continuous learning: memory consolidation and improvement over time
-- [ ] Support Net Promoter Score (NPS) for business-oriented customer categorization
-- [ ] Expand business value: emotion pattern detection, topic/trend discovery
+### 2. Configuration
 
-## Credits
-- Built with LangChain, LangGraph, OpenAI, FastAPI, and Matplotlib.
-- Inspired by the A2A protocol and multi-agent system design patterns.
+Create a `config.json` file:
+
+```json
+{
+    "api_key": "your-openai-api-key",
+    "model_name": "gpt-4o-mini"
+}
+```
+
+### 3. Basic Usage
+
+```python
+from agents.enhanced_coordinator import EnhancedCoordinatorAgent
+import json
+
+# Load config
+with open('config.json', 'r') as f:
+    config = json.load(f)
+
+# Initialize coordinator
+coordinator = EnhancedCoordinatorAgent(
+    config=config,
+    product_category="electronics",
+    agent_types=["quality", "experience", "user_experience", "business"],
+    max_tokens_per_agent=150
+)
+
+# Analyze reviews
+result = coordinator.run_workflow(
+    reviews=["This smartphone is amazing! Great camera and battery life."]
+)
+
+print(f"Sentiment: {result['consensus']['overall_sentiment']}")
+print(f"Confidence: {result['consensus']['overall_confidence']:.2f}")
+```
+
+### 4. Run Demo
+
+```bash
+python demo_enhanced_system.py
+```
+
+## 📁 Prompt Organization (FinRobot-like Structure)
+
+### **Base Prompts** (`agents/prompts/base_prompts.py`)
+- Common system message templates
+- Human message templates
+- Error handling templates
+- Utility functions for formatting and validation
+
+### **Agent Prompts** (`agents/prompts/agent_prompts.py`)
+- Specialized prompts for each agent type
+- Role-specific instructions and focus areas
+- Token limit warnings and constraints
+
+### **Product Prompts** (`agents/prompts/product_prompts.py`)
+- Product-category-specific focus areas
+- Customization logic for different product types
+- Category descriptions and metadata
+
+### **Coordinator Prompts** (`agents/prompts/coordinator_prompts.py`)
+- Consensus building prompts
+- Discussion phase prompts
+- Summary and reporting templates
+
+## 🔧 API Usage
+
+### FastAPI Server
+
+```bash
+python enhanced_a2a_server.py
+```
+
+**Endpoints:**
+- `POST /analyze`: Analyze reviews with multi-agent system
+- `GET /categories`: Get available product categories
+- `GET /agents`: Get available agent types
+
+### Example API Call
+
+```bash
+curl -X POST "http://localhost:8000/analyze" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "reviews": ["This product is excellent!"],
+       "product_category": "electronics",
+       "agent_types": ["quality", "experience", "user_experience"],
+       "max_tokens_per_agent": 150
+     }'
+```
+
+## 🎛️ Configuration Options
+
+### Agent Types
+- `quality`: Product quality and durability analysis
+- `experience`: Customer service and delivery experience
+- `user_experience`: Emotional response and satisfaction
+- `business`: Market impact and business implications
+- `technical`: Technical specifications and features
+
+### Product Categories
+- `electronics`: Electronic devices and technology
+- `fashion`: Clothing and accessories
+- `home_garden`: Home improvement and garden products
+- `beauty_health`: Beauty and health products
+- `sports_outdoors`: Sports equipment and outdoor gear
+- `books_media`: Books and digital media
+
+### Token Limits
+- **Conservative**: 100 tokens per agent
+- **Balanced**: 150 tokens per agent (default)
+- **Detailed**: 200+ tokens per agent
+
+## 📊 Output Format
+
+```json
+{
+  "product_id": "sample_product",
+  "product_category": "electronics",
+  "review_text": "This smartphone is amazing!",
+  "agent_analyses": [
+    {
+      "agent_type": "quality",
+      "sentiment": "positive",
+      "confidence": 0.85,
+      "emotions": ["satisfied", "impressed"],
+      "topics": ["build quality", "performance"],
+      "reasoning": "Excellent build quality and performance",
+      "business_impact": "High customer satisfaction"
+    }
+  ],
+  "consensus": {
+    "overall_sentiment": "positive",
+    "overall_confidence": 0.82,
+    "agreement_level": "high",
+    "key_insights": "Strong positive sentiment across all aspects",
+    "business_recommendations": "Continue current quality standards"
+  },
+  "analysis_metadata": {
+    "total_agents": 4,
+    "discussion_rounds": 1,
+    "average_confidence": 0.82,
+    "analysis_timestamp": "2024-01-15T10:30:00"
+  }
+}
+```
+
+## 🔄 Comparison with FinRobot
+
+| Aspect | FinRobot | This Project |
+|--------|----------|--------------|
+| **Domain** | Financial analysis | Sentiment analysis |
+| **Framework** | AutoGen | LangChain + LangGraph |
+| **Agents** | Financial specialists | Sentiment specialists |
+| **Prompts** | Organized in files | Organized in files ✅ |
+| **Consensus** | Multi-agent discussion | Multi-agent consensus ✅ |
+| **Cost Optimization** | Token limits | Token limits ✅ |
+| **Customization** | Market-specific | Product-category-specific ✅ |
+
+## 🛠️ Development
+
+### Adding New Agent Types
+
+1. Add prompt template to `agents/prompts/agent_prompts.py`
+2. Create agent class in `agents/sentiment_agents.py`
+3. Update factory methods
+
+### Adding New Product Categories
+
+1. Add focus areas to `agents/prompts/product_prompts.py`
+2. Update category descriptions
+3. Test with sample reviews
+
+### Testing
+
+```bash
+python test_enhanced_system.py
+```
+
+## 📈 Performance & Cost
+
+### Token Usage Estimation
+- **4 agents × 150 tokens = 600 tokens per review**
+- **Consensus building: ~300 tokens**
+- **Total: ~900 tokens per review**
+
+### Cost Optimization Tips
+- Use lower token limits for high-volume analysis
+- Implement caching for similar reviews
+- Batch process reviews when possible
+- Monitor API usage and adjust limits
+
+## 🤝 Contributing
+
+1. Follow the FinRobot-like prompt organization
+2. Maintain separation of concerns
+3. Add comprehensive tests
+4. Update documentation
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by FinRobot's multi-agent architecture
+- Built with LangChain and LangGraph
+- Uses OpenAI's GPT models for analysis
