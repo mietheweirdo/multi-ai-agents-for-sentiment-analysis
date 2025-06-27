@@ -1,0 +1,27 @@
+{
+  "name": "User Experience Sentiment Agent",
+  "description": "Specialized sentiment analysis agent focusing on emotional responses and user satisfaction",
+  "version": "0.1.0",
+  "capabilities": ["requestResponse"],
+  "skills": [
+    {
+      "name": "user_experience_sentiment_analysis",
+      "description": "Analyze product reviews for emotional responses and user satisfaction patterns"
+    }
+  ],
+  "inputFormats": ["text"],
+  "outputFormats": ["text"],
+  "authentication": {
+    "type": "none"
+  },
+  "agent_type": "user_experience",
+  "specialization": "User experience and emotional response analysis",
+  "focus_areas": [
+    "Emotional responses and feelings",
+    "User satisfaction and delight",
+    "Design and usability aspects",
+    "Personal connection to the product",
+    "Lifestyle fit and preferences",
+    "Overall happiness and fulfillment"
+  ]
+}
