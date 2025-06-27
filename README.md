@@ -1,10 +1,10 @@
 # Multi-AI Agents for Sentiment Analysis
 
-A sophisticated multi-agent sentiment analysis system inspired by FinRobot, using LangChain and LangGraph with OpenAI LLMs and the A2A protocol. The system features specialized agents for different aspects of sentiment analysis with product-category-specific prompt customization and cost optimization.
+A sophisticated multi-agent sentiment analysis system using LangChain and LangGraph with OpenAI LLMs and the A2A protocol. The system features specialized agents for different aspects of sentiment analysis with product-category-specific prompt customization and cost optimization.
 
 ## 🏗️ Architecture Overview
 
-The system uses a **FinRobot-like architecture** with organized, maintainable prompt management:
+The system uses an organized, maintainable architecture with structured prompt management:
 
 ```
 agents/
@@ -25,7 +25,7 @@ agents/
 
 ## 🎯 Key Features
 
-### **FinRobot-like Prompt Organization** 🆕
+### **Organized Prompt Structure** 🆕
 - **Dedicated prompt files** for better maintainability
 - **Separation of concerns** with base, agent, product, and coordinator prompts
 - **Easy to read, understand, and maintain** prompt structure
@@ -56,6 +56,68 @@ agents/
 - **Discussion rounds** for consensus building
 - **Weighted confidence scoring**
 - **Business impact assessment**
+
+## 🎯 Business Recommendations Configuration
+
+The system now supports configurable business recommendations length to meet different needs:
+
+### Configuration Parameters
+
+- **`max_tokens_consensus`**: Controls the token limit for consensus analysis (default: 800)
+- **`max_tokens_per_agent`**: Controls individual agent token limits (default: 150)
+- **Word limits in prompts**: Business recommendations can be up to 300 words
+
+### Usage Examples
+
+#### 1. Standard Configuration (Cost-Optimized)
+```python
+coordinator = EnhancedCoordinatorAgent(
+    config=config,
+    product_category="electronics",
+    max_tokens_per_agent=150,
+    max_tokens_consensus=300  # Shorter recommendations
+)
+```
+
+#### 2. Enhanced Configuration (Balanced)
+```python
+coordinator = EnhancedCoordinatorAgent(
+    config=config,
+    product_category="electronics", 
+    max_tokens_per_agent=400,
+    max_tokens_consensus=800  # Detailed recommendations
+)
+```
+
+#### 3. Premium Configuration (Maximum Detail)
+```python
+coordinator = EnhancedCoordinatorAgent(
+    config=config,
+    product_category="electronics",
+    max_tokens_per_agent=600,
+    max_tokens_consensus=1200  # Comprehensive business insights
+)
+```
+
+#### 4. API Usage
+```bash
+curl -X POST "http://localhost:8000/analyze" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "reviews": ["Your review text here"],
+    "product_category": "electronics",
+    "max_tokens_per_agent": 400,
+    "max_tokens_consensus": 800
+  }'
+```
+
+### Cost Considerations
+
+- **Standard (300 tokens)**: ~$0.000045 per analysis
+- **Enhanced (800 tokens)**: ~$0.00012 per analysis  
+- **Premium (1200 tokens)**: ~$0.00018 per analysis
+
+*Costs are approximate for GPT-4o-mini model*
 
 ## 🚀 Quick Start
 
@@ -109,7 +171,7 @@ print(f"Confidence: {result['consensus']['overall_confidence']:.2f}")
 python demo_enhanced_system.py
 ```
 
-## 📁 Prompt Organization (FinRobot-like Structure)
+## 📁 Prompt Organization
 
 ### **Base Prompts** (`agents/prompts/base_prompts.py`)
 - Common system message templates
@@ -214,54 +276,9 @@ curl -X POST "http://localhost:8000/analyze" \
 }
 ```
 
-## 🔄 Comparison with FinRobot
-
-| Aspect | FinRobot | This Project |
-|--------|----------|--------------|
-| **Domain** | Financial analysis | Sentiment analysis |
-| **Framework** | AutoGen | LangChain + LangGraph |
-| **Agents** | Financial specialists | Sentiment specialists |
-| **Prompts** | Organized in files | Organized in files ✅ |
-| **Consensus** | Multi-agent discussion | Multi-agent consensus ✅ |
-| **Cost Optimization** | Token limits | Token limits ✅ |
-| **Customization** | Market-specific | Product-category-specific ✅ |
-
-## 🛠️ Development
-
-### Adding New Agent Types
-
-1. Add prompt template to `agents/prompts/agent_prompts.py`
-2. Create agent class in `agents/sentiment_agents.py`
-3. Update factory methods
-
-### Adding New Product Categories
-
-1. Add focus areas to `agents/prompts/product_prompts.py`
-2. Update category descriptions
-3. Test with sample reviews
-
-### Testing
-
-```bash
-python test_enhanced_system.py
-```
-
-## 📈 Performance & Cost
-
-### Token Usage Estimation
-- **4 agents × 150 tokens = 600 tokens per review**
-- **Consensus building: ~300 tokens**
-- **Total: ~900 tokens per review**
-
-### Cost Optimization Tips
-- Use lower token limits for high-volume analysis
-- Implement caching for similar reviews
-- Batch process reviews when possible
-- Monitor API usage and adjust limits
-
 ## 🤝 Contributing
 
-1. Follow the FinRobot-like prompt organization
+1. Follow the organized prompt structure
 2. Maintain separation of concerns
 3. Add comprehensive tests
 4. Update documentation
@@ -272,6 +289,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🙏 Acknowledgments
 
-- Inspired by FinRobot's multi-agent architecture
 - Built with LangChain and LangGraph
 - Uses OpenAI's GPT models for analysis

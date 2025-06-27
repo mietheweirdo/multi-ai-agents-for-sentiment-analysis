@@ -37,7 +37,8 @@ class EnhancedCoordinatorAgent:
                  product_category: str = "electronics",
                  agent_types: Optional[List[str]] = None,
                  max_tokens_per_agent: int = 150,
-                 max_rounds: int = 2):
+                 max_rounds: int = 2,
+                 max_tokens_consensus: int = 800):
         
         # Load config
         if config is None:
@@ -49,6 +50,7 @@ class EnhancedCoordinatorAgent:
         self.product_category = product_category
         self.max_tokens_per_agent = max_tokens_per_agent
         self.max_rounds = max_rounds
+        self.max_tokens_consensus = max_tokens_consensus
         
         # Initialize agents
         self.scraper = ScraperAgent()
@@ -67,11 +69,11 @@ class EnhancedCoordinatorAgent:
             product_category=product_category
         )
         
-        # Initialize consensus LLM
+        # Initialize consensus LLM with configurable token limit
         self.consensus_llm = ChatOpenAI(
             model=self.config.get("model_name", "gpt-4o-mini"),
             api_key=self.config.get("api_key"),
-            max_tokens=300,
+            max_tokens=max_tokens_consensus,
             temperature=0.1
         )
         
@@ -80,6 +82,7 @@ class EnhancedCoordinatorAgent:
         
         print(f"[EnhancedCoordinator] Initialized for {product_category} products with {len(self.sentiment_agents)} agents")
         print(f"[EnhancedCoordinator] Token limit per agent: {max_tokens_per_agent}")
+        print(f"[EnhancedCoordinator] Token limit for consensus: {max_tokens_consensus}")
         print(f"[EnhancedCoordinator] Available categories: {ProductPrompts.get_available_categories()}")
     
     def _build_enhanced_workflow(self):

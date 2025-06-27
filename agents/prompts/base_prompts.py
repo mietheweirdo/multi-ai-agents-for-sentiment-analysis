@@ -74,7 +74,7 @@ Prioritize accuracy over verbosity."""
             "confidence": max(0.0, min(1.0, float(output.get("confidence", 0.5)))),
             "emotions": output.get("emotions", []),
             "topics": output.get("topics", []),
-            "reasoning": BasePrompts.truncate_text(output.get("reasoning", ""), 100),
-            "business_impact": BasePrompts.truncate_text(output.get("business_impact", ""), 50)
+            "reasoning": BasePrompts.truncate_text(output.get("reasoning", ""), 500),
+            "business_impact": BasePrompts.truncate_text(output.get("business_impact", ""), 500)
         }
         return formatted 
