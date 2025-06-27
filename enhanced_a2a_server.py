@@ -26,6 +26,7 @@ class AnalysisRequest(BaseModel):
     product_category: str = "electronics"
     agent_types: Optional[List[str]] = None
     max_tokens_per_agent: int = 150
+    max_tokens_consensus: int = 800  # Added parameter for consensus token limit
     product_id: Optional[str] = None
 
 class AnalysisResponse(BaseModel):
@@ -131,7 +132,8 @@ async def analyze_sentiment(request: AnalysisRequest):
                 config=CONFIG,
                 product_category=request.product_category,
                 agent_types=request.agent_types,
-                max_tokens_per_agent=request.max_tokens_per_agent
+                max_tokens_per_agent=request.max_tokens_per_agent,
+                max_tokens_consensus=request.max_tokens_consensus
             )
         
         # Run analysis
@@ -147,6 +149,7 @@ async def analyze_sentiment(request: AnalysisRequest):
                 "product_category": request.product_category,
                 "agent_types": request.agent_types or ["quality", "experience", "user_experience", "business"],
                 "max_tokens_per_agent": request.max_tokens_per_agent,
+                "max_tokens_consensus": request.max_tokens_consensus,
                 "total_reviews": len(request.reviews)
             },
             message="Analysis completed successfully"

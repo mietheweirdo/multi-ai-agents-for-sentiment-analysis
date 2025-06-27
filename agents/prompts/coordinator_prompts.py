@@ -29,8 +29,8 @@ Please provide a consensus analysis with:
 - agreement_level: high/medium/low based on agent agreement
 - key_insights: main findings from all agents
 - areas_of_disagreement: any conflicting assessments
-- final_reasoning: consensus reasoning (max 150 words)
-- business_recommendations: actionable business insights (max 100 words)"""
+- final_reasoning: consensus reasoning (max 200 words)
+- business_recommendations: detailed actionable business insights and strategic recommendations (max 300 words)"""
 
     # Discussion phase prompt
     DISCUSSION_PROMPT = """You are participating in a multi-agent discussion to reach consensus on sentiment analysis.

@@ -80,20 +80,26 @@ def test_enhanced_system():
             
             # Display results
             print(f"\n✅ Analysis completed for {test_config['product_category']}")
-            print(f"📈 Total reviews analyzed: {result['metadata']['total_reviews']}")
-            print(f"🤖 Agents used: {result['metadata']['agents_used']}")
-            print(f"💾 Estimated tokens used: {result['metadata']['estimated_tokens_used']}")
-            print(f"🎯 Agent types: {', '.join(result['metadata']['agent_types'])}")
+            print(f"📈 Total agents: {result['analysis_metadata']['total_agents']}")
+            print(f"🔄 Discussion rounds: {result['analysis_metadata']['discussion_rounds']}")
+            print(f"📊 Average confidence: {result['analysis_metadata']['average_confidence']:.2f}")
+            print(f"🎯 Agent types: {', '.join(test_config['agent_types'])}")
             
-            # Show sentiment distribution
-            if 'sentiment_distribution' in result:
-                print(f"📊 Sentiment distribution: {result['sentiment_distribution']}")
+            # Show consensus results
+            consensus = result['consensus']
+            print(f"🎯 Overall sentiment: {consensus.get('overall_sentiment', 'unknown')}")
+            print(f"📊 Overall confidence: {consensus.get('overall_confidence', 0.5):.2f}")
+            print(f"🤝 Agreement level: {consensus.get('agreement_level', 'unknown')}")
             
             # Show key insights
-            if 'key_insights' in result:
+            if 'key_insights' in consensus:
                 print(f"\n💡 Key insights:")
-                for insight in result['key_insights'][:3]:  # Top 3 insights
-                    print(f"   • {insight}")
+                insights = consensus['key_insights']
+                if isinstance(insights, list):
+                    for insight in insights[:3]:  # Top 3 insights
+                        print(f"   • {insight}")
+                else:
+                    print(f"   • {insights}")
             
         except Exception as e:
             print(f"❌ Error in {test_config['name']}: {e}")
@@ -147,10 +153,14 @@ def test_token_optimization():
         try:
             result = coordinator.run_workflow(reviews=[test_review])
             
-            estimated_cost = (result['metadata']['estimated_tokens_used'] / 1000) * 0.00015  # Rough cost estimate
+            # Calculate estimated cost based on actual token usage
+            total_agents = result['analysis_metadata']['total_agents']
+            estimated_tokens = total_agents * token_config['max_tokens'] + 800  # Add consensus tokens
+            estimated_cost = (estimated_tokens / 1000) * 0.00015  # Rough cost estimate
+            
             print(f"   Estimated cost: ${estimated_cost:.4f}")
-            print(f"   Sentiment: {result.get('sentiment', 'N/A')}")
-            print(f"   Confidence: {result.get('confidence', 'N/A')}")
+            print(f"   Sentiment: {result['consensus'].get('overall_sentiment', 'N/A')}")
+            print(f"   Confidence: {result['consensus'].get('overall_confidence', 'N/A')}")
             
         except Exception as e:
             print(f"   Error: {e}")

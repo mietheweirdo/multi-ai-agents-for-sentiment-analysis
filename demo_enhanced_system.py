@@ -1,7 +1,7 @@
 # demo_enhanced_system.py
 """
 Demo script for the enhanced multi-agent sentiment analysis system.
-Shows the new FinRobot-like prompt organization and improved structure.
+Shows the new organized prompt structure and improved architecture.
 """
 
 import json
@@ -16,12 +16,11 @@ def load_config():
         return json.load(f)
 
 def demo_basic_analysis():
-    """Demo basic sentiment analysis with the enhanced system"""
-    print("=" * 60)
+    """Demo basic enhanced multi-agent sentiment analysis"""
+    print("\n" + "=" * 60)
     print("ENHANCED MULTI-AGENT SENTIMENT ANALYSIS DEMO")
     print("=" * 60)
     
-    # Load configuration
     config = load_config()
     
     # Sample reviews for different product categories
@@ -41,13 +40,14 @@ def demo_basic_analysis():
     for category, reviews in sample_reviews.items():
         print(f"\n{'='*20} TESTING {category.upper()} CATEGORY {'='*20}")
         
-        # Initialize coordinator for this category
+        # Initialize coordinator for this category with enhanced configuration
         coordinator = EnhancedCoordinatorAgent(
             config=config,
             product_category=category,
             agent_types=["quality", "experience", "user_experience", "business"],
             max_tokens_per_agent=600, #150 default
-            max_rounds=2
+            max_rounds=4,
+            max_tokens_consensus=2400  # Enhanced consensus token limit for longer recommendations
         )
         
         # Analyze the review
@@ -85,9 +85,9 @@ def demo_basic_analysis():
         print(f"  Average Confidence: {metadata['average_confidence']:.2f}")
 
 def demo_prompt_organization():
-    """Demo the new FinRobot-like prompt organization"""
+    """Demo the new organized prompt structure"""
     print("\n" + "=" * 60)
-    print("PROMPT ORGANIZATION DEMO (FinRobot-like Structure)")
+    print("PROMPT ORGANIZATION DEMO")
     print("=" * 60)
     
     print("\n📁 PROMPT STRUCTURE:")
@@ -191,15 +191,86 @@ def demo_error_handling():
         print(f"  Error caught: {e}")
         print("  ✅ Proper error handling for invalid agent types")
 
+def demo_enhanced_business_recommendations():
+    """Demo enhanced business recommendations with different configurations"""
+    print("\n" + "=" * 60)
+    print("ENHANCED BUSINESS RECOMMENDATIONS DEMO")
+    print("=" * 60)
+    
+    config = load_config()
+    
+    # Sample review for detailed analysis
+    sample_review = "This laptop has excellent performance and build quality. The battery life is impressive and the keyboard feels great. However, the customer support was terrible when I had an issue, and the delivery took longer than expected. The price is reasonable for the features offered."
+    
+    # Test different consensus token configurations
+    consensus_configs = [
+        {
+            "name": "Standard Configuration (300 tokens)",
+            "max_tokens_consensus": 300,
+            "description": "Default setting for cost optimization"
+        },
+        {
+            "name": "Enhanced Configuration (800 tokens)", 
+            "max_tokens_consensus": 800,
+            "description": "Balanced approach for detailed recommendations"
+        },
+        {
+            "name": "Premium Configuration (1200 tokens)",
+            "max_tokens_consensus": 1200,
+            "description": "Maximum detail for comprehensive business insights"
+        }
+    ]
+    
+    for config_setting in consensus_configs:
+        print(f"\n🔧 TESTING: {config_setting['name']}")
+        print(f"   Description: {config_setting['description']}")
+        print(f"   Consensus Token Limit: {config_setting['max_tokens_consensus']}")
+        
+        coordinator = EnhancedCoordinatorAgent(
+            config=config,
+            product_category="electronics",
+            agent_types=["quality", "experience", "user_experience", "business"],
+            max_tokens_per_agent=400,
+            max_rounds=2,
+            max_tokens_consensus=config_setting['max_tokens_consensus']
+        )
+        
+        result = coordinator.run_workflow(reviews=[sample_review])
+        
+        consensus = result['consensus']
+        business_rec = consensus.get('business_recommendations', 'No recommendations')
+        
+        # Handle both string and dictionary formats
+        if isinstance(business_rec, dict):
+            business_rec_str = str(business_rec)
+        elif isinstance(business_rec, list):
+            business_rec_str = ' '.join(str(item) for item in business_rec)
+        else:
+            business_rec_str = str(business_rec)
+        
+        print(f"\n📋 BUSINESS RECOMMENDATIONS:")
+        print(f"   Length: {len(business_rec_str)} characters")
+        print(f"   Word count: {len(business_rec_str.split())} words")
+        print(f"   Content: {business_rec_str}")
+        
+        print(f"\n💰 ESTIMATED COST:")
+        total_tokens = (len(coordinator.sentiment_agents) * 400) + config_setting['max_tokens_consensus']
+        estimated_cost = (total_tokens / 1000) * 0.00015  # Approximate GPT-4o-mini cost
+        print(f"   Total tokens: {total_tokens}")
+        print(f"   Estimated cost: ${estimated_cost:.4f}")
+        
+        print("-" * 80)
+
 def main():
     """Main demo function"""
     print("🚀 STARTING ENHANCED MULTI-AGENT SENTIMENT ANALYSIS DEMO")
-    print("This demo showcases the new FinRobot-like prompt organization")
+    print("This demo showcases the new organized prompt structure")
     
     try:
         # Run all demos
-        demo_prompt_organization()
+        # demo_prompt_organization()
         demo_basic_analysis()
+        # demo_enhanced_business_recommendations()
         # demo_token_optimization()
         # demo_error_handling()
         
@@ -207,12 +278,13 @@ def main():
         print("✅ DEMO COMPLETED SUCCESSFULLY!")
         print("=" * 60)
         print("\nKey Improvements:")
-        print("• Organized prompts in dedicated files (FinRobot-like structure)")
+        print("• Organized prompts in dedicated files")
         print("• Better separation of concerns")
         print("• Improved maintainability and readability")
         print("• Product-category-specific prompt customization")
         print("• Token optimization with configurable limits")
         print("• Enhanced error handling and validation")
+        print("• Configurable business recommendations length")
         
     except Exception as e:
         print(f"\n❌ Demo failed with error: {e}")

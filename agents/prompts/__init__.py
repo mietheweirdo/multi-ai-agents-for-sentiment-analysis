@@ -1,6 +1,6 @@
 """
 Prompt management module for multi-agent sentiment analysis system.
-Organized similar to FinRobot structure for better maintainability.
+Organized for better maintainability and separation of concerns.
 """
 
 from .base_prompts import BasePrompts
