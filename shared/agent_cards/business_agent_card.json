@@ -1,0 +1,27 @@
+{
+  "name": "Business Impact Sentiment Agent", 
+  "description": "Specialized sentiment analysis agent focusing on market impact and business implications",
+  "version": "0.1.0",
+  "capabilities": ["requestResponse"],
+  "skills": [
+    {
+      "name": "business_sentiment_analysis",
+      "description": "Analyze product reviews for business impact, market positioning, and strategic implications"
+    }
+  ],
+  "inputFormats": ["text"],
+  "outputFormats": ["text"],
+  "authentication": {
+    "type": "none"
+  },
+  "agent_type": "business",
+  "specialization": "Business intelligence and market impact analysis",
+  "focus_areas": [
+    "Market positioning implications",
+    "Competitive advantages/disadvantages",
+    "Revenue and growth potential",
+    "Customer retention risks/opportunities",
+    "Brand reputation impact",
+    "Strategic business implications"
+  ]
+}

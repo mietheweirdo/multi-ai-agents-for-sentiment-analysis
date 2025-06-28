@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "multi-ai-agents-sentiment-analysis"
+version = "0.1.0"
+description = "Multi-agent sentiment analysis system with A2A protocol support"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+fastapi = ">=0.115.12,<0.116.0"
+uvicorn = ">=0.34.2,<0.35.0"
+requests = ">=2.32.3,<3.0.0"
+streamlit = ">=1.45.0,<2.0.0"
+pydantic = ">=2.11.4,<3.0.0"
+langchain-core = ">=0.3.63,<0.4.0"
+langchain-openai = ">=0.3.16,<0.4.0"
+langgraph = ">=0.4.8,<0.5.0"
+python-dotenv = ">=1.0.0,<2.0.0"
+a2a = ">=0.44,<1.0.0"
+annotated-types = ">=0.7.0"
+anyio = ">=4.9.0"
+certifi = ">=2025.4.26"
+click = ">=8.2.1"
+colorama = ">=0.4.6"
+defusedxml = ">=0.7.1"
+google-generativeai = ">=0.8.5"
+httpcore = ">=1.0.9"
+httpx = ">=0.28.1"
+idna = ">=3.10"
+jsonpatch = ">=1.33"
+jsonpointer = ">=3.0.0"
+langgraph-checkpoint = ">=2.0.26"
+langgraph-prebuilt = ">=0.2.2"
+langsmith = ">=0.3.44"
+orjson = ">=3.10.18"
+packaging = ">=24.2"
+lxml = ">=5.4.0"
+beautifulsoup4 = ">=4.12.3"
+scrapy = ">=2.11.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=7.0.0"
+pytest-asyncio = ">=0.21.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

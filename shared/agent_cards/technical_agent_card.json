@@ -1,0 +1,27 @@
+{
+  "name": "Technical Specification Sentiment Agent",
+  "description": "Specialized sentiment analysis agent focusing on technical specifications and features",
+  "version": "0.1.0",
+  "capabilities": ["requestResponse"],
+  "skills": [
+    {
+      "name": "technical_sentiment_analysis",
+      "description": "Analyze product reviews for technical features, specifications, and performance aspects"
+    }
+  ],
+  "inputFormats": ["text"],
+  "outputFormats": ["text"],
+  "authentication": {
+    "type": "none"
+  },
+  "agent_type": "technical",
+  "specialization": "Technical specifications and features analysis",
+  "focus_areas": [
+    "Technical specifications and features",
+    "Performance metrics and capabilities",
+    "Feature satisfaction and usability",
+    "Technical problems or limitations",
+    "Innovation and technology aspects",
+    "Technical value proposition"
+  ]
+}

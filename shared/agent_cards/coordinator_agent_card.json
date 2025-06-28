@@ -1,0 +1,27 @@
+{
+  "name": "Multi-Agent Sentiment Coordinator",
+  "description": "Coordinates multi-agent sentiment analysis workflow with specialized agents",
+  "version": "0.1.0",
+  "capabilities": ["requestResponse"],
+  "skills": [
+    {
+      "name": "coordinate_sentiment_analysis",
+      "description": "Orchestrate multiple specialized sentiment agents to provide comprehensive analysis"
+    }
+  ],
+  "inputFormats": ["text"],
+  "outputFormats": ["text"],
+  "authentication": {
+    "type": "none"
+  },
+  "agent_type": "coordinator",
+  "specialization": "Multi-agent sentiment analysis coordination",
+  "focus_areas": [
+    "Agent coordination and orchestration",
+    "Consensus building and conflict resolution",
+    "Comprehensive sentiment synthesis",
+    "Business recommendation generation",
+    "Product category specialization",
+    "Cost-optimized analysis workflows"
+  ]
+}

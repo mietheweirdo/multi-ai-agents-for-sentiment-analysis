@@ -1,0 +1,27 @@
+{
+  "name": "Product Quality Sentiment Agent",
+  "description": "Specialized sentiment analysis agent focusing on product quality, durability, and manufacturing aspects",
+  "version": "0.1.0",
+  "capabilities": ["requestResponse"],
+  "skills": [
+    {
+      "name": "quality_sentiment_analysis",
+      "description": "Analyze product reviews for quality-related sentiment, emotions, and business impact"
+    }
+  ],
+  "inputFormats": ["text"],
+  "outputFormats": ["text"],
+  "authentication": {
+    "type": "none"
+  },
+  "agent_type": "quality",
+  "specialization": "Product quality and craftsmanship analysis",
+  "focus_areas": [
+    "Product quality and craftsmanship",
+    "Material durability and longevity", 
+    "Manufacturing defects or inconsistencies",
+    "Performance reliability",
+    "Safety concerns",
+    "Value for money from quality perspective"
+  ]
+}
