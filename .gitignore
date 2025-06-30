@@ -178,3 +178,6 @@ config.json
 
 # Python version
 .python-version
+
+scraped_data/
+preprocessed_data/
