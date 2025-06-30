@@ -8,6 +8,14 @@ import json
 import os
 from agents.langgraph_coordinator import LangGraphCoordinator, analyze_with_langgraph
 
+# Import the new data pipeline
+try:
+    from data_pipeline import scrape_and_preprocess
+    DYNAMIC_DATA_AVAILABLE = True
+except ImportError:
+    print("Warning: Data pipeline not available. Using static data only.")
+    DYNAMIC_DATA_AVAILABLE = False
+
 def load_config():
     """Load configuration from config.json"""
     config_path = os.path.join(os.path.dirname(__file__), 'config.json')
@@ -249,6 +257,119 @@ def compare_workflows():
     print(f"  • Speed: {manual_time:.2f}s vs {lg_time:.2f}s")
     print(f"  • Cost Efficiency: No discussion rounds = fewer API calls")
 
+def test_with_dynamic_data():
+    """Test LangGraph system with real scraped data"""
+    
+    if not DYNAMIC_DATA_AVAILABLE:
+        print("❌ Dynamic data not available. Please install data pipeline dependencies.")
+        return
+    
+    print("\n" + "🌐" * 50)
+    print("🌐 DYNAMIC DATA TEST - Real Scraped Reviews")
+    print("🌐" * 50)
+    
+    keyword = "smartphone"
+    sources = ['tiki']  # Use Tiki only for reliability
+    
+    print(f"🔄 Scraping data for '{keyword}' from {sources}...")
+    
+    try:
+        # Scrape real data
+        data = scrape_and_preprocess(
+            keyword=keyword,
+            sources=sources,
+            max_items_per_source=3  # Limit for test speed
+        )
+        
+        if not data:
+            print("❌ No data found for testing.")
+            return
+        
+        print(f"✅ Found {len(data)} reviews. Testing with LangGraph...")
+        
+        config = load_config()
+        
+        # Test with first real review
+        item = data[0]
+        result = analyze_with_langgraph(
+            review=item['review_text'],
+            product_category=item['product_category'],
+            config=config,
+            max_discussion_rounds=2,
+            disagreement_threshold=0.6
+        )
+        
+        print_analysis_results(result, f"DYNAMIC DATA TEST - {keyword.upper()}")
+        
+    except Exception as e:
+        print(f"❌ Dynamic data test failed: {e}")
+
+def test_interactive_dynamic():
+    """Interactive test with user-specified keywords"""
+    
+    if not DYNAMIC_DATA_AVAILABLE:
+        print("❌ Dynamic data not available. Please install data pipeline dependencies.")
+        return
+    
+    print("\n" + "🎮" * 50)
+    print("🎮 INTERACTIVE DYNAMIC TEST")
+    print("🎮" * 50)
+    
+    keyword = input("Enter search keyword: ").strip()
+    if not keyword:
+        keyword = "laptop"
+    
+    sources_input = input("Enter sources (youtube,tiki) or press Enter for tiki: ").strip()
+    if not sources_input:
+        sources = ['tiki']
+    else:
+        sources = [s.strip() for s in sources_input.split(',') if s.strip() in ['youtube', 'tiki']]
+    
+    print(f"\n🔄 Scraping '{keyword}' from {sources}...")
+    
+    try:
+        data = scrape_and_preprocess(
+            keyword=keyword,
+            sources=sources,
+            max_items_per_source=5
+        )
+        
+        if not data:
+            print("❌ No data found. Try a different keyword.")
+            return
+        
+        print(f"✅ Found {len(data)} reviews. Select one to analyze:")
+        
+        # Show review options
+        for i, item in enumerate(data[:5], 1):
+            review_preview = item['review_text'][:60] + "..." if len(item['review_text']) > 60 else item['review_text']
+            print(f"{i}. [{item.get('metadata', {}).get('source', 'unknown')}] {review_preview}")
+        
+        choice = input(f"\nSelect review (1-{min(5, len(data))}): ").strip()
+        
+        try:
+            choice_idx = int(choice) - 1
+            if 0 <= choice_idx < len(data):
+                selected_item = data[choice_idx]
+                
+                config = load_config()
+                result = analyze_with_langgraph(
+                    review=selected_item['review_text'],
+                    product_category=selected_item['product_category'],
+                    config=config,
+                    max_discussion_rounds=3,
+                    disagreement_threshold=0.6
+                )
+                
+                print_analysis_results(result, f"INTERACTIVE ANALYSIS - {keyword.upper()}")
+            else:
+                print("❌ Invalid selection.")
+        except ValueError:
+            print("❌ Please enter a valid number.")
+            
+    except Exception as e:
+        print(f"❌ Interactive test failed: {e}")
+
 def main():
     """Run all test cases"""
     
@@ -256,32 +377,45 @@ def main():
     print("🚀 LANGGRAPH MULTI-AGENT SENTIMENT ANALYSIS SYSTEM DEMO")
     print("🚀" * 80)
     
-    try:
-        # Test different scenarios
-        test_consensus_case()
-        test_disagreement_case()
-        test_fashion_category()
-        test_custom_agents()
-        compare_workflows()
+    # Interactive menu
+    while True:
+        print(f"\n📋 TEST OPTIONS:")
+        print("1. Static data tests (fast, no scraping)")
+        print("2. Dynamic data tests (requires internet)")
+        print("3. Interactive dynamic analysis")
+        print("4. All tests (static + dynamic)")
+        print("5. Exit")
         
-        print(f"\n✅ ALL TESTS COMPLETED SUCCESSFULLY!")
-        print(f"{'='*80}")
-        print(f"🎉 LangGraph Multi-Agent System is working perfectly!")
-        print(f"🎉 Features demonstrated:")
-        print(f"   • Agent-to-agent discussion")
-        print(f"   • Consensus detection")
-        print(f"   • Workflow visualization")
-        print(f"   • Product category specialization")
-        print(f"   • Custom agent selection")
-        print(f"   • Comparison with manual workflow")
-        print(f"{'='*80}")
+        choice = input("\nSelect option (1-5): ").strip()
         
-    except Exception as e:
-        print(f"\n❌ TEST FAILED: {e}")
-        print(f"Make sure to:")
-        print(f"  1. Install dependencies: pip install langgraph")
-        print(f"  2. Set up config.json with your OpenAI API key")
-        print(f"  3. Ensure all agent files are properly set up")
+        try:
+            if choice == "1":
+                run_static_tests()
+            elif choice == "2":
+                test_with_dynamic_data()
+            elif choice == "3":
+                test_interactive_dynamic()
+            elif choice == "4":
+                run_static_tests()
+                if DYNAMIC_DATA_AVAILABLE:
+                    test_with_dynamic_data()
+                else:
+                    print("⚠️ Skipping dynamic tests - data pipeline not available")
+            elif choice == "5":
+                print("👋 Testing completed!")
+                break
+            else:
+                print("❌ Invalid choice. Please select 1-5.")
+        except Exception as e:
+            print(f"❌ Test failed: {e}")
+            
+def run_static_tests():
+    """Run all static tests"""
+    test_consensus_case()
+    test_disagreement_case()
+    test_fashion_category()
+    test_custom_agents()
+    compare_workflows()
 
 if __name__ == "__main__":
-    main() 
+    main()

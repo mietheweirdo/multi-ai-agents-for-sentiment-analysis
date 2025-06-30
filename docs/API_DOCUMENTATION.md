@@ -4,19 +4,17 @@
 
 ### **IntegratedDataPipeline Class**
 
-The main entry point for data scraping and preprocessing.
+The main entry point for data collection and preprocessing.
 
 ```python
-from integrated_data_pipeline import IntegratedDataPipeline, ScrapingConfig, PreprocessingConfig
+from integrated_data_pipeline import IntegratedDataPipeline, DataConfig, PreprocessingConfig
 
 # Initialize with custom configuration
 pipeline = IntegratedDataPipeline(
-    scraping_config=ScrapingConfig(
-        youtube_api_key="your-youtube-api-key",
-        youtube_max_videos=10,
-        youtube_max_comments=50,
-        tiki_max_products=5,
-        tiki_max_reviews_per_product=100
+    data_config=DataConfig(
+        max_items_per_source=10,
+        max_content_per_item=50,
+        collection_timeout=30
     ),
     preprocessing_config=PreprocessingConfig(
         min_content_length=20,
@@ -28,56 +26,57 @@ pipeline = IntegratedDataPipeline(
 
 #### **Methods**
 
-##### `scrape_by_keyword(keyword: str, sources: List[str] = None) -> List[Dict]`
-Scrape data from multiple sources using a keyword.
+##### `collect_by_keyword(keyword: str, sources: List[str] = None) -> List[Dict]`
+Collect data from multiple sources using a keyword.
 
 **Parameters:**
 - `keyword` (str): Search keyword for finding relevant content
-- `sources` (List[str], optional): Sources to scrape from ['youtube', 'tiki']. Default: both
+- `sources` (List[str], optional): Sources to collect from. Default: all available sources
 
 **Returns:**
-- `List[Dict]`: Raw scraped data with metadata
+- `List[Dict]`: Raw collected data with metadata
 
 **Example:**
 ```python
-raw_data = pipeline.scrape_by_keyword(
+raw_data = pipeline.collect_by_keyword(
     keyword="smartphone camera quality",
-    sources=['youtube', 'tiki']
+    sources=['data_files', 'text_content']
 )
-print(f"Scraped {len(raw_data)} items from {len(set(item['source'] for item in raw_data))} sources")
+print(f"Collected {len(raw_data)} items from {len(set(item['source'] for item in raw_data))} sources")
 ```
 
-##### `scrape_by_urls(youtube_urls: List[str] = None, tiki_urls: List[str] = None) -> List[Dict]`
+##### `collect_from_files(file_paths: List[str] = None, content_list: List[str] = None) -> List[Dict]`
 Scrape data from specific URLs.
 
 **Parameters:**
-- `youtube_urls` (List[str], optional): List of YouTube video URLs
-- `tiki_urls` (List[str], optional): List of Tiki product URLs
+- `file_paths` (List[str], optional): List of data file paths
+- `content_list` (List[str], optional): List of text content to process
 
 **Returns:**
-- `List[Dict]`: Raw scraped data
+- `List[Dict]`: Raw collected data
 
 **Example:**
 ```python
-raw_data = pipeline.scrape_by_urls(
-    youtube_urls=[
-        "https://www.youtube.com/watch?v=VIDEO_ID_1",
-        "https://www.youtube.com/watch?v=VIDEO_ID_2"
+raw_data = pipeline.collect_from_files(
+    file_paths=[
+        "data/reviews.json",
+        "data/feedback.csv"
     ],
-    tiki_urls=[
-        "https://tiki.vn/tai-nghe-bluetooth-apple-airpods-pro-2-usb-c-mtjv3zp-a-p273150134.html"
+    content_list=[
+        "This product is amazing!",
+        "Poor quality, disappointed."
     ]
 )
 ```
 
 ##### `run_full_pipeline(keyword: str = None, **kwargs) -> Dict`
-Execute the complete scraping and preprocessing pipeline.
+Execute the complete data collection and preprocessing pipeline.
 
 **Parameters:**
 - `keyword` (str, optional): Search keyword
-- `youtube_urls` (List[str], optional): YouTube video URLs
-- `tiki_urls` (List[str], optional): Tiki product URLs
-- `sources` (List[str], optional): Sources to scrape from
+- `file_paths` (List[str], optional): Data file paths
+- `content_list` (List[str], optional): Text content list
+- `sources` (List[str], optional): Sources to collect from
 - `product_category` (str): Product category for analysis context
 
 **Returns:**
@@ -87,7 +86,7 @@ Execute the complete scraping and preprocessing pipeline.
 ```python
 result = pipeline.run_full_pipeline(
     keyword="wireless headphones",
-    sources=['youtube', 'tiki'],
+    sources=['data_files', 'text_content'],
     product_category="electronics"
 )
 
@@ -101,15 +100,15 @@ print(f"Stats: {result['preprocessing_stats']}")
 
 ### **Convenience Functions**
 
-##### `scrape_and_preprocess(keyword: str = None, **kwargs) -> List[Dict]`
-Quick function to scrape and preprocess data in one call.
+##### `collect_and_preprocess(keyword: str = None, **kwargs) -> List[Dict]`
+Quick function to collect and preprocess data in one call.
 
 **Parameters:**
 - `keyword` (str, optional): Search keyword
-- `youtube_urls` (List[str], optional): YouTube video URLs
-- `tiki_urls` (List[str], optional): Tiki product URLs
+- `file_paths` (List[str], optional): Data file paths
+- `content_list` (List[str], optional): Text content list
 - `product_category` (str): Product category
-- `sources` (List[str], optional): Sources to scrape from
+- `sources` (List[str], optional): Sources to collect from
 - `max_items_per_source` (int, optional): Limit items per source
 - `pipeline` (IntegratedDataPipeline, optional): Custom pipeline instance
 
@@ -118,12 +117,12 @@ Quick function to scrape and preprocess data in one call.
 
 **Example:**
 ```python
-from integrated_data_pipeline import scrape_and_preprocess
+from integrated_data_pipeline import collect_and_preprocess
 
 # Simple usage with automatic configuration
-data = scrape_and_preprocess(
+data = collect_and_preprocess(
     keyword="gaming laptop", 
-    sources=['tiki'],
+    sources=['data_files'],
     max_items_per_source=20
 )
 
@@ -132,11 +131,11 @@ data = scrape_and_preprocess(
 #     "review_text": "cleaned review content",
 #     "product_category": "electronics", 
 #     "metadata": {
-#         "source": "tiki",
+#         "source": "data_files",
 #         "original_id": "123456",
-#         "url": "https://tiki.vn/...",
+#         "file_path": "/path/to/data.json",
 #         "timestamp": "2025-07-01T10:30:00",
-#         "language": "vi",
+#         "language": "en",
 #         "quality_score": 0.89
 #     }
 # }

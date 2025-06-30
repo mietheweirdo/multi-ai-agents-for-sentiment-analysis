@@ -1,307 +1,227 @@
 #!/usr/bin/env python3
 """
-Unified Data Pipeline for Multi-Agent Sentiment Analysis System
-=============================================================
-
-Combines scraping, preprocessing, and standardization into a single pipeline.
-Replaces static test data with real, processed data from YouTube and Tiki.
-
+Main data pipeline orchestrator
 """
 
-import json
 import os
 import logging
-from typing import List, Dict, Any, Optional
 from datetime import datetime
+from typing import List, Dict, Any, Optional
 
-from .scraper import UnifiedScraper, scrape_data_for_keyword
-from .preprocessor import DataPreprocessor, AgentReadyData, preprocess_scraped_data
+from .config import ScrapingConfig, PreprocessingConfig, load_config_from_file, create_scraping_config_from_dict
+from .scrapers import YouTubeScraper, TikiScraper
+from .preprocessor import AdvancedPreprocessor
+from .utils import standardize_for_agents, save_data_to_file, detect_product_category, calculate_processing_stats
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-class DataPipeline:
-    """Complete data pipeline from scraping to agent-ready format"""
+class IntegratedDataPipeline:
+    """Main class that orchestrates scraping and preprocessing"""
     
-    def __init__(self, 
-                 cache_dir: str = "data_cache",
-                 max_youtube_videos: int = 5,
-                 max_tiki_products: int = 3,
-                 enable_caching: bool = True):
+    def __init__(self, scraping_config: ScrapingConfig = None, preprocessing_config: PreprocessingConfig = None):
+        self.scraping_config = scraping_config or ScrapingConfig()
+        self.preprocessing_config = preprocessing_config or PreprocessingConfig()
         
-        self.cache_dir = cache_dir
-        self.max_youtube_videos = max_youtube_videos
-        self.max_tiki_products = max_tiki_products
-        self.enable_caching = enable_caching
+        self.youtube_scraper = YouTubeScraper(self.scraping_config)
+        self.tiki_scraper = TikiScraper(self.scraping_config)
+        self.preprocessor = AdvancedPreprocessor(self.preprocessing_config)
         
-        # Create cache directory
-        if self.enable_caching:
-            os.makedirs(cache_dir, exist_ok=True)
-        
-        logger.info("Data pipeline initialized")
+        # Create output directories
+        os.makedirs(self.scraping_config.output_dir, exist_ok=True)
+        os.makedirs(self.preprocessing_config.output_dir, exist_ok=True)
     
-    def get_agent_ready_data(self, keyword: str, force_refresh: bool = False) -> Dict[str, Any]:
+    def scrape_by_keyword(self, keyword: str, sources: List[str] = None) -> List[Dict[str, Any]]:
         """
-        Get agent-ready data for a keyword, using cache if available
+        Scrape data from multiple sources using a keyword.
         
         Args:
             keyword: Search keyword
-            force_refresh: If True, bypasses cache and scrapes fresh data
+            sources: List of sources to scrape from ['youtube', 'tiki']. Default: both
             
         Returns:
-            Dictionary containing agent-ready data and metadata
+            List of raw scraped data
         """
-        cache_file = os.path.join(self.cache_dir, f"{keyword.replace(' ', '_')}_processed.json")
+        if sources is None:
+            sources = ['youtube', 'tiki']
         
-        # Check cache first
-        if not force_refresh and self.enable_caching and os.path.exists(cache_file):
+        all_data = []
+        
+        if 'youtube' in sources:
             try:
-                with open(cache_file, 'r', encoding='utf-8') as f:
-                    cached_data = json.load(f)
-                
-                # Check if cache is recent (within 24 hours)
-                cached_time = datetime.fromisoformat(cached_data.get('processed_at', '2000-01-01'))
-                age_hours = (datetime.now() - cached_time).total_seconds() / 3600
-                
-                if age_hours < 24:
-                    logger.info(f"Using cached data for keyword '{keyword}' (age: {age_hours:.1f} hours)")
-                    return cached_data
-                else:
-                    logger.info(f"Cache expired for keyword '{keyword}' (age: {age_hours:.1f} hours)")
+                youtube_data = self.youtube_scraper.scrape_by_keyword(keyword)
+                all_data.extend(youtube_data)
             except Exception as e:
-                logger.warning(f"Failed to load cache for keyword '{keyword}': {e}")
+                logger.error(f"YouTube scraping failed: {e}")
         
-        # Scrape fresh data
-        logger.info(f"Starting fresh data pipeline for keyword: '{keyword}'")
+        if 'tiki' in sources:
+            try:
+                tiki_data = self.tiki_scraper.scrape_by_keyword(keyword)
+                all_data.extend(tiki_data)
+            except Exception as e:
+                logger.error(f"Tiki scraping failed: {e}")
         
-        # Step 1: Scrape data
-        scraped_data = self._scrape_data(keyword)
-        
-        # Step 2: Preprocess data
-        processed_data = self._preprocess_data(scraped_data)
-        
-        # Step 3: Add pipeline metadata
-        final_data = self._add_pipeline_metadata(processed_data, keyword)
-        
-        # Step 4: Cache results
-        if self.enable_caching:
-            self._cache_results(final_data, cache_file)
-        
-        logger.info(f"Data pipeline completed for keyword '{keyword}'")
-        return final_data
+        logger.info(f"Total scraped items: {len(all_data)}")
+        return all_data
     
-    def _scrape_data(self, keyword: str) -> Dict[str, Any]:
-        """Scrape data from YouTube and Tiki"""
-        logger.info(f"Scraping data for keyword: '{keyword}'")
-        
-        try:
-            scraped_data = scrape_data_for_keyword(
-                keyword, 
-                max_youtube_videos=self.max_youtube_videos,
-                max_tiki_products=self.max_tiki_products
-            )
-            
-            total_points = scraped_data['scraping_stats']['total_data_points']
-            logger.info(f"Scraped {total_points} data points for keyword '{keyword}'")
-            
-            return scraped_data
-            
-        except Exception as e:
-            logger.error(f"Scraping failed for keyword '{keyword}': {e}")
-            # Return empty data structure
-            return {
-                'keyword': keyword,
-                'timestamp': datetime.now().isoformat(),
-                'youtube_data': [],
-                'tiki_data': [],
-                'scraping_stats': {
-                    'youtube_videos_processed': 0,
-                    'youtube_comments_collected': 0,
-                    'tiki_products_processed': 0,
-                    'tiki_reviews_collected': 0,
-                    'total_data_points': 0,
-                    'scraping_errors': [str(e)]
-                }
-            }
-    
-    def _preprocess_data(self, scraped_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Preprocess scraped data for agent consumption"""
-        logger.info("Preprocessing scraped data")
-        
-        try:
-            processed_data = preprocess_scraped_data(scraped_data)
-            
-            processed_count = len(processed_data['agent_ready_data'])
-            logger.info(f"Preprocessing completed: {processed_count} agent-ready data points")
-            
-            return processed_data
-            
-        except Exception as e:
-            logger.error(f"Preprocessing failed: {e}")
-            # Return minimal processed structure
-            return {
-                'keyword': scraped_data.get('keyword', 'unknown'),
-                'processed_at': datetime.now().isoformat(),
-                'agent_ready_data': [],
-                'processing_stats': {
-                    'original_data_points': 0,
-                    'processed_data_points': 0,
-                    'processing_retention_rate': 0,
-                    'processing_error': str(e)
-                },
-                'original_scraping_stats': scraped_data.get('scraping_stats', {})
-            }
-    
-    def _add_pipeline_metadata(self, processed_data: Dict[str, Any], keyword: str) -> Dict[str, Any]:
-        """Add pipeline-level metadata"""
-        processed_data['pipeline_metadata'] = {
-            'keyword': keyword,
-            'pipeline_version': '1.0.0',
-            'pipeline_completed_at': datetime.now().isoformat(),
-            'max_youtube_videos': self.max_youtube_videos,
-            'max_tiki_products': self.max_tiki_products,
-            'data_sources_enabled': ['youtube', 'tiki'],
-            'preprocessing_enabled': True,
-            'cache_enabled': self.enable_caching
-        }
-        
-        return processed_data
-    
-    def _cache_results(self, data: Dict[str, Any], cache_file: str):
-        """Cache processed results"""
-        try:
-            # Convert AgentReadyData objects to dictionaries for JSON serialization
-            serializable_data = self._make_serializable(data)
-            
-            with open(cache_file, 'w', encoding='utf-8') as f:
-                json.dump(serializable_data, f, indent=2, ensure_ascii=False)
-            
-            logger.info(f"Results cached to: {cache_file}")
-            
-        except Exception as e:
-            logger.error(f"Failed to cache results: {e}")
-    
-    def _make_serializable(self, data: Dict[str, Any]) -> Dict[str, Any]:
-        """Convert AgentReadyData objects to dictionaries for JSON serialization"""
-        serializable_data = data.copy()
-        
-        # Convert AgentReadyData objects to dictionaries
-        agent_ready_data = []
-        for item in data.get('agent_ready_data', []):
-            if isinstance(item, AgentReadyData):
-                agent_ready_data.append({
-                    'text': item.text,
-                    'source': item.source,
-                    'data_type': item.data_type,
-                    'metadata': item.metadata,
-                    'original_rating': item.original_rating,
-                    'language': item.language,
-                    'product_category': item.product_category
-                })
-            else:
-                agent_ready_data.append(item)
-        
-        serializable_data['agent_ready_data'] = agent_ready_data
-        return serializable_data
-    
-    def get_sample_reviews_for_demo(self, keyword: str, max_samples: int = 5) -> List[Dict[str, Any]]:
+    def run_full_pipeline(self, keyword: str, sources: List[str] = None,
+                         product_category: str = None) -> Dict[str, Any]:
         """
-        Get sample reviews formatted for demo purposes
+        Run the complete pipeline: scrape -> preprocess -> standardize for agents.
         
         Args:
-            keyword: Search keyword
-            max_samples: Maximum number of samples to return
+            keyword: Search keyword (required)
+            sources: Sources to use ['youtube', 'tiki']. Default: both
+            product_category: Product category for agent context (auto-detected if None)
             
         Returns:
-            List of reviews formatted for demo use
+            Dict containing:
+            - agent_ready_data: Data ready for sentiment analysis agents
+            - raw_data: Original scraped data
+            - preprocessing_stats: Statistics from preprocessing
         """
-        data = self.get_agent_ready_data(keyword)
-        agent_ready_data = data.get('agent_ready_data', [])
+        logger.info(f"Starting integrated data pipeline for keyword: '{keyword}'")
         
-        # Convert to demo format
-        demo_reviews = []
-        for i, item in enumerate(agent_ready_data[:max_samples]):
-            if isinstance(item, dict):
-                # Data loaded from cache
-                demo_reviews.append({
-                    'text': item['text'],
-                    'source': item['source'],
-                    'product_category': item.get('product_category', 'general'),
-                    'metadata': {
-                        'data_type': item.get('data_type'),
-                        'language': item.get('language'),
-                        'original_rating': item.get('original_rating')
-                    }
-                })
-            else:
-                # Fresh AgentReadyData object
-                demo_reviews.append({
-                    'text': item.text,
-                    'source': item.source,
-                    'product_category': item.product_category,
-                    'metadata': {
-                        'data_type': item.data_type,
-                        'language': item.language,
-                        'original_rating': item.original_rating
-                    }
-                })
+        # Scrape data by keyword only
+        raw_data = self.scrape_by_keyword(keyword, sources)
         
-        return demo_reviews
+        if not raw_data:
+            logger.warning("No data was scraped")
+            return {
+                'agent_ready_data': [],
+                'raw_data': [],
+                'preprocessing_stats': {},
+                'files': {}
+            }
 
-def get_real_data_for_keyword(keyword: str, 
-                             max_youtube_videos: int = 3, 
-                             max_tiki_products: int = 2,
-                             force_refresh: bool = False) -> Dict[str, Any]:
+        # Save raw data
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        raw_data_file = os.path.join(self.scraping_config.output_dir, f"raw_data_{timestamp}.json")
+        save_data_to_file(raw_data, raw_data_file, "raw data")
+
+        # Preprocess data
+        if self.scraping_config.enable_preprocessing:
+            logger.info("Starting preprocessing")
+            preprocessing_result = self.preprocessor.process_data(raw_data)
+            processed_data = preprocessing_result['processed_data']
+            preprocessing_stats = preprocessing_result['stats']
+            
+            # Save processed data
+            processed_data_file = os.path.join(self.preprocessing_config.output_dir, f"processed_data_{timestamp}.json")
+            save_data_to_file(preprocessing_result, processed_data_file, "processed data")
+        else:
+            # Convert raw data to processed format
+            processed_data = []
+            for item in raw_data:
+                processed_item = {
+                    'id': item.get('id', ''),
+                    'content': item.get('content', ''),
+                    'source': item.get('source', 'unknown'),
+                    'language': 'unknown',
+                    'created_at': item.get('created_at', ''),
+                    'metadata': item
+                }
+                processed_data.append(processed_item)
+            
+            preprocessing_stats = {'preprocessing_disabled': True}
+            processed_data_file = None
+
+        # Auto-detect product category if not provided
+        if not product_category and processed_data:
+            # Use first item for category detection
+            first_item = processed_data[0]
+            product_name = first_item.get('metadata', {}).get('product_name', '')
+            content = first_item.get('content', '')
+            product_category = detect_product_category(content, product_name)
+            logger.info(f"Auto-detected product category: {product_category}")
+        elif not product_category:
+            product_category = "general"
+
+        # Standardize for agents
+        agent_ready_data = standardize_for_agents(processed_data, product_category)
+
+        # Save agent-ready data
+        agent_data_file = os.path.join(self.preprocessing_config.output_dir, f"agent_ready_data_{timestamp}.json")
+        save_data_to_file(agent_ready_data, agent_data_file, "agent-ready data")
+
+        # Calculate final stats
+        final_stats = calculate_processing_stats(len(raw_data), len(processed_data), len(agent_ready_data))
+        final_stats.update(preprocessing_stats)
+
+        logger.info(f"Pipeline completed. Prepared {len(agent_ready_data)} items for sentiment analysis")
+
+        return {
+            'agent_ready_data': agent_ready_data,
+            'raw_data': raw_data,
+            'processed_data': processed_data,
+            'preprocessing_stats': final_stats,
+            'product_category': product_category,
+            'files': {
+                'raw_data': raw_data_file,
+                'processed_data': processed_data_file,
+                'agent_ready': agent_data_file
+            }
+        }
+
+def scrape_and_preprocess(keyword: str, sources: List[str] = None,
+                         product_category: str = None, max_items_per_source: int = None,
+                         config: dict = None) -> List[Dict[str, Any]]:
     """
-    Convenience function to get real data for a keyword
+    Convenience function to quickly scrape and preprocess data for agents.
     
     Args:
-        keyword: Search keyword
-        max_youtube_videos: Maximum YouTube videos to process
-        max_tiki_products: Maximum Tiki products to scrape
-        force_refresh: Force fresh scraping instead of using cache
+        keyword: Search keyword (required)
+        sources: Sources to scrape from ['youtube', 'tiki']. Default: both
+        product_category: Product category (auto-detected if None)
+        max_items_per_source: Maximum items per source (applies to both YouTube comments and Tiki reviews)
+        config: Configuration dictionary (loaded from config.json if None)
         
     Returns:
-        Agent-ready data for the keyword
+        List of agent-ready data items
     """
-    pipeline = DataPipeline(
-        max_youtube_videos=max_youtube_videos,
-        max_tiki_products=max_tiki_products
+    # Load configuration
+    if config is None:
+        config = load_config_from_file()
+    
+    # Create scraping config from loaded config
+    scraping_config = create_scraping_config_from_dict(config)
+    
+    # Apply max_items_per_source if specified
+    if max_items_per_source:
+        scraping_config.youtube_max_comments = min(max_items_per_source, scraping_config.youtube_max_comments)
+        scraping_config.tiki_max_reviews_per_product = min(max_items_per_source, scraping_config.tiki_max_reviews_per_product)
+    
+    # Create pipeline
+    pipeline = IntegratedDataPipeline(scraping_config=scraping_config)
+    
+    # Run pipeline (keyword-only)
+    result = pipeline.run_full_pipeline(
+        keyword=keyword,
+        sources=sources,
+        product_category=product_category
     )
     
-    return pipeline.get_agent_ready_data(keyword, force_refresh=force_refresh)
-
-def get_sample_reviews_for_demo(keyword: str, max_samples: int = 5) -> List[Dict[str, Any]]:
-    """
-    Get sample reviews for demo purposes
-    
-    Args:
-        keyword: Search keyword
-        max_samples: Maximum number of samples to return
-        
-    Returns:
-        List of reviews formatted for demo use
-    """
-    pipeline = DataPipeline()
-    return pipeline.get_sample_reviews_for_demo(keyword, max_samples)
+    return result['agent_ready_data']
 
 if __name__ == "__main__":
-    # Test the complete pipeline
-    keyword = "airpods pro"
+    # Example usage
+    logger.info("Testing integrated data pipeline")
     
-    print(f"Testing data pipeline for keyword: '{keyword}'")
+    # Test with keyword
+    pipeline = IntegratedDataPipeline()
     
-    # Get processed data
-    data = get_real_data_for_keyword(keyword, max_youtube_videos=2, max_tiki_products=1)
+    # Example: scrape airpods reviews from Tiki
+    result = pipeline.run_full_pipeline(
+        keyword="airpods",
+        sources=['tiki']  # Only Tiki for now since YouTube search needs API key
+    )
     
-    print(f"\nPipeline Results:")
-    print(f"Keyword: {data['keyword']}")
-    print(f"Data points: {len(data['agent_ready_data'])}")
-    print(f"Processing stats: {data['processing_stats']}")
+    print(f"Pipeline result:")
+    print(f"- Raw data items: {len(result['raw_data'])}")
+    print(f"- Agent-ready items: {len(result['agent_ready_data'])}")
+    print(f"- Product category: {result['product_category']}")
+    print(f"- Preprocessing stats: {result['preprocessing_stats']}")
     
-    # Get sample reviews for demo
-    sample_reviews = get_sample_reviews_for_demo(keyword, max_samples=3)
-    print(f"\nSample reviews for demo: {len(sample_reviews)}")
-    for i, review in enumerate(sample_reviews):
-        print(f"  {i+1}. [{review['source']}] {review['text'][:50]}...")
+    if result['agent_ready_data']:
+        print(f"\nFirst agent-ready item:")
+        import json
+        print(json.dumps(result['agent_ready_data'][0], ensure_ascii=False, indent=2))

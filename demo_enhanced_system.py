@@ -8,6 +8,14 @@ import json
 import os
 from workflow_manager import MultiAgentWorkflowManager, analyze_review
 
+# Import the new data pipeline
+try:
+    from data_pipeline import scrape_and_preprocess
+    DYNAMIC_DATA_AVAILABLE = True
+except ImportError:
+    print("Warning: Data pipeline not available. Using static data only.")
+    DYNAMIC_DATA_AVAILABLE = False
+
 def display_analysis_results(result):
     """Display comprehensive 3-layer analysis results"""
     
@@ -195,8 +203,34 @@ def run_enhanced_demo():
     # Show system capabilities
     show_system_capabilities()
     
-    # Test single analysis with detailed output
-    print(f"\n🔍 DETAILED ANALYSIS EXAMPLE:")
+    # Interactive menu
+    while True:
+        print(f"\n📋 DEMO OPTIONS:")
+        print("1. Static data analysis (original functionality)")
+        print("2. Dynamic data analysis (real scraping)")
+        print("3. Test different review types")
+        print("4. Business advisor demo")
+        print("5. Exit")
+        
+        choice = input("\nSelect option (1-5): ").strip()
+        
+        if choice == "1":
+            run_static_demo()
+        elif choice == "2":
+            run_dynamic_demo()
+        elif choice == "3":
+            test_different_review_types()
+        elif choice == "4":
+            demonstrate_business_advisor_output()
+        elif choice == "5":
+            print("👋 Demo completed!")
+            break
+        else:
+            print("❌ Invalid choice. Please select 1-5.")
+
+def run_static_demo():
+    """Run demo with static sample data"""
+    print(f"\n🔍 STATIC DATA ANALYSIS EXAMPLE:")
     print("=" * 50)
     
     sample_review = "This smartphone has excellent camera quality and fast performance, but the customer service was unresponsive and delivery took 3 weeks!"
@@ -206,22 +240,61 @@ def run_enhanced_demo():
         display_analysis_results(result)
     except Exception as e:
         print(f"❌ Analysis error: {e}")
+
+def run_dynamic_demo():
+    """Run demo with real scraped data"""
+    if not DYNAMIC_DATA_AVAILABLE:
+        print("❌ Dynamic data not available. Please install data pipeline dependencies.")
+        return
     
-    # Test different review types
-    test_different_review_types()
+    print(f"\n🌐 DYNAMIC DATA ANALYSIS:")
+    print("=" * 50)
     
-    # Demonstrate business advisor
-    demonstrate_business_advisor_output()
+    # Get user input
+    keyword = input("Enter search keyword (e.g., 'smartphone', 'airpods'): ").strip()
+    if not keyword:
+        keyword = "smartphone"
     
-    print(f"\n✅ DEMO COMPLETED SUCCESSFULLY!")
-    print("=" * 80)
-    print("🎯 The 3-layer multi-agent system provides:")
-    print("   ✓ Real department specialization and disagreement")
-    print("   ✓ Expert master analyst synthesis")
-    print("   ✓ Actionable business recommendations")
-    print("   ✓ Linear workflow (no complex LangGraph)")
-    print("   ✓ Ready for chatbot integration")
-    print("   ✓ Significantly improved accuracy through collaboration")
+    sources = input("Enter sources (youtube,tiki) or press Enter for tiki only: ").strip()
+    if not sources:
+        sources = ['tiki']  # Default to Tiki only for reliability
+    else:
+        sources = [s.strip() for s in sources.split(',') if s.strip() in ['youtube', 'tiki']]
+    
+    print(f"\n🔄 Scraping data for '{keyword}' from {sources}...")
+    
+    try:
+        # Scrape real data (limit for demo)
+        data = scrape_and_preprocess(
+            keyword=keyword,
+            sources=sources,
+            max_items_per_source=5  # Limit for demo speed
+        )
+        
+        if not data:
+            print("❌ No data found. Please try a different keyword.")
+            return
+        
+        print(f"✅ Found {len(data)} reviews. Analyzing first 3...")
+        
+        # Analyze first few items
+        for i, item in enumerate(data[:3], 1):
+            print(f"\n{'='*20} REVIEW {i} {'='*20}")
+            
+            try:
+                result = analyze_review(
+                    review=item['review_text'],
+                    product_category=item['product_category']
+                )
+                display_analysis_results(result)
+            except Exception as e:
+                print(f"❌ Error analyzing review {i}: {e}")
+                
+        print(f"\n🎯 Dynamic data analysis completed!")
+        
+    except Exception as e:
+        print(f"❌ Dynamic scraping failed: {e}")
+        print("💡 Tip: Make sure your config.json has valid API keys.")
 
 if __name__ == "__main__":
     try:
