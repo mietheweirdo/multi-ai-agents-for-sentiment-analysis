@@ -175,3 +175,6 @@ cython_debug/
 
 # Configuration files
 config.json
+
+# Python version
+.python-version
