@@ -124,17 +124,17 @@ class AgentManager:
             
             # Check if process is still running
             if process.poll() is None:
-                logger.info(f"✅ {name} started successfully on port {port}")
+                logger.info(f" {name} started successfully on port {port}")
                 return True
             else:
                 stdout, stderr = process.communicate()
-                logger.error(f"❌ {name} failed to start:")
+                logger.error(f" {name} failed to start:")
                 logger.error(f"STDOUT: {stdout}")
                 logger.error(f"STDERR: {stderr}")
                 return False
                 
         except Exception as e:
-            logger.error(f"❌ Failed to start {name}: {str(e)}")
+            logger.error(f" Failed to start {name}: {str(e)}")
             return False
     
     def stop_agent(self, name: str):
@@ -149,15 +149,15 @@ class AgentManager:
                 # Wait up to 5 seconds for graceful shutdown
                 try:
                     process.wait(timeout=5)
-                    logger.info(f"✅ {name} stopped gracefully")
+                    logger.info(f" {name} stopped gracefully")
                 except subprocess.TimeoutExpired:
-                    logger.warning(f"⚠️ {name} didn't stop gracefully, forcing...")
+                    logger.warning(f" {name} didn't stop gracefully, forcing...")
                     process.kill()
                     process.wait()
-                    logger.info(f"✅ {name} stopped forcefully")
+                    logger.info(f" {name} stopped forcefully")
                 
             except Exception as e:
-                logger.error(f"❌ Error stopping {name}: {str(e)}")
+                logger.error(f" Error stopping {name}: {str(e)}")
             
             finally:
                 del self.processes[name]
@@ -190,12 +190,12 @@ class AgentManager:
                 logger.error(f"Failed to start {agent_config['name']}")
         
         if success_count == len(AGENTS):
-            logger.info(f"🎉 All {len(AGENTS)} agents started successfully!")
+            logger.info(f" All {len(AGENTS)} agents started successfully!")
             self.running = True
             self.print_status()
             return True
         else:
-            logger.error(f"⚠️ Only {success_count}/{len(AGENTS)} agents started successfully")
+            logger.error(f" Only {success_count}/{len(AGENTS)} agents started successfully")
             return False
     
     def validate_environment(self) -> bool:
@@ -211,22 +211,22 @@ class AgentManager:
                 missing_vars.append(var)
         
         if missing_vars:
-            logger.error(f"❌ Missing required environment variables: {missing_vars}")
+            logger.error(f" Missing required environment variables: {missing_vars}")
             logger.error("Please check your .env file")
             return False
         
         # Check OpenAI API key format
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key.startswith("sk-"):
-            logger.warning("⚠️ OpenAI API key doesn't start with 'sk-', please verify")
+            logger.warning(" OpenAI API key doesn't start with 'sk-', please verify")
         
-        logger.info("✅ Environment validation passed")
+        logger.info(" Environment validation passed")
         return True
     
     def print_status(self):
         """Print status of all agents"""
         logger.info("\n" + "="*60)
-        logger.info("🤖 A2A SENTIMENT ANALYSIS AGENTS STATUS")
+        logger.info(" A2A SENTIMENT ANALYSIS AGENTS STATUS")
         logger.info("="*60)
         
         for agent_config in AGENTS:
@@ -252,7 +252,7 @@ class AgentManager:
                 logger.info("")
         
         logger.info("="*60)
-        logger.info("💡 Usage:")
+        logger.info(" Usage:")
         logger.info("  - Start Streamlit UI: streamlit run app.py")
         logger.info("  - Test RPC endpoints with curl or Postman")
         logger.info("  - View agent cards at /.well-known/agent.json")
@@ -275,16 +275,16 @@ class AgentManager:
                         
                         # Check if process is still running
                         if process.poll() is not None:
-                            logger.warning(f"⚠️ {name} has stopped unexpectedly, restarting...")
+                            logger.warning(f" {name} has stopped unexpectedly, restarting...")
                             
                             # Remove the dead process
                             del self.processes[name]
                             
                             # Restart the agent
                             if self.start_agent(agent_config):
-                                logger.info(f"✅ {name} restarted successfully")
+                                logger.info(f" {name} restarted successfully")
                             else:
-                                logger.error(f"❌ Failed to restart {name}")
+                                logger.error(f" Failed to restart {name}")
                                 
         except KeyboardInterrupt:
             logger.info("Monitoring interrupted by user")
@@ -305,13 +305,13 @@ class AgentManager:
                 response = requests.get(health_url, timeout=5)
                 if response.status_code == 200:
                     health_status[name] = True
-                    logger.info(f"✅ {name} health check passed")
+                    logger.info(f" {name} health check passed")
                 else:
                     health_status[name] = False
-                    logger.warning(f"⚠️ {name} health check failed: HTTP {response.status_code}")
+                    logger.warning(f" {name} health check failed: HTTP {response.status_code}")
             except requests.exceptions.RequestException as e:
                 health_status[name] = False
-                logger.warning(f"⚠️ {name} health check failed: {str(e)}")
+                logger.warning(f" {name} health check failed: {str(e)}")
         
         return health_status
 

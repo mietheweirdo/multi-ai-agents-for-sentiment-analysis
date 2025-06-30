@@ -1,13 +1,21 @@
-# test_enhanced_system.py
+#!/usr/bin/env python3
+"""
+Enhanced Multi-Agent Sentiment Analysis System - Comprehensive Test
+Tests the enhanced coordinator with various configurations and scenarios
+"""
+
 import json
 import os
 from agents.enhanced_coordinator import EnhancedCoordinatorAgent
 from agents.product_prompts import ProductPromptManager
 
+print("TESTING: Enhanced Multi-Agent Sentiment Analysis System")
+print("=" * 60)
+
 def test_enhanced_system():
     """Test the enhanced multi-agent sentiment analysis system"""
     
-    print("🚀 Testing Enhanced Multi-Agent Sentiment Analysis System")
+    print("TESTING: Enhanced Multi-Agent Sentiment Analysis System")
     print("=" * 60)
     
     # Load configuration
@@ -60,7 +68,7 @@ def test_enhanced_system():
     ]
     
     for test_config in test_configs:
-        print(f"\n📊 {test_config['name']}")
+        print(f"\n[ANALYSIS] {test_config['name']}")
         print("-" * 50)
         
         # Create coordinator with specific configuration
@@ -79,33 +87,33 @@ def test_enhanced_system():
             )
             
             # Display results
-            print(f"\n✅ Analysis completed for {test_config['product_category']}")
-            print(f"📈 Total agents: {result['analysis_metadata']['total_agents']}")
-            print(f"🔄 Discussion rounds: {result['analysis_metadata']['discussion_rounds']}")
-            print(f"📊 Average confidence: {result['analysis_metadata']['average_confidence']:.2f}")
-            print(f"🎯 Agent types: {', '.join(test_config['agent_types'])}")
+            print(f"\nAnalysis completed for {test_config['product_category']}")
+            print(f"Total agents: {result['analysis_metadata']['total_agents']}")
+            print(f"Processing time: {result['analysis_metadata']['processing_time']:.2f}s")
+            print(f"Average confidence: {result['analysis_metadata']['average_confidence']:.2f}")
+            print(f"Agent types: {', '.join(test_config['agent_types'])}")
             
             # Show consensus results
             consensus = result['consensus']
-            print(f"🎯 Overall sentiment: {consensus.get('overall_sentiment', 'unknown')}")
-            print(f"📊 Overall confidence: {consensus.get('overall_confidence', 0.5):.2f}")
-            print(f"🤝 Agreement level: {consensus.get('agreement_level', 'unknown')}")
+            print(f"Overall sentiment: {consensus.get('overall_sentiment', 'unknown')}")
+            print(f"Overall confidence: {consensus.get('overall_confidence', 0.5):.2f}")
+            print(f"Agreement level: {consensus.get('agreement_level', 'unknown')}")
             
             # Show key insights
             if 'key_insights' in consensus:
-                print(f"\n💡 Key insights:")
+                print(f"\nKey insights:")
                 insights = consensus['key_insights']
                 if isinstance(insights, list):
                     for insight in insights[:3]:  # Top 3 insights
-                        print(f"   • {insight}")
+                        print(f"   - {insight}")
                 else:
-                    print(f"   • {insights}")
+                    print(f"   - {insights}")
             
         except Exception as e:
-            print(f"❌ Error in {test_config['name']}: {e}")
+            print(f"ERROR in {test_config['name']}: {e}")
     
     # Test category switching
-    print(f"\n🔄 Testing Category Switching")
+    print(f"\nTesting Category Switching")
     print("-" * 30)
     
     coordinator = EnhancedCoordinatorAgent(config=config, product_category="electronics")
@@ -116,17 +124,16 @@ def test_enhanced_system():
     print(f"Switched to: {coordinator.product_category}")
     
     # Show available categories
-    print(f"\n📋 Available product categories:")
+    print(f"\nAvailable product categories:")
     categories = coordinator.get_available_categories()
     for category in categories:
         description = ProductPromptManager.get_category_description(category)
-        print(f"   • {category}: {description}")
+        print(f"   - {category}: {description}")
 
 def test_token_optimization():
-    """Test different token configurations for cost optimization"""
-    
-    print(f"\n💰 Token Optimization Test")
-    print("=" * 40)
+    """Test different token configurations"""
+    print(f"\nToken Optimization Test")
+    print("-" * 40)
     
     config_path = os.path.join(os.path.dirname(__file__), 'config.json')
     with open(config_path, 'r') as f:
@@ -135,36 +142,51 @@ def test_token_optimization():
     test_review = "This smartphone is amazing! The battery life is incredible and the camera quality is outstanding. However, the delivery took longer than expected."
     
     token_configs = [
-        {"max_tokens": 50, "description": "Ultra-low cost"},
-        {"max_tokens": 100, "description": "Low cost"},
-        {"max_tokens": 150, "description": "Balanced"},
-        {"max_tokens": 200, "description": "High quality"}
+        {
+            "description": "Low token limit",
+            "max_tokens": 50,
+            "expected_trade_offs": "Fast but less detailed"
+        },
+        {
+            "description": "Medium token limit", 
+            "max_tokens": 150,
+            "expected_trade_offs": "Balanced performance"
+        },
+        {
+            "description": "High token limit",
+            "max_tokens": 300,
+            "expected_trade_offs": "Detailed but slower"
+        }
     ]
     
     for token_config in token_configs:
-        print(f"\n🔧 Testing {token_config['description']} configuration ({token_config['max_tokens']} tokens)")
+        print(f"\nTesting {token_config['description']} configuration ({token_config['max_tokens']} tokens)")
         
         coordinator = EnhancedCoordinatorAgent(
             config=config,
             product_category="electronics",
+            agent_types=["quality", "experience"],
             max_tokens_per_agent=token_config['max_tokens']
         )
         
         try:
-            result = coordinator.run_workflow(reviews=[test_review])
+            result = coordinator.run_workflow(
+                reviews=[test_review],
+                product_category="electronics"
+            )
             
-            # Calculate estimated cost based on actual token usage
-            total_agents = result['analysis_metadata']['total_agents']
-            estimated_tokens = total_agents * token_config['max_tokens'] + 800  # Add consensus tokens
-            estimated_cost = (estimated_tokens / 1000) * 0.00015  # Rough cost estimate
-            
-            print(f"   Estimated cost: ${estimated_cost:.4f}")
-            print(f"   Sentiment: {result['consensus'].get('overall_sentiment', 'N/A')}")
-            print(f"   Confidence: {result['consensus'].get('overall_confidence', 'N/A')}")
-            
+            if result:
+                processing_time = result['analysis_metadata']['processing_time']
+                avg_confidence = result['analysis_metadata']['average_confidence']
+                
+                print(f"   Processing time: {processing_time:.2f}s")
+                print(f"   Average confidence: {avg_confidence:.2f}")
+                print(f"   Trade-offs: {token_config['expected_trade_offs']}")
+                
         except Exception as e:
             print(f"   Error: {e}")
 
+# Run all tests
 if __name__ == "__main__":
     # Run main test
     test_enhanced_system()
@@ -172,5 +194,5 @@ if __name__ == "__main__":
     # Run token optimization test
     test_token_optimization()
     
-    print(f"\n🎉 All tests completed!")
+    print(f"\nAll tests completed!")
     print("=" * 60) 

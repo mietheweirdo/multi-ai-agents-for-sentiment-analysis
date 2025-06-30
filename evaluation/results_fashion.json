@@ -1,0 +1,28 @@
+{
+  "single_agent": {
+    "accuracy": 0.8,
+    "precision": 0.64,
+    "recall": 0.8,
+    "f1_score": 0.711111111111111,
+    "avg_confidence": 0.85,
+    "processing_time": 11.155436992645264
+  },
+  "multi_agent": {
+    "accuracy": 0.8,
+    "precision": 0.64,
+    "recall": 0.8,
+    "f1_score": 0.711111111111111,
+    "avg_confidence": 0.85,
+    "processing_time": 70.47504782676697
+  },
+  "improvements": {
+    "accuracy_improvement": 0.0,
+    "precision_improvement": 0.0,
+    "recall_improvement": 0.0,
+    "f1_improvement": 0.0,
+    "confidence_improvement": 0.0
+  },
+  "sample_size": 5,
+  "single_correct": 4,
+  "multi_correct": 4
+}

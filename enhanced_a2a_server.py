@@ -49,7 +49,7 @@ async def startup_event():
         product_category="electronics",
         max_tokens_per_agent=150
     )
-    print("🚀 Enhanced Multi-Agent Sentiment Analysis API started")
+    print(" Enhanced Multi-Agent Sentiment Analysis API started")
 
 @app.get("/")
 async def root():
