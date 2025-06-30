@@ -18,31 +18,8 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-# Import existing agent functionality
-from agents.enhanced_coordinator import EnhancedCoordinatorAgent
-
-import os
-import logging
-from typing import Optional, List
-from fastapi import FastAPI, HTTPException
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
-
-# Add parent directory to path for module imports
-import sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
-# Import existing agent functionality
-from agents.enhanced_coordinator import EnhancedCoordinatorAgent
-
-# Load environment variables
-load_dotenv()
-
-# Import existing coordinator functionality  
-from agents.enhanced_coordinator import EnhancedCoordinatorAgent
+# Import existing coordinator functionality
+from workflow_manager import MultiAgentWorkflowManager
 from shared.json_rpc.base import (
     JsonRpcRequest, 
     JsonRpcResponse,
@@ -85,19 +62,19 @@ def create_coordinator(
     max_tokens_per_agent: int = 150,
     max_tokens_consensus: int = 800,
     max_rounds: int = 2
-) -> EnhancedCoordinatorAgent:
+) -> MultiAgentWorkflowManager:
     """Create a coordinator with specified configuration"""
     
     if agent_types is None:
         agent_types = ["quality", "experience", "user_experience", "business"]
     
-    return EnhancedCoordinatorAgent(
+    return MultiAgentWorkflowManager(
         config=config,
         product_category=product_category,
-        agent_types=agent_types,
-        max_tokens_per_agent=max_tokens_per_agent,
-        max_rounds=max_rounds,
-        max_tokens_consensus=max_tokens_consensus
+        department_types=agent_types,
+        max_tokens_per_department=max_tokens_per_agent,
+        max_tokens_master=500,
+        max_tokens_advisor=max_tokens_consensus
     )
 
 @app.post("/rpc", response_model=JsonRpcResponse)
@@ -155,8 +132,8 @@ async def rpc_handler(rpc_req: JsonRpcRequest) -> JsonRpcResponse:
         # Create or reconfigure coordinator if needed
         if (coordinator is None or 
             coordinator.product_category != product_category or
-            len(coordinator.sentiment_agents) != len(agent_types) or
-            coordinator.max_tokens_per_agent != max_tokens_per_agent):
+            len(coordinator.department_agents) != len(agent_types) or
+            coordinator.max_tokens_per_department != max_tokens_per_agent):
             
             logger.info("Creating new coordinator with specified configuration")
             coordinator = create_coordinator(
@@ -168,19 +145,16 @@ async def rpc_handler(rpc_req: JsonRpcRequest) -> JsonRpcResponse:
             )
         
         # Run coordinated analysis using your existing workflow
-        analysis_result = coordinator.run_workflow(
-            reviews=[review_text],  # EnhancedCoordinatorAgent expects a list
-            product_category=product_category
-        )
+        analysis_result = coordinator.run_analysis(review_text)
         
         # Format result as JSON string for A2A response
         import json
         output_text = json.dumps(analysis_result, indent=2)
         
         # Extract key metrics for metadata
-        consensus = analysis_result.get('consensus', {})
-        overall_sentiment = consensus.get('overall_sentiment', 'unknown')
-        overall_confidence = consensus.get('overall_confidence', 0.0)
+        master_analysis = analysis_result.get('master_analysis', {})
+        overall_sentiment = master_analysis.get('sentiment', 'unknown')
+        overall_confidence = master_analysis.get('confidence', 0.0)
         
         logger.info(f"Coordinated analysis completed. Overall sentiment: {overall_sentiment}")
         logger.info(f"Overall confidence: {overall_confidence:.2f}")
@@ -200,7 +174,7 @@ async def rpc_handler(rpc_req: JsonRpcRequest) -> JsonRpcResponse:
                 "overall_sentiment": overall_sentiment,
                 "overall_confidence": overall_confidence,
                 "total_agents": len(agent_types),
-                "discussion_rounds": analysis_result.get('analysis_metadata', {}).get('discussion_rounds', 0)
+                "processing_time": analysis_result.get('workflow_metadata', {}).get('processing_time', 0)
             }
         )
         
@@ -232,11 +206,11 @@ async def get_config():
     
     return {
         "product_category": coordinator.product_category,
-        "agent_types": [agent.agent_type for agent in coordinator.sentiment_agents],
-        "max_tokens_per_agent": coordinator.max_tokens_per_agent,
-        "max_tokens_consensus": coordinator.max_tokens_consensus,
-        "max_rounds": coordinator.max_rounds,
-        "total_agents": len(coordinator.sentiment_agents)
+        "agent_types": coordinator.department_types,
+        "max_tokens_per_agent": coordinator.max_tokens_per_department,
+        "max_tokens_consensus": coordinator.max_tokens_advisor,
+        "max_rounds": 3,  # Default for 3-layer system
+        "total_agents": len(coordinator.department_agents)
     }
 
 if __name__ == "__main__":
