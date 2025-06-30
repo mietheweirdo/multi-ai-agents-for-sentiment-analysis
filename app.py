@@ -78,312 +78,337 @@ def parse_agent_result(result_text: str) -> Dict[str, Any]:
     except json.JSONDecodeError:
         return {"error": "Failed to parse agent response", "raw": result_text}
 
-# Page configuration
-st.set_page_config(
-    page_title="🤖 Multi-Agent Sentiment Analysis",
-    page_icon="🤖",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-# Main title
-st.title("🤖 Multi-Agent Sentiment Analysis System")
-st.markdown("*A2A-compatible sentiment analysis with specialized agents*")
-
-# Sidebar configuration
-st.sidebar.header("⚙️ Configuration")
-
-# Product category selection
-product_categories = [
-    "electronics", "fashion", "home_garden", 
-    "beauty_health", "sports_outdoors", "books_media"
-]
-product_category = st.sidebar.selectbox(
-    "Product Category:",
-    product_categories,
-    index=0,
-    help="Select the product category for specialized analysis"
-)
-
-# Analysis mode selection
-analysis_modes = {
-    "🎯 Coordinator (Multi-Agent)": "coordinator",
-    "⚡ Individual Agents": "individual",
-    "🔄 Sequential Chain": "sequential"
-}
-analysis_mode = st.sidebar.selectbox(
-    "Analysis Mode:",
-    list(analysis_modes.keys()),
-    index=0,
-    help="Choose how to run the sentiment analysis"
-)
-
-# Agent selection for individual/sequential modes
-if analysis_modes[analysis_mode] != "coordinator":
-    st.sidebar.subheader("Agent Selection")
-    selected_agents = []
+def main():
+    """Main Streamlit application"""
+    st.set_page_config(
+        page_title="Multi-Agent Sentiment Analysis",
+        page_icon="robot",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
     
-    agent_options = {
-        "🔧 Quality Agent": "quality",
-        "🤝 Experience Agent": "experience", 
-        "😊 User Experience Agent": "user_experience",
-        "📊 Business Agent": "business",
-        "⚙️ Technical Agent": "technical"
+    # Main title
+    st.title("Multi-Agent Sentiment Analysis System")
+    st.markdown("*An advanced sentiment analysis system using specialized AI agents*")
+    
+    # Sidebar configuration
+    st.sidebar.header("Configuration")
+    
+    # Product category selection
+    product_categories = {
+        "Electronics": "electronics",
+        "Fashion": "fashion", 
+        "Home & Garden": "home_garden",
+        "Beauty & Health": "beauty_health",
+        "Sports & Outdoors": "sports_outdoors",
+        "Books & Media": "books_media"
     }
     
-    for display_name, agent_type in agent_options.items():
-        if st.sidebar.checkbox(display_name, value=True, key=f"agent_{agent_type}"):
-            selected_agents.append(agent_type)
-
-# Advanced settings
-st.sidebar.subheader("Advanced Settings")
-max_tokens_per_agent = st.sidebar.slider(
-    "Max Tokens per Agent:",
-    min_value=50,
-    max_value=500,
-    value=int(os.getenv("DEFAULT_MAX_TOKENS_PER_AGENT", "150")),
-    step=50,
-    help="Token limit for each agent analysis"
-)
-
-if analysis_modes[analysis_mode] == "coordinator":
-    max_tokens_consensus = st.sidebar.slider(
-        "Max Tokens for Consensus:",
-        min_value=200,
-        max_value=1500,
-        value=int(os.getenv("DEFAULT_MAX_TOKENS_CONSENSUS", "800")),
-        step=100,
-        help="Token limit for consensus generation"
+    selected_category = st.sidebar.selectbox(
+        "Select Product Category:",
+        list(product_categories.keys()),
+        index=0
+    )
+    product_category = product_categories[selected_category]
+    
+    # Analysis mode selection
+    analysis_modes = {
+        "Coordinator (Multi-Agent)": "coordinator",
+        "Individual Agents": "individual",
+        "Sequential Analysis": "sequential"
+    }
+    
+    analysis_mode = st.sidebar.selectbox(
+        "Analysis Mode:",
+        list(analysis_modes.keys()),
+        index=0
     )
     
-    max_rounds = st.sidebar.slider(
-        "Max Discussion Rounds:",
-        min_value=1,
-        max_value=5,
-        value=int(os.getenv("DEFAULT_MAX_ROUNDS", "2")),
-        help="Maximum rounds of agent discussion"
-    )
-
-# Main content area
-st.markdown("---")
-
-# Text input
-review_text = st.text_area(
-    "📝 Enter product review text:",
-    height=150,
-    placeholder="Enter a product review to analyze sentiment, emotions, and business impact...",
-    help="Paste or type a product review for sentiment analysis"
-)
-
-# Analysis button
-if st.button("🚀 Analyze Sentiment", type="primary", use_container_width=True):
-    if not review_text.strip():
-        st.warning("⚠️ Please enter some review text to analyze.")
-    else:
-        # Prepare metadata
-        metadata = {
-            "product_category": product_category,
-            "max_tokens": max_tokens_per_agent
+    mode = analysis_modes[analysis_mode]
+    
+    # Agent selection (for individual/sequential modes)
+    if mode in ["individual", "sequential"]:
+        available_agents = {
+            "Quality Agent": "quality",
+            "Experience Agent": "experience",
+            "User Experience Agent": "user_experience",
+            "Business Agent": "business",
+            "Technical Agent": "technical"
         }
         
-        if analysis_modes[analysis_mode] == "coordinator":
-            # Coordinator mode - single call to coordinator
-            metadata.update({
-                "agent_types": ["quality", "experience", "user_experience", "business"],
-                "max_tokens_consensus": max_tokens_consensus,
-                "max_rounds": max_rounds
-            })
-            
-            st.markdown("### 🎯 Coordinator Analysis")
-            
-            with st.spinner("Coordinating multi-agent analysis..."):
-                response = call_agent_rpc(COORDINATOR_RPC, review_text, metadata)
-            
-            if response and "result" in response:
-                result_text = extract_result_text(response)
-                coordinator_result = parse_agent_result(result_text)
+        selected_agents = st.sidebar.multiselect(
+            "Select Agents:",
+            list(available_agents.keys()),
+            default=["Quality Agent", "Experience Agent"]
+        )
+        
+        agent_types = [available_agents[agent] for agent in selected_agents]
+    else:
+        agent_types = ["quality", "experience", "user_experience", "business"]
+    
+    # Token limit configuration
+    max_tokens = st.sidebar.slider(
+        "Max Tokens per Agent:",
+        min_value=50,
+        max_value=500,
+        value=300,
+        step=25,
+        help="Higher values provide more detailed analysis but cost more"
+    )
+    
+    # Main content area
+    st.markdown("### Analysis Configuration")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.write("**Product Category:**", selected_category)
+        st.write("**Analysis Mode:**", analysis_mode)
+    
+    with col2:
+        st.write("**Max Tokens:**", max_tokens)
+        if mode != "coordinator":
+            st.write("**Selected Agents:**", len(agent_types))
+    
+    # Review input
+    st.markdown("### Product Review Analysis")
+    
+    review_text = st.text_area(
+        "Enter product review text:",
+        height=150,
+        placeholder="Enter the product review you want to analyze..."
+    )
+    
+    # Analysis button
+    if st.button("Analyze Sentiment", type="primary", use_container_width=True):
+        if not review_text.strip():
+            st.warning("Please enter some review text to analyze.")
+        else:
+            if mode == "coordinator":
+                # Coordinator mode
+                with st.spinner("Running multi-agent analysis..."):
+                    coordinator_result = run_coordinator_analysis(
+                        review_text, product_category, agent_types, max_tokens
+                    )
                 
-                if "error" not in coordinator_result:
-                    # Display consensus results
-                    consensus = coordinator_result.get("consensus", {})
-                    col1, col2, col3 = st.columns(3)
+                if coordinator_result and "consensus" in coordinator_result:
+                    st.markdown("### Coordinator Analysis")
                     
+                    # Display consensus results
+                    consensus = coordinator_result["consensus"]
+                    
+                    col1, col2, col3 = st.columns(3)
                     with col1:
-                        st.metric(
-                            "Overall Sentiment",
-                            consensus.get("overall_sentiment", "unknown").title(),
-                            help="Consensus sentiment across all agents"
-                        )
+                        sentiment = consensus.get("overall_sentiment", "Unknown")
+                        sentiment_color = get_sentiment_color(sentiment)
+                        st.markdown(f"**Overall Sentiment:** ::{sentiment_color}[{sentiment.upper()}]")
                     
                     with col2:
                         confidence = consensus.get("overall_confidence", 0.0)
-                        st.metric(
-                            "Confidence", 
-                            f"{confidence:.2%}",
-                            help="Average confidence across agents"
-                        )
+                        st.markdown(f"**Confidence:** {confidence:.2%}")
+                        st.progress(confidence)
                     
                     with col3:
-                        agreement = consensus.get("agreement_level", "unknown")
-                        st.metric(
-                            "Agreement Level",
-                            agreement.title(),
-                            help="Level of agreement between agents"
-                        )
+                        agreement = consensus.get("agreement_level", "Unknown")
+                        st.markdown(f"**Agreement Level:** {agreement}")
                     
-                    # Display individual agent analyses
-                    st.markdown("#### 🤖 Individual Agent Analyses")
-                    agent_analyses = coordinator_result.get("agent_analyses", [])
+                    # Reasoning
+                    if "reasoning" in consensus:
+                        st.markdown("**Consensus Reasoning:**")
+                        st.info(consensus["reasoning"])
                     
-                    for i, analysis in enumerate(agent_analyses):
-                        agent_type = analysis.get("agent_type", "unknown")
-                        sentiment = analysis.get("sentiment", "unknown")
-                        confidence = analysis.get("confidence", 0.0)
-                        reasoning = analysis.get("reasoning", "No reasoning provided")
-                        
-                        with st.expander(f"🔍 {agent_type.title().replace('_', ' ')} Agent - {sentiment.title()}"):
-                            st.write(f"**Confidence:** {confidence:.2%}")
-                            st.write(f"**Reasoning:** {reasoning}")
-                            
-                            emotions = analysis.get("emotions", [])
-                            if emotions:
-                                st.write(f"**Emotions:** {', '.join(emotions)}")
-                            
-                            topics = analysis.get("topics", [])
-                            if topics:
-                                st.write(f"**Topics:** {', '.join(topics)}")
-                    
-                    # Display consensus insights
-                    st.markdown("#### 💡 Key Insights")
-                    insights = consensus.get("key_insights", "No insights available")
-                    st.info(insights)
-                    
-                    recommendations = consensus.get("business_recommendations", "No recommendations available")
-                    st.markdown("#### 📈 Business Recommendations")
-                    st.success(recommendations)
-                    
-                    # Display metadata
-                    with st.expander("📊 Analysis Metadata"):
-                        metadata_info = coordinator_result.get("analysis_metadata", {})
-                        st.json(metadata_info)
-                else:
-                    st.error(f"❌ Coordinator analysis failed: {coordinator_result.get('error', 'Unknown error')}")
-            else:
-                st.error("❌ Failed to get response from coordinator")
-                
-        elif analysis_modes[analysis_mode] == "individual":
-            # Individual agents mode - parallel calls
-            st.markdown("### ⚡ Individual Agent Analysis")
-            
-            if not selected_agents:
-                st.warning("⚠️ Please select at least one agent to analyze.")
-            else:
-                # Create columns for agents
-                cols = st.columns(len(selected_agents))
-                
-                for i, agent_type in enumerate(selected_agents):
-                    with cols[i]:
-                        st.markdown(f"#### 🤖 {agent_type.title().replace('_', ' ')} Agent")
-                        
-                        with st.spinner(f"Analyzing with {agent_type} agent..."):
-                            endpoint = AGENT_ENDPOINTS[agent_type]
-                            response = call_agent_rpc(endpoint, review_text, metadata)
-                        
-                        if response and "result" in response:
-                            result_text = extract_result_text(response)
-                            agent_result = parse_agent_result(result_text)
-                            
-                            if "error" not in agent_result:
-                                sentiment = agent_result.get("sentiment", "unknown")
-                                confidence = agent_result.get("confidence", 0.0)
-                                
-                                st.metric("Sentiment", sentiment.title())
-                                st.metric("Confidence", f"{confidence:.2%}")
-                                
-                                reasoning = agent_result.get("reasoning", "No reasoning provided")
-                                st.write(f"**Reasoning:** {reasoning}")
-                                
-                                with st.expander("Details"):
-                                    st.json(agent_result)
-                            else:
-                                st.error(f"❌ Analysis failed: {agent_result.get('error', 'Unknown error')}")
+                    # Key insights
+                    if "key_insights" in consensus:
+                        st.markdown("**Key Insights:**")
+                        insights = consensus["key_insights"]
+                        if isinstance(insights, list):
+                            for insight in insights:
+                                st.write(f"• {insight}")
                         else:
-                            st.error(f"❌ Failed to get response from {agent_type} agent")
-                            
-        else:
-            # Sequential chain mode - call agents one by one
-            st.markdown("### 🔄 Sequential Agent Chain")
-            
-            if not selected_agents:
-                st.warning("⚠️ Please select at least one agent to analyze.")
-            else:
-                results = []
-                
-                for i, agent_type in enumerate(selected_agents):
-                    st.markdown(f"#### Step {i+1}: 🤖 {agent_type.title().replace('_', ' ')} Agent")
+                            st.write(f"• {insights}")
                     
-                    with st.spinner(f"Analyzing with {agent_type} agent..."):
-                        endpoint = AGENT_ENDPOINTS[agent_type]
-                        response = call_agent_rpc(endpoint, review_text, metadata)
-                    
-                    if response and "result" in response:
-                        result_text = extract_result_text(response)
-                        agent_result = parse_agent_result(result_text)
+                    # Individual agent analyses
+                    if "agent_analyses" in coordinator_result:
+                        st.markdown("#### Individual Agent Analyses")
                         
-                        if "error" not in agent_result:
-                            results.append({
-                                "agent_type": agent_type,
-                                "result": agent_result
-                            })
+                        for analysis in coordinator_result["agent_analyses"]:
+                            agent_type = analysis.get("agent_type", "Unknown")
+                            sentiment = analysis.get("sentiment", "Unknown")
+                            confidence = analysis.get("confidence", 0.0)
+                            reasoning = analysis.get("reasoning", "No reasoning provided")
+                            
+                            with st.expander(f"{agent_type.title().replace('_', ' ')} Agent - {sentiment.title()}"):
+                                col1, col2 = st.columns(2)
+                                with col1:
+                                    st.write("**Sentiment:**", sentiment.upper())
+                                    st.write("**Confidence:**", f"{confidence:.2%}")
+                                
+                                with col2:
+                                    emotions = analysis.get("emotions", [])
+                                    if emotions:
+                                        st.write("**Emotions:**", ", ".join(emotions))
+                                
+                                st.write("**Reasoning:**")
+                                st.write(reasoning)
+                    
+                    # Key insights section
+                    st.markdown("#### Key Insights")
+                    if "key_insights" in consensus:
+                        st.write(consensus["key_insights"])
+                    
+                    # Business recommendations
+                    st.markdown("#### Business Recommendations")
+                    if "business_recommendations" in consensus:
+                        st.write(consensus["business_recommendations"])
+                    
+                    # Analysis metadata
+                    with st.expander("Analysis Metadata"):
+                        metadata = coordinator_result.get("analysis_metadata", {})
+                        st.json(metadata)
+                
+                elif coordinator_result and "error" in coordinator_result:
+                    st.error(f"Coordinator analysis failed: {coordinator_result.get('error', 'Unknown error')}")
+                else:
+                    st.error("Failed to get response from coordinator")
+            
+            elif mode == "individual":
+                # Individual agents mode
+                if not agent_types:
+                    st.warning("Please select at least one agent to analyze.")
+                else:
+                    st.markdown("### Individual Agent Results")
+                    
+                    for agent_type in agent_types:
+                        with st.spinner(f"Running {agent_type} agent analysis..."):
+                            agent_result = run_single_agent_analysis(
+                                review_text, agent_type, product_category, max_tokens
+                            )
+                        
+                        st.markdown(f"#### {agent_type.title().replace('_', ' ')} Agent")
+                        
+                        if agent_result and "sentiment" in agent_result:
+                            col1, col2, col3 = st.columns(3)
+                            
+                            with col1:
+                                sentiment = agent_result["sentiment"]
+                                sentiment_color = get_sentiment_color(sentiment)
+                                st.markdown(f"**Sentiment:** ::{sentiment_color}[{sentiment.upper()}]")
+                            
+                            with col2:
+                                confidence = agent_result.get("confidence", 0.0)
+                                st.markdown(f"**Confidence:** {confidence:.2%}")
+                                st.progress(confidence)
+                            
+                            with col3:
+                                emotions = agent_result.get("emotions", [])
+                                if emotions:
+                                    st.markdown(f"**Emotions:** {', '.join(emotions[:3])}")
+                            
+                            # Reasoning
+                            reasoning = agent_result.get("reasoning", "No reasoning provided")
+                            st.markdown("**Analysis Reasoning:**")
+                            st.info(reasoning)
+                            
+                            # Business impact
+                            business_impact = agent_result.get("business_impact", "")
+                            if business_impact:
+                                st.markdown("**Business Impact:**")
+                                st.write(business_impact)
+                            
+                            # Topics/facets
+                            topics = agent_result.get("topics", [])
+                            if topics:
+                                st.markdown("**Key Topics:**")
+                                st.write(", ".join(topics))
+                        
+                        elif agent_result and "error" in agent_result:
+                            st.error(f"Analysis failed: {agent_result.get('error', 'Unknown error')}")
+                        else:
+                            st.error(f"Failed to get response from {agent_type} agent")
+                        
+                        st.divider()
+            
+            elif mode == "sequential":
+                # Sequential analysis mode
+                if not agent_types:
+                    st.warning("Please select at least one agent to analyze.")
+                else:
+                    st.markdown("### Sequential Analysis")
+                    
+                    results = []
+                    
+                    for i, agent_type in enumerate(agent_types):
+                        st.markdown(f"#### Step {i+1}: {agent_type.title().replace('_', ' ')} Agent")
+                        
+                        with st.spinner(f"Running {agent_type} agent analysis..."):
+                            agent_result = run_single_agent_analysis(
+                                review_text, agent_type, product_category, max_tokens
+                            )
+                        
+                        if agent_result and "sentiment" in agent_result:
+                            results.append(agent_result)
                             
                             col1, col2 = st.columns(2)
                             with col1:
-                                sentiment = agent_result.get("sentiment", "unknown")
+                                sentiment = agent_result["sentiment"]
                                 confidence = agent_result.get("confidence", 0.0)
-                                st.metric("Sentiment", sentiment.title())
-                                st.metric("Confidence", f"{confidence:.2%}")
+                                st.metric(
+                                    label="Sentiment",
+                                    value=sentiment.upper(),
+                                    delta=f"{confidence:.2%} confidence"
+                                )
                             
                             with col2:
                                 reasoning = agent_result.get("reasoning", "No reasoning provided")
-                                st.write(f"**Reasoning:** {reasoning}")
-                                
-                                emotions = agent_result.get("emotions", [])
-                                if emotions:
-                                    st.write(f"**Emotions:** {', '.join(emotions)}")
+                                st.write("**Reasoning:**")
+                                st.write(reasoning[:200] + "..." if len(reasoning) > 200 else reasoning)
+                        
+                        elif agent_result and "error" in agent_result:
+                            st.error(f"Analysis failed: {agent_result.get('error', 'Unknown error')}")
+                            results.append({"sentiment": "error", "confidence": 0.0})
                         else:
-                            st.error(f"❌ Analysis failed: {agent_result.get('error', 'Unknown error')}")
-                            break
-                    else:
-                        st.error(f"❌ Failed to get response from {agent_type} agent")
-                        break
-                
-                # Summary of sequential results
-                if results:
-                    st.markdown("#### 📊 Sequential Analysis Summary")
+                            st.error(f"Failed to get response from {agent_type} agent")
+                            results.append({"sentiment": "error", "confidence": 0.0})
                     
-                    sentiments = [r["result"].get("sentiment", "unknown") for r in results]
-                    avg_confidence = sum(r["result"].get("confidence", 0.0) for r in results) / len(results)
-                    
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        from collections import Counter
-                        sentiment_counts = Counter(sentiments)
-                        most_common_sentiment = sentiment_counts.most_common(1)[0][0]
-                        st.metric("Majority Sentiment", most_common_sentiment.title())
-                    
-                    with col2:
-                        st.metric("Average Confidence", f"{avg_confidence:.2%}")
-                    
-                    with st.expander("Complete Sequential Results"):
-                        st.json(results)
+                    # Summary of sequential analysis
+                    if results:
+                        st.markdown("#### Sequential Analysis Summary")
+                        
+                        # Calculate summary metrics
+                        valid_results = [r for r in results if r["sentiment"] != "error"]
+                        
+                        if valid_results:
+                            sentiments = [r["sentiment"] for r in valid_results]
+                            confidences = [r.get("confidence", 0.0) for r in valid_results]
+                            
+                            # Most common sentiment
+                            from collections import Counter
+                            sentiment_counts = Counter(sentiments)
+                            most_common_sentiment = sentiment_counts.most_common(1)[0][0]
+                            
+                            # Average confidence
+                            avg_confidence = sum(confidences) / len(confidences)
+                            
+                            col1, col2, col3 = st.columns(3)
+                            with col1:
+                                st.metric("Most Common Sentiment", most_common_sentiment.upper())
+                            with col2:
+                                st.metric("Average Confidence", f"{avg_confidence:.2%}")
+                            with col3:
+                                st.metric("Agents Analyzed", len(valid_results))
+                            
+                            # Sentiment distribution
+                            st.markdown("**Sentiment Distribution:**")
+                            for sentiment, count in sentiment_counts.items():
+                                percentage = (count / len(valid_results)) * 100
+                                st.write(f"• {sentiment.title()}: {count} agents ({percentage:.1f}%)")
+
+if __name__ == "__main__":
+    main()
 
 # Footer
 st.markdown("---")
-st.markdown(
-    """
-    <div style='text-align: center; color: #666;'>
-        🤖 Multi-Agent Sentiment Analysis System | A2A Protocol Compatible
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+st.markdown("""
+<div style='text-align: center; color: #666;'>
+Multi-Agent Sentiment Analysis System | A2A Protocol Compatible
+</div>
+""", unsafe_allow_html=True)

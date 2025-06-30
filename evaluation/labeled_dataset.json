@@ -1,0 +1,217 @@
+{
+  "electronics": [
+    {
+      "review": "Oh wow, another 'premium' smartphone that costs $1200 and can't even last a full day without dying. The camera is decent I guess, but for this price? My old phone from 3 years ago had better battery life. At least the customer service was quick to tell me it's 'normal behavior'. Thanks for nothing!",
+      "ground_truth": "negative",
+      "aspects": {
+        "product_quality": "negative",
+        "customer_experience": "negative", 
+        "user_experience": "negative",
+        "business_impact": "negative"
+      },
+      "complexity": "sarcasm + price-value mismatch"
+    },
+    {
+      "review": "The laptop itself is a beast - super fast processor, gorgeous 4K display, premium build quality. But here's the thing: it runs so hot you could fry an egg on it, the fans sound like a jet engine, and good luck using it on your lap without burning your legs. Great for work though, when you can stand the noise.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "mixed",
+        "customer_experience": "neutral",
+        "user_experience": "negative", 
+        "business_impact": "mixed"
+      },
+      "complexity": "contradictory performance vs usability"
+    },
+    {
+      "review": "I'm honestly conflicted about this smartwatch. The health tracking is incredibly accurate - it detected my irregular heartbeat before I even knew I had it, potentially saving my life. But the UI is so confusing that my 80-year-old mother returned hers after a week. The notifications are overwhelming and you can't customize them properly. It's like they built an amazing medical device but forgot normal people need to use it daily.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "positive",
+        "customer_experience": "neutral",
+        "user_experience": "negative",
+        "business_impact": "mixed"
+      },
+      "complexity": "life-saving feature vs poor usability trade-off"
+    },
+    {
+      "review": "This tablet is perfect for artists and designers - the pressure sensitivity is unmatched, color accuracy is professional-grade, and the build quality screams premium. However, for regular consumers who just want to watch Netflix and browse social media, it's complete overkill and frustratingly complex. My kids can't figure out how to change the volume without opening three different menus.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "positive",
+        "customer_experience": "neutral",
+        "user_experience": "mixed",
+        "business_impact": "mixed"
+      },
+      "complexity": "target audience mismatch - great for pros, bad for general users"
+    },
+    {
+      "review": "The earbuds sound absolutely phenomenal - audiophile quality that puts $300 headphones to shame. But they fall out of my ears every 5 minutes during workouts, the case is so slippery it's like holding a bar of soap, and the touch controls are so sensitive that adjusting them accidentally skips songs. It's like they nailed the hard part (sound) but failed at basic ergonomics.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "mixed",
+        "customer_experience": "neutral",
+        "user_experience": "negative",
+        "business_impact": "mixed"
+      },
+      "complexity": "excellent core function vs poor physical design"
+    },
+    {
+      "review": "I love how this 'gaming' laptop can barely run games from 2018 at medium settings, despite costing more than my rent. The RGB lights are pretty though - at least it looks fast while disappointing me. Customer support suggested I 'lower my expectations' for a laptop marketed specifically for gaming. 10/10 would not recommend to my worst enemy.",
+      "ground_truth": "negative",
+      "aspects": {
+        "product_quality": "negative",
+        "customer_experience": "negative",
+        "user_experience": "negative",
+        "business_impact": "negative"
+      },
+      "complexity": "heavy sarcasm + misleading marketing"
+    },
+    {
+      "review": "This smart TV is incredibly impressive technically - 8K resolution, perfect HDR, smart features that actually work smoothly. But here's what nobody tells you: it collects so much data about your viewing habits that it basically knows you better than your therapist. The privacy settings are buried 6 menus deep and reset after every update. Great TV, terrible for anyone who values privacy.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "positive",
+        "customer_experience": "neutral",
+        "user_experience": "negative",
+        "business_impact": "mixed"
+      },
+      "complexity": "technical excellence vs privacy concerns"
+    },
+    {
+      "review": "For a 'budget-friendly' option at $800, this phone sure knows how to make you feel budget. The camera takes photos that look like they were shot through a foggy window, the processor stutters when opening Instagram, and don't get me started on the 'all-day' battery that dies by 3 PM. But hey, at least it makes calls... sometimes.",
+      "ground_truth": "negative",
+      "aspects": {
+        "product_quality": "negative",
+        "customer_experience": "neutral",
+        "user_experience": "negative",
+        "business_impact": "negative"
+      },
+      "complexity": "sarcasm + misleading value proposition"
+    }
+  ],
+  "fashion": [
+    {
+      "review": "This dress is absolutely stunning and photographs beautifully for Instagram - I got 500+ likes! But wearing it for more than an hour is torture. The fabric is scratchy, the zipper digs into your back, and forget about sitting down. It's basically a beautiful torture device. Perfect if you only need to look good for photos, horrible if you actually want to wear it.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "mixed",
+        "customer_experience": "neutral",
+        "user_experience": "negative",
+        "business_impact": "mixed"
+      },
+      "complexity": "looks great vs comfort trade-off"
+    },
+    {
+      "review": "These jeans fit like they were custom-made for my body type - finally, a brand that understands different body shapes! The quality is exceptional, stitching is perfect, and they've maintained their shape after dozens of washes. But at $300 for basic jeans, I need to plan my budget around each purchase. Worth it? Maybe. Accessible? Definitely not.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "positive",
+        "customer_experience": "neutral",
+        "user_experience": "positive",
+        "business_impact": "mixed"
+      },
+      "complexity": "perfect fit vs price accessibility"
+    },
+    {
+      "review": "I ordered a size Medium based on their size chart and received what can only be described as a tent for a small child. The 'easy return process' involved printing labels, packaging, waiting for pickup, then waiting 3 weeks for refund processing. The customer service kept telling me 'sizing runs small' - then why not update your size chart?!",
+      "ground_truth": "negative",
+      "aspects": {
+        "product_quality": "negative",
+        "customer_experience": "negative",
+        "user_experience": "negative",
+        "business_impact": "negative"
+      },
+      "complexity": "sizing issues + poor customer service"
+    },
+    {
+      "review": "This 'sustainable' clothing brand talks a big game about ethics and environment, and their clothes are genuinely well-made and comfortable. But then I discovered they're manufacturing in the same factories as fast fashion brands, just charging 10x the price. The quality is there, but the ethical claims feel like expensive marketing.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "positive",
+        "customer_experience": "neutral",
+        "user_experience": "positive",
+        "business_impact": "mixed"
+      },
+      "complexity": "quality vs ethical marketing mismatch"
+    },
+    {
+      "review": "These shoes are the most comfortable things I've ever put on my feet - like walking on clouds. The craftsmanship is beautiful, leather quality is premium, and they look professional. However, they show scuff marks if you even think about walking on concrete, and the soles wore down completely after 6 months of office wear. Beauty that can't handle real life.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "mixed",
+        "customer_experience": "neutral",
+        "user_experience": "mixed",
+        "business_impact": "mixed"
+      },
+      "complexity": "comfort and beauty vs durability"
+    }
+  ],
+  "beauty_health": [
+    {
+      "review": "This anti-aging serum actually works - my fine lines are noticeably reduced after 6 weeks, and my dermatologist was impressed. But it costs $150 for a tiny bottle that lasts maybe 3 weeks, and it makes my skin so photosensitive that I burn in 5 minutes of sunlight. So I look younger but can never go outside without feeling like a vampire.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "mixed",
+        "customer_experience": "neutral",
+        "user_experience": "mixed",
+        "business_impact": "mixed"
+      },
+      "complexity": "effective results vs serious side effects"
+    },
+    {
+      "review": "I'm genuinely torn about this skincare routine. It cleared up my acne completely for the first time in 15 years - my confidence is through the roof! But the 12-step process takes 45 minutes every morning and evening, costs $400/month to maintain, and if I skip even one day, my skin rebels worse than before. It's like being held hostage by my own skincare.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "positive",
+        "customer_experience": "neutral",
+        "user_experience": "mixed",
+        "business_impact": "mixed"
+      },
+      "complexity": "life-changing results vs unsustainable maintenance"
+    },
+    {
+      "review": "This 'natural' makeup claims to be chemical-free and organic, which attracted me as someone with sensitive skin. The coverage is flawless and it photographs beautifully. But then I looked up the ingredients - half of them are synthetic compounds with fancy plant-sounding names. Plus it costs 3x more than regular makeup for what's essentially the same formula with green marketing.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "positive",
+        "customer_experience": "neutral",
+        "user_experience": "mixed",
+        "business_impact": "mixed"
+      },
+      "complexity": "good performance vs misleading natural claims"
+    },
+    {
+      "review": "This fitness supplement actually helped me lose 20 pounds and gain muscle definition I never thought possible. The energy boost is incredible and recovery time improved dramatically. But the ingredient list reads like a chemistry textbook, it tastes like chalk mixed with sadness, and I'm pretty sure it's why I can't sleep more than 4 hours a night anymore.",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "mixed",
+        "customer_experience": "neutral",
+        "user_experience": "mixed",
+        "business_impact": "mixed"
+      },
+      "complexity": "great fitness results vs concerning side effects"
+    },
+    {
+      "review": "Finally, a perfume that doesn't give me headaches! The scent is sophisticated, long-lasting, and I get compliments daily. But it's so potent that I accidentally cleared out an elevator after applying my usual amount. Now I use one tiny spritz and people still comment on it from 6 feet away. Less is definitely more, but finding that balance took some trial and error (and apologies).",
+      "ground_truth": "mixed",
+      "aspects": {
+        "product_quality": "mixed",
+        "customer_experience": "neutral",
+        "user_experience": "mixed",
+        "business_impact": "positive"
+      },
+      "complexity": "great scent vs overwhelming potency"
+    },
+    {
+      "review": "This 'miracle' hair growth treatment promised results in 30 days. After 90 days and $300 later, my hair looks exactly the same, but now my scalp itches constantly and I've developed some weird rash. Customer service keeps insisting I need to 'give it more time' while refusing refunds. The only thing growing is my regret.",
+      "ground_truth": "negative",
+      "aspects": {
+        "product_quality": "negative",
+        "customer_experience": "negative",
+        "user_experience": "negative",
+        "business_impact": "negative"
+      },
+      "complexity": "false promises + adverse reactions + poor service"
+    }
+  ]
+} 

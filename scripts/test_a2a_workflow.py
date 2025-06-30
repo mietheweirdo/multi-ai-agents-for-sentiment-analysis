@@ -72,11 +72,11 @@ def call_agent(endpoint: str, text: str, metadata: Dict[str, Any] = None) -> Dic
         response.raise_for_status()
         
         result = response.json()
-        print(f"✅ Response received")
+        print(f" Response received")
         
         return result
     except requests.exceptions.RequestException as e:
-        print(f"❌ Request failed: {str(e)}")
+        print(f" Request failed: {str(e)}")
         return None
 
 def extract_result_text(response: Dict[str, Any]) -> str:
@@ -96,7 +96,7 @@ def parse_agent_result(result_text: str) -> Dict[str, Any]:
 def test_individual_agents():
     """Test individual agent endpoints"""
     print("\n" + "="*60)
-    print("🤖 TESTING INDIVIDUAL AGENTS")
+    print(" TESTING INDIVIDUAL AGENTS")
     print("="*60)
     
     test_review = TEST_REVIEWS[0]  # Use electronics review
@@ -106,15 +106,15 @@ def test_individual_agents():
         "max_tokens": 150
     }
     
-    print(f"\n📝 Test Review: {review_text[:100]}...")
-    print(f"📊 Category: {test_review['product_category']}")
+    print(f"\n Test Review: {review_text[:100]}...")
+    print(f" Category: {test_review['product_category']}")
     
     # Test each individual agent
     for agent_name, endpoint in AGENT_ENDPOINTS.items():
         if agent_name == "coordinator":  # Skip coordinator for individual tests
             continue
             
-        print(f"\n🔧 Testing {agent_name.title().replace('_', ' ')} Agent")
+        print(f"\n Testing {agent_name.title().replace('_', ' ')} Agent")
         print("-" * 40)
         
         response = call_agent(endpoint, review_text, metadata)
@@ -137,24 +137,24 @@ def test_individual_agents():
                     expected_agent_type = agent_name
                     actual_agent_type = agent_result.get("agent_type")
                     if actual_agent_type == expected_agent_type:
-                        print(f"  ✅ Agent type correct: {actual_agent_type}")
+                        print(f"   Agent type correct: {actual_agent_type}")
                     else:
-                        print(f"  ⚠️ Agent type mismatch: expected {expected_agent_type}, got {actual_agent_type}")
+                        print(f"   Agent type mismatch: expected {expected_agent_type}, got {actual_agent_type}")
                 else:
-                    print(f"  ❌ Agent error: {agent_result.get('error', 'Unknown error')}")
+                    print(f"   Agent error: {agent_result.get('error', 'Unknown error')}")
             else:
-                print(f"  ❌ Failed to extract result text")
+                print(f"   Failed to extract result text")
         else:
-            print(f"  ❌ No valid response from agent")
+            print(f"   No valid response from agent")
 
 def test_coordinator_workflow():
     """Test coordinator multi-agent workflow"""
     print("\n" + "="*60)
-    print("🎯 TESTING COORDINATOR WORKFLOW")
+    print(" TESTING COORDINATOR WORKFLOW")
     print("="*60)
     
     for i, test_review in enumerate(TEST_REVIEWS):
-        print(f"\n📝 Test Case {i+1}: {test_review['product_category'].title()} Review")
+        print(f"\n Test Case {i+1}: {test_review['product_category'].title()} Review")
         print("-" * 50)
         
         review_text = test_review["text"]
@@ -187,7 +187,7 @@ def test_coordinator_workflow():
                     overall_confidence = consensus.get("overall_confidence", 0.0)
                     agreement_level = consensus.get("agreement_level", "unknown")
                     
-                    print(f"\n🎯 Consensus Results:")
+                    print(f"\n Consensus Results:")
                     print(f"  Overall Sentiment: {overall_sentiment}")
                     print(f"  Confidence: {overall_confidence:.2%}")
                     print(f"  Agreement Level: {agreement_level}")
@@ -195,13 +195,13 @@ def test_coordinator_workflow():
                     
                     # Check if sentiment matches expectation
                     if overall_sentiment.lower() == test_review["expected_sentiment"].lower():
-                        print(f"  ✅ Sentiment matches expectation")
+                        print(f"   Sentiment matches expectation")
                     else:
-                        print(f"  ⚠️ Sentiment mismatch: expected {test_review['expected_sentiment']}, got {overall_sentiment}")
+                        print(f"   Sentiment mismatch: expected {test_review['expected_sentiment']}, got {overall_sentiment}")
                     
                     # Display individual agent results
                     agent_analyses = coordinator_result.get("agent_analyses", [])
-                    print(f"\n🤖 Individual Agent Results ({len(agent_analyses)} agents):")
+                    print(f"\n Individual Agent Results ({len(agent_analyses)} agents):")
                     
                     for analysis in agent_analyses:
                         agent_type = analysis.get("agent_type", "unknown")
@@ -214,13 +214,13 @@ def test_coordinator_workflow():
                     insights = consensus.get("key_insights", "No insights available")
                     recommendations = consensus.get("business_recommendations", "No recommendations available")
                     
-                    print(f"\n💡 Key Insights:")
+                    print(f"\n Key Insights:")
                     if isinstance(insights, str):
                         print(f"  {insights[:200]}{'...' if len(insights) > 200 else ''}")
                     else:
                         print(f"  {str(insights)[:200]}{'...' if len(str(insights)) > 200 else ''}")
                     
-                    print(f"\n📈 Business Recommendations:")
+                    print(f"\n Business Recommendations:")
                     if isinstance(recommendations, str):
                         print(f"  {recommendations[:200]}{'...' if len(recommendations) > 200 else ''}")
                     else:
@@ -232,17 +232,17 @@ def test_coordinator_workflow():
                     discussion_rounds = metadata_info.get("discussion_rounds", 0)
                     avg_confidence = metadata_info.get("average_confidence", 0.0)
                     
-                    print(f"\n📊 Analysis Metadata:")
+                    print(f"\n Analysis Metadata:")
                     print(f"  Total Agents: {total_agents}")
                     print(f"  Discussion Rounds: {discussion_rounds}")
                     print(f"  Average Confidence: {avg_confidence:.2%}")
                     
                 else:
-                    print(f"❌ Coordinator error: {coordinator_result.get('error', 'Unknown error')}")
+                    print(f" Coordinator error: {coordinator_result.get('error', 'Unknown error')}")
             else:
-                print(f"❌ Failed to extract coordinator result")
+                print(f" Failed to extract coordinator result")
         else:
-            print(f"❌ No valid response from coordinator")
+            print(f" No valid response from coordinator")
 
 def test_sequential_workflow():
     """Test sequential agent workflow"""
@@ -258,14 +258,14 @@ def test_sequential_workflow():
         "max_tokens": 150
     }
     
-    print(f"\n📝 Sequential Analysis: {review_text[:100]}...")
+    print(f"\n Sequential Analysis: {review_text[:100]}...")
     
     # Define sequence of agents
     agent_sequence = ["quality", "experience", "user_experience", "business"]
     results = []
     
     for i, agent_name in enumerate(agent_sequence):
-        print(f"\n🔧 Step {i+1}: {agent_name.title().replace('_', ' ')} Agent")
+        print(f"\n Step {i+1}: {agent_name.title().replace('_', ' ')} Agent")
         print("-" * 30)
         
         endpoint = AGENT_ENDPOINTS[agent_name]
@@ -289,20 +289,20 @@ def test_sequential_workflow():
                     
                     print(f"  Sentiment: {sentiment}")
                     print(f"  Confidence: {confidence:.2%}")
-                    print(f"  ✅ Analysis complete")
+                    print(f"   Analysis complete")
                 else:
-                    print(f"  ❌ Analysis failed: {agent_result.get('error', 'Unknown error')}")
+                    print(f"   Analysis failed: {agent_result.get('error', 'Unknown error')}")
                     break
             else:
-                print(f"  ❌ Failed to extract result")
+                print(f"   Failed to extract result")
                 break
         else:
-            print(f"  ❌ No response from agent")
+            print(f"   No response from agent")
             break
     
     # Summarize sequential results
     if results:
-        print(f"\n📊 Sequential Analysis Summary")
+        print(f"\n Sequential Analysis Summary")
         print("-" * 30)
         
         sentiments = [r["sentiment"] for r in results]
@@ -327,7 +327,7 @@ def test_health_endpoints():
         # Convert RPC endpoint to health endpoint
         health_endpoint = rpc_endpoint.replace("/rpc", "/health")
         
-        print(f"\n🔧 Testing {agent_name.title().replace('_', ' ')} Agent Health")
+        print(f"\n Testing {agent_name.title().replace('_', ' ')} Agent Health")
         print(f"   Endpoint: {health_endpoint}")
         
         try:
@@ -341,15 +341,15 @@ def test_health_endpoints():
                 print(f"   Status: {status}")
                 print(f"   Agent: {agent}")
                 print(f"   Version: {version}")
-                print(f"   ✅ Health check passed")
+                print(f"    Health check passed")
             else:
-                print(f"   ❌ Health check failed: HTTP {response.status_code}")
+                print(f"    Health check failed: HTTP {response.status_code}")
         except requests.exceptions.RequestException as e:
-            print(f"   ❌ Health check failed: {str(e)}")
+            print(f"    Health check failed: {str(e)}")
 
 def main():
     """Main test runner"""
-    print("🚀 A2A SENTIMENT ANALYSIS WORKFLOW TESTER")
+    print(" A2A SENTIMENT ANALYSIS WORKFLOW TESTER")
     print("="*60)
     print("Testing the complete multi-agent sentiment analysis system")
     print("following the A2A Cross-Framework POC pattern")
@@ -367,7 +367,7 @@ def main():
     test_sequential_workflow()
     
     print("\n" + "="*60)
-    print("🎉 A2A WORKFLOW TESTING COMPLETE")
+    print(" A2A WORKFLOW TESTING COMPLETE")
     print("="*60)
     print("Review the results above to verify A2A protocol compliance")
     print("and multi-agent sentiment analysis functionality.")

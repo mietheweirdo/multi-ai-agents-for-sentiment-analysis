@@ -17,7 +17,7 @@ Always respond in a structured, professional manner."""
     HUMAN_TEMPLATE = """Review: {review}
 
 Analyze this review and respond with a JSON object containing:
-- sentiment: positive/neutral/negative
+- sentiment: positive/neutral/negative (choose the most appropriate based on your specialization)
 - confidence: confidence score from 0.0 to 1.0
 - emotions: list of emotions detected
 - topics: key topics/facets mentioned

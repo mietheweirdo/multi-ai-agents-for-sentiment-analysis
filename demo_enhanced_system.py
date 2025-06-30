@@ -1,295 +1,231 @@
-# demo_enhanced_system.py
+#!/usr/bin/env python3
 """
-Demo script for the enhanced multi-agent sentiment analysis system.
-Shows the new organized prompt structure and improved architecture.
+3-Layer Multi-Agent Sentiment Analysis System - Demo
+Demonstrates the department-based collaborative workflow with real agent disagreement
 """
 
 import json
 import os
-from agents.enhanced_coordinator import EnhancedCoordinatorAgent
-from agents.prompts import AgentPrompts, ProductPrompts, BasePrompts
+from workflow_manager import MultiAgentWorkflowManager, analyze_review
 
-def load_config():
-    """Load configuration from config.json"""
-    config_path = os.path.join(os.path.dirname(__file__), 'config.json')
-    with open(config_path, 'r') as f:
-        return json.load(f)
+def display_analysis_results(result):
+    """Display comprehensive 3-layer analysis results"""
+    
+    print(f"\n🎯 3-LAYER ANALYSIS RESULTS:")
+    print("=" * 70)
+    
+    # Original review
+    review_text = result['review_text']
+    print(f"\n📝 REVIEW: {review_text}")
+    print(f"📂 CATEGORY: {result['product_category']}")
+    
+    # Layer 1: Department Analyses
+    print(f"\n🏢 LAYER 1: DEPARTMENT ANALYSES")
+    print("-" * 40)
+    
+    department_analyses = result['department_analyses']
+    for dept in department_analyses:
+        agent_type = dept.get('agent_type', 'unknown')
+        sentiment = dept.get('sentiment', 'unknown')
+        confidence = dept.get('confidence', 0)
+        reasoning = dept.get('reasoning', 'N/A')
+        
+        print(f"  {agent_type.upper()} DEPT: {sentiment.upper()} (confidence: {confidence:.2f})")
+        print(f"    └─ {reasoning[:80]}...")
+        print()
+    
+    # Check for disagreement
+    sentiments = [d['sentiment'] for d in department_analyses]
+    unique_sentiments = list(set(sentiments))
+    if len(unique_sentiments) > 1:
+        print(f"  🔥 DISAGREEMENT DETECTED: {unique_sentiments}")
+        for sentiment in unique_sentiments:
+            count = sentiments.count(sentiment)
+            print(f"     • {sentiment.upper()}: {count} departments")
+    else:
+        print(f"  🤝 UNANIMOUS: All departments agree on {unique_sentiments[0].upper()}")
+    
+    # Layer 2: Master Analyst Synthesis
+    print(f"\n🎓 LAYER 2: MASTER ANALYST SYNTHESIS")
+    print("-" * 40)
+    
+    master = result['master_analysis']
+    print(f"  FINAL SENTIMENT: {master.get('overall_sentiment', master.get('sentiment', 'unknown')).upper()}")
+    print(f"  CONFIDENCE: {master.get('confidence', 0):.2f}")
+    print(f"  REASONING: {master.get('reasoning', 'N/A')}")
+    
+    # Layer 3: Business Advisor Recommendations
+    print(f"\n💼 LAYER 3: BUSINESS ADVISOR RECOMMENDATIONS")
+    print("-" * 40)
+    
+    advisor = result['business_recommendations']
+    print(f"  RECOMMENDATION CONFIDENCE: {advisor.get('confidence', 0):.2f}")
+    print(f"  BUSINESS IMPACT: {advisor.get('business_impact', 'N/A')}")
+    
+    # Workflow metadata
+    print(f"\n⚙️ WORKFLOW METADATA")
+    print("-" * 40)
+    metadata = result['workflow_metadata']
+    print(f"  PROCESSING TIME: {metadata.get('processing_time', 0):.2f} seconds")
+    print(f"  TOTAL DEPARTMENTS: {metadata.get('total_departments', 0)}")
+    print(f"  WORKFLOW VERSION: {metadata.get('workflow_version', 'unknown')}")
 
-def demo_basic_analysis():
-    """Demo basic enhanced multi-agent sentiment analysis"""
-    print("\n" + "=" * 60)
-    print("ENHANCED MULTI-AGENT SENTIMENT ANALYSIS DEMO")
+def show_system_capabilities():
+    """Show what the 3-layer system can do"""
+    
+    print("\n🎯 3-LAYER MULTI-AGENT SYSTEM CAPABILITIES:")
     print("=" * 60)
     
-    config = load_config()
+    print("\n🏢 LAYER 1: SPECIALIZED DEPARTMENTS")
+    print("   • Quality Department: Product quality & manufacturing focus")
+    print("   • Experience Department: Customer service & delivery focus") 
+    print("   • User Experience Department: Emotions & satisfaction focus")
+    print("   • Business Department: Market impact & business focus")
+    print("   • Technical Department: Specifications & features focus")
     
-    # Sample reviews for different product categories
-    sample_reviews = {
-        "electronics": [
-            "This smartphone is absolutely amazing! The camera quality is outstanding and the battery life lasts all day. The user interface is intuitive and the build quality feels premium. However, the delivery took longer than expected and customer service was a bit slow to respond to my questions."
-        ],
-        "fashion": [
-            "I love this dress! The fabric is soft and comfortable, and the fit is perfect. The color is exactly as shown in the pictures. The delivery was fast and the packaging was beautiful. I've received many compliments when wearing it. Great value for money!"
-        ],
-        "home_garden": [
-            "This coffee maker is a disappointment. The build quality feels cheap and it broke after just 2 weeks of use. The customer service was helpful and offered a replacement, but the new one has the same issues. Not worth the money at all."
-        ]
-    }
+    print("\n🎓 LAYER 2: MASTER SENTIMENT ANALYST")
+    print("   • Synthesizes all department inputs")
+    print("   • Makes expert final assessment")
+    print("   • Resolves conflicts between departments")
     
-    # Test each product category
-    for category, reviews in sample_reviews.items():
-        print(f"\n{'='*20} TESTING {category.upper()} CATEGORY {'='*20}")
-        
-        # Initialize coordinator for this category with enhanced configuration
-        coordinator = EnhancedCoordinatorAgent(
-            config=config,
-            product_category=category,
-            agent_types=["quality", "experience", "user_experience", "business"],
-            max_tokens_per_agent=600, #150 default
-            max_rounds=4,
-            max_tokens_consensus=2400  # Enhanced consensus token limit for longer recommendations
-        )
-        
-        # Analyze the review
-        result = coordinator.run_workflow(
-            reviews=reviews,
-            product_category=category
-        )
-        
-        # Display results
-        print(f"\n📊 ANALYSIS RESULTS FOR {category.upper()}:")
-        print(f"Review: {result['review_text'][:100]}...")
-        
-        print(f"\n🤖 AGENT ANALYSES:")
-        for i, analysis in enumerate(result['agent_analyses'], 1):
-            agent_type = analysis['agent_type']
-            sentiment = analysis['sentiment']
-            confidence = analysis['confidence']
-            reasoning = analysis['reasoning']
-            
-            print(f"  {i}. {agent_type.upper()}: {sentiment} (confidence: {confidence:.2f})")
-            print(f"     Reasoning: {reasoning}")
-        
-        print(f"\n🎯 CONSENSUS:")
-        consensus = result['consensus']
-        print(f"  Overall Sentiment: {consensus.get('overall_sentiment', 'unknown')}")
-        print(f"  Confidence: {consensus.get('overall_confidence', 0.5):.2f}")
-        print(f"  Agreement Level: {consensus.get('agreement_level', 'unknown')}")
-        print(f"  Key Insights: {consensus.get('key_insights', 'No insights')}")
-        print(f"  Business Recommendations: {consensus.get('business_recommendations', 'No recommendations')}")
-        
-        print(f"\n📈 METADATA:")
-        metadata = result['analysis_metadata']
-        print(f"  Total Agents: {metadata['total_agents']}")
-        print(f"  Discussion Rounds: {metadata['discussion_rounds']}")
-        print(f"  Average Confidence: {metadata['average_confidence']:.2f}")
+    print("\n💼 LAYER 3: BUSINESS ADVISOR")
+    print("   • Provides actionable recommendations")
+    print("   • Seller-focused improvement advice")
+    print("   • Ready for chatbot integration")
+    
+    print("\n🔥 KEY FEATURES:")
+    print("   • Real department disagreement (no more identical results!)")
+    print("   • Specialized domain expertise")
+    print("   • Linear workflow (no complex LangGraph)")
+    print("   • Business-ready recommendations")
 
-def demo_prompt_organization():
-    """Demo the new organized prompt structure"""
-    print("\n" + "=" * 60)
-    print("PROMPT ORGANIZATION DEMO")
-    print("=" * 60)
+def test_different_review_types():
+    """Test system with different types of reviews"""
     
-    print("\n📁 PROMPT STRUCTURE:")
-    print("agents/prompts/")
-    print("├── __init__.py          # Module initialization")
-    print("├── base_prompts.py      # Common templates and utilities")
-    print("├── agent_prompts.py     # Agent-specific prompts")
-    print("├── product_prompts.py   # Product-category customizations")
-    print("└── coordinator_prompts.py # Consensus and discussion prompts")
-    
-    print("\n🔧 AVAILABLE AGENT TYPES:")
-    agent_types = AgentPrompts.get_available_agent_types()
-    for agent_type in agent_types:
-        description = AgentPrompts.get_agent_description(agent_type)
-        print(f"  • {agent_type}: {description}")
-    
-    print("\n🏷️  AVAILABLE PRODUCT CATEGORIES:")
-    categories = ProductPrompts.get_available_categories()
-    for category in categories:
-        description = ProductPrompts.get_category_description(category)
-        print(f"  • {category}: {description}")
-    
-    print("\n💡 PROMPT CUSTOMIZATION EXAMPLE:")
-    print("Base Quality Agent Prompt:")
-    base_prompt = AgentPrompts.get_agent_prompt("quality", 150)
-    print(f"  Length: {len(base_prompt)} characters")
-    
-    print("\nCustomized for Electronics:")
-    electronics_prompt = ProductPrompts.customize_agent_prompt(base_prompt, "electronics", "quality")
-    print(f"  Length: {len(electronics_prompt)} characters")
-    print(f"  Added electronics-specific focus areas")
-
-def demo_token_optimization():
-    """Demo token optimization features"""
-    print("\n" + "=" * 60)
-    print("TOKEN OPTIMIZATION DEMO")
-    print("=" * 60)
-    
-    config = load_config()
-    
-    # Test different token limits
-    token_limits = [100, 150, 200]
-    
-    sample_review = "This product exceeded my expectations! The quality is excellent and the customer service was outstanding. I would definitely recommend it to others."
-    
-    for max_tokens in token_limits:
-        print(f"\n🔢 TESTING WITH {max_tokens} TOKENS PER AGENT:")
-        
-        coordinator = EnhancedCoordinatorAgent(
-            config=config,
-            product_category="electronics",
-            max_tokens_per_agent=max_tokens,
-            max_rounds=1
-        )
-        
-        result = coordinator.run_workflow(reviews=[sample_review])
-        
-        # Calculate estimated token usage
-        total_agents = len(coordinator.sentiment_agents)
-        estimated_tokens = total_agents * max_tokens
-        
-        print(f"  Total Agents: {total_agents}")
-        print(f"  Estimated Token Usage: {estimated_tokens}")
-        print(f"  Consensus: {result['consensus'].get('overall_sentiment', 'unknown')}")
-        
-        # Show reasoning length (proxy for token usage)
-        for analysis in result['agent_analyses']:
-            reasoning_length = len(analysis.get('reasoning', ''))
-            print(f"  {analysis['agent_type']} reasoning length: {reasoning_length} chars")
-
-def demo_error_handling():
-    """Demo error handling and fallback mechanisms"""
-    print("\n" + "=" * 60)
-    print("ERROR HANDLING DEMO")
-    print("=" * 60)
-    
-    config = load_config()
-    
-    # Test with invalid product category
-    print("\n🚫 TESTING INVALID PRODUCT CATEGORY:")
-    try:
-        coordinator = EnhancedCoordinatorAgent(
-            config=config,
-            product_category="invalid_category",
-            max_tokens_per_agent=150
-        )
-    except ValueError as e:
-        print(f"  Error caught: {e}")
-        print("  ✅ Proper error handling for invalid categories")
-    
-    # Test with invalid agent type
-    print("\n🚫 TESTING INVALID AGENT TYPE:")
-    try:
-        coordinator = EnhancedCoordinatorAgent(
-            config=config,
-            product_category="electronics",
-            agent_types=["invalid_agent_type"],
-            max_tokens_per_agent=150
-        )
-    except ValueError as e:
-        print(f"  Error caught: {e}")
-        print("  ✅ Proper error handling for invalid agent types")
-
-def demo_enhanced_business_recommendations():
-    """Demo enhanced business recommendations with different configurations"""
-    print("\n" + "=" * 60)
-    print("ENHANCED BUSINESS RECOMMENDATIONS DEMO")
-    print("=" * 60)
-    
-    config = load_config()
-    
-    # Sample review for detailed analysis
-    sample_review = "This laptop has excellent performance and build quality. The battery life is impressive and the keyboard feels great. However, the customer support was terrible when I had an issue, and the delivery took longer than expected. The price is reasonable for the features offered."
-    
-    # Test different consensus token configurations
-    consensus_configs = [
+    test_reviews = [
         {
-            "name": "Standard Configuration (300 tokens)",
-            "max_tokens_consensus": 300,
-            "description": "Default setting for cost optimization"
+            "name": "Mixed Review (Product Good, Service Bad)",
+            "review": "This laptop has amazing performance and great screen, but the customer service was terrible and delivery took forever.",
+            "category": "electronics",
+            "expected": "Should see Quality/Technical positive, Experience/UX/Business negative"
         },
         {
-            "name": "Enhanced Configuration (800 tokens)", 
-            "max_tokens_consensus": 800,
-            "description": "Balanced approach for detailed recommendations"
+            "name": "Clearly Positive Review",
+            "review": "Absolutely love this smartphone! Amazing camera, fast performance, quick delivery, and excellent customer support!",
+            "category": "electronics", 
+            "expected": "Should see mostly positive across departments"
         },
         {
-            "name": "Premium Configuration (1200 tokens)",
-            "max_tokens_consensus": 1200,
-            "description": "Maximum detail for comprehensive business insights"
+            "name": "Clearly Negative Review",
+            "review": "Worst purchase ever! Product broke immediately, terrible quality, awful customer service, slow delivery!",
+            "category": "electronics",
+            "expected": "Should see mostly negative across departments"
+        },
+        {
+            "name": "Fashion Review (Different Category)",
+            "review": "Love this dress! Perfect fit and beautiful fabric, but the delivery packaging was damaged and customer service was unhelpful.",
+            "category": "fashion",
+            "expected": "Should adapt to fashion context"
         }
     ]
     
-    for config_setting in consensus_configs:
-        print(f"\n🔧 TESTING: {config_setting['name']}")
-        print(f"   Description: {config_setting['description']}")
-        print(f"   Consensus Token Limit: {config_setting['max_tokens_consensus']}")
+    for i, test in enumerate(test_reviews, 1):
+        print(f"\n🧪 TEST CASE {i}: {test['name']}")
+        print("=" * 60)
+        print(f"Review: {test['review']}")
+        print(f"Expected: {test['expected']}")
         
-        coordinator = EnhancedCoordinatorAgent(
-            config=config,
-            product_category="electronics",
-            agent_types=["quality", "experience", "user_experience", "business"],
-            max_tokens_per_agent=400,
-            max_rounds=2,
-            max_tokens_consensus=config_setting['max_tokens_consensus']
-        )
-        
-        result = coordinator.run_workflow(reviews=[sample_review])
-        
-        consensus = result['consensus']
-        business_rec = consensus.get('business_recommendations', 'No recommendations')
-        
-        # Handle both string and dictionary formats
-        if isinstance(business_rec, dict):
-            business_rec_str = str(business_rec)
-        elif isinstance(business_rec, list):
-            business_rec_str = ' '.join(str(item) for item in business_rec)
-        else:
-            business_rec_str = str(business_rec)
-        
-        print(f"\n📋 BUSINESS RECOMMENDATIONS:")
-        print(f"   Length: {len(business_rec_str)} characters")
-        print(f"   Word count: {len(business_rec_str.split())} words")
-        print(f"   Content: {business_rec_str}")
-        
-        print(f"\n💰 ESTIMATED COST:")
-        total_tokens = (len(coordinator.sentiment_agents) * 400) + config_setting['max_tokens_consensus']
-        estimated_cost = (total_tokens / 1000) * 0.00015  # Approximate GPT-4o-mini cost
-        print(f"   Total tokens: {total_tokens}")
-        print(f"   Estimated cost: ${estimated_cost:.4f}")
-        
-        print("-" * 80)
+        try:
+            # Run analysis
+            result = analyze_review(test['review'], product_category=test['category'])
+            
+            # Show department disagreement
+            departments = result['department_analyses']
+            sentiments = [d['sentiment'] for d in departments]
+            sentiment_counts = {}
+            for s in sentiments:
+                sentiment_counts[s] = sentiment_counts.get(s, 0) + 1
+            
+            print(f"\nDepartment Results: {dict(sentiment_counts)}")
+            
+            # Show final assessment
+            master = result['master_analysis']
+            final_sentiment = master.get('sentiment', 'unknown')
+            confidence = master.get('confidence', 0)
+            
+            print(f"Master Decision: {final_sentiment.upper()} ({confidence:.2f})")
+            print(f"Processing Time: {result['workflow_metadata']['processing_time']:.2f}s")
+                
+        except Exception as e:
+            print(f"❌ Error: {e}")
 
-def main():
-    """Main demo function"""
-    print("🚀 STARTING ENHANCED MULTI-AGENT SENTIMENT ANALYSIS DEMO")
-    print("This demo showcases the new organized prompt structure")
+def demonstrate_business_advisor_output():
+    """Show detailed business advisor recommendations"""
+    
+    print(f"\n💼 BUSINESS ADVISOR DEMO:")
+    print("=" * 50)
+    
+    review = "Great product quality but customer service needs improvement and delivery was slow."
+    
+    print(f"Sample Review: {review}")
+    print("\nRunning analysis...")
+            
+    result = analyze_review(review)
+    
+    # Extract business recommendations
+    advisor = result['business_recommendations']
+                
+    print(f"\n📋 BUSINESS RECOMMENDATIONS:")
+    print(f"Confidence: {advisor.get('confidence', 0):.2f}")
+    print(f"Reasoning: {advisor.get('reasoning', 'N/A')}")
+    print(f"Business Impact: {advisor.get('business_impact', 'N/A')}")
+    
+    print(f"\n🎯 This output is ready for:")
+    print(f"   • Integration with chatbot")
+    print(f"   • Seller dashboard display")
+    print(f"   • Automated improvement suggestions")
+    print(f"   • Business intelligence reporting")
+
+def run_enhanced_demo():
+    """Run the complete 3-layer system demonstration"""
+    
+    print("🚀 3-LAYER MULTI-AGENT SENTIMENT ANALYSIS DEMO")
+    print("=" * 80)
+    
+    # Show system capabilities
+    show_system_capabilities()
+    
+    # Test single analysis with detailed output
+    print(f"\n🔍 DETAILED ANALYSIS EXAMPLE:")
+    print("=" * 50)
+    
+    sample_review = "This smartphone has excellent camera quality and fast performance, but the customer service was unresponsive and delivery took 3 weeks!"
     
     try:
-        # Run all demos
-        # demo_prompt_organization()
-        demo_basic_analysis()
-        # demo_enhanced_business_recommendations()
-        # demo_token_optimization()
-        # demo_error_handling()
-        
-        print("\n" + "=" * 60)
-        print("✅ DEMO COMPLETED SUCCESSFULLY!")
-        print("=" * 60)
-        print("\nKey Improvements:")
-        print("• Organized prompts in dedicated files")
-        print("• Better separation of concerns")
-        print("• Improved maintainability and readability")
-        print("• Product-category-specific prompt customization")
-        print("• Token optimization with configurable limits")
-        print("• Enhanced error handling and validation")
-        print("• Configurable business recommendations length")
-        
+        result = analyze_review(sample_review, product_category="electronics")
+        display_analysis_results(result)
     except Exception as e:
-        print(f"\n❌ Demo failed with error: {e}")
-        import traceback
-        traceback.print_exc()
+        print(f"❌ Analysis error: {e}")
+    
+    # Test different review types
+    test_different_review_types()
+    
+    # Demonstrate business advisor
+    demonstrate_business_advisor_output()
+    
+    print(f"\n✅ DEMO COMPLETED SUCCESSFULLY!")
+    print("=" * 80)
+    print("🎯 The 3-layer multi-agent system provides:")
+    print("   ✓ Real department specialization and disagreement")
+    print("   ✓ Expert master analyst synthesis")
+    print("   ✓ Actionable business recommendations")
+    print("   ✓ Linear workflow (no complex LangGraph)")
+    print("   ✓ Ready for chatbot integration")
+    print("   ✓ Significantly improved accuracy through collaboration")
 
 if __name__ == "__main__":
-    main() 
+    try:
+        run_enhanced_demo()
+    except Exception as e:
+        print(f"\n❌ Demo failed with error: {e}")
+        print("Please check your configuration and try again.") 
