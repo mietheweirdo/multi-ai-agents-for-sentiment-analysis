@@ -2,12 +2,108 @@
 
 ## 🎯 **PROJECT OVERVIEW**
 
-This project implements a sophisticated multi-agent sentiment analysis system that combines:
-- **Dynamic data scraping** from YouTube and Tiki (Vietnamese e-commerce)
-- **Multi-agent collaboration** with specialized department agents
-- **Advanced preprocessing** with quality filtering and normalization
-- **Two workflow approaches**: Linear 3-layer system and LangGraph-based discussion system
-- **Real-time analysis** capabilities with interactive demos
+This project implements a **sophisticated 3-layer multi-agent sentiment analysis system** that achieves real department disagreement and collaborative synthesis for customer feedback analysis. The system features:
+
+- **🔄 Dynamic Data Pipeline**: Real-time data processing from multiple sources
+- **🤖 Multi-Agent Collaboration**: Specialized department-based agents with conflict resolution
+- **🔗 A2A Protocol Compatible**: JSON-RPC 2.0 endpoints for agent communication
+- **⚡ Multiple Workflows**: Both linear 3-layer and LangGraph discussion-based processing
+- **📊 Business Intelligence**: Actionable recommendations and strategic insights
+- **🎯 Real Department Disagreement**: Each department agent has specialized bias and expertise
+
+## 🏗️ **COMPLETE SYSTEM ARCHITECTURE**
+
+### **3-Layer Processing Model**
+
+```mermaid
+graph TD
+    A[Customer Review Input] --> B{Product Category Detection}
+    B --> C[Layer 1: Department Agents]
+    
+    C --> D[Quality Department]
+    C --> E[Experience Department] 
+    C --> F[User Experience Department]
+    C --> G[Business Department]
+    C --> H[Technical Department]
+    
+    D --> I[🔍 Product Focus Analysis]
+    E --> J[🚚 Service Focus Analysis]
+    F --> K[😊 Emotion Focus Analysis]
+    G --> L[💼 Business Focus Analysis]
+    H --> M[⚙️ Technical Focus Analysis]
+    
+    I --> N[Layer 2: Master Analyst]
+    J --> N
+    K --> N
+    L --> N
+    M --> N
+    
+    N --> O[⚖️ Conflict Resolution]
+    O --> P[🎓 Expert Synthesis]
+    
+    P --> Q[Layer 3: Business Advisor]
+    Q --> R[💼 Actionable Recommendations]
+    Q --> S[📈 Business Impact Analysis]
+    Q --> T[🎯 Priority Matrix]
+    
+    R --> U[Final Output]
+    S --> U
+    T --> U
+    
+    style A fill:#e3f2fd
+    style C fill:#f3e5f5
+    style N fill:#fff3e0
+    style Q fill:#e8f5e8
+    style U fill:#fce4ec
+```
+
+### **Data Pipeline Architecture**
+
+```mermaid
+flowchart TD
+    A[🌐 Data Sources] --> B{Input Type}
+    B -->|Keyword Search| C[Data Collection System]
+    B -->|Direct Content| D[Content-based Processing]
+    B -->|Manual Input| E[Static Text Input]
+    
+    C --> F[📊 Raw Data Collection]
+    D --> F
+    E --> F
+    
+    F --> G[🔧 Advanced Preprocessing]
+    G --> H{Quality Filter}
+    H -->|Pass| I[📝 Agent-Ready Data]
+    H -->|Fail| J[❌ Filtered Out]
+    
+    I --> K[🤖 Multi-Agent Analysis]
+    
+    K --> L[🏢 Department Layer]
+    L --> M[Quality Analysis]
+    L --> N[Experience Analysis]
+    L --> O[UX Analysis]
+    L --> P[Business Analysis]
+    L --> Q[Technical Analysis]
+    
+    M --> R[🎓 Master Synthesis]
+    N --> R
+    O --> R
+    P --> R
+    Q --> R
+    
+    R --> S{Consensus Check}
+    S -->|Disagreement| T[🔄 Conflict Resolution]
+    T --> R
+    S -->|Agreement| U[💼 Business Advisor]
+    
+    U --> V[📊 Final Results]
+    V --> W[📈 Recommendations]
+    V --> X[📋 Reports]
+    V --> Y[🔍 Insights]
+    
+    style A fill:#e3f2fd
+    style K fill:#f3e5f5
+    style V fill:#e8f5e8
+```
 
 ## 🏗️ **SYSTEM ARCHITECTURE**
 
@@ -16,16 +112,16 @@ This project implements a sophisticated multi-agent sentiment analysis system th
 ┌─────────────────────────────────────────────────────────────┐
 │                 DATA SOURCES                                │
 ├─────────────────┬─────────────────┬─────────────────────────┤
-│    YouTube      │      Tiki       │    Static Text Input    │
-│   (Comments)    │   (Reviews)     │    (Manual Input)       │
+│   Data Files    │   Text Content  │    Static Text Input    │
+│  (JSON/CSV)     │   (Reviews)     │    (Manual Input)       │
 └─────────────────┴─────────────────┴─────────────────────────┘
                             │
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
 │            INTEGRATED DATA PIPELINE                        │
 ├─────────────────────────────────────────────────────────────┤
-│  • YouTube Data API scraping                               │
-│  • Tiki review extraction                                  │
+│  • Data collection and ingestion                          │
+│  • Content extraction and parsing                         │
 │  • Advanced preprocessing                                  │
 │  • Quality filtering & deduplication                      │
 │  • Language detection & normalization                     │
@@ -963,7 +1059,7 @@ class SentimentMonitor:
                 self.logger.error(f"Failed to send email alert: {e}")
 ```
 
-### **Docker Configuration**
+#### **Docker Configuration**
 ```dockerfile
 # Dockerfile for production deployment
 FROM python:3.9-slim

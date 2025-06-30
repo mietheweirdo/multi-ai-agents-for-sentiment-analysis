@@ -1,365 +1,334 @@
 #!/usr/bin/env python3
 """
-Data Preprocessing Pipeline for Multi-Agent Sentiment Analysis System
-===================================================================
-
-Integrates advanced preprocessing functionality for scraped data.
-Prepares data for consumption by sentiment analysis agents.
-
+Advanced preprocessor for scraped data with review filtering
 """
 
-import json
-import os
-import sys
+import re
+import hashlib
 import logging
-from typing import List, Dict, Any, Optional
-from datetime import datetime
-from dataclasses import dataclass
+from typing import List, Dict, Any, Set, Tuple
+from .config import PreprocessingConfig
 
-# Add the test_thesis path to import advanced_preprocessing
-test_thesis_path = r"c:\Users\DELL\Downloads\test_thesis"
-if test_thesis_path not in sys.path:
-    sys.path.append(test_thesis_path)
-
-try:
-    from advanced_preprocessing import AdvancedPreprocessor, PreprocessingConfig
-except ImportError as e:
-    logging.error(f"Failed to import advanced_preprocessing: {e}")
-    # Fallback: Define basic classes
-    @dataclass
-    class PreprocessingConfig:
-        min_text_length: int = 5
-        max_text_length: int = 1000
-        min_word_count: int = 2
-        max_repetition_ratio: float = 0.8
-        vietnamese_char_threshold: float = 0.05
-        english_word_threshold: float = 0.3
-        similarity_threshold: float = 0.85
-        ngram_size: int = 3
-        enable_pii_redaction: bool = True
-        output_dir: str = "preprocessed_data"
-        agent_ready_format: bool = True
-    
-    class AdvancedPreprocessor:
-        def __init__(self, config):
-            self.config = config
-            
-        def process_dataset(self, data):
-            # Basic fallback processing
-            return {"processed_data": data, "stats": {}}
-
-# Configure logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@dataclass 
-class AgentReadyData:
-    """Standardized data format for sentiment analysis agents"""
-    text: str
-    source: str  # 'youtube' or 'tiki'
-    data_type: str  # 'transcript_segment' or 'product_review'
-    metadata: Dict[str, Any]
-    original_rating: Optional[float] = None
-    language: str = "unknown"
-    product_category: str = "general"
-
-class DataPreprocessor:
-    """Preprocessing pipeline that prepares scraped data for agent consumption"""
+class AdvancedPreprocessor:
+    """Advanced preprocessing pipeline for scraped data"""
     
-    def __init__(self, config: Optional[PreprocessingConfig] = None):
-        if config is None:
-            config = PreprocessingConfig(
-                min_text_length=10,
-                max_text_length=800,
-                min_word_count=3,
-                enable_pii_redaction=True,
-                agent_ready_format=True
-            )
-        
+    def __init__(self, config: PreprocessingConfig):
         self.config = config
-        self.preprocessor = AdvancedPreprocessor(config)
-        
-        logger.info("Data preprocessor initialized")
-    
-    def process_scraped_data(self, scraped_data: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Process scraped data from YouTube and Tiki into agent-ready format
-        
-        Args:
-            scraped_data: Output from UnifiedScraper
-            
-        Returns:
-            Processed and standardized data ready for sentiment agents
-        """
-        logger.info(f"Processing scraped data for keyword: {scraped_data.get('keyword', 'unknown')}")
-        
-        # Extract all text data for preprocessing
-        raw_texts = self._extract_raw_texts(scraped_data)
-        
-        # Apply advanced preprocessing
-        preprocessed_data = self._apply_advanced_preprocessing(raw_texts)
-        
-        # Convert to agent-ready format
-        agent_ready_data = self._convert_to_agent_format(scraped_data, preprocessed_data)
-        
-        # Add processing metadata
-        result = {
-            'keyword': scraped_data.get('keyword', 'unknown'),
-            'processed_at': datetime.now().isoformat(),
-            'agent_ready_data': agent_ready_data,
-            'processing_stats': self._calculate_processing_stats(scraped_data, agent_ready_data),
-            'original_scraping_stats': scraped_data.get('scraping_stats', {}),
-            'preprocessing_config': {
-                'min_text_length': self.config.min_text_length,
-                'max_text_length': self.config.max_text_length,
-                'pii_redaction_enabled': self.config.enable_pii_redaction,
-                'quality_filtering_enabled': True
-            }
+        self.stats = {
+            'total_loaded': 0,
+            'filtered_quality': 0,
+            'filtered_duplicates': 0,
+            'filtered_non_review': 0,
+            'filtered_spam': 0,
+            'processed_successfully': 0,
+            'language_distribution': {},
+            'source_distribution': {}
         }
         
-        logger.info(f"Processing completed. {len(agent_ready_data)} data points ready for agents.")
+        # Cache for duplicate detection
+        self.seen_hashes: Set[str] = set()
         
-        return result
+        # Initialize review filtering patterns
+        self._init_review_filters()
+        
+    def _calculate_text_hash(self, text: str) -> str:
+        """Calculate hash for duplicate detection"""
+        # Normalize text for hashing
+        normalized = re.sub(r'\s+', ' ', text.lower().strip())
+        return hashlib.md5(normalized.encode()).hexdigest()
     
-    def _extract_raw_texts(self, scraped_data: Dict[str, Any]) -> List[Dict[str, Any]]:
-        """Extract all text content from scraped data"""
-        raw_texts = []
+    def _is_quality_text(self, text: str) -> bool:
+        """Check if text meets quality requirements"""
+        if not text or not text.strip():
+            return False
         
-        # Process YouTube data
-        for video in scraped_data.get('youtube_data', []):
-            for comment in video.get('comments', []):
-                raw_texts.append({
-                    'text': comment.get('text', ''),
-                    'source': 'youtube',
-                    'source_id': video.get('video_id', 'unknown'),
-                    'data_type': comment.get('type', 'transcript_segment'),
-                    'original_data': comment,
-                    'video_metadata': video.get('metadata', {})
-                })
+        text = text.strip()
         
-        # Process Tiki data
-        for product in scraped_data.get('tiki_data', []):
-            for review in product.get('reviews', []):
-                raw_texts.append({
-                    'text': review.get('text', ''),
-                    'source': 'tiki',
-                    'source_id': product.get('product_id', 'unknown'),
-                    'data_type': review.get('type', 'product_review'),
-                    'original_rating': review.get('rating'),
-                    'original_data': review,
-                    'product_metadata': {
-                        'product_name': product.get('product_name', ''),
-                        'product_category': product.get('product_category', 'general'),
-                        'product_url': product.get('metadata', {}).get('product_url', '')
-                    }
-                })
+        # Length checks
+        if len(text) < self.config.min_text_length or len(text) > self.config.max_text_length:
+            return False
         
-        return raw_texts
-    
-    def _apply_advanced_preprocessing(self, raw_texts: List[Dict[str, Any]]) -> Dict[str, Any]:
-        """Apply advanced preprocessing using the imported functionality"""
-        try:
-            # Convert to format expected by AdvancedPreprocessor
-            preprocessor_input = []
-            for item in raw_texts:
-                preprocessor_input.append({
-                    'text': item['text'],
-                    'source': item['source'],
-                    'metadata': {
-                        'source_id': item['source_id'],
-                        'data_type': item['data_type'],
-                        'original_rating': item.get('original_rating'),
-                    }
-                })
-            
-            # Apply preprocessing
-            processed_result = self.preprocessor.process_dataset(preprocessor_input)
-            
-            logger.info("Advanced preprocessing completed")
-            return processed_result
-            
-        except Exception as e:
-            logger.error(f"Advanced preprocessing failed: {e}")
-            # Fallback to basic preprocessing
-            return self._basic_preprocessing(raw_texts)
-    
-    def _basic_preprocessing(self, raw_texts: List[Dict[str, Any]]) -> Dict[str, Any]:
-        """Fallback basic preprocessing if advanced preprocessing fails"""
-        logger.info("Applying basic preprocessing fallback")
+        # Word count check
+        words = text.split()
+        if len(words) < self.config.min_word_count:
+            return False
         
-        processed_texts = []
-        for item in raw_texts:
-            text = item['text']
-            
-            # Basic text cleaning
-            if len(text.strip()) >= self.config.min_text_length:
-                cleaned_text = self._basic_text_cleaning(text)
-                if cleaned_text:
-                    processed_texts.append({
-                        'text': cleaned_text,
-                        'source': item['source'],
-                        'metadata': item
-                    })
+        # Repetition check
+        if len(words) > 1:
+            unique_words = set(words)
+            repetition_ratio = 1 - (len(unique_words) / len(words))
+            if repetition_ratio > self.config.max_repetition_ratio:
+                return False
         
-        return {
-            'processed_data': processed_texts,
-            'stats': {
-                'total_input': len(raw_texts),
-                'total_output': len(processed_texts),
-                'filtering_ratio': len(processed_texts) / len(raw_texts) if raw_texts else 0
-            }
-        }
-    
-    def _basic_text_cleaning(self, text: str) -> str:
-        """Basic text cleaning"""
-        import re
-        
-        # Remove extra whitespace
-        text = re.sub(r'\s+', ' ', text).strip()
-        
-        # Remove very short texts
-        if len(text) < self.config.min_text_length:
-            return ""
-        
-        # Truncate very long texts
-        if len(text) > self.config.max_text_length:
-            text = text[:self.config.max_text_length] + "..."
-        
-        return text
-    
-    def _convert_to_agent_format(self, scraped_data: Dict[str, Any], preprocessed_data: Dict[str, Any]) -> List[AgentReadyData]:
-        """Convert preprocessed data to standardized agent format"""
-        agent_ready_data = []
-        
-        processed_items = preprocessed_data.get('processed_data', [])
-        
-        for item in processed_items:
-            try:
-                # Extract metadata
-                metadata = item.get('metadata', {})
-                original_data = metadata.get('original_data', {})
-                
-                # Determine product category
-                product_category = "general"
-                if metadata.get('source') == 'tiki':
-                    product_category = metadata.get('product_metadata', {}).get('product_category', 'general')
-                elif scraped_data.get('keyword'):
-                    # Infer category from keyword
-                    keyword = scraped_data['keyword'].lower()
-                    if any(tech_word in keyword for tech_word in ['phone', 'laptop', 'airpods', 'ipad', 'tablet']):
-                        product_category = 'electronics'
-                    elif any(fashion_word in keyword for fashion_word in ['dress', 'shirt', 'shoes', 'bag']):
-                        product_category = 'fashion'
-                
-                # Create AgentReadyData instance
-                agent_data = AgentReadyData(
-                    text=item['text'],
-                    source=item.get('source', 'unknown'),
-                    data_type=metadata.get('data_type', 'unknown'),
-                    metadata={
-                        'source_id': metadata.get('source_id', 'unknown'),
-                        'scraped_at': datetime.now().isoformat(),
-                        'original_data': original_data,
-                        'keyword': scraped_data.get('keyword', 'unknown')
-                    },
-                    original_rating=metadata.get('original_rating'),
-                    language=self._detect_language(item['text']),
-                    product_category=product_category
-                )
-                
-                agent_ready_data.append(agent_data)
-                
-            except Exception as e:
-                logger.error(f"Failed to convert item to agent format: {e}")
-                continue
-        
-        return agent_ready_data
+        return True
     
     def _detect_language(self, text: str) -> str:
-        """Basic language detection"""
-        # Count Vietnamese characters
-        vietnamese_chars = "àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ"
-        vietnamese_count = sum(1 for char in text.lower() if char in vietnamese_chars)
+        """Simple language detection for Vietnamese/English"""
+        if not text:
+            return 'unknown'
         
-        if vietnamese_count / len(text) > 0.02:  # 2% Vietnamese characters
-            return "vietnamese"
-        else:
-            return "english"
+        # Vietnamese character patterns
+        vietnamese_chars = r'[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđĐ]'
+        vietnamese_count = len(re.findall(vietnamese_chars, text, re.IGNORECASE))
+        vietnamese_ratio = vietnamese_count / len(text) if text else 0
+        
+        if vietnamese_ratio >= self.config.vietnamese_char_threshold:
+            return 'vi'
+        
+        # English word detection
+        english_words = re.findall(r'\b[a-zA-Z]+\b', text)
+        english_ratio = len(english_words) / len(text.split()) if text.split() else 0
+        
+        if english_ratio >= self.config.english_word_threshold:
+            return 'en'
+        
+        return 'mixed'
     
-    def _calculate_processing_stats(self, scraped_data: Dict[str, Any], agent_ready_data: List[AgentReadyData]) -> Dict[str, Any]:
-        """Calculate processing statistics"""
-        original_stats = scraped_data.get('scraping_stats', {})
-        original_total = original_stats.get('total_data_points', 0)
-        processed_total = len(agent_ready_data)
+    def _normalize_text(self, text: str) -> str:
+        """Normalize text content"""
+        if not text:
+            return ''
         
-        # Count by source
-        youtube_count = len([d for d in agent_ready_data if d.source == 'youtube'])
-        tiki_count = len([d for d in agent_ready_data if d.source == 'tiki'])
+        # Remove extra whitespace
+        text = re.sub(r'\s+', ' ', text.strip())
         
-        # Count by language
-        vietnamese_count = len([d for d in agent_ready_data if d.language == 'vietnamese'])
-        english_count = len([d for d in agent_ready_data if d.language == 'english'])
+        # Remove excessive punctuation
+        text = re.sub(r'[!]{2,}', '!', text)
+        text = re.sub(r'[?]{2,}', '?', text)
+        text = re.sub(r'[.]{3,}', '...', text)
+        
+        # Basic text cleanup
+        text = re.sub(r'https?://\S+', '[URL]', text)  # Replace URLs
+        text = re.sub(r'\d{10,}', '[PHONE]', text)     # Replace phone numbers
+        
+        return text.strip()
+    
+    def _init_review_filters(self):
+        """Initialize patterns for identifying non-review comments"""
+        
+        # Patterns for non-review content (Vietnamese and English)
+        self.non_review_patterns = {
+            'greeting_only': [
+                r'^(hi|hello|hey|chào|xin chào|helo)\s*[!.]*\s*$',
+                r'^(thanks?|thank you|cảm ơn|cam on|tks|ty)\s*[!.]*\s*$',
+                r'^(bye|goodbye|tạm biệt|chào tạm biệt)\s*[!.]*\s*$'
+            ],
+            'short_reactions': [
+                r'^(ok|okay|okie|oke|good|nice|tốt|hay|được)\s*[!.]*\s*$',
+                r'^(wow|amazing|tuyệt|đỉnh|cool|ngon)\s*[!.]*\s*$',
+                r'^(yes|no|có|không|ừ|uhm|hmm)\s*[!.]*\s*$'
+            ],
+            'spam_patterns': [
+                r'(like và subscribe|like sub|đăng ký kênh)',
+                r'(inbox|pm|liên hệ|contact|phone|zalo|facebook)',
+                r'(bán|mua|sell|buy|giá rẻ|cheap|discount|khuyến mãi)',
+                r'(link|website|web|shop|store|cửa hàng)',
+                r'(\d{10,}|\d{3,4}[-.\s]\d{3,4}[-.\s]\d{3,4})',  # Phone numbers
+                r'(facebook\.com|fb\.com|zalo|telegram|whatsapp)'
+            ],
+            'question_seeking_help': [
+                r'^(help|giúp|hỏi|ask|question|câu hỏi)',
+                r'(how to|làm sao|làm thế nào|hướng dẫn|guide)',
+                r'(where|đâu|ở đâu|tìm ở đâu|mua ở đâu)',
+                r'(when|khi nào|bao giờ|lúc nào)'
+            ],
+            'off_topic': [
+                r'(first|đầu tiên|1st|đầu|ai xem đầu)',
+                r'(early|sớm|view sớm|xem sớm)',
+                r'(music|nhạc|bài hát|song|beat)',
+                r'(movie|phim|film|video clip|mv)'
+            ],
+            'emotional_only': [
+                r'^[😀-🙏🤔-🤯😭-😱🥰-🥵]+\s*$',  # Only emojis
+                r'^(haha|hihi|huhu|hoho)+\s*[!.]*\s*$',
+                r'^(lol|lmao|omg|wtf|wth)\s*[!.]*\s*$'
+            ]
+        }
+        
+        # Patterns that indicate genuine reviews
+        self.review_indicators = [
+            r'(sử dụng|dùng|use|used|using)',
+            r'(chất lượng|quality|tốt|xấu|good|bad|nice)',
+            r'(giá|price|cost|expensive|cheap|rẻ|đắt)',
+            r'(mua|buy|bought|purchase|order|đặt hàng)',
+            r'(giao hàng|ship|delivery|nhận hàng|packaging)',
+            r'(recommend|đề xuất|khuyên|should|nên)',
+            r'(experience|trải nghiệm|cảm nhận|feel|cảm giác)',
+            r'(so sánh|compare|comparison|khác|different)',
+            r'(đánh giá|review|rate|rating|star|sao)',
+            r'(ưu điểm|nhược điểm|pros|cons|advantage|disadvantage)',
+            r'(màu sắc|color|size|kích thước|design|thiết kế)',
+            r'(pin|battery|charge|sạc|điện)',
+            r'(camera|ảnh|photo|picture|video|quay)',
+            r'(âm thanh|sound|speaker|loa|music|nhạc)'
+        ]
+    
+    def _is_review_content(self, text: str) -> Tuple[bool, str]:
+        """
+        Determine if text is a genuine review or just a non-review comment
+        Returns: (is_review, reason_if_not)
+        """
+        if not text or not text.strip():
+            return False, "empty_text"
+        
+        text_lower = text.lower()
+        
+        # Check for spam patterns first
+        for pattern in self.non_review_patterns['spam_patterns']:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                return False, "spam_content"
+        
+        # Check for greeting-only comments
+        for pattern in self.non_review_patterns['greeting_only']:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                return False, "greeting_only"
+        
+        # Check for short reactions
+        for pattern in self.non_review_patterns['short_reactions']:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                return False, "short_reaction"
+        
+        # Check for question-seeking help
+        for pattern in self.non_review_patterns['question_seeking_help']:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                return False, "help_seeking"
+        
+        # Check for off-topic comments
+        for pattern in self.non_review_patterns['off_topic']:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                return False, "off_topic"
+        
+        # Check for emotional-only comments
+        for pattern in self.non_review_patterns['emotional_only']:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                return False, "emotional_only"
+        
+        # Count review indicators
+        review_score = 0
+        for pattern in self.review_indicators:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                review_score += 1
+        
+        # Check minimum length for potential reviews
+        word_count = len(text.split())
+        
+        # Apply review scoring logic
+        if word_count < 5:
+            if review_score == 0:
+                return False, "too_short_no_indicators"
+        elif word_count < 10:
+            if review_score < 1:
+                return False, "short_insufficient_indicators"
+        else:
+            if review_score < 1 and word_count < 15:
+                return False, "medium_insufficient_indicators"
+        
+        return True, "valid_review"
+    
+    def _detect_spam(self, text: str) -> bool:
+        """Enhanced spam detection"""
+        if not text:
+            return False
+        
+        text_lower = text.lower()
+        
+        # Check for excessive repetition
+        words = text_lower.split()
+        if len(words) > 3:
+            unique_words = set(words)
+            repetition_ratio = 1 - (len(unique_words) / len(words))
+            if repetition_ratio > 0.7:  # More than 70% repetition
+                return True
+        
+        # Check for excessive punctuation or caps
+        if len(text) > 10:
+            caps_ratio = sum(1 for c in text if c.isupper()) / len(text)
+            punct_ratio = sum(1 for c in text if c in '!?.,;:') / len(text)
+            if caps_ratio > 0.6 or punct_ratio > 0.3:
+                return True
+        
+        # Check for promotional content
+        promotional_patterns = [
+            r'(follow|theo dõi|đăng ký|subscribe)',
+            r'(sale|giảm giá|promotion|khuyến mãi)',
+            r'(free|miễn phí|gift|quà tặng)',
+            r'(win|thắng|lucky|may mắn|trúng thưởng)'
+        ]
+        
+        promotional_count = 0
+        for pattern in promotional_patterns:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                promotional_count += 1
+        
+        return promotional_count >= 2
+    
+    def process_data(self, raw_data: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Process scraped data through the preprocessing pipeline"""
+        self.stats['total_loaded'] = len(raw_data)
+        
+        processed_items = []
+        
+        for item in raw_data:
+            try:
+                # Extract content
+                content = item.get('content', '')
+                
+                # Quality filtering
+                if not self._is_quality_text(content):
+                    self.stats['filtered_quality'] += 1
+                    continue
+                
+                # Duplicate detection
+                if self.config.enable_deduplication:
+                    text_hash = self._calculate_text_hash(content)
+                    if text_hash in self.seen_hashes:
+                        self.stats['filtered_duplicates'] += 1
+                        continue
+                    self.seen_hashes.add(text_hash)
+                
+                # Normalize content
+                normalized_content = self._normalize_text(content)
+                
+                # Detect language
+                language = self._detect_language(normalized_content)
+                
+                # Review filtering
+                is_review, _ = self._is_review_content(normalized_content)
+                if not is_review:
+                    self.stats['filtered_non_review'] += 1
+                    continue
+                
+                # Create processed item
+                processed_item = {
+                    'id': item.get('id', ''),
+                    'content': normalized_content,
+                    'source': item.get('source', 'unknown'),
+                    'language': language,
+                    'created_at': item.get('created_at', ''),
+                    'metadata': item
+                }
+                
+                processed_items.append(processed_item)
+                self.stats['processed_successfully'] += 1
+                
+                # Update statistics
+                source = item.get('source', 'unknown')
+                self.stats['source_distribution'][source] = self.stats['source_distribution'].get(source, 0) + 1
+                self.stats['language_distribution'][language] = self.stats['language_distribution'].get(language, 0) + 1
+                
+            except Exception as e:
+                logger.error(f"Error processing item: {e}")
+                continue
         
         return {
-            'original_data_points': original_total,
-            'processed_data_points': processed_total,
-            'processing_retention_rate': processed_total / original_total if original_total > 0 else 0,
-            'source_distribution': {
-                'youtube': youtube_count,
-                'tiki': tiki_count
-            },
-            'language_distribution': {
-                'vietnamese': vietnamese_count,
-                'english': english_count
-            },
-            'data_type_distribution': self._count_data_types(agent_ready_data)
+            'processed_data': processed_items,
+            'stats': self.stats,
+            'config': {
+                'min_text_length': self.config.min_text_length,
+                'max_text_length': self.config.max_text_length,
+                'enable_deduplication': self.config.enable_deduplication,
+                'target_language': self.config.target_language
+            }
         }
-    
-    def _count_data_types(self, agent_ready_data: List[AgentReadyData]) -> Dict[str, int]:
-        """Count distribution of data types"""
-        type_counts = {}
-        for data in agent_ready_data:
-            data_type = data.data_type
-            type_counts[data_type] = type_counts.get(data_type, 0) + 1
-        return type_counts
-
-def preprocess_scraped_data(scraped_data: Dict[str, Any], config: Optional[PreprocessingConfig] = None) -> Dict[str, Any]:
-    """
-    Convenience function to preprocess scraped data
-    
-    Args:
-        scraped_data: Output from UnifiedScraper
-        config: Optional preprocessing configuration
-        
-    Returns:
-        Processed data ready for sentiment agents
-    """
-    preprocessor = DataPreprocessor(config)
-    return preprocessor.process_scraped_data(scraped_data)
-
-if __name__ == "__main__":
-    # Test the preprocessor with sample data
-    sample_scraped_data = {
-        'keyword': 'test keyword',
-        'youtube_data': [{
-            'video_id': 'test123',
-            'comments': [
-                {'text': 'This is a great product! I love it.', 'type': 'transcript_segment'},
-                {'text': 'Not good quality, disappointed.', 'type': 'transcript_segment'}
-            ]
-        }],
-        'tiki_data': [{
-            'product_id': 'prod123',
-            'product_name': 'Test Product',
-            'product_category': 'electronics',
-            'reviews': [
-                {'text': 'Sản phẩm tốt, chất lượng ổn.', 'rating': 5, 'type': 'product_review'},
-                {'text': 'Delivery was slow but product is ok.', 'rating': 3, 'type': 'product_review'}
-            ]
-        }],
-        'scraping_stats': {'total_data_points': 4}
-    }
-    
-    processed_data = preprocess_scraped_data(sample_scraped_data)
-    print(f"Processed {len(processed_data['agent_ready_data'])} data points")
-    print(f"Processing stats: {processed_data['processing_stats']}")

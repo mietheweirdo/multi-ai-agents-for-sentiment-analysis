@@ -1,26 +1,55 @@
+#!/usr/bin/env python3
 """
-Data Pipeline Package for Multi-Agent Sentiment Analysis System
-==============================================================
+Data Pipeline Package for Multi-Agent Sentiment Analysis
+========================================================
 
-This package provides unified data scraping, preprocessing, and standardization
-for the multi-agent sentiment analysis system.
+This package provides modular data scraping, preprocessing, and integration
+capabilities for the multi-agent sentiment analysis system.
+
+Main Components:
+- config: Configuration classes and utilities
+- scrapers: YouTube and Tiki data scrapers  
+- preprocessor: Advanced data preprocessing and quality filtering
+- pipeline: Main pipeline orchestrator
+- utils: Utility functions for data handling
+
+Quick Usage:
+    from data_pipeline import scrape_and_preprocess
+    
+    data = scrape_and_preprocess(
+        keyword="smartphone",
+        sources=['youtube', 'tiki'],
+        max_items_per_source=10
+    )
 """
 
-# Import key functions and classes for easy access
-try:
-    from .scraper import UnifiedScraper, scrape_data_for_keyword
-    from .preprocessor import DataPreprocessor, AgentReadyData, preprocess_scraped_data
-    
-    __all__ = [
-        "UnifiedScraper",
-        "scrape_data_for_keyword", 
-        "DataPreprocessor",
-        "AgentReadyData",
-        "preprocess_scraped_data"
-    ]
-    
-except ImportError as e:
-    print(f"Warning: Some data pipeline components could not be imported: {e}")
-    __all__ = []
+from .config import ScrapingConfig, PreprocessingConfig
+from .scrapers import YouTubeScraper, TikiScraper
+from .preprocessor import AdvancedPreprocessor
+from .pipeline import IntegratedDataPipeline, scrape_and_preprocess
+from .utils import standardize_for_agents, load_config_from_file
 
 __version__ = "1.0.0"
+__author__ = "Multi-Agent Sentiment Analysis Team"
+
+# Main exports
+__all__ = [
+    # Configuration
+    'ScrapingConfig',
+    'PreprocessingConfig',
+    
+    # Scrapers
+    'YouTubeScraper', 
+    'TikiScraper',
+    
+    # Preprocessing
+    'AdvancedPreprocessor',
+    
+    # Pipeline
+    'IntegratedDataPipeline',
+    'scrape_and_preprocess',
+    
+    # Utilities
+    'standardize_for_agents',
+    'load_config_from_file'
+]
