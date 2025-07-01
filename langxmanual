@@ -1,0 +1,656 @@
+(multi-agent) ➜  multi-ai-agents-for-sentiment-analysis git:(kdm) ✗ python3 evaluation/workflow_comparison.p
+y                                                                   python3 evaluation/workflow_comparison.p
+y
+🚀 Starting Workflow Comparison...
+🚀 WORKFLOW COMPARISON: MANUAL vs LANGCHAIN
+================================================================================
+Manual Workflow: Linear 3-layer approach (demo_enhanced_system.py)
+LangChain Workflow: Discussion-based consensus (test_langgraph_system.py)
+Test Cases: 5 conflict scenarios
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥🔥🔥🔥🔥🔥
+🔥 TEST CASE 1/5: QUALITY_VS_SERVICE
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥🔥🔥🔥🔥🔥
+
+================================================================================
+🧪 TEST: Conflicting Aspects - Product Quality vs Service
+================================================================================
+Review: This laptop has amazing performance, top-notch build quality, and cutting-edge specs, but the custom
+er service was absolutely terrible - they hung up on me twice and delivery took 3 weeks with damaged packagi
+ng.
+Expected Advantage: LangChain should handle disagreement between Quality (positive) and Experience (negative
+) better through discussion
+
+🔧 MANUAL WORKFLOW:
+[WorkflowManager] Initializing 5 department agents...
+[WorkflowManager]   ✓ quality department ready
+[WorkflowManager]   ✓ experience department ready
+[WorkflowManager]   ✓ user_experience department ready
+[WorkflowManager]   ✓ business department ready
+[WorkflowManager]   ✓ technical department ready
+[WorkflowManager] Initializing Master Sentiment Analyst...
+[WorkflowManager]   ✓ Master Analyst ready
+[WorkflowManager] Initializing Business Advisor...
+[WorkflowManager]   ✓ Business Advisor ready
+[WorkflowManager] 3-layer workflow ready for electronics products!
+
+[WorkflowManager] Starting 3-layer analysis...
+[WorkflowManager] Review: This laptop has amazing performance, top-notch build quality, and cutting-edge spe
+cs, but the custom...
+
+[WorkflowManager] LAYER 1: Running department analysis...
+[WorkflowManager]   Running quality department...
+[WorkflowManager]   ✓ quality: positive (0.85)
+[WorkflowManager]   Running experience department...
+[WorkflowManager]   ✓ experience: negative (0.95)
+[WorkflowManager]   Running user_experience department...
+[WorkflowManager]   ✓ user_experience: negative (0.85)
+[WorkflowManager]   Running business department...
+[WorkflowManager]   ✓ business: negative (0.85)
+[WorkflowManager]   Running technical department...
+[WorkflowManager]   ✓ technical: positive (0.90)
+
+[WorkflowManager] LAYER 2: Master Analyst synthesis...
+[WorkflowManager]   ✓ Master synthesis: negative (0.88)
+
+[WorkflowManager] LAYER 3: Business Advisor recommendations...
+[WorkflowManager]   ✓ Business recommendations ready (0.88)
+
+[WorkflowManager] ✅ Analysis complete in 24.38s
+[WorkflowManager] Final sentiment: negative
+[WorkflowManager] Recommendation confidence: 0.88
+  Final Sentiment: negative (confidence: 0.88)
+  Processing Time: 24.54s
+  Discussion: None (linear workflow)
+
+🚀 LANGCHAIN WORKFLOW:
+[LangGraphCoordinator] Initializing 5 department agents...
+[LangGraphCoordinator]   ✓ quality department ready
+[LangGraphCoordinator]   ✓ experience department ready
+[LangGraphCoordinator]   ✓ user_experience department ready
+[LangGraphCoordinator]   ✓ business department ready
+[LangGraphCoordinator]   ✓ technical department ready
+[LangGraphCoordinator] LangGraph workflow ready for electronics products!
+
+[LangGraphCoordinator] Starting LangGraph multi-agent analysis...
+[LangGraphCoordinator] Review: This laptop has amazing performance, top-notch build quality, and cutting-edg
+e specs, but the custom...
+[LangGraphCoordinator] Running quality analysis...
+[LangGraphCoordinator]   ✓ quality: positive (0.85)
+[LangGraphCoordinator] Running experience analysis...
+[LangGraphCoordinator]   ✓ experience: negative (0.95)
+[LangGraphCoordinator] Running user_experience analysis...
+[LangGraphCoordinator]   ✓ user_experience: negative (0.85)
+[LangGraphCoordinator] Running business analysis...
+[LangGraphCoordinator]   ✓ business: negative (0.85)
+[LangGraphCoordinator] Running technical analysis...
+[LangGraphCoordinator]   ✓ technical: positive (0.90)
+[LangGraphCoordinator] Consensus check: disagreement=0.40, threshold=0.6
+[LangGraphCoordinator] Consensus reached: True
+[LangGraphCoordinator] Master analyst synthesis...
+[LangGraphCoordinator]   ✓ Master synthesis: negative (0.90)
+[LangGraphCoordinator] Business advisor recommendations...
+[LangGraphCoordinator]   ✓ Business recommendations ready (0.90)
+
+[LangGraphCoordinator] ✅ LangGraph analysis complete in 23.78s
+[LangGraphCoordinator] Discussion rounds: 0
+[LangGraphCoordinator] Final sentiment: negative
+[LangGraphCoordinator] Consensus reached: True
+  Final Sentiment: negative (confidence: 0.90)
+  Processing Time: 23.80s
+  Discussion Rounds: 0
+  Consensus Reached: True
+  Disagreement Level: 0.40
+
+📊 COMPARISON ANALYSIS:
+----------------------------------------
+  Confidence: Manual 0.88 vs LangChain 0.90
+    ✅ LangChain more confident (+0.02)
+  Sentiment: Manual 'negative' vs LangChain 'negative'
+  Discussion: No disagreement detected (agents agreed)
+  Time: Manual 24.54s vs LangChain 23.80s (+-0.74s)
+    ✅ Acceptable time overhead for improved quality
+
+🎯 WINNER: Slight LangChain advantage (1/3)
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥🔥🔥🔥🔥🔥
+🔥 TEST CASE 2/5: QUALITY_VS_BUSINESS
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥🔥🔥🔥🔥🔥
+
+================================================================================
+🧪 TEST: Price vs Value Conflict
+================================================================================
+Review: Premium materials and luxury feel, excellent craftsmanship and attention to detail, but honestly it'
+s way overpriced for what you get. Similar products cost half the price with same features.
+Expected Advantage: Business vs Quality departments should disagree, LangChain discussion leads to better co
+nsensus
+
+🔧 MANUAL WORKFLOW:
+[WorkflowManager] Initializing 5 department agents...
+[WorkflowManager]   ✓ quality department ready
+[WorkflowManager]   ✓ experience department ready
+[WorkflowManager]   ✓ user_experience department ready
+[WorkflowManager]   ✓ business department ready
+[WorkflowManager]   ✓ technical department ready
+[WorkflowManager] Initializing Master Sentiment Analyst...
+[WorkflowManager]   ✓ Master Analyst ready
+[WorkflowManager] Initializing Business Advisor...
+[WorkflowManager]   ✓ Business Advisor ready
+[WorkflowManager] 3-layer workflow ready for fashion products!
+
+[WorkflowManager] Starting 3-layer analysis...
+[WorkflowManager] Review: Premium materials and luxury feel, excellent craftsmanship and attention to detail
+, but honestly it'...
+
+[WorkflowManager] LAYER 1: Running department analysis...
+[WorkflowManager]   Running quality department...
+[WorkflowManager]   ✓ quality: positive (0.85)
+[WorkflowManager]   Running experience department...
+[WorkflowManager]   ✓ experience: neutral (0.70)
+[WorkflowManager]   Running user_experience department...
+[WorkflowManager]   ✓ user_experience: negative (0.85)
+[WorkflowManager]   Running business department...
+[WorkflowManager]   ✓ business: negative (0.85)
+[WorkflowManager]   Running technical department...
+[WorkflowManager]   ✓ technical: negative (0.85)
+
+[WorkflowManager] LAYER 2: Master Analyst synthesis...
+[WorkflowManager]   ✓ Master synthesis: negative (0.85)
+
+[WorkflowManager] LAYER 3: Business Advisor recommendations...
+[WorkflowManager]   ✓ Business recommendations ready (0.85)
+
+[WorkflowManager] ✅ Analysis complete in 22.09s
+[WorkflowManager] Final sentiment: negative
+[WorkflowManager] Recommendation confidence: 0.85
+  Final Sentiment: negative (confidence: 0.85)
+  Processing Time: 22.09s
+  Discussion: None (linear workflow)
+
+🚀 LANGCHAIN WORKFLOW:
+[LangGraphCoordinator] Initializing 5 department agents...
+[LangGraphCoordinator]   ✓ quality department ready
+[LangGraphCoordinator]   ✓ experience department ready
+[LangGraphCoordinator]   ✓ user_experience department ready
+[LangGraphCoordinator]   ✓ business department ready
+[LangGraphCoordinator]   ✓ technical department ready
+[LangGraphCoordinator] LangGraph workflow ready for fashion products!
+
+[LangGraphCoordinator] Starting LangGraph multi-agent analysis...
+[LangGraphCoordinator] Review: Premium materials and luxury feel, excellent craftsmanship and attention to d
+etail, but honestly it'...
+[LangGraphCoordinator] Running quality analysis...
+[LangGraphCoordinator]   ✓ quality: positive (0.80)
+[LangGraphCoordinator] Running experience analysis...
+[LangGraphCoordinator]   ✓ experience: neutral (0.75)
+[LangGraphCoordinator] Running user_experience analysis...
+[LangGraphCoordinator]   ✓ user_experience: negative (0.85)
+[LangGraphCoordinator] Running business analysis...
+[LangGraphCoordinator]   ✓ business: negative (0.85)
+[LangGraphCoordinator] Running technical analysis...
+[LangGraphCoordinator]   ✓ technical: neutral (0.80)
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Starting agent discussion round 1...
+[LangGraphCoordinator]   🗣️ quality refined: positive
+[LangGraphCoordinator]   🗣️ experience refined: neutral
+[LangGraphCoordinator]   🗣️ user_experience refined: negative
+[LangGraphCoordinator]   🗣️ business refined: negative
+[LangGraphCoordinator]   🗣️ technical refined: neutral
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Starting agent discussion round 2...
+[LangGraphCoordinator]   🗣️ quality refined: positive
+[LangGraphCoordinator]   🗣️ experience refined: neutral
+[LangGraphCoordinator]   🗣️ user_experience refined: negative
+[LangGraphCoordinator]   🗣️ business refined: negative
+[LangGraphCoordinator]   🗣️ technical refined: neutral
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Starting agent discussion round 3...
+[LangGraphCoordinator]   🗣️ quality refined: positive
+[LangGraphCoordinator]   🗣️ experience refined: neutral
+[LangGraphCoordinator]   🗣️ user_experience refined: negative
+[LangGraphCoordinator]   🗣️ business refined: negative
+[LangGraphCoordinator]   🗣️ technical refined: neutral
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Max discussion rounds reached, proceeding to synthesis
+[LangGraphCoordinator] Master analyst synthesis...
+[LangGraphCoordinator]   ✓ Master synthesis: negative (0.85)
+[LangGraphCoordinator] Business advisor recommendations...
+[LangGraphCoordinator]   ✓ Business recommendations ready (0.85)
+
+[LangGraphCoordinator] ✅ LangGraph analysis complete in 74.39s
+[LangGraphCoordinator] Discussion rounds: 3
+[LangGraphCoordinator] Final sentiment: negative
+[LangGraphCoordinator] Consensus reached: False
+  Final Sentiment: negative (confidence: 0.85)
+  Processing Time: 74.40s
+  Discussion Rounds: 3
+  Consensus Reached: False
+  Disagreement Level: 0.60
+  Discussion Messages: 15
+    1. QUALITY: positive - The review emphasizes premium materials and excellent crafts...
+    2. EXPERIENCE: neutral - The review acknowledges high-quality materials and craftsm...
+
+📊 COMPARISON ANALYSIS:
+----------------------------------------
+  Confidence: Manual 0.85 vs LangChain 0.85
+  Sentiment: Manual 'negative' vs LangChain 'negative'
+  Discussion: 3 rounds with 0.60 disagreement level
+    ✅ LangChain handled agent disagreement through discussion
+  Time: Manual 22.09s vs LangChain 74.40s (+52.31s)
+
+🎯 WINNER: Slight LangChain advantage (1/3)
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥🔥🔥🔥🔥🔥
+🔥 TEST CASE 3/5: TECHNICAL_VS_UX
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥🔥🔥🔥🔥🔥
+
+================================================================================
+🧪 TEST: Technical Excellence vs User Experience
+================================================================================
+Review: Technically impressive with advanced features and powerful specs, but the user interface is confusin
+g and the learning curve is steep. Experts will love it but regular users will struggle.
+Expected Advantage: Technical (positive) vs UX (negative) conflict requires discussion to resolve properly
+
+🔧 MANUAL WORKFLOW:
+[WorkflowManager] Initializing 5 department agents...
+[WorkflowManager]   ✓ quality department ready
+[WorkflowManager]   ✓ experience department ready
+[WorkflowManager]   ✓ user_experience department ready
+[WorkflowManager]   ✓ business department ready
+[WorkflowManager]   ✓ technical department ready
+[WorkflowManager] Initializing Master Sentiment Analyst...
+[WorkflowManager]   ✓ Master Analyst ready
+[WorkflowManager] Initializing Business Advisor...
+[WorkflowManager]   ✓ Business Advisor ready
+[WorkflowManager] 3-layer workflow ready for electronics products!
+
+[WorkflowManager] Starting 3-layer analysis...
+[WorkflowManager] Review: Technically impressive with advanced features and powerful specs, but the user int
+erface is confusin...
+
+[WorkflowManager] LAYER 1: Running department analysis...
+[WorkflowManager]   Running quality department...
+[WorkflowManager]   ✓ quality: neutral (0.75)
+[WorkflowManager]   Running experience department...
+[WorkflowManager]   ✓ experience: neutral (0.70)
+[WorkflowManager]   Running user_experience department...
+[WorkflowManager]   ✓ user_experience: negative (0.85)
+[WorkflowManager]   Running business department...
+[WorkflowManager]   ✓ business: negative (0.85)
+[WorkflowManager]   Running technical department...
+[WorkflowManager]   ✓ technical: positive (0.85)
+
+[WorkflowManager] LAYER 2: Master Analyst synthesis...
+[WorkflowManager]   ✓ Master synthesis: negative (0.80)
+
+[WorkflowManager] LAYER 3: Business Advisor recommendations...
+[WorkflowManager]   ✓ Business recommendations ready (0.85)
+
+[WorkflowManager] ✅ Analysis complete in 18.26s
+[WorkflowManager] Final sentiment: negative
+[WorkflowManager] Recommendation confidence: 0.85
+  Final Sentiment: negative (confidence: 0.80)
+  Processing Time: 18.26s
+  Discussion: None (linear workflow)
+
+🚀 LANGCHAIN WORKFLOW:
+[LangGraphCoordinator] Initializing 5 department agents...
+[LangGraphCoordinator]   ✓ quality department ready
+[LangGraphCoordinator]   ✓ experience department ready
+[LangGraphCoordinator]   ✓ user_experience department ready
+[LangGraphCoordinator]   ✓ business department ready
+[LangGraphCoordinator]   ✓ technical department ready
+[LangGraphCoordinator] LangGraph workflow ready for electronics products!
+
+[LangGraphCoordinator] Starting LangGraph multi-agent analysis...
+[LangGraphCoordinator] Review: Technically impressive with advanced features and powerful specs, but the use
+r interface is confusin...
+[LangGraphCoordinator] Running quality analysis...
+[LangGraphCoordinator]   ✓ quality: neutral (0.70)
+[LangGraphCoordinator] Running experience analysis...
+[LangGraphCoordinator]   ✓ experience: neutral (0.75)
+[LangGraphCoordinator] Running user_experience analysis...
+[LangGraphCoordinator]   ✓ user_experience: negative (0.85)
+[LangGraphCoordinator] Running business analysis...
+[LangGraphCoordinator]   ✓ business: negative (0.85)
+[LangGraphCoordinator] Running technical analysis...
+[LangGraphCoordinator]   ✓ technical: positive (0.85)
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Starting agent discussion round 1...
+[LangGraphCoordinator]   🗣️ quality refined: neutral
+[LangGraphCoordinator]   🗣️ experience refined: neutral
+[LangGraphCoordinator]   🗣️ user_experience refined: negative
+[LangGraphCoordinator]   🗣️ business refined: negative
+[LangGraphCoordinator]   🗣️ technical refined: positive
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Starting agent discussion round 2...
+[LangGraphCoordinator]   🗣️ quality refined: neutral
+[LangGraphCoordinator]   🗣️ experience refined: neutral
+[LangGraphCoordinator]   🗣️ user_experience refined: negative
+[LangGraphCoordinator]   🗣️ business refined: negative
+[LangGraphCoordinator]   🗣️ technical refined: positive
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Starting agent discussion round 3...
+[LangGraphCoordinator]   🗣️ quality refined: neutral
+[LangGraphCoordinator]   🗣️ experience refined: neutral
+[LangGraphCoordinator]   🗣️ user_experience refined: negative
+[LangGraphCoordinator]   🗣️ business refined: negative
+[LangGraphCoordinator]   🗣️ technical refined: positive
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Max discussion rounds reached, proceeding to synthesis
+[LangGraphCoordinator] Master analyst synthesis...
+[LangGraphCoordinator]   ✓ Master synthesis: negative (0.85)
+[LangGraphCoordinator] Business advisor recommendations...
+[LangGraphCoordinator]   ✓ Business recommendations ready (0.85)
+
+[LangGraphCoordinator] ✅ LangGraph analysis complete in 67.07s
+[LangGraphCoordinator] Discussion rounds: 3
+[LangGraphCoordinator] Final sentiment: negative
+[LangGraphCoordinator] Consensus reached: False
+  Final Sentiment: negative (confidence: 0.85)
+  Processing Time: 67.09s
+  Discussion Rounds: 3
+  Consensus Reached: False
+  Disagreement Level: 0.60
+  Discussion Messages: 15
+    1. QUALITY: neutral - The product demonstrates strong technical specifications and ...
+    2. EXPERIENCE: neutral - The review points out a steep learning curve and a confusi...
+
+📊 COMPARISON ANALYSIS:
+----------------------------------------
+  Confidence: Manual 0.80 vs LangChain 0.85
+    ✅ LangChain more confident (+0.05)
+  Sentiment: Manual 'negative' vs LangChain 'negative'
+  Discussion: 3 rounds with 0.60 disagreement level
+    ✅ LangChain handled agent disagreement through discussion
+  Time: Manual 18.26s vs LangChain 67.09s (+48.83s)
+
+🎯 WINNER: LangChain (2/3 advantages)
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥🔥🔥🔥🔥🔥
+🔥 TEST CASE 4/5: TEMPORAL_CONFLICT
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥🔥🔥🔥🔥🔥
+
+================================================================================
+🧪 TEST: Short-term vs Long-term Perspective
+================================================================================
+Review: Works great initially and first impressions are positive, but after 6 months the quality declined, b
+attery degraded, and performance became sluggish. Now I regret buying this.
+Expected Advantage: Different agents weight short vs long-term differently, discussion needed
+
+🔧 MANUAL WORKFLOW:
+[WorkflowManager] Initializing 5 department agents...
+[WorkflowManager]   ✓ quality department ready
+[WorkflowManager]   ✓ experience department ready
+[WorkflowManager]   ✓ user_experience department ready
+[WorkflowManager]   ✓ business department ready
+[WorkflowManager]   ✓ technical department ready
+[WorkflowManager] Initializing Master Sentiment Analyst...
+[WorkflowManager]   ✓ Master Analyst ready
+[WorkflowManager] Initializing Business Advisor...
+[WorkflowManager]   ✓ Business Advisor ready
+[WorkflowManager] 3-layer workflow ready for electronics products!
+
+[WorkflowManager] Starting 3-layer analysis...
+[WorkflowManager] Review: Works great initially and first impressions are positive, but after 6 months the q
+uality declined, b...
+
+[WorkflowManager] LAYER 1: Running department analysis...
+[WorkflowManager]   Running quality department...
+[WorkflowManager]   ✓ quality: negative (0.90)
+[WorkflowManager]   Running experience department...
+[WorkflowManager]   ✓ experience: neutral (0.70)
+[WorkflowManager]   Running user_experience department...
+[WorkflowManager]   ✓ user_experience: negative (0.90)
+[WorkflowManager]   Running business department...
+[WorkflowManager]   ✓ business: negative (0.85)
+[WorkflowManager]   Running technical department...
+[WorkflowManager]   ✓ technical: negative (0.90)
+
+[WorkflowManager] LAYER 2: Master Analyst synthesis...
+[WorkflowManager]   ✓ Master synthesis: negative (0.90)
+
+[WorkflowManager] LAYER 3: Business Advisor recommendations...
+[WorkflowManager]   ✓ Business recommendations ready (0.90)
+
+[WorkflowManager] ✅ Analysis complete in 23.35s
+[WorkflowManager] Final sentiment: negative
+[WorkflowManager] Recommendation confidence: 0.90
+  Final Sentiment: negative (confidence: 0.90)
+  Processing Time: 23.35s
+  Discussion: None (linear workflow)
+
+🚀 LANGCHAIN WORKFLOW:
+[LangGraphCoordinator] Initializing 5 department agents...
+[LangGraphCoordinator]   ✓ quality department ready
+[LangGraphCoordinator]   ✓ experience department ready
+[LangGraphCoordinator]   ✓ user_experience department ready
+[LangGraphCoordinator]   ✓ business department ready
+[LangGraphCoordinator]   ✓ technical department ready
+[LangGraphCoordinator] LangGraph workflow ready for electronics products!
+
+[LangGraphCoordinator] Starting LangGraph multi-agent analysis...
+[LangGraphCoordinator] Review: Works great initially and first impressions are positive, but after 6 months 
+the quality declined, b...
+[LangGraphCoordinator] Running quality analysis...
+[LangGraphCoordinator]   ✓ quality: negative (0.95)
+[LangGraphCoordinator] Running experience analysis...
+[LangGraphCoordinator]   ✓ experience: neutral (0.75)
+[LangGraphCoordinator] Running user_experience analysis...
+[LangGraphCoordinator]   ✓ user_experience: negative (0.90)
+[LangGraphCoordinator] Running business analysis...
+[LangGraphCoordinator]   ✓ business: negative (0.90)
+[LangGraphCoordinator] Running technical analysis...
+[LangGraphCoordinator]   ✓ technical: negative (0.90)
+[LangGraphCoordinator] Consensus check: disagreement=0.20, threshold=0.6
+[LangGraphCoordinator] Consensus reached: True
+[LangGraphCoordinator] Master analyst synthesis...
+[LangGraphCoordinator]   ✓ Master synthesis: negative (0.92)
+[LangGraphCoordinator] Business advisor recommendations...
+[LangGraphCoordinator]   ✓ Business recommendations ready (0.92)
+
+[LangGraphCoordinator] ✅ LangGraph analysis complete in 17.44s
+[LangGraphCoordinator] Discussion rounds: 0
+[LangGraphCoordinator] Final sentiment: negative
+[LangGraphCoordinator] Consensus reached: True
+  Final Sentiment: negative (confidence: 0.92)
+  Processing Time: 17.46s
+  Discussion Rounds: 0
+  Consensus Reached: True
+  Disagreement Level: 0.20
+
+📊 COMPARISON ANALYSIS:
+----------------------------------------
+  Confidence: Manual 0.90 vs LangChain 0.92
+    ✅ LangChain more confident (+0.02)
+  Sentiment: Manual 'negative' vs LangChain 'negative'
+  Discussion: No disagreement detected (agents agreed)
+  Time: Manual 23.35s vs LangChain 17.46s (+-5.89s)
+    ✅ Acceptable time overhead for improved quality
+
+🎯 WINNER: Slight LangChain advantage (1/3)
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥🔥🔥🔥🔥🔥
+🔥 TEST CASE 5/5: OBJECTIVE_VS_SUBJECTIVE
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+🔥🔥🔥🔥🔥🔥
+
+================================================================================
+🧪 TEST: Subjective vs Objective Conflict
+================================================================================
+Review: Objectively this product meets all specifications and performs as advertised, but I personally hate 
+the design and it doesn't match my style preferences. Functionally perfect but aesthetically disappointing.
+Expected Advantage: Quality/Technical (objective positive) vs UX (subjective negative) needs discussion
+
+🔧 MANUAL WORKFLOW:
+[WorkflowManager] Initializing 5 department agents...
+[WorkflowManager]   ✓ quality department ready
+[WorkflowManager]   ✓ experience department ready
+[WorkflowManager]   ✓ user_experience department ready
+[WorkflowManager]   ✓ business department ready
+[WorkflowManager]   ✓ technical department ready
+[WorkflowManager] Initializing Master Sentiment Analyst...
+[WorkflowManager]   ✓ Master Analyst ready
+[WorkflowManager] Initializing Business Advisor...
+[WorkflowManager]   ✓ Business Advisor ready
+[WorkflowManager] 3-layer workflow ready for fashion products!
+
+[WorkflowManager] Starting 3-layer analysis...
+[WorkflowManager] Review: Objectively this product meets all specifications and performs as advertised, but 
+I personally hate ...
+
+[WorkflowManager] LAYER 1: Running department analysis...
+[WorkflowManager]   Running quality department...
+[WorkflowManager]   ✓ quality: positive (0.80)
+[WorkflowManager]   Running experience department...
+[WorkflowManager]   ✓ experience: neutral (0.80)
+[WorkflowManager]   Running user_experience department...
+[WorkflowManager]   ✓ user_experience: negative (0.85)
+[WorkflowManager]   Running business department...
+[WorkflowManager]   ✓ business: neutral (0.75)
+[WorkflowManager]   Running technical department...
+[WorkflowManager]   ✓ technical: positive (0.90)
+
+[WorkflowManager] LAYER 2: Master Analyst synthesis...
+[WorkflowManager]   ✓ Master synthesis: neutral (0.80)
+
+[WorkflowManager] LAYER 3: Business Advisor recommendations...
+[WorkflowManager]   ✓ Business recommendations ready (0.80)
+
+[WorkflowManager] ✅ Analysis complete in 21.55s
+[WorkflowManager] Final sentiment: neutral
+[WorkflowManager] Recommendation confidence: 0.80
+  Final Sentiment: neutral (confidence: 0.80)
+  Processing Time: 21.55s
+  Discussion: None (linear workflow)
+
+🚀 LANGCHAIN WORKFLOW:
+[LangGraphCoordinator] Initializing 5 department agents...
+[LangGraphCoordinator]   ✓ quality department ready
+[LangGraphCoordinator]   ✓ experience department ready
+[LangGraphCoordinator]   ✓ user_experience department ready
+[LangGraphCoordinator]   ✓ business department ready
+[LangGraphCoordinator]   ✓ technical department ready
+[LangGraphCoordinator] LangGraph workflow ready for fashion products!
+
+[LangGraphCoordinator] Starting LangGraph multi-agent analysis...
+[LangGraphCoordinator] Review: Objectively this product meets all specifications and performs as advertised,
+ but I personally hate ...
+[LangGraphCoordinator] Running quality analysis...
+[LangGraphCoordinator]   ✓ quality: positive (0.80)
+[LangGraphCoordinator] Running experience analysis...
+[LangGraphCoordinator]   ✓ experience: neutral (0.80)
+[LangGraphCoordinator] Running user_experience analysis...
+[LangGraphCoordinator]   ✓ user_experience: negative (0.85)
+[LangGraphCoordinator] Running business analysis...
+[LangGraphCoordinator]   ✓ business: negative (0.85)
+[LangGraphCoordinator] Running technical analysis...
+[LangGraphCoordinator]   ✓ technical: positive (0.90)
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Starting agent discussion round 1...
+[LangGraphCoordinator]   🗣️ quality refined: positive
+[LangGraphCoordinator]   🗣️ experience refined: neutral
+[LangGraphCoordinator]   🗣️ user_experience refined: negative
+[LangGraphCoordinator]   🗣️ business refined: negative
+[LangGraphCoordinator]   🗣️ technical refined: positive
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Starting agent discussion round 2...
+[LangGraphCoordinator]   🗣️ quality refined: positive
+[LangGraphCoordinator]   🗣️ experience refined: neutral
+[LangGraphCoordinator]   🗣️ user_experience refined: negative
+[LangGraphCoordinator]   🗣️ business refined: negative
+[LangGraphCoordinator]   🗣️ technical refined: positive
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Starting agent discussion round 3...
+[LangGraphCoordinator]   🗣️ quality refined: positive
+[LangGraphCoordinator]   🗣️ experience refined: neutral
+[LangGraphCoordinator]   🗣️ user_experience refined: negative
+[LangGraphCoordinator]   🗣️ business refined: negative
+[LangGraphCoordinator]   🗣️ technical refined: positive
+[LangGraphCoordinator] Consensus check: disagreement=0.60, threshold=0.6
+[LangGraphCoordinator] Consensus reached: False
+[LangGraphCoordinator] Max discussion rounds reached, proceeding to synthesis
+[LangGraphCoordinator] Master analyst synthesis...
+[LangGraphCoordinator]   ✓ Master synthesis: negative (0.85)
+[LangGraphCoordinator] Business advisor recommendations...
+[LangGraphCoordinator]   ✓ Business recommendations ready (0.85)
+
+[LangGraphCoordinator] ✅ LangGraph analysis complete in 71.90s
+[LangGraphCoordinator] Discussion rounds: 3
+[LangGraphCoordinator] Final sentiment: negative
+[LangGraphCoordinator] Consensus reached: False
+  Final Sentiment: negative (confidence: 0.85)
+  Processing Time: 71.92s
+  Discussion Rounds: 3
+  Consensus Reached: False
+  Disagreement Level: 0.60
+  Discussion Messages: 15
+    1. QUALITY: positive - The review highlights that the product meets all specificati...
+    2. EXPERIENCE: neutral - The review primarily discusses the product's design and fu...
+
+📊 COMPARISON ANALYSIS:
+----------------------------------------
+  Confidence: Manual 0.80 vs LangChain 0.85
+    ✅ LangChain more confident (+0.05)
+  Sentiment: Manual 'neutral' vs LangChain 'negative'
+    🔄 Different conclusions - LangChain refined through discussion
+  Discussion: 3 rounds with 0.60 disagreement level
+    ✅ LangChain handled agent disagreement through discussion
+  Time: Manual 21.55s vs LangChain 71.92s (+50.37s)
+
+🎯 WINNER: LangChain (2/3 advantages)
+
+🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+🏆 FINAL COMPARISON RESULTS
+🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+
+📊 SCORE BREAKDOWN:
+  LangChain Wins: 5/5 (100.0%)
+  Manual Wins: 0/5 (0.0%)
+
+🎯 OVERALL WINNER: 🚀 LANGCHAIN WORKFLOW
+     ✅ Superior performance in 5/5 conflict scenarios
+
+🔑 KEY LANGCHAIN ADVANTAGES DEMONSTRATED:
+  • Agent Discussion: Handles conflicting perspectives
+  • Consensus Building: Resolves disagreements systematically
+  • Iterative Refinement: Agents improve their analyses
+  • Higher Confidence: Better quality decisions through discussion
+  • Detailed Reasoning: More thorough explanations
+
+💡 MANUAL WORKFLOW ADVANTAGES:
+  • Simplicity: Straightforward linear approach
+  • Speed: Faster execution (no discussion overhead)
+  • Cost Efficiency: Fewer API calls
+  • Predictability: Consistent processing time
+
+🎉 CONCLUSION:
+  LangChain workflow demonstrates clear superiority in handling
+  complex, conflicting reviews that require nuanced analysis.
+  The discussion mechanism leads to higher quality decisions.
+
+✅ Comparison completed!
+📁 Results saved to: evaluation/workflow_comparison_results.json
+(multi-agent) ➜  multi-ai-agents-for-sentiment-analysis git:(kdm) ✗

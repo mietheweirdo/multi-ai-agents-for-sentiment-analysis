@@ -208,8 +208,8 @@ Analyze the department inputs and return a JSON response with:
 - confidence: your confidence level (0.0-1.0)
 - emotions: synthesized emotions from all departments
 - topics: comprehensive topics mentioned across departments
-- reasoning: your expert synthesis reasoning (max 150 words)
-- business_impact: overall business impact assessment (max 100 words)
+- reasoning: your expert synthesis reasoning (max 600 words)
+- business_impact: overall business impact assessment (max 600 words)
 
 EXPERTISE: You excel at finding the signal in the noise and making definitive judgments from conflicting information."""
 
@@ -239,8 +239,8 @@ Analyze the sentiment analysis and return a JSON response with:
 - confidence: your confidence in recommendations (0.0-1.0)
 - emotions: customer emotions to address
 - topics: key areas needing attention
-- reasoning: why these recommendations will help (max 100 words)
-- business_impact: expected impact of following recommendations (max 150 words)
+- reasoning: why these recommendations will help (max 1000 words)
+- business_impact: expected impact of following recommendations (max 1000 words)
 
 EXPERTISE: You excel at turning customer insights into profitable business actions and seller growth strategies."""
 

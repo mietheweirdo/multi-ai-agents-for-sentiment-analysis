@@ -1,0 +1,360 @@
+{
+  "electronics": {
+    "category": "electronics",
+    "single_agent": {
+      "accuracy": 1.0,
+      "correct": 8,
+      "total": 8,
+      "processing_time": 22.29476499557495,
+      "results": [
+        {
+          "review": "This phone is absolutely amazing! The camera quality is outstanding, battery lasts all day, and the ...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.95,
+          "correct": true
+        },
+        {
+          "review": "Terrible phone. Screen cracked after one week, battery dies in 4 hours, and customer support hung up...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "correct": true
+        },
+        {
+          "review": "The phone works fine. Nothing special, nothing terrible. Does what it's supposed to do.",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.85,
+          "correct": true
+        },
+        {
+          "review": "This laptop has incredible technical specs - 32GB RAM, RTX 4090, 4K OLED display, benchmarks are off...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "correct": true
+        },
+        {
+          "review": "Amazing gaming experience! This laptop runs every game at max settings flawlessly, cooling system is...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.9,
+          "correct": true
+        },
+        {
+          "review": "The smartwatch has basic fitness tracking features that work adequately. The interface is neither gr...",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.8,
+          "correct": true
+        },
+        {
+          "review": "Love the innovative features and cutting-edge technology in this phone! The AI camera is revolutiona...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.85,
+          "correct": true
+        },
+        {
+          "review": "Decent tablet for basic tasks like reading and web browsing. Screen is clear enough, battery is acce...",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.75,
+          "correct": true
+        }
+      ]
+    },
+    "multi_agent": {
+      "accuracy": 0.875,
+      "correct": 7,
+      "total": 8,
+      "processing_time": 148.46183514595032,
+      "results": [
+        {
+          "review": "This phone is absolutely amazing! The camera quality is outstanding, battery lasts all day, and the ...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.9,
+          "correct": true
+        },
+        {
+          "review": "Terrible phone. Screen cracked after one week, battery dies in 4 hours, and customer support hung up...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "correct": true
+        },
+        {
+          "review": "The phone works fine. Nothing special, nothing terrible. Does what it's supposed to do.",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.85,
+          "correct": true
+        },
+        {
+          "review": "This laptop has incredible technical specs - 32GB RAM, RTX 4090, 4K OLED display, benchmarks are off...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "correct": true
+        },
+        {
+          "review": "Amazing gaming experience! This laptop runs every game at max settings flawlessly, cooling system is...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.85,
+          "correct": true
+        },
+        {
+          "review": "The smartwatch has basic fitness tracking features that work adequately. The interface is neither gr...",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.8,
+          "correct": true
+        },
+        {
+          "review": "Love the innovative features and cutting-edge technology in this phone! The AI camera is revolutiona...",
+          "ground_truth": "positive",
+          "predicted": "neutral",
+          "confidence": 0.8,
+          "correct": false
+        },
+        {
+          "review": "Decent tablet for basic tasks like reading and web browsing. Screen is clear enough, battery is acce...",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.8,
+          "correct": true
+        }
+      ]
+    },
+    "improvement": {
+      "accuracy_improvement": -0.125,
+      "accuracy_improvement_percent": -12.5,
+      "time_ratio": 6.6590446311238045
+    }
+  },
+  "fashion": {
+    "category": "fashion",
+    "single_agent": {
+      "accuracy": 0.8333333333333334,
+      "correct": 5,
+      "total": 6,
+      "processing_time": 18.323167085647583,
+      "results": [
+        {
+          "review": "Beautiful dress! The fabric is luxurious, the fit is perfect, and I received so many compliments. De...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.95,
+          "correct": true
+        },
+        {
+          "review": "Awful experience. The shirt arrived with holes, wrong size, and stained. Customer service was rude a...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "correct": true
+        },
+        {
+          "review": "The jeans are okay. Fit is decent, material feels average, nothing special but nothing wrong either....",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.8,
+          "correct": true
+        },
+        {
+          "review": "The craftsmanship of these shoes is absolutely exquisite - genuine Italian leather, hand-stitched de...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.9,
+          "correct": true
+        },
+        {
+          "review": "Great quality jacket at an amazing price point! The material is durable, stitching is solid, and the...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.9,
+          "correct": true
+        },
+        {
+          "review": "The dress has excellent fabric quality and the design is sophisticated. However, customer service ma...",
+          "ground_truth": "positive",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "correct": false
+        }
+      ]
+    },
+    "multi_agent": {
+      "accuracy": 0.8333333333333334,
+      "correct": 5,
+      "total": 6,
+      "processing_time": 104.85239601135254,
+      "results": [
+        {
+          "review": "Beautiful dress! The fabric is luxurious, the fit is perfect, and I received so many compliments. De...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.95,
+          "correct": true
+        },
+        {
+          "review": "Awful experience. The shirt arrived with holes, wrong size, and stained. Customer service was rude a...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "correct": true
+        },
+        {
+          "review": "The jeans are okay. Fit is decent, material feels average, nothing special but nothing wrong either....",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.83,
+          "correct": true
+        },
+        {
+          "review": "The craftsmanship of these shoes is absolutely exquisite - genuine Italian leather, hand-stitched de...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.87,
+          "correct": true
+        },
+        {
+          "review": "Great quality jacket at an amazing price point! The material is durable, stitching is solid, and the...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.92,
+          "correct": true
+        },
+        {
+          "review": "The dress has excellent fabric quality and the design is sophisticated. However, customer service ma...",
+          "ground_truth": "positive",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "correct": false
+        }
+      ]
+    },
+    "improvement": {
+      "accuracy_improvement": 0.0,
+      "accuracy_improvement_percent": 0.0,
+      "time_ratio": 5.722394797866725
+    }
+  },
+  "beauty_health": {
+    "category": "beauty_health",
+    "single_agent": {
+      "accuracy": 0.5,
+      "correct": 3,
+      "total": 6,
+      "processing_time": 18.256295204162598,
+      "results": [
+        {
+          "review": "This skincare serum is incredible! My skin looks younger, feels smoother, and people keep asking wha...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.95,
+          "correct": true
+        },
+        {
+          "review": "Horrible product. Caused allergic reaction, customer service ignored my complaints, and they refused...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "correct": true
+        },
+        {
+          "review": "The moisturizer is fine. Does what it says, doesn't cause irritation, reasonable price. Nothing amaz...",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.8,
+          "correct": true
+        },
+        {
+          "review": "This supplement has amazing scientific formulation - clinically proven ingredients, optimal dosages,...",
+          "ground_truth": "positive",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "correct": false
+        },
+        {
+          "review": "Love the results from this anti-aging cream - my wrinkles are noticeably reduced and skin texture im...",
+          "ground_truth": "positive",
+          "predicted": "neutral",
+          "confidence": 0.75,
+          "correct": false
+        },
+        {
+          "review": "The vitamin supplement seems to work fine - I feel more energetic and healthy. The packaging is prof...",
+          "ground_truth": "neutral",
+          "predicted": "positive",
+          "confidence": 0.85,
+          "correct": false
+        }
+      ]
+    },
+    "multi_agent": {
+      "accuracy": 0.6666666666666666,
+      "correct": 4,
+      "total": 6,
+      "processing_time": 167.17996382713318,
+      "results": [
+        {
+          "review": "This skincare serum is incredible! My skin looks younger, feels smoother, and people keep asking wha...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.94,
+          "correct": true
+        },
+        {
+          "review": "Horrible product. Caused allergic reaction, customer service ignored my complaints, and they refused...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "correct": true
+        },
+        {
+          "review": "The moisturizer is fine. Does what it says, doesn't cause irritation, reasonable price. Nothing amaz...",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.83,
+          "correct": true
+        },
+        {
+          "review": "This supplement has amazing scientific formulation - clinically proven ingredients, optimal dosages,...",
+          "ground_truth": "positive",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "correct": false
+        },
+        {
+          "review": "Love the results from this anti-aging cream - my wrinkles are noticeably reduced and skin texture im...",
+          "ground_truth": "positive",
+          "predicted": "neutral",
+          "confidence": 0.8,
+          "correct": false
+        },
+        {
+          "review": "The vitamin supplement seems to work fine - I feel more energetic and healthy. The packaging is prof...",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.78,
+          "correct": true
+        }
+      ]
+    },
+    "improvement": {
+      "accuracy_improvement": 0.16666666666666663,
+      "accuracy_improvement_percent": 33.33333333333333,
+      "time_ratio": 9.157387189324954
+    }
+  },
+  "overall": {
+    "single_accuracy": 0.8,
+    "multi_accuracy": 0.8,
+    "improvement": 0.0,
+    "total_samples": 20
+  }
+}
