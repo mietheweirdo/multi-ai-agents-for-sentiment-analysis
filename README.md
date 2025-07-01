@@ -23,29 +23,33 @@ Hệ thống phân tích cảm xúc khách hàng sử dụng kiến trúc multi-
 
 ---
 
-## 🏗️ **Kiến trúc Hệ thống**
+## 🏗️ **Kiến trúc Hệ thống (LangGraph Workflow)**
 
 ```mermaid
 graph TD
-    A[Input Review] --> B[Department Agents Layer]
-    B --> C[Quality Agent]
-    B --> D[Experience Agent]
-    B --> E[UX Agent]
-    B --> F[Business Agent]
-    B --> G[Technical Agent]
+    A[Input Review] --> B[Quality Agent]
+    B --> C[Experience Agent]
+    C --> D[UX Agent]
+    D --> E[Business Agent]
+    E --> F[Technical Agent]
     
-    C --> H[Master Analyst]
-    D --> H
-    E --> H
-    F --> H
-    G --> H
+    F --> G{Check Consensus}
+    G -->|Disagreement >= 0.6| H[Agent Discussion Round]
+    G -->|Consensus Reached| I[Master Analyst]
     
-    H --> I[Business Advisor]
-    I --> J[Final Recommendations]
+    H --> J{Max Rounds?}
+    J -->|No| K[Refined Analysis]
+    J -->|Yes| I
+    K --> G
+    
+    I --> L[Business Advisor]
+    L --> M[Final Recommendations]
     
     style A fill:#e1f5fe
-    style H fill:#f3e5f5
-    style J fill:#e8f5e8
+    style G fill:#fff2cc
+    style H fill:#ffe6cc
+    style I fill:#f3e5f5
+    style M fill:#e8f5e8
 ```
 
 ---
