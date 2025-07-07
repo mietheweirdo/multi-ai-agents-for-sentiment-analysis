@@ -142,13 +142,124 @@ class TikiScraper:
             'Accept-Language': 'vi-VN,vi;q=0.8,en-US;q=0.5,en;q=0.3',
             'Connection': 'keep-alive',
         }
+        
+        # Product category mapping for filtering
+        self.category_keywords = {
+            'phone': ['điện thoại', 'smartphone', 'mobile', 'iphone', 'samsung', 'xiaomi', 'poco', 'realme', 'oppo', 'vivo', 'huawei'],
+            'laptop': ['laptop', 'máy tính xách tay', 'macbook', 'dell', 'hp', 'asus', 'acer', 'lenovo'],
+            'tablet': ['tablet', 'máy tính bảng', 'ipad'],
+            'camera': ['máy ảnh', 'camera', 'canon', 'nikon', 'sony camera', 'fujifilm'],
+            'headphone': ['tai nghe', 'headphone', 'earphone', 'airpods', 'earbud'],
+            'watch': ['đồng hồ', 'watch', 'apple watch', 'samsung watch'],
+            'tv': ['tivi', 'smart tv', 'television', 'tv'],
+            'speaker': ['loa', 'speaker', 'bluetooth speaker']
+        }
+        
+        # Category blacklist - products to exclude when searching for specific categories
+        self.category_blacklist = {
+            'phone': ['máy ảnh', 'camera', 'lens', 'ống kính', 'tripod', 'chân máy', 'phụ kiện máy ảnh', 'case máy ảnh', 'sạc camera', 'pin camera'],
+            'camera': ['điện thoại', 'smartphone', 'mobile phone', 'case điện thoại', 'sạc điện thoại', 'tai nghe', 'headphone'],
+            'laptop': ['điện thoại', 'smartphone', 'mobile phone', 'tablet', 'tai nghe'],
+            'headphone': ['điện thoại', 'smartphone', 'camera', 'máy ảnh', 'laptop'],
+            'watch': ['điện thoại', 'smartphone', 'camera', 'máy ảnh', 'laptop', 'tai nghe']
+        }
+    
+    def _detect_intended_category(self, keyword: str) -> str:
+        """Detect the intended product category from the search keyword"""
+        keyword_lower = keyword.lower()
+        
+        for category, terms in self.category_keywords.items():
+            for term in terms:
+                if term.lower() in keyword_lower:
+                    return category
+        
+        return 'general'
+    
+    def _enhance_keyword_for_category(self, keyword: str, category: str) -> str:
+        """Enhance search keyword to be more specific for the detected category"""
+        if category == 'phone':
+            # For phone searches, add 'điện thoại' to be more specific
+            if 'điện thoại' not in keyword.lower() and 'smartphone' not in keyword.lower():
+                return f"{keyword} điện thoại"
+        elif category == 'camera':
+            if 'máy ảnh' not in keyword.lower() and 'camera' not in keyword.lower():
+                return f"{keyword} máy ảnh"
+        
+        return keyword
+    
+    def _is_product_relevant(self, product: Dict[str, Any], intended_category: str) -> bool:
+        """Check if a product is relevant to the intended category"""
+        if intended_category == 'general':
+            return True
+        
+        product_name = product.get('name', '').lower()
+        
+        # Check if product matches the intended category
+        if intended_category in self.category_keywords:
+            category_terms = self.category_keywords[intended_category]
+            has_category_match = any(term.lower() in product_name for term in category_terms)
+            
+            # Check if product contains blacklisted terms for this category
+            if intended_category in self.category_blacklist:
+                blacklist_terms = self.category_blacklist[intended_category]
+                has_blacklisted_terms = any(term.lower() in product_name for term in blacklist_terms)
+                
+                # Product is relevant if it matches category terms and doesn't have blacklisted terms
+                return has_category_match and not has_blacklisted_terms
+            
+            return has_category_match
+        
+        return True
+    
+    def _calculate_relevance_score(self, product: Dict[str, Any], keyword: str, intended_category: str) -> float:
+        """Calculate relevance score for a product based on keyword and category"""
+        score = 0.0
+        product_name = product.get('name', '').lower()
+        keyword_lower = keyword.lower()
+        
+        # Exact keyword match bonus
+        if keyword_lower in product_name:
+            score += 3.0
+        
+        # Partial keyword match
+        keyword_words = keyword_lower.split()
+        for word in keyword_words:
+            if len(word) > 2 and word in product_name:
+                score += 1.0
+        
+        # Category relevance bonus
+        if intended_category in self.category_keywords:
+            category_terms = self.category_keywords[intended_category]
+            for term in category_terms:
+                if term.lower() in product_name:
+                    score += 2.0
+                    break
+        
+        # Review count and rating bonus (higher quality products)
+        review_count = product.get('review_count', 0)
+        rating = product.get('rating_average', 0)
+        
+        if review_count > 10:
+            score += 0.5
+        if review_count > 100:
+            score += 0.5
+        if rating >= 4.0:
+            score += 0.5
+        
+        return score
     
     def search_products(self, keyword: str) -> List[Dict[str, Any]]:
-        """Search for products on Tiki by keyword"""
+        """Search for products on Tiki by keyword with relevance filtering"""
+        # Detect intended category and enhance keyword
+        intended_category = self._detect_intended_category(keyword)
+        enhanced_keyword = self._enhance_keyword_for_category(keyword, intended_category)
+        
+        logger.info(f"Searching Tiki - Original: '{keyword}', Enhanced: '{enhanced_keyword}', Category: '{intended_category}'")
+        
         search_url = "https://tiki.vn/api/v2/products"
         params = {
-            'limit': self.config.tiki_max_products,
-            'q': keyword,
+            'limit': min(self.config.tiki_max_products * 3, 60),  # Get more results to filter
+            'q': enhanced_keyword,
             'include': 'advertisement',
             'aggregations': '2',
         }
@@ -158,20 +269,41 @@ class TikiScraper:
             response.raise_for_status()
             
             data = response.json()
-            products = []
+            all_products = []
             
             for item in data.get('data', []):
-                products.append({
+                product = {
                     'id': item['id'],
                     'name': item['name'],
                     'price': item.get('price'),
                     'rating_average': item.get('rating_average', 0),
                     'review_count': item.get('review_count', 0),
                     'url': f"https://tiki.vn/{item.get('url_path', '')}"
-                })
+                }
+                all_products.append(product)
             
-            logger.info(f"Found {len(products)} products for keyword: {keyword}")
-            return products
+            # Filter products for relevance
+            relevant_products = []
+            for product in all_products:
+                if self._is_product_relevant(product, intended_category):
+                    relevance_score = self._calculate_relevance_score(product, keyword, intended_category)
+                    product['relevance_score'] = relevance_score
+                    relevant_products.append(product)
+            
+            # Sort by relevance score (descending) and take top N
+            relevant_products.sort(key=lambda x: x['relevance_score'], reverse=True)
+            final_products = relevant_products[:self.config.tiki_max_products]
+            
+            # Remove relevance_score from final output
+            for product in final_products:
+                product.pop('relevance_score', None)
+            
+            logger.info(f"Found {len(final_products)} relevant products out of {len(all_products)} total for keyword: {keyword}")
+            
+            if len(final_products) < len(all_products):
+                logger.info(f"Filtered out {len(all_products) - len(final_products)} irrelevant products")
+            
+            return final_products
             
         except Exception as e:
             logger.error(f"Error searching Tiki products: {e}")

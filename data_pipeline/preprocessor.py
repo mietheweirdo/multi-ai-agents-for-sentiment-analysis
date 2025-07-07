@@ -164,6 +164,34 @@ class AdvancedPreprocessor:
             r'(camera|ảnh|photo|picture|video|quay)',
             r'(âm thanh|sound|speaker|loa|music|nhạc)'
         ]
+        
+        # Enhanced patterns for strict product experience filtering
+        self.product_experience_indicators = [
+            r'(đã mua|đã dùng|đã thử|bought|used|tried)',
+            r'(lên môi|apply|wear|khi dùng|when using|after using)',
+            r'(chất son|texture|độ bền|lasting|smudge|fade)',
+            r'(khô môi|dry lips|moisturizing|dưỡng ẩm|comfortable)',
+            r'(pigment|màu sắc thực tế|actual color|lên màu|color payoff)',
+            r'(trải nghiệm thực tế|actual experience|thực sự|really|actually)',
+            r'(sau khi|after|before|trước khi|trong quá trình|during)',
+            r'(cảm giác|feel|feeling|touch|cầm nắm|grip)',
+            r'(hiệu suất|performance|tốc độ|speed|lag|smooth)',
+            r'(pin|battery life|sạc|charging|runtime|standby)'
+        ]
+        
+        # Patterns for non-product content (videos, marketing, etc.)
+        self.non_product_content_patterns = [
+            r'(video|vid|swatch|clip|recording|filming|camera|youtube|channel)',
+            r'(giveaway|ga|ctkm|khuyến mãi|tặng|mua|giảm giá|promotion)',
+            r'(thank|cảm ơn|thanks|thích video|love video|subscribe)',
+            r'(áo|váy|outfit|trang phục|clothes|fashion)',
+            r'(info|infor|link|http|bit\.ly|shop|mua ở đâu|where to buy)',
+            r'(màu nào|which color|chọn màu|pick color|undertone)',
+            r'(ai xem|who watch|view|lượt xem|viewer|follower)',
+            r'(unboxing|mở hộp|first impression|ấn tượng đầu)',
+            r'(tutorial|hướng dẫn|how to|làm thế nào|guide)',
+            r'(demo|demonstration|thử|test|sample|mẫu thử)'
+        ]
     
     def _is_review_content(self, text: str) -> Tuple[bool, str]:
         """
@@ -205,25 +233,38 @@ class AdvancedPreprocessor:
             if re.search(pattern, text_lower, re.IGNORECASE):
                 return False, "emotional_only"
         
+        # Check for non-product content (videos, marketing, etc.)
+        for pattern in self.non_product_content_patterns:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                return False, "non_product_content"
+        
         # Count review indicators
         review_score = 0
         for pattern in self.review_indicators:
             if re.search(pattern, text_lower, re.IGNORECASE):
                 review_score += 1
         
+        # Count product experience indicators for stricter filtering
+        product_experience_score = 0
+        for pattern in self.product_experience_indicators:
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                product_experience_score += 1
+        
         # Check minimum length for potential reviews
         word_count = len(text.split())
         
-        # Apply review scoring logic
+        # Apply enhanced review scoring logic with product experience
         if word_count < 5:
-            if review_score == 0:
+            if review_score == 0 and product_experience_score == 0:
                 return False, "too_short_no_indicators"
         elif word_count < 10:
-            if review_score < 1:
+            if review_score < 1 and product_experience_score == 0:
                 return False, "short_insufficient_indicators"
-        else:
-            if review_score < 1 and word_count < 15:
-                return False, "medium_insufficient_indicators"
+        elif word_count >= 10:
+            # For longer reviews, require at least one product experience indicator
+            # This is the key enhancement to filter out video reviews and marketing content
+            if product_experience_score == 0 and review_score < 2:
+                return False, "insufficient_product_experience"
         
         return True, "valid_review"
     

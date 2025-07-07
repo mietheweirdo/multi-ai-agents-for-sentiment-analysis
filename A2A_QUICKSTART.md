@@ -212,20 +212,23 @@ import uuid
 
 # Create A2A payload
 payload = {
-    "jsonrpc": "2.0",
-    "id": str(uuid.uuid4()),
-    "method": "tasks/send",
-    "params": {
-        "id": str(uuid.uuid4()),
-        "message": {
-            "role": "user",
-            "parts": [{"type": "text", "text": "Should I buy iPhone 15?"}]
+    "jsonrpc": "2.0",                    # Phiên bản giao thức JSON-RPC (bắt buộc)
+    "id": str(uuid.uuid4()),             # Mã định danh yêu cầu duy nhất (bắt buộc)
+    "method": "tasks/send",              # Phương thức A2A - gửi nhiệm vụ đến agent (bắt buộc)
+    "params": {                          # Tham số của yêu cầu (bắt buộc)
+        "id": str(uuid.uuid4()),         # Mã định danh nhiệm vụ riêng biệt
+        "message": {                     # Thông điệp gửi đến agent (bắt buộc)
+            "role": "user",              # Vai trò người gửi: "user" hoặc "assistant"
+            "parts": [{                  # Mảng các phần của thông điệp
+                "type": "text",          # Loại nội dung: "text", "image", "file"
+                "text": "Should I buy iPhone 15?"  # Nội dung văn bản cần phân tích
+            }]
         },
-        "metadata": {
-            "product_category": "electronics",
-            "max_discussion_rounds": 2,
-            "disagreement_threshold": 0.6,
-            "enable_consensus_debate": True
+        "metadata": {                    # Metadata cấu hình cho LangGraph (tùy chọn)
+            "product_category": "electronics",        # Danh mục sản phẩm để tối ưu phân tích
+            "max_discussion_rounds": 2,              # Số vòng thảo luận tối đa giữa agents
+            "disagreement_threshold": 0.6,           # Ngưỡng bất đồng để kích hoạt thảo luận
+            "enable_consensus_debate": True          # Bật/tắt tính năng tranh luận đồng thuận
         }
     }
 }
@@ -233,6 +236,42 @@ payload = {
 # Call A2A coordinator
 response = requests.post("http://localhost:8010/rpc", json=payload)
 result = response.json()
+```
+
+**Giải thích chi tiết các trường:**
+
+**jsonrpc**: Phiên bản giao thức JSON-RPC 2.0 (chuẩn bắt buộc)
+
+**id**: Mã định danh yêu cầu duy nhất để theo dõi và ghép nối response
+
+**method**: Phương thức A2A "tasks/send" để gửi nhiệm vụ phân tích đến agent
+
+**params.id**: Mã định danh nhiệm vụ riêng biệt (có thể khác với request id)
+
+**params.message.role**: Vai trò của người gửi tin nhắn
+- "user" - tin nhắn từ người dùng cuối
+- "assistant" - tin nhắn từ AI assistant
+
+**params.message.parts**: Mảng chứa các phần của thông điệp
+- Hỗ trợ nhiều loại: text, image, file
+- Mỗi part có type và nội dung tương ứng
+
+**params.metadata.product_category**: Danh mục sản phẩm để agent chuyên biệt hóa
+- electronics, fashion, home_garden, beauty_health, sports_outdoors, books_media
+
+**params.metadata.max_discussion_rounds**: Số vòng thảo luận tối đa
+- 0 = không thảo luận (nhanh nhất)
+- 1-2 = cân bằng (khuyến nghị)
+- 3+ = thảo luận sâu (chậm hơn)
+
+**params.metadata.disagreement_threshold**: Ngưỡng kích hoạt thảo luận
+- 0.0 = luôn thảo luận (kỹ lưỡng nhất)
+- 0.6 = cân bằng (mặc định)
+- 1.0 = không bao giờ thảo luận (nhanh nhất)
+
+**params.metadata.enable_consensus_debate**: Bật/tắt tính năng tranh luận
+- true = cho phép agents thảo luận và refine analyses
+- false = chỉ tổng hợp kết quả ban đầu
 ```
 
 ### A2A Response Format
