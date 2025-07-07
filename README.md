@@ -109,17 +109,33 @@ python demo_langchain_system_summary.py
 - ✅ Phân tích tổng thể comprehensive
 - ✅ Business insights từ toàn bộ dataset
 
-#### **🌐 Option D: Streamlit Web Interface**
+#### **🌐 Option D: Streamlit Web Interface (Original)**
 ```bash
-# Giao diện web trực quan
+# Giao diện web trực quan - phiên bản gốc
 streamlit run app.py
 ```
 - ✅ UI thân thiện, dễ sử dụng
 - ✅ Chọn agent types và product categories
 - ✅ Real-time analysis results
-- ✅ A2A Protocol compatible
+- ✅ 3-layer workflow traditional
 
-#### **🔗 Option E: A2A Agent Servers**
+#### **🚀 Option E: A2A Streamlit Interface (Recommended)**
+```bash
+# 1. Start A2A coordinator (must run first)
+python rpc_servers/langgraph_coordinator_rpc.py
+
+# 2. Start A2A Streamlit app (in separate terminal)
+streamlit run app_a2a.py --server.port 8512
+```
+- ✅ **Same UI/UX as app.py** - giao diện hoàn toàn giống nhau
+- ✅ **A2A Protocol backend** - JSON-RPC 2.0 compliant, enterprise ready
+- ✅ **LangGraph consensus & debate** - agents discuss và reach consensus automatically
+- ✅ **Disagreement detection** - automatic conflict resolution with discussion rounds
+- ✅ **Distributed architecture** - microservices ready, scalable
+- ✅ **Enhanced error handling** - comprehensive health checks và troubleshooting
+- ✅ **Windows compatible** - tested và working on Windows systems
+
+#### **🔗 Option F: Individual A2A Agent Servers**
 ```bash
 # Chạy các agent riêng lẻ (JSON-RPC endpoints)
 python scripts/start_agents.py
@@ -134,11 +150,31 @@ python scripts/start_agents.py
 ## 💻 **Cách sử dụng**
 
 ### **Streamlit Interface**
+
+#### **Traditional Interface (app.py)**
 1. Mở trình duyệt tại `http://localhost:8501`
 2. Chọn loại sản phẩm (Electronics, Fashion, etc.)
 3. Nhập review cần phân tích
 4. Chọn chế độ phân tích (Coordinator/Individual/Sequential)
-5. Xem kết quả phân tích chi tiết
+
+#### **A2A Interface (app_a2a.py) - Recommended**
+1. **Start A2A Coordinator**: `python rpc_servers/langgraph_coordinator_rpc.py`
+   - Coordinator starts on port 8010
+   - Check health: `curl http://localhost:8010/health`
+   - Wait for "🚀 Starting LangGraph Multi-Agent Coordinator RPC Server" message
+   
+2. **Start A2A App**: `streamlit run app_a2a.py --server.port 8512`
+   - App available at `http://localhost:8512`
+   - Uses port 8512 to avoid conflicts with traditional app (8501)
+   
+3. **Interface Features**:
+   - **Same UI/UX as app.py** - familiar interface với enhanced backend
+   - **A2A protocol** - JSON-RPC 2.0 với LangGraph coordinator
+   - **Multi-agent consensus** - automatic disagreement detection & discussion
+   - **Enhanced error handling** - comprehensive health checks
+   - **Real-time feedback** - detailed progress indicators & status updates
+
+4. **Quick Test**: Visit browser, enter review, see comprehensive analysis results
 
 ### **A2A Protocol API**
 ```python
@@ -270,19 +306,75 @@ python evaluation/quick_test.py
 ## 🔧 **Troubleshooting**
 
 ### **Lỗi thường gặp:**
-1. **OpenAI API Error**: Kiểm tra API key trong `config.json`
+1. **OpenAI API Error**: Kiểm tra API key trong `config.json` và `.env`
 2. **Port conflicts**: Thay đổi port trong `scripts/start_agents.py`
 3. **Memory issues**: Giảm `max_tokens` trong config
 4. **Slow response**: Kiểm tra kết nối mạng và API limits
 
+### **A2A Specific Issues:**
+1. **"Connection refused"**: A2A coordinator chưa chạy → `python rpc_servers/langgraph_coordinator_rpc.py`
+2. **"A2A coordinator error: None"**: ✅ Đã fix - error checking logic cải thiện
+3. **"Timeout not available"**: Windows limitation - không ảnh hưởng chức năng  
+4. **Port 8010 in use**: Kill process và restart coordinator
+5. **API key mismatch**: Coordinator sử dụng .env, app sử dụng config.json
+6. **Import errors**: Đảm bảo `pip install langgraph` và dependencies đầy đủ
+
 ### **Debug mode:**
 ```bash
-# Chạy với debug logs
-python app.py --debug
+# Test A2A coordinator (comprehensive test)
+python test_a2a_quick_fix.py
 
-# Verbose output
-python workflow_manager.py --verbose
+# Check coordinator health
+curl http://localhost:8010/health
+# Expected: {"status": "healthy", "agent": "langgraph_coordinator", "version": "1.0.0"}
+
+# Test OpenAI API key
+python -c "import os; from dotenv import load_dotenv; load_dotenv(); print('API Key loaded:', bool(os.getenv('OPENAI_API_KEY')))"
+
+# Check running processes on ports
+netstat -ano | findstr :8010  # A2A coordinator
+netstat -ano | findstr :8512  # Streamlit A2A app
+netstat -ano | findstr :8501  # Traditional Streamlit app
+
+# Kill process if needed (Windows)
+# taskkill /PID <PID> /F
 ```
+
+### **Performance Tips:**
+```bash
+# Fast A2A (2 agents, minimal discussion):
+metadata = {
+    "agent_types": ["quality", "experience"], 
+    "max_discussion_rounds": 1,
+    "disagreement_threshold": 0.8
+}
+
+# Balanced A2A (3 agents, moderate discussion):
+metadata = {
+    "agent_types": ["quality", "experience", "business"], 
+    "max_discussion_rounds": 2,
+    "disagreement_threshold": 0.6
+}
+
+# Thorough A2A (all 5 agents, full discussion):
+metadata = {
+    "agent_types": ["quality", "experience", "user_experience", "business", "technical"], 
+    "max_discussion_rounds": 3,
+    "disagreement_threshold": 0.4
+}
+```
+
+### **A2A vs Traditional Mode:**
+| Feature | Traditional (app.py) | A2A (app_a2a.py) |
+|---------|---------------------|-------------------|
+| Backend | Direct Python calls | JSON-RPC 2.0 A2A protocol |
+| Agent Communication | Sequential processing | LangGraph consensus workflow |
+| Disagreement Handling | Static conflict resolution | Dynamic discussion rounds |
+| Scalability | Single process | Microservices ready |
+| UI/UX | Streamlit interface | **Identical UI/UX** |
+| Performance | Faster (no RPC overhead) | Slightly slower (better consensus) |
+| Debugging | Python stack traces | JSON-RPC logs + health checks |
+| Architecture | Monolithic | Distributed, enterprise-ready |
 
 ---
 

@@ -57,6 +57,12 @@ AGENTS = [
         "script": "rpc_servers/coordinator_agent_rpc.py",
         "port": os.getenv("COORDINATOR_AGENT_PORT", "8000"),
         "env_var": "COORDINATOR_AGENT_PORT"
+    },
+    {
+        "name": "LangGraph A2A Coordinator",
+        "script": "rpc_servers/langgraph_coordinator_rpc.py",
+        "port": os.getenv("LANGGRAPH_COORDINATOR_PORT", "8010"),
+        "env_var": "LANGGRAPH_COORDINATOR_PORT"
     }
 ]
 

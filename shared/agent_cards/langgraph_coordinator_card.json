@@ -1,0 +1,207 @@
+{
+  "name": "LangGraph Multi-Agent Sentiment Coordinator",
+  "description": "Advanced multi-agent sentiment analysis coordinator using LangGraph with consensus building and agent debate capabilities. Orchestrates specialized sentiment agents that can discuss disagreements and reach consensus through iterative refinement.",
+  "version": "1.0.0",
+  "agent_type": "langgraph_coordinator",
+  "capabilities": [
+    "requestResponse",
+    "multiAgentOrchestration",
+    "consensusBuilding",
+    "agentDebate"
+  ],
+  "skills": [
+    {
+      "name": "Multi-Agent Consensus Analysis",
+      "description": "Coordinates multiple specialized sentiment agents to analyze text and build consensus through discussion rounds"
+    },
+    {
+      "name": "Agent Debate Facilitation", 
+      "description": "Detects disagreements between agents and facilitates discussion rounds to refine analyses and reach consensus"
+    },
+    {
+      "name": "Disagreement Detection",
+      "description": "Automatically detects when agents disagree on sentiment analysis and triggers discussion workflow"
+    },
+    {
+      "name": "Consensus Building",
+      "description": "Uses configurable thresholds and iterative refinement to build agent consensus on complex reviews"
+    },
+    {
+      "name": "Specialized Agent Orchestration",
+      "description": "Manages quality, experience, user experience, business, and technical agents for comprehensive analysis"
+    }
+  ],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "message": {
+        "type": "object",
+        "properties": {
+          "role": {"type": "string", "enum": ["user"]},
+          "parts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {"type": "string", "enum": ["text"]},
+                "text": {"type": "string", "description": "Review text to analyze"}
+              }
+            }
+          }
+        }
+      },
+      "metadata": {
+        "type": "object",
+        "properties": {
+          "product_category": {
+            "type": "string",
+            "enum": ["electronics", "fashion", "home_garden", "books", "sports", "automotive"],
+            "default": "electronics",
+            "description": "Product category for specialized analysis"
+          },
+          "agent_types": {
+            "type": "array",
+            "items": {"type": "string", "enum": ["quality", "experience", "user_experience", "business", "technical"]},
+            "default": ["quality", "experience", "user_experience", "business", "technical"],
+            "description": "Types of agents to include in analysis"
+          },
+          "max_discussion_rounds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5,
+            "default": 2,
+            "description": "Maximum number of discussion rounds between agents"
+          },
+          "disagreement_threshold": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "default": 0.6,
+            "description": "Threshold for triggering agent discussion (0.0 = always discuss, 1.0 = never discuss)"
+          },
+          "enable_consensus_debate": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable/disable agent debate and consensus features"
+          },
+          "max_tokens_per_agent": {
+            "type": "integer",
+            "minimum": 50,
+            "maximum": 500,
+            "default": 150,
+            "description": "Maximum tokens per individual agent analysis"
+          }
+        }
+      }
+    }
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "consensus": {
+        "type": "object",
+        "properties": {
+          "overall_sentiment": {"type": "string", "enum": ["positive", "negative", "neutral"]},
+          "overall_confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+          "agreement_level": {"type": "string", "enum": ["high", "medium", "low"]},
+          "key_insights": {"type": "string"},
+          "business_recommendations": {"type": "string"}
+        }
+      },
+      "agent_analyses": {
+        "type": "array",
+        "items": {
+          "type": "object", 
+          "properties": {
+            "agent_type": {"type": "string"},
+            "sentiment": {"type": "string"},
+            "confidence": {"type": "number"},
+            "reasoning": {"type": "string"},
+            "business_impact": {"type": "string"}
+          }
+        }
+      },
+      "discussion_info": {
+        "type": "object",
+        "properties": {
+          "discussion_messages": {"type": "array"},
+          "discussion_rounds": {"type": "integer"},
+          "disagreement_level": {"type": "number"},
+          "consensus_reached": {"type": "boolean"}
+        }
+      },
+      "analysis_metadata": {
+        "type": "object",
+        "properties": {
+          "total_agents": {"type": "integer"},
+          "average_confidence": {"type": "number"},
+          "agreement_score": {"type": "number"},
+          "analysis_duration": {"type": "number"},
+          "workflow_type": {"type": "string"}
+        }
+      }
+    }
+  },
+  "protocol": {
+    "type": "A2A",
+    "version": "1.0"
+  },
+  "endpoints": {
+    "rpc": "/rpc",
+    "health": "/health",
+    "agent_card": "/.well-known/agent.json"
+  },
+  "features": {
+    "consensus_building": {
+      "description": "Agents can discuss disagreements and refine their analyses",
+      "configurable_threshold": true,
+      "max_discussion_rounds": 5
+    },
+    "agent_debate": {
+      "description": "Facilitates structured debates between specialist agents",
+      "debate_transcript": true,
+      "iterative_refinement": true
+    },
+    "specialized_agents": {
+      "quality": "Focuses on product quality and manufacturing aspects",
+      "experience": "Analyzes customer experience and service interactions", 
+      "user_experience": "Evaluates usability and user interface aspects",
+      "business": "Assesses business value and market positioning",
+      "technical": "Reviews technical specifications and performance"
+    }
+  },
+  "examples": [
+    {
+      "description": "Simple consensus analysis",
+      "input": {
+        "message": {
+          "role": "user",
+          "parts": [{"type": "text", "text": "This phone is amazing! Great camera and battery life."}]
+        },
+        "metadata": {
+          "product_category": "electronics"
+        }
+      },
+      "expected_behavior": "Agents likely agree (positive), minimal discussion needed"
+    },
+    {
+      "description": "Complex review requiring debate",
+      "input": {
+        "message": {
+          "role": "user", 
+          "parts": [{"type": "text", "text": "Great build quality but overpriced. Customer service was terrible but the product works well."}]
+        },
+        "metadata": {
+          "product_category": "electronics",
+          "max_discussion_rounds": 3,
+          "disagreement_threshold": 0.5
+        }
+      },
+      "expected_behavior": "Agents disagree, multiple discussion rounds to reach consensus"
+    }
+  ],
+  "author": "Multi-Agent Sentiment Analysis System",
+  "contact": "system@example.com",
+  "license": "MIT",
+  "tags": ["sentiment-analysis", "multi-agent", "consensus", "debate", "langgraph", "a2a"]
+}

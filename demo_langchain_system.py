@@ -84,7 +84,7 @@ def main():
         data = scrape_and_preprocess(
             keyword=keyword,
             sources=['youtube', 'tiki'],  # Auto both sources
-            max_items_per_source=3  # Limit for demo
+            max_items_per_source=20  # Limit for demo
         )
         
         if not data:

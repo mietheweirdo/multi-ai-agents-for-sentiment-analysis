@@ -1,4 +1,4 @@
-# app.py
+# app_a2a.py
 """
 Smart Product Assistant Chatbot
 A2A Protocol-compliant chatbot using LangGraph multi-agent consensus and debate workflow
@@ -55,8 +55,14 @@ def call_a2a_coordinator(text: str, metadata: Dict[str, Any] = None) -> Dict[str
         result = response.json()
         print(f"✅ A2A coordinator response received")
         
-        if "error" in result:
-            print(f"❌ A2A coordinator error: {result['error']}")
+        # Check for JSON-RPC error (not a top-level "error" key)
+        if "error" in result and result.get("error") is not None:
+            print(f"❌ A2A coordinator JSON-RPC error: {result['error']}")
+            return None
+        
+        # Check if result field exists (successful A2A response)
+        if "result" not in result:
+            print(f"❌ A2A coordinator response missing 'result' field")
             return None
         
         return result
@@ -96,150 +102,18 @@ def run_product_response_analysis(user_input: str) -> Dict[str, Any]:
             from data_pipeline import scrape_and_preprocess
             print(f"🌐 Scraping reviews for '{search_keywords}'...")
             
-            # Set a timeout for scraping to prevent hanging (Unix only)
+            # Use Windows-compatible scraping (no signal timeout needed)
             try:
-                import signal
-                
-                def timeout_handler(signum, frame):
-                    raise TimeoutError("Scraping timeout")
-                
-                signal.signal(signal.SIGALRM, timeout_handler)
-                signal.alarm(30)  # 30 second timeout
-                
                 scraped_data = scrape_and_preprocess(
                     keyword=search_keywords,
                     sources=['youtube', 'tiki'],
-                    max_items_per_source=5  # Reduced for speed
+                    max_items_per_source=3  # Reduced for speed
                 )
-                signal.alarm(0)  # Cancel timeout
                 print(f"✅ Found {len(scraped_data)} reviews to analyze")
-                
-            except (AttributeError, ImportError, TimeoutError):
-                # Windows or timeout - try without signal
-                print("⚠️ Timeout not available or triggered - using quick scraping...")
-                try:
-                    scraped_data = scrape_and_preprocess(
-                        keyword=search_keywords,
-                        sources=['youtube','tiki'],  # Just YouTube for speed
-                        max_items_per_source=3
-                    )
-                    print(f"✅ Found {len(scraped_data)} reviews to analyze")
-                except:
-                    print("⚠️ Scraping failed - using sample reviews instead")
-                    scraped_data = []
-            
-        except Exception as scrape_error:
-            print(f"⚠️ Scraping failed: {scrape_error}")
-            scraped_data = []
-        
-        # If no real data was scraped, use sample data for better analysis
-        if not scraped_data:
-            scraped_data = [
-                {
-                    'review_text': f"I've been using {product_name} for a few months now and overall it's decent. The performance is good but there are some areas that could be improved.",
-                    'source': 'sample',
-                    'rating': 4
-                },
-                {
-                    'review_text': f"Great product! {product_name} exceeded my expectations in most areas. Would recommend to others looking for this type of product.",
-                    'source': 'sample', 
-                    'rating': 5
-                },
-                {
-                    'review_text': f"Mixed feelings about {product_name}. Some features are excellent while others feel lacking. Price point is reasonable though.",
-                    'source': 'sample',
-                    'rating': 3
-                }
-            ]
-            print(f"📝 Using sample reviews for analysis ({len(scraped_data)} items)")
-        
-        # Step 3: A2A LangGraph multi-agent consensus analysis
-        if scraped_data:
-            # Use first few scraped reviews for context
-            review_context = "\\n".join([item.get('review_text', '')[:200] for item in scraped_data[:3]])
-            analysis_input = f"User Question: {user_input}\\n\\nRelevant Reviews:\\n{review_context}"
-        else:
-            # Use just the user input
-            analysis_input = user_input
-        
-        print(f"🤖 Running A2A LangGraph consensus analysis...")
-        
-        # Prepare A2A metadata for LangGraph coordinator
-        a2a_metadata = {
-            "product_category": product_category,
-            "agent_types": ["quality", "experience", "user_experience", "business", "technical"],
-            "max_discussion_rounds": 2,
-            "disagreement_threshold": 0.6,
-            "enable_consensus_debate": True,
-            "max_tokens_per_agent": 150,
-            "max_tokens_master": 500,
-            "max_tokens_advisor": 600
-        }
-        
-        # Call A2A LangGraph coordinator
-        a2a_response = call_a2a_coordinator(analysis_input, a2a_metadata)
-        
-        if not a2a_response:
-            # Fallback if A2A call fails
-            return {"error": "A2A coordinator not available or failed"}
-        
-        # Extract result from A2A response
-        result = extract_a2a_result(a2a_response)
-        
-        if not result:
-            return {"error": "Failed to parse A2A coordinator response"}
-        
-        # Step 4: Generate final response using specialized response agent
-        response_agent = ProductResponseAgent(config)
-        
-        # Convert A2A result format to expected format for response agent
-        formatted_result = {
-            "master_analysis": result.get("consensus", {}),
-            "business_recommendations": {"business_impact": result.get("consensus", {}).get("business_recommendations", "")},
-            "workflow_metadata": result.get("analysis_metadata", {}),
-            "department_analyses": result.get("agent_analyses", []),
-            "discussion_messages": result.get("discussion_info", {}).get("discussion_messages", [])
-        }
-        
-        readable_response = response_agent.generate_response(
-            analysis_result=formatted_result,
-            user_input=user_input,
-            product_name=product_name,
-            question_type=question_type,
-            scraped_data=scraped_data
-        )
-        
-        return {
-            "readable_response": readable_response,
-            "product_name": product_name,
-            "question_type": question_type,
-            "category": product_category,
-            "scraped_count": len(scraped_data),
-            "raw_analysis": result,
-            "a2a_metadata": a2a_metadata,
-            "discussion_rounds": result.get("analysis_metadata", {}).get("discussion_rounds", 0),
-            "consensus_reached": result.get("discussion_info", {}).get("consensus_reached", True)
-        }
-        
-    except Exception as e:
-        print(f"❌ A2A analysis failed: {e}")
-        return {"error": str(e)}
-                signal.alarm(0)  # Cancel timeout
-                print(f"✅ Found {len(scraped_data)} reviews to analyze")
-                
-            except (AttributeError, ImportError, TimeoutError):
-                # Windows or timeout - try without signal
-                print("⚠️ Timeout not available or triggered - using quick scraping...")
-                try:
-                    scraped_data = scrape_and_preprocess(
-                        keyword=search_keywords,
-                        sources=['youtube','tiki'],  # Just YouTube for speed
-                        max_items_per_source=3
-                    )
-                    print(f"✅ Found {len(scraped_data)} reviews to analyze")
-                except:
-                    print("⚠️ Scraping failed - using sample reviews instead")
-                    scraped_data = []
+            except Exception as scrape_inner_error:
+                print(f"⚠️ Scraping failed: {scrape_inner_error}")
+                print("📝 Using sample reviews for analysis instead")
+                scraped_data = []
             
         except Exception as scrape_error:
             print(f"⚠️ Scraping failed: {scrape_error}")
@@ -460,6 +334,22 @@ Examples:
             "search_keywords": search_keywords
         }
 
+def main():
+    """Main Streamlit application"""
+    st.set_page_config(
+        page_title="Smart Product Assistant",
+        page_icon="🛍️",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+    
+    # Main title
+    st.title("🛍️ Smart Product Assistant")
+    st.markdown("*AI-powered product advisor with real-time review analysis and expert consensus*")
+    
+    # Run the chatbot interface only (no sentiment analysis mode)
+    run_chatbot_interface()
+
 def run_chatbot_interface():
     """Simplified chatbot interface for product questions"""
     st.markdown("### 💬 Ask About Any Product")
@@ -582,22 +472,6 @@ def run_chatbot_interface():
         • Is MacBook worth the price?
         • Samsung vs iPhone comparison
         """)
-
-def main():
-    """Main Streamlit application"""
-    st.set_page_config(
-        page_title="Smart Product Assistant",
-        page_icon="🛍️",
-        layout="wide",
-        initial_sidebar_state="expanded"
-    )
-    
-    # Main title
-    st.title("🛍️ Smart Product Assistant")
-    st.markdown("*AI-powered product advisor with real-time review analysis and expert consensus*")
-    
-    # Run the chatbot interface only (no sentiment analysis mode)
-    run_chatbot_interface()
 
 if __name__ == "__main__":
     main()

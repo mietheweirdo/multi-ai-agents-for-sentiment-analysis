@@ -11,13 +11,17 @@ import requests
 from typing import List, Dict, Any, Optional
 from .config import ScrapingConfig
 
+
 # YouTube Data API imports (optional - only needed for keyword search)
+
 try:
     from googleapiclient.discovery import build
     from googleapiclient.errors import HttpError
     YOUTUBE_API_AVAILABLE = True
 except ImportError:
     YOUTUBE_API_AVAILABLE = False
+    class HttpError(Exception):
+        pass
 
 logger = logging.getLogger(__name__)
 
@@ -64,53 +68,47 @@ class YouTubeScraper:
             return []
 
     def _get_video_comments(self, video_id: str, video_title: str) -> List[Dict[str, Any]]:
-        """Fetch comments for a single video"""
+        """Fetch comments for a single video (robust, paginated, error-handled)"""
         comments = []
         next_page_token = None
         comment_count = 0
         max_comments = self.config.youtube_max_comments
-        
         try:
             youtube = self._get_youtube_service()
             while comment_count < max_comments:
                 request = youtube.commentThreads().list(
                     part="snippet",
                     videoId=video_id,
-                    maxResults=min(20, max_comments - comment_count),
+                    maxResults=min(100, max_comments - comment_count),
                     pageToken=next_page_token,
-                    order="relevance"
+                    textFormat="plainText"
                 )
-                
                 response = request.execute()
-                
                 for item in response['items']:
                     comment = item['snippet']['topLevelComment']['snippet']
-                    comments.append({
-                        'id': item['id'],
-                        'content': comment['textDisplay'],
-                        'author': comment['authorDisplayName'],
-                        'published_at': comment['publishedAt'],
-                        'like_count': comment.get('likeCount', 0),
-                        'video_id': video_id,
-                        'video_title': video_title,
-                        'source': 'youtube',
-                        'data_type': 'comment',
-                        'created_at': comment['publishedAt']
-                    })
-                    comment_count += 1
-                
+                    content = comment['textDisplay']
+                    if content.strip():
+                        comments.append({
+                            'id': item['id'],
+                            'content': content,
+                            'author': comment.get('authorDisplayName', ''),
+                            'published_at': comment.get('publishedAt', ''),
+                            'like_count': comment.get('likeCount', 0),
+                            'video_id': video_id,
+                            'video_title': video_title,
+                            'source': 'youtube',
+                            'data_type': 'comment',
+                            'created_at': comment.get('publishedAt', '')
+                        })
+                        comment_count += 1
+                        if comment_count >= max_comments:
+                            break
                 next_page_token = response.get('nextPageToken')
-                if not next_page_token or comment_count >= max_comments:
+                if not next_page_token:
                     break
-                    
                 time.sleep(0.1)  # Rate limiting
-                
         except HttpError as e:
-            if e.resp.status == 403:
-                logger.warning(f"Comments disabled for video {video_id}")
-            else:
-                logger.error(f"Error fetching comments for video {video_id}: {e}")
-        
+            logger.error(f"Error getting comments for {video_id}: {e}")
         return comments
     
     def scrape_by_keyword(self, keyword: str) -> List[Dict[str, Any]]:

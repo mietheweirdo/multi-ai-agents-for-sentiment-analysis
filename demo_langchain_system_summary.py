@@ -143,7 +143,7 @@ def main():
         data = scrape_and_preprocess(
             keyword=keyword,
             sources=['youtube', 'tiki'],
-            max_items_per_source=5  # Increased for comprehensive analysis
+            max_items_per_source=3  # Increased for comprehensive analysis
         )
         
         if not data:

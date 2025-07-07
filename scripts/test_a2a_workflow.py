@@ -41,7 +41,8 @@ AGENT_ENDPOINTS = {
     "user_experience": f"http://localhost:{os.getenv('USER_EXPERIENCE_AGENT_PORT', '8003')}/rpc",
     "business": f"http://localhost:{os.getenv('BUSINESS_AGENT_PORT', '8004')}/rpc",
     "technical": f"http://localhost:{os.getenv('TECHNICAL_AGENT_PORT', '8005')}/rpc",
-    "coordinator": f"http://localhost:{os.getenv('COORDINATOR_AGENT_PORT', '8000')}/rpc"
+    "coordinator": f"http://localhost:{os.getenv('COORDINATOR_AGENT_PORT', '8000')}/rpc",
+    "langgraph_coordinator": f"http://localhost:{os.getenv('LANGGRAPH_COORDINATOR_PORT', '8010')}/rpc"
 }
 
 def create_a2a_payload(text: str, metadata: Dict[str, Any] = None) -> Dict[str, Any]:
@@ -347,6 +348,132 @@ def test_health_endpoints():
         except requests.exceptions.RequestException as e:
             print(f"    Health check failed: {str(e)}")
 
+def test_langgraph_coordinator_workflow():
+    """Test LangGraph coordinator with consensus and debate workflow"""
+    print("\n" + "="*60)
+    print("🔄 TESTING LANGGRAPH A2A COORDINATOR WORKFLOW")
+    print("="*60)
+    
+    for i, test_review in enumerate(TEST_REVIEWS):
+        print(f"\n🧪 Test Case {i+1}: {test_review['product_category'].title()} Review")
+        print("-" * 50)
+        
+        review_text = test_review["text"]
+        print(f"📝 Review: {review_text[:150]}...")
+        
+        # LangGraph specific metadata with consensus/debate features
+        metadata = {
+            "product_category": test_review["product_category"],
+            "agent_types": ["quality", "experience", "user_experience", "business", "technical"],
+            "max_discussion_rounds": 3,  # More rounds for thorough discussion
+            "disagreement_threshold": 0.5,  # More sensitive to disagreement
+            "enable_consensus_debate": True,
+            "max_tokens_per_agent": 150,
+            "max_tokens_master": 500,
+            "max_tokens_advisor": 600
+        }
+        
+        print(f"🏷️  Category: {test_review['product_category']}")
+        print(f"🎯 Expected Sentiment: {test_review['expected_sentiment']}")
+        print(f"⚙️  LangGraph Config: debate={metadata['enable_consensus_debate']}, rounds={metadata['max_discussion_rounds']}")
+        
+        start_time = time.time()
+        response = call_agent(AGENT_ENDPOINTS["langgraph_coordinator"], review_text, metadata)
+        end_time = time.time()
+        
+        if response and "result" in response:
+            result_text = extract_result_text(response)
+            if result_text:
+                coordinator_result = parse_agent_result(result_text)
+                
+                if "error" not in coordinator_result:
+                    # Extract LangGraph-specific consensus info
+                    consensus = coordinator_result.get("consensus", {})
+                    discussion_info = coordinator_result.get("discussion_info", {})
+                    
+                    overall_sentiment = consensus.get("overall_sentiment", "unknown")
+                    overall_confidence = consensus.get("overall_confidence", 0.0)
+                    agreement_level = consensus.get("agreement_level", "unknown")
+                    
+                    discussion_rounds = discussion_info.get("discussion_rounds", 0)
+                    consensus_reached = discussion_info.get("consensus_reached", True)
+                    disagreement_level = discussion_info.get("disagreement_level", 0.0)
+                    
+                    print(f"\n🎯 LangGraph Consensus Results:")
+                    print(f"   Overall Sentiment: {overall_sentiment}")
+                    print(f"   Confidence: {overall_confidence:.2%}")
+                    print(f"   Agreement Level: {agreement_level}")
+                    print(f"   Analysis Time: {end_time - start_time:.2f}s")
+                    
+                    print(f"\n💬 Discussion & Debate Info:")
+                    print(f"   Discussion Rounds: {discussion_rounds}")
+                    print(f"   Consensus Reached: {'✅ Yes' if consensus_reached else '❌ No'}")
+                    print(f"   Disagreement Level: {disagreement_level:.2%}")
+                    
+                    # Check if sentiment matches expectation
+                    if overall_sentiment.lower() == test_review["expected_sentiment"].lower():
+                        print(f"   ✅ Sentiment matches expectation")
+                    else:
+                        print(f"   ⚠️  Sentiment mismatch: expected {test_review['expected_sentiment']}, got {overall_sentiment}")
+                    
+                    # Display individual agent results
+                    agent_analyses = coordinator_result.get("agent_analyses", [])
+                    print(f"\n🤖 Individual Agent Results ({len(agent_analyses)} agents):")
+                    
+                    for analysis in agent_analyses:
+                        agent_type = analysis.get("agent_type", "unknown")
+                        sentiment = analysis.get("sentiment", "unknown")
+                        confidence = analysis.get("confidence", 0.0)
+                        
+                        print(f"   {agent_type.title().replace('_', ' ')}: {sentiment} ({confidence:.2%})")
+                    
+                    # Display discussion transcript (if any)
+                    discussion_messages = discussion_info.get("discussion_messages", [])
+                    if discussion_messages:
+                        print(f"\n🗣️  Agent Discussion Transcript ({len(discussion_messages)} messages):")
+                        for j, msg in enumerate(discussion_messages[:5]):  # Show first 5 messages
+                            print(f"   {j+1}. {msg[:100]}{'...' if len(msg) > 100 else ''}")
+                        if len(discussion_messages) > 5:
+                            print(f"   ... and {len(discussion_messages) - 5} more messages")
+                    else:
+                        print(f"\n🗣️  Discussion: No discussion needed (immediate consensus)")
+                    
+                    # Display insights and recommendations
+                    insights = consensus.get("key_insights", "No insights available")
+                    recommendations = consensus.get("business_recommendations", "No recommendations available")
+                    
+                    print(f"\n💡 Key Insights:")
+                    if isinstance(insights, str):
+                        print(f"   {insights[:200]}{'...' if len(insights) > 200 else ''}")
+                    else:
+                        print(f"   {str(insights)[:200]}{'...' if len(str(insights)) > 200 else ''}")
+                    
+                    print(f"\n💼 Business Recommendations:")
+                    if isinstance(recommendations, str):
+                        print(f"   {recommendations[:200]}{'...' if len(recommendations) > 200 else ''}")
+                    else:
+                        print(f"   {str(recommendations)[:200]}{'...' if len(str(recommendations)) > 200 else ''}")
+                    
+                    # Analysis metadata
+                    metadata_info = coordinator_result.get("analysis_metadata", {})
+                    total_agents = metadata_info.get("total_agents", 0)
+                    avg_confidence = metadata_info.get("average_confidence", 0.0)
+                    agreement_score = metadata_info.get("agreement_score", 0.0)
+                    workflow_type = metadata_info.get("workflow_type", "unknown")
+                    
+                    print(f"\n📊 LangGraph Analysis Metadata:")
+                    print(f"   Total Agents: {total_agents}")
+                    print(f"   Average Confidence: {avg_confidence:.2%}")
+                    print(f"   Agreement Score: {agreement_score:.2%}")
+                    print(f"   Workflow Type: {workflow_type}")
+                    
+                else:
+                    print(f"❌ LangGraph coordinator error: {coordinator_result.get('error', 'Unknown error')}")
+            else:
+                print(f"❌ Failed to extract LangGraph coordinator result")
+        else:
+            print(f"❌ No valid response from LangGraph coordinator")
+
 def main():
     """Main test runner"""
     print(" A2A SENTIMENT ANALYSIS WORKFLOW TESTER")
@@ -365,6 +492,9 @@ def main():
     
     # Test sequential workflow
     test_sequential_workflow()
+    
+    # Test LangGraph coordinator workflow
+    test_langgraph_coordinator_workflow()
     
     print("\n" + "="*60)
     print(" A2A WORKFLOW TESTING COMPLETE")
