@@ -1,0 +1,494 @@
+{
+  "test_metadata": {
+    "workflows_compared": [
+      "single_agent",
+      "langchain"
+    ],
+    "test_date": "2025-07-06T21:19:24.860970",
+    "dataset_used": "langchain_vs_single_dataset.json",
+    "total_categories": 3,
+    "total_cases": 18
+  },
+  "results": {
+    "electronics": {
+      "category": "electronics",
+      "single_agent": {
+        "accuracy": 0.25,
+        "correct": 2,
+        "total": 8,
+        "processing_time": 25.64954924583435,
+        "avg_confidence": 0.8062499999999999,
+        "max_confidence": 0.85,
+        "min_confidence": 0.7,
+        "results": [
+          {
+            "review": "This laptop is a beast for gaming and video editing - absolutely blazing fast with the RTX 4090 and i9 processor. The performance is incredible, 4K ga...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "While the user expresses satisfaction with the laptop's performance for gaming and editing, the overwhelming frustration regarding battery life, heat, and noise significantly dampens their overall emo...",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "The iPhone camera quality is genuinely impressive - photos are sharp, colors are vibrant, and night mode is fantastic. But at $1200, it's overpriced f...",
+            "ground_truth": "neutral",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "The reviewer expresses disappointment regarding the perceived value of the product, feeling that the high price does not match the improvements. This frustration overshadows the positive feelings abou...",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "This smart TV has incredible picture quality and the interface is smooth and responsive. The apps load quickly and streaming is seamless. However, the...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.7,
+            "reasoning": "The user expresses satisfaction with the TV's performance but also significant concern regarding privacy settings. This balance of positive and negative feelings leads to a neutral overall sentiment.",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "The sound quality on these headphones is absolutely phenomenal - audiophile level clarity and bass. But the build quality is questionable - the plasti...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "While the user expresses satisfaction with the sound quality, the frustration and disappointment regarding the build quality and durability overshadow the positive feelings. The emotional impact of th...",
+            "correct": true,
+            "complexity": "complex"
+          },
+          {
+            "review": "This mechanical keyboard feels amazing to type on and the build quality is solid. The switches are responsive and satisfying. However, it's extremely ...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.75,
+            "reasoning": "The user expresses satisfaction with the typing experience and build quality, indicating delight. However, the frustration regarding the noise level creates a balanced emotional response, leading to a...",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "The tablet is perfect for digital art - pressure sensitivity is excellent, color accuracy is spot-on, and the stylus is responsive. But it's terrible ...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.75,
+            "reasoning": "The user expresses satisfaction with the tablet's performance for digital art, indicating a positive emotional response. However, frustration and disappointment arise from its poor performance in othe...",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "This smartwatch tracks fitness perfectly and the health monitoring is accurate. The interface is intuitive and battery life is good. However, the noti...",
+            "ground_truth": "neutral",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "While the user expresses satisfaction with fitness tracking and interface, the significant frustration with the buggy notification system and disconnection issues leads to an overall negative emotiona...",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "The gaming mouse has incredible precision and the RGB lighting is beautiful. The software is powerful and customizable. But it's way too expensive for...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "The user expresses frustration over the perceived lack of value for the high price, leading to feelings of disappointment despite acknowledging some positive features. This indicates a disconnect betw...",
+            "correct": true,
+            "complexity": "complex"
+          }
+        ]
+      },
+      "langchain_system": {
+        "accuracy": 0.25,
+        "correct": 2,
+        "total": 8,
+        "processing_time": 199.96995186805725,
+        "avg_confidence": 0.8437499999999999,
+        "max_confidence": 0.85,
+        "min_confidence": 0.8,
+        "avg_discussion_rounds": 0.375,
+        "max_discussion_rounds": 3,
+        "results": [
+          {
+            "review": "This laptop is a beast for gaming and video editing - absolutely blazing fast with the RTX 4090 and i9 processor. The performance is incredible, 4K ga...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review highlights exceptional performance but is overshadowed by significant quality issues such as poor battery life, excessive heat, and loud fan noise. The negative sentiments from multiple departments indicate that these drawbacks heavily influence the overall user experience.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "The iPhone camera quality is genuinely impressive - photos are sharp, colors are vibrant, and night mode is fantastic. But at $1200, it's overpriced f...",
+            "ground_truth": "neutral",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review expresses significant dissatisfaction with the high price relative to perceived value, despite acknowledging impressive camera quality. The emotional tone leans negative due to frustration over minimal improvements, leading to an overall negative sentiment assessment.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "This smart TV has incredible picture quality and the interface is smooth and responsive. The apps load quickly and streaming is seamless. However, the...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.85,
+            "master_reasoning": "While the product excels in picture quality and performance, significant concerns about privacy settings create emotional conflict. This duality leads to a neutral sentiment, as the positive aspects are overshadowed by the potential risks associated with data privacy.",
+            "discussion_rounds": 3,
+            "consensus_reached": false,
+            "disagreement_level": 0.6,
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "The sound quality on these headphones is absolutely phenomenal - audiophile level clarity and bass. But the build quality is questionable - the plasti...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review highlights exceptional sound quality but is overshadowed by significant concerns regarding build quality and durability. The negative sentiment is reinforced by multiple departments emphasizing the risks associated with product failure and material quality.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.19999999999999996,
+            "correct": true,
+            "complexity": "complex"
+          },
+          {
+            "review": "This mechanical keyboard feels amazing to type on and the build quality is solid. The switches are responsive and satisfying. However, it's extremely ...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.8,
+            "master_reasoning": "The review presents a mixed sentiment. While the build quality and typing experience are praised, the significant noise issue creates a notable drawback, leading to a neutral overall assessment. The positive aspects are counterbalanced by the limitations in usability.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "The tablet is perfect for digital art - pressure sensitivity is excellent, color accuracy is spot-on, and the stylus is responsive. But it's terrible ...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review highlights strong performance in digital art but is overshadowed by significant usability issues, such as poor battery life and slow processing for general tasks. This inconsistency leads to an overall negative sentiment despite some positive aspects.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.19999999999999996,
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "This smartwatch tracks fitness perfectly and the health monitoring is accurate. The interface is intuitive and battery life is good. However, the noti...",
+            "ground_truth": "neutral",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review presents a clear dichotomy: while the smartwatch excels in fitness tracking and health monitoring, the significant issues with the notification system and frequent disconnections lead to an overall negative sentiment. The negative aspects overshadow the positives.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.19999999999999996,
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "The gaming mouse has incredible precision and the RGB lighting is beautiful. The software is powerful and customizable. But it's way too expensive for...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review expresses significant dissatisfaction with the product's pricing relative to its performance, overshadowing the positive features. While quality and technical aspects are acknowledged, the emotional weight of perceived overpricing leads to a negative sentiment overall.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": true,
+            "complexity": "complex"
+          }
+        ]
+      },
+      "comparison": {
+        "accuracy_difference": 0.0,
+        "accuracy_improvement_percent": 0.0,
+        "confidence_difference": 0.03749999999999998,
+        "time_ratio": 7.796236493338519,
+        "langchain_has_discussions": true
+      }
+    },
+    "fashion": {
+      "category": "fashion",
+      "single_agent": {
+        "accuracy": 0.4,
+        "correct": 2,
+        "total": 5,
+        "processing_time": 12.449718952178955,
+        "avg_confidence": 0.8400000000000001,
+        "max_confidence": 0.85,
+        "min_confidence": 0.8,
+        "results": [
+          {
+            "review": "These jeans fit perfectly and the quality is exceptional - they've lasted 2 years with regular wear. The style is timeless and versatile. However, at ...",
+            "ground_truth": "positive",
+            "predicted": "positive",
+            "confidence": 0.85,
+            "reasoning": "The user expresses strong satisfaction with the fit, quality, and timeless style of the jeans, indicating a positive emotional experience. While the price is a concern, the overall delight in the prod...",
+            "correct": true,
+            "complexity": "complex"
+          },
+          {
+            "review": "The dress is absolutely stunning and photographs beautifully. The fabric feels luxurious and the cut is flattering. But it's completely impractical - ...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "While the user admires the dress's beauty and luxurious feel, the impracticality and discomfort for extended wear lead to feelings of frustration and disappointment. This creates a disconnect between ...",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "These shoes are the most comfortable I've ever worn - like walking on clouds. The design is sleek and modern. However, they show wear very quickly and...",
+            "ground_truth": "negative",
+            "predicted": "positive",
+            "confidence": 0.8,
+            "reasoning": "The user expresses strong positive feelings about comfort, describing the shoes as 'like walking on clouds,' indicating high emotional satisfaction. However, the concern about durability introduces a ...",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "The jacket is well-made and the style is classic. It's warm and fits well. But the brand's marketing emphasizes sustainability while using questionabl...",
+            "ground_truth": "neutral",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "While the user appreciates the jacket's quality and fit, the ethical implications surrounding the brand's practices evoke feelings of disappointment and frustration. This conflict between product sati...",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "This handbag is gorgeous and gets compliments constantly. The leather quality is excellent and craftsmanship is top-notch. But it's completely impract...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "While the user admires the handbag's beauty and craftsmanship, the frustration stemming from its impracticality and discomfort overshadows their positive feelings. This leads to an overall negative em...",
+            "correct": true,
+            "complexity": "complex"
+          }
+        ]
+      },
+      "langchain_system": {
+        "accuracy": 0.6,
+        "correct": 3,
+        "total": 5,
+        "processing_time": 125.93123292922974,
+        "avg_confidence": 0.85,
+        "max_confidence": 0.85,
+        "min_confidence": 0.85,
+        "avg_discussion_rounds": 0.6,
+        "max_discussion_rounds": 3,
+        "results": [
+          {
+            "review": "These jeans fit perfectly and the quality is exceptional - they've lasted 2 years with regular wear. The style is timeless and versatile. However, at ...",
+            "ground_truth": "positive",
+            "predicted": "positive",
+            "confidence": 0.85,
+            "master_reasoning": "The review conveys strong satisfaction with the product's quality, fit, and durability, which are emphasized positively. While there is concern regarding the high price, the overall sentiment remains positive due to the justification of quality. This leads to a favorable assessment despite price sen...",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": true,
+            "complexity": "complex"
+          },
+          {
+            "review": "The dress is absolutely stunning and photographs beautifully. The fabric feels luxurious and the cut is flattering. But it's completely impractical - ...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review highlights significant concerns regarding the dress's impracticality and discomfort, overshadowing its aesthetic appeal. All departments indicate negative sentiment, particularly regarding usability and customer satisfaction, leading to a consensus on the overall negative assessment.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.19999999999999996,
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "These shoes are the most comfortable I've ever worn - like walking on clouds. The design is sleek and modern. However, they show wear very quickly and...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "Despite high praise for comfort and design, significant concerns about durability and rapid wear lead to an overall negative sentiment. The conflicting emotions highlight satisfaction with immediate experience but disappointment regarding long-term usability.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": true,
+            "complexity": "complex"
+          },
+          {
+            "review": "The jacket is well-made and the style is classic. It's warm and fits well. But the brand's marketing emphasizes sustainability while using questionabl...",
+            "ground_truth": "neutral",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review highlights strong product quality and warmth but is overshadowed by significant ethical concerns regarding labor practices. This conflict leads to a negative sentiment, as the user's satisfaction is compromised by their moral considerations.",
+            "discussion_rounds": 3,
+            "consensus_reached": false,
+            "disagreement_level": 0.6,
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "This handbag is gorgeous and gets compliments constantly. The leather quality is excellent and craftsmanship is top-notch. But it's completely impract...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "Despite the handbag's praised quality and craftsmanship, the significant concerns regarding its impracticality and discomfort lead to an overall negative sentiment. The emotional response reflects frustration and disappointment, overshadowing any admiration for its aesthetics.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": true,
+            "complexity": "complex"
+          }
+        ]
+      },
+      "comparison": {
+        "accuracy_difference": 0.19999999999999996,
+        "accuracy_improvement_percent": 49.999999999999986,
+        "confidence_difference": 0.009999999999999898,
+        "time_ratio": 10.11518680967406,
+        "langchain_has_discussions": true
+      }
+    },
+    "beauty_health": {
+      "category": "beauty_health",
+      "single_agent": {
+        "accuracy": 0.4,
+        "correct": 2,
+        "total": 5,
+        "processing_time": 12.940207958221436,
+        "avg_confidence": 0.82,
+        "max_confidence": 0.85,
+        "min_confidence": 0.7,
+        "results": [
+          {
+            "review": "This skincare serum actually works - my skin is noticeably clearer and more radiant after 6 weeks. The results are impressive and consistent. However,...",
+            "ground_truth": "positive",
+            "predicted": "positive",
+            "confidence": 0.85,
+            "reasoning": "The user expresses overall satisfaction and delight with the serum's effectiveness, despite initial frustrations from breakouts. The positive transformation in skin appearance outweighs the temporary ...",
+            "correct": true,
+            "complexity": "complex"
+          },
+          {
+            "review": "The fitness supplement helped me lose 15 pounds and gain energy. The results are real and noticeable. But the taste is awful and it gives me stomach u...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "While the user feels satisfaction from weight loss and increased energy, the negative emotional impact of the awful taste and stomach upset overshadows these positives, leading to an overall feeling o...",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "This perfume has a beautiful, sophisticated scent that lasts all day. I get compliments regularly. However, it's very strong and can be overwhelming i...",
+            "ground_truth": "positive",
+            "predicted": "positive",
+            "confidence": 0.85,
+            "reasoning": "The user expresses happiness and satisfaction with the perfume's scent and the compliments received, indicating a positive emotional experience. However, the mention of it being overwhelming suggests ...",
+            "correct": true,
+            "complexity": "complex"
+          },
+          {
+            "review": "The hair product gives amazing results - my hair is shinier and more manageable. The formula feels luxurious and works well. But it's extremely expens...",
+            "ground_truth": "negative",
+            "predicted": "neutral",
+            "confidence": 0.7,
+            "reasoning": "The user expresses satisfaction with the product's results and luxurious feel, indicating positive emotions. However, the frustration over the high cost and the amount needed creates a balance, leadin...",
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "This makeup foundation provides excellent coverage and looks natural. The finish is smooth and it lasts all day. However, it clogs pores and causes br...",
+            "ground_truth": "neutral",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "While the user appreciates the excellent coverage and natural look, the negative emotional response arises from the frustration of breakouts and pore clogging. This leads to disappointment regarding d...",
+            "correct": false,
+            "complexity": "complex"
+          }
+        ]
+      },
+      "langchain_system": {
+        "accuracy": 0.4,
+        "correct": 2,
+        "total": 5,
+        "processing_time": 90.8483362197876,
+        "avg_confidence": 0.82,
+        "max_confidence": 0.85,
+        "min_confidence": 0.8,
+        "avg_discussion_rounds": 0.0,
+        "max_discussion_rounds": 0,
+        "results": [
+          {
+            "review": "This skincare serum actually works - my skin is noticeably clearer and more radiant after 6 weeks. The results are impressive and consistent. However,...",
+            "ground_truth": "positive",
+            "predicted": "positive",
+            "confidence": 0.8,
+            "master_reasoning": "Despite initial breakouts and irritation, the review highlights significant improvements in skin clarity and radiance, indicating strong user satisfaction. The willingness to endure initial discomfort for long-term benefits reflects a positive overall sentiment.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": true,
+            "complexity": "complex"
+          },
+          {
+            "review": "The fitness supplement helped me lose 15 pounds and gain energy. The results are real and noticeable. But the taste is awful and it gives me stomach u...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review highlights effective weight loss and energy gain but is overshadowed by significant negative experiences related to taste and gastrointestinal issues. This emotional conflict leads to an overall negative sentiment despite some positive outcomes.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "This perfume has a beautiful, sophisticated scent that lasts all day. I get compliments regularly. However, it's very strong and can be overwhelming i...",
+            "ground_truth": "positive",
+            "predicted": "positive",
+            "confidence": 0.8,
+            "master_reasoning": "The review predominantly highlights the perfume's sophisticated scent and lasting quality, leading to user satisfaction. While there are concerns about its strength in small spaces, the overall positive sentiment regarding the scent and compliments received outweighs the negatives.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": true,
+            "complexity": "complex"
+          },
+          {
+            "review": "The hair product gives amazing results - my hair is shinier and more manageable. The formula feels luxurious and works well. But it's extremely expens...",
+            "ground_truth": "negative",
+            "predicted": "neutral",
+            "confidence": 0.8,
+            "master_reasoning": "The review reflects a neutral sentiment due to the conflicting emotions of satisfaction with the product's results and frustration over its high cost and excessive usage. While the quality is praised, concerns about value balance the overall sentiment.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": false,
+            "complexity": "complex"
+          },
+          {
+            "review": "This makeup foundation provides excellent coverage and looks natural. The finish is smooth and it lasts all day. However, it clogs pores and causes br...",
+            "ground_truth": "neutral",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The overall sentiment is negative due to the product's tendency to clog pores and cause breakouts, overshadowing its positive attributes like excellent coverage and natural look. This inconsistency raises significant concerns about its suitability for regular use.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.19999999999999996,
+            "correct": false,
+            "complexity": "complex"
+          }
+        ]
+      },
+      "comparison": {
+        "accuracy_difference": 0.0,
+        "accuracy_improvement_percent": 0.0,
+        "confidence_difference": 0.0,
+        "time_ratio": 7.020624128537903,
+        "langchain_has_discussions": false
+      }
+    }
+  }
+}

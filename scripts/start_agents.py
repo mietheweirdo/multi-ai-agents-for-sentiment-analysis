@@ -57,6 +57,20 @@ AGENTS = [
         "script": "rpc_servers/coordinator_agent_rpc.py",
         "port": os.getenv("COORDINATOR_AGENT_PORT", "8000"),
         "env_var": "COORDINATOR_AGENT_PORT"
+    },
+    {
+        "name": "Conversational Agent",
+        "script": "rpc_servers/conversational_agent_rpc.py",
+        "port": os.getenv("CONVERSATIONAL_AGENT_PORT", "8010"),
+        "env_var": "CONVERSATIONAL_AGENT_PORT"
+    },
+    {
+        "name": "Enhanced A2A Coordinator",
+        "script": "rpc_servers/enhanced_a2a_coordinator.py",
+        "port": os.getenv("A2A_COORDINATOR_PORT", "8020"),
+        "env_var": "A2A_COORDINATOR_PORT",
+        "optional": True,
+        "description": "True Agent-to-Agent communication coordinator"
     }
 ]
 
@@ -88,16 +102,26 @@ class AgentManager:
         except OSError:
             return False
     
-    def start_agent(self, agent_config: Dict[str, str]) -> bool:
+    def start_agent(self, agent_config: Dict[str, str], force_start: bool = False) -> bool:
         """Start a single agent"""
         name = agent_config["name"]
         script = agent_config["script"]
         port = agent_config["port"]
+        is_optional = agent_config.get("optional", False)
+        
+        # Skip optional agents unless forced
+        if is_optional and not force_start:
+            logger.info(f"⏭️  Skipping optional agent: {name} (use --a2a flag to enable)")
+            return True
         
         # Check if port is available
         if not self.check_port_available(port):
-            logger.error(f"Port {port} is already in use for {name}")
-            return False
+            if is_optional:
+                logger.warning(f"⚠️  Port {port} is already in use for optional {name}, skipping")
+                return True
+            else:
+                logger.error(f"Port {port} is already in use for {name}")
+                return False
         
         # Check if script exists
         if not os.path.exists(script):
@@ -124,17 +148,20 @@ class AgentManager:
             
             # Check if process is still running
             if process.poll() is None:
-                logger.info(f" {name} started successfully on port {port}")
+                if is_optional:
+                    logger.info(f"🚀 {name} started successfully on port {port} (A2A enabled)")
+                else:
+                    logger.info(f"✅ {name} started successfully on port {port}")
                 return True
             else:
                 stdout, stderr = process.communicate()
-                logger.error(f" {name} failed to start:")
+                logger.error(f"❌ {name} failed to start:")
                 logger.error(f"STDOUT: {stdout}")
                 logger.error(f"STDERR: {stderr}")
                 return False
                 
         except Exception as e:
-            logger.error(f" Failed to start {name}: {str(e)}")
+            logger.error(f"❌ Failed to start {name}: {str(e)}")
             return False
     
     def stop_agent(self, name: str):
@@ -173,29 +200,53 @@ class AgentManager:
         self.running = False
         logger.info("All agents stopped")
     
-    def start_all_agents(self) -> bool:
+    def start_all_agents(self, enable_a2a: bool = False) -> bool:
         """Start all agents"""
-        logger.info("Starting all A2A sentiment analysis agents...")
+        logger.info("🚀 Starting multi-agent sentiment analysis system...")
+        
+        if enable_a2a:
+            logger.info("🔗 A2A mode enabled - will start enhanced coordinator for true agent-to-agent communication")
+            # Set environment variable for conversational agent
+            os.environ["USE_A2A_COORDINATOR"] = "true"
         
         # Validate environment
         if not self.validate_environment():
             return False
         
         success_count = 0
+        total_agents = len(AGENTS)
         
         for agent_config in AGENTS:
-            if self.start_agent(agent_config):
-                success_count += 1
+            is_optional = agent_config.get("optional", False)
+            
+            if self.start_agent(agent_config, force_start=enable_a2a if is_optional else True):
+                if not is_optional or enable_a2a:  # Count optional agents only if they actually started
+                    success_count += 1
             else:
-                logger.error(f"Failed to start {agent_config['name']}")
+                if not is_optional:  # Only fail on required agents
+                    logger.error(f"❌ Failed to start required agent: {agent_config['name']}")
+                    return False
         
-        if success_count == len(AGENTS):
-            logger.info(f" All {len(AGENTS)} agents started successfully!")
+        # Calculate expected agents (required + optional if A2A enabled)
+        required_agents = [a for a in AGENTS if not a.get("optional", False)]
+        optional_agents = [a for a in AGENTS if a.get("optional", False)]
+        
+        expected_count = len(required_agents)
+        if enable_a2a:
+            expected_count += len(optional_agents)
+        
+        if success_count >= len(required_agents):
+            if enable_a2a:
+                logger.info(f"🎉 A2A system started! {success_count}/{expected_count} agents running")
+                logger.info("🔗 Enhanced A2A coordinator enabled for true agent-to-agent communication")
+            else:
+                logger.info(f"✅ Standard system started! {success_count}/{len(required_agents)} agents running")
+            
             self.running = True
-            self.print_status()
+            self.print_status(enable_a2a)
             return True
         else:
-            logger.error(f" Only {success_count}/{len(AGENTS)} agents started successfully")
+            logger.error(f"❌ System startup failed: {success_count}/{expected_count} agents started")
             return False
     
     def validate_environment(self) -> bool:
@@ -223,18 +274,28 @@ class AgentManager:
         logger.info(" Environment validation passed")
         return True
     
-    def print_status(self):
+    def print_status(self, a2a_enabled: bool = False):
         """Print status of all agents"""
         logger.info("\n" + "="*60)
-        logger.info(" A2A SENTIMENT ANALYSIS AGENTS STATUS")
+        if a2a_enabled:
+            logger.info("🔗 A2A MULTI-AGENT SYSTEM STATUS")
+        else:
+            logger.info("📊 SENTIMENT ANALYSIS AGENTS STATUS")
         logger.info("="*60)
         
         for agent_config in AGENTS:
             name = agent_config["name"]
             port = agent_config["port"]
+            is_optional = agent_config.get("optional", False)
             
             if name in self.processes and self.processes[name].poll() is None:
-                status = "🟢 RUNNING"
+                if is_optional and a2a_enabled:
+                    status = "🚀 RUNNING (A2A)"
+                elif is_optional:
+                    status = "⏭️  SKIPPED (optional)"
+                else:
+                    status = "🟢 RUNNING"
+                
                 url = f"http://localhost:{port}"
                 rpc_url = f"http://localhost:{port}/rpc"
                 health_url = f"http://localhost:{port}/health"
@@ -247,13 +308,19 @@ class AgentManager:
                 logger.info(f"  Card: {card_url}")
                 logger.info("")
             else:
-                status = "🔴 STOPPED"
+                if is_optional and not a2a_enabled:
+                    status = "⏭️  SKIPPED (optional)"
+                else:
+                    status = "🔴 STOPPED"
                 logger.info(f"{name:<25} {status}")
                 logger.info("")
         
         logger.info("="*60)
-        logger.info(" Usage:")
-        logger.info("  - Start Streamlit UI: streamlit run app.py")
+        logger.info("🚀 Usage:")
+        logger.info("  - Start Chat Interface: streamlit run app.py")
+        if a2a_enabled:
+            logger.info("  - A2A Communication: Agents communicate via JSON-RPC")
+            logger.info("  - Enhanced Coordinator: localhost:8020/health")
         logger.info("  - Test RPC endpoints with curl or Postman")
         logger.info("  - View agent cards at /.well-known/agent.json")
         logger.info("  - Check health at /health")
@@ -319,12 +386,29 @@ def main():
     """Main entry point"""
     import argparse
     
-    parser = argparse.ArgumentParser(description="A2A Sentiment Analysis Agent Manager")
+    parser = argparse.ArgumentParser(
+        description="Multi-Agent Sentiment Analysis System",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python start_agents.py                    # Start standard system
+  python start_agents.py --a2a              # Start with A2A coordinator  
+  python start_agents.py --a2a --no-monitor # A2A without monitoring
+        """
+    )
+    parser.add_argument("--a2a", action="store_true", help="Enable A2A (Agent-to-Agent) communication mode")
     parser.add_argument("--no-monitor", action="store_true", help="Don't monitor agents after starting")
     parser.add_argument("--health-check", action="store_true", help="Perform health check only")
     parser.add_argument("--stop", action="store_true", help="Stop all running agents")
     
     args = parser.parse_args()
+    
+    # Setup logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        datefmt='%H:%M:%S'
+    )
     
     manager = AgentManager()
     
@@ -339,14 +423,29 @@ def main():
         manager.stop_all_agents()
         sys.exit(0)
     
-    # Start all agents
-    if manager.start_all_agents():
-        if not args.no_monitor:
-            manager.monitor_agents()
+    try:
+        # Start all agents with A2A option
+        if manager.start_all_agents(enable_a2a=args.a2a):
+            if args.a2a:
+                logger.info("🔗 A2A system ready! Agents communicate via JSON-RPC protocol")
+            else:
+                logger.info("✅ Standard system ready!")
+            
+            if not args.no_monitor:
+                manager.monitor_agents()
+            else:
+                logger.info("💡 Agents started. Use --health-check to monitor or --stop to stop them.")
         else:
-            logger.info("Agents started. Use --health-check to monitor or --stop to stop them.")
-    else:
-        logger.error("Failed to start all agents")
+            logger.error("❌ Failed to start system")
+            manager.stop_all_agents()
+            sys.exit(1)
+            
+    except KeyboardInterrupt:
+        logger.info("\n⏹️  Shutdown requested...")
+        manager.stop_all_agents()
+        
+    except Exception as e:
+        logger.error(f"❌ Unexpected error: {str(e)}")
         manager.stop_all_agents()
         sys.exit(1)
 

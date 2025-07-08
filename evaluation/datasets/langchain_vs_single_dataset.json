@@ -1,0 +1,116 @@
+{
+  "electronics": [
+    {
+      "review": "This laptop is a beast for gaming and video editing - absolutely blazing fast with the RTX 4090 and i9 processor. The performance is incredible, 4K gaming at 120fps easily. However, the battery life is terrible (2 hours max), it runs extremely hot, and the fan noise is like a jet engine. For desktop replacement, it's perfect. For portability, it's a nightmare.",
+      "ground_truth": "positive",
+      "complexity": "complex",
+      "reason": "Performance excellence outweighs portability issues for target audience"
+    },
+    {
+      "review": "The iPhone camera quality is genuinely impressive - photos are sharp, colors are vibrant, and night mode is fantastic. But at $1200, it's overpriced for what you get. Same features as last year with minor improvements. The battery life is decent but not exceptional. If you already have an iPhone 13, skip this one.",
+      "ground_truth": "neutral",
+      "complexity": "complex", 
+      "reason": "Good features balanced by high price and minimal improvements"
+    },
+    {
+      "review": "This smart TV has incredible picture quality and the interface is smooth and responsive. The apps load quickly and streaming is seamless. However, the privacy settings are concerning - it collects way too much data and the default settings send everything to the manufacturer. Great TV if you can configure privacy properly.",
+      "ground_truth": "positive",
+      "complexity": "complex",
+      "reason": "Core TV functionality excellent, privacy issues are configurable"
+    },
+    {
+      "review": "The sound quality on these headphones is absolutely phenomenal - audiophile level clarity and bass. But the build quality is questionable - the plastic feels cheap and they broke after 6 months of careful use. Amazing sound while they last, but durability is a major concern.",
+      "ground_truth": "negative",
+      "complexity": "complex",
+      "reason": "Poor durability undermines excellent sound quality"
+    },
+    {
+      "review": "This mechanical keyboard feels amazing to type on and the build quality is solid. The switches are responsive and satisfying. However, it's extremely loud - you can't use it in quiet environments or offices. Perfect for home use, but limited applicability.",
+      "ground_truth": "positive",
+      "complexity": "complex",
+      "reason": "Excellent for intended use case (home) despite noise limitations"
+    },
+    {
+      "review": "The tablet is perfect for digital art - pressure sensitivity is excellent, color accuracy is spot-on, and the stylus is responsive. But it's terrible for everything else - slow for web browsing, poor for videos, and the battery drains quickly. Great specialized tool, poor general tablet.",
+      "ground_truth": "positive",
+      "complexity": "complex",
+      "reason": "Excels at primary purpose (digital art) despite general limitations"
+    },
+    {
+      "review": "This smartwatch tracks fitness perfectly and the health monitoring is accurate. The interface is intuitive and battery life is good. However, the notification system is buggy and it frequently disconnects from the phone. Great fitness device, poor smartwatch.",
+      "ground_truth": "neutral",
+      "complexity": "complex",
+      "reason": "Strong fitness features balanced by connectivity issues"
+    },
+    {
+      "review": "The gaming mouse has incredible precision and the RGB lighting is beautiful. The software is powerful and customizable. But it's way too expensive for what it offers - you can get 90% of the performance for half the price. It's premium but not worth the premium price.",
+      "ground_truth": "negative",
+      "complexity": "complex",
+      "reason": "Good performance but poor value proposition"
+    }
+  ],
+  "fashion": [
+    {
+      "review": "These jeans fit perfectly and the quality is exceptional - they've lasted 2 years with regular wear. The style is timeless and versatile. However, at $200, they're extremely expensive for jeans. Great quality justifies the cost if you can afford it.",
+      "ground_truth": "positive",
+      "complexity": "complex",
+      "reason": "Quality and longevity justify premium pricing"
+    },
+    {
+      "review": "The dress is absolutely stunning and photographs beautifully. The fabric feels luxurious and the cut is flattering. But it's completely impractical - requires dry cleaning, wrinkles easily, and is uncomfortable for long wear. Perfect for special occasions only.",
+      "ground_truth": "positive",
+      "complexity": "complex",
+      "reason": "Excellent for intended use (special occasions) despite practicality issues"
+    },
+    {
+      "review": "These shoes are the most comfortable I've ever worn - like walking on clouds. The design is sleek and modern. However, they show wear very quickly and the soles are wearing down after just 3 months. Comfort is amazing but durability is concerning.",
+      "ground_truth": "negative",
+      "complexity": "complex",
+      "reason": "Poor durability undermines comfort benefits"
+    },
+    {
+      "review": "The jacket is well-made and the style is classic. It's warm and fits well. But the brand's marketing emphasizes sustainability while using questionable labor practices. Good product, but the ethical concerns are troubling.",
+      "ground_truth": "neutral",
+      "complexity": "complex",
+      "reason": "Product quality balanced by ethical concerns"
+    },
+    {
+      "review": "This handbag is gorgeous and gets compliments constantly. The leather quality is excellent and craftsmanship is top-notch. But it's completely impractical - too small for daily use and the shoulder strap is uncomfortable. Beautiful but not functional.",
+      "ground_truth": "negative",
+      "complexity": "complex",
+      "reason": "Beauty doesn't compensate for poor functionality"
+    }
+  ],
+  "beauty_health": [
+    {
+      "review": "This skincare serum actually works - my skin is noticeably clearer and more radiant after 6 weeks. The results are impressive and consistent. However, it causes initial breakouts and irritation for the first 2 weeks. Worth pushing through the adjustment period.",
+      "ground_truth": "positive",
+      "complexity": "complex",
+      "reason": "Long-term benefits outweigh temporary adjustment issues"
+    },
+    {
+      "review": "The fitness supplement helped me lose 15 pounds and gain energy. The results are real and noticeable. But the taste is awful and it gives me stomach upset if I don't take it with food. Effective but unpleasant to use.",
+      "ground_truth": "positive",
+      "complexity": "complex",
+      "reason": "Effective results justify minor side effects"
+    },
+    {
+      "review": "This perfume has a beautiful, sophisticated scent that lasts all day. I get compliments regularly. However, it's very strong and can be overwhelming in small spaces. Perfect for special occasions, too much for daily wear.",
+      "ground_truth": "positive",
+      "complexity": "complex",
+      "reason": "Excellent for appropriate use despite intensity"
+    },
+    {
+      "review": "The hair product gives amazing results - my hair is shinier and more manageable. The formula feels luxurious and works well. But it's extremely expensive and you need to use a lot of product. Great results, questionable value.",
+      "ground_truth": "negative",
+      "complexity": "complex",
+      "reason": "Poor value proposition despite good results"
+    },
+    {
+      "review": "This makeup foundation provides excellent coverage and looks natural. The finish is smooth and it lasts all day. However, it clogs pores and causes breakouts with regular use. Perfect for occasional use, problematic for daily wear.",
+      "ground_truth": "neutral",
+      "complexity": "complex",
+      "reason": "Good performance balanced by skin issues"
+    }
+  ]
+} 

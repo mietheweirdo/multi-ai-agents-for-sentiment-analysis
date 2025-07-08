@@ -1,0 +1,74 @@
+{
+  "electronics": [
+    {
+      "review": "This phone is amazing! The camera is fantastic, battery lasts all day, and it's super fast. Definitely recommend it!",
+      "ground_truth": "positive",
+      "complexity": "simple",
+      "reason": "Clear positive sentiment with no conflicts"
+    },
+    {
+      "review": "Terrible laptop. Slow, crashes constantly, and overheats. Total waste of money. Don't buy this.",
+      "ground_truth": "negative",
+      "complexity": "simple",
+      "reason": "Clear negative sentiment with no redeeming qualities"
+    },
+    {
+      "review": "The headphones are okay. Sound quality is decent and they're comfortable enough. Nothing special but they work.",
+      "ground_truth": "neutral",
+      "complexity": "simple",
+      "reason": "Clear neutral sentiment - adequate but unremarkable"
+    },
+    {
+      "review": "Love this smartwatch! Great fitness tracking, easy to use, and looks good. Perfect for my workouts.",
+      "ground_truth": "positive",
+      "complexity": "simple",
+      "reason": "Clear positive sentiment with enthusiastic tone"
+    },
+    {
+      "review": "This tablet is garbage. Screen is dim, slow processor, and terrible battery life. Completely useless.",
+      "ground_truth": "negative",
+      "complexity": "simple",
+      "reason": "Clear negative sentiment with strong language"
+    }
+  ],
+  "fashion": [
+    {
+      "review": "These jeans are perfect! Great fit, comfortable, and they look amazing. Best purchase I've made in ages.",
+      "ground_truth": "positive",
+      "complexity": "simple",
+      "reason": "Clear positive sentiment with strong endorsement"
+    },
+    {
+      "review": "Horrible dress. Poor quality fabric, terrible fit, and completely overpriced. Do not recommend.",
+      "ground_truth": "negative",
+      "complexity": "simple",
+      "reason": "Clear negative sentiment with explicit not recommended"
+    },
+    {
+      "review": "The jacket is fine. It's warm enough and fits okay. Nothing extraordinary but it serves its purpose.",
+      "ground_truth": "neutral",
+      "complexity": "simple",
+      "reason": "Clear neutral sentiment - functional but unremarkable"
+    }
+  ],
+  "beauty_health": [
+    {
+      "review": "This skincare cream is wonderful! My skin is so much smoother and softer. Really happy with the results.",
+      "ground_truth": "positive",
+      "complexity": "simple",
+      "reason": "Clear positive sentiment with visible results"
+    },
+    {
+      "review": "Awful supplement. Made me feel sick and gave me headaches. Complete waste of money.",
+      "ground_truth": "negative",
+      "complexity": "simple",
+      "reason": "Clear negative sentiment with adverse effects"
+    },
+    {
+      "review": "The lip balm is alright. Keeps lips moisturized and doesn't have a strong smell. It's okay.",
+      "ground_truth": "neutral",
+      "complexity": "simple",
+      "reason": "Clear neutral sentiment - does the job adequately"
+    }
+  ]
+} 

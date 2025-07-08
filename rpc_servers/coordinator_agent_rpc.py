@@ -6,7 +6,7 @@ Orchestrates multi-agent sentiment analysis using your existing EnhancedCoordina
 
 import os
 import logging
-from typing import Optional, List
+from typing import Optional, List, Dict
 from fastapi import FastAPI, HTTPException
 from dotenv import load_dotenv
 
@@ -55,6 +55,61 @@ config = {
 
 # Global coordinator instance (can be reconfigured per request)
 coordinator = None
+
+def combine_scraped_reviews(scraped_data: List[Dict], product_name: str) -> tuple[str, dict]:
+    """Combine scraped reviews into single analysis dataset and return metadata"""
+    combined_text = ""
+    review_count = len(scraped_data)
+    
+    # Track metadata for response
+    sources_used = set()
+    reviews_by_source = {}
+    sample_reviews = []
+    
+    # Add summary header
+    combined_text += f"COMPREHENSIVE PRODUCT ANALYSIS DATASET\n"
+    combined_text += f"Product: {product_name}\n"
+    combined_text += f"Total Reviews: {review_count}\n"
+    combined_text += f"Sources: {', '.join(set(item.get('metadata', {}).get('source', 'unknown') for item in scraped_data))}\n\n"
+    
+    # Add each review with clear separation
+    for i, item in enumerate(scraped_data, 1):
+        review = item.get('review_text', '')
+        source = item.get('metadata', {}).get('source', 'unknown')
+        
+        # Track sources and counts
+        sources_used.add(source)
+        reviews_by_source[source] = reviews_by_source.get(source, 0) + 1
+        
+        # Collect sample reviews for display (first 3)
+        if len(sample_reviews) < 3:
+            sample_reviews.append({
+                'source': source,
+                'text': review
+            })
+        
+        combined_text += f"REVIEW {i} (Source: {source.upper()}):\n"
+        combined_text += f"{review}\n\n"
+    
+    # Add analysis instruction
+    combined_text += f"""ANALYSIS INSTRUCTION:
+Please analyze all {review_count} customer reviews above as a comprehensive dataset to provide:
+1. Overall sentiment assessment for {product_name}
+2. Detailed business recommendations for product improvement
+3. Key insights from customer feedback
+4. Actionable strategies to address customer concerns
+
+Focus on providing specific, actionable business recommendations that can help improve the product based on real customer feedback."""
+    
+    # Create scraping metadata
+    scraping_metadata = {
+        'sources_scraped': list(sources_used),
+        'total_reviews_collected': review_count,
+        'reviews_by_source': reviews_by_source,
+        'sample_reviews': sample_reviews
+    }
+    
+    return combined_text, scraping_metadata
 
 def create_coordinator(
     product_category: str = "electronics",
@@ -115,7 +170,7 @@ async def rpc_handler(rpc_req: JsonRpcRequest) -> JsonRpcResponse:
     try:
         # Extract input text
         message = rpc_req.params["message"]
-        review_text = extract_text_from_message(message)
+        input_text = extract_text_from_message(message)
         
         # Get optional parameters from metadata
         metadata = rpc_req.params.get("metadata", {})
@@ -125,9 +180,60 @@ async def rpc_handler(rpc_req: JsonRpcRequest) -> JsonRpcResponse:
         max_tokens_consensus = metadata.get("max_tokens_consensus", int(os.getenv("DEFAULT_MAX_TOKENS_CONSENSUS", "800")))
         max_rounds = metadata.get("max_rounds", int(os.getenv("DEFAULT_MAX_ROUNDS", "2")))
         
+        # Check for scraping request
+        enable_scraping = metadata.get("enable_scraping", False)
+        product_name = metadata.get("product_name", None)
+        sources = metadata.get("sources", ["youtube", "tiki"])
+        max_items_per_source = metadata.get("max_items_per_source", 5)
+        
         logger.info(f"Coordinating sentiment analysis for category: {product_category}")
         logger.info(f"Agent types: {agent_types}")
-        logger.info(f"Review text: {review_text[:100]}...")
+        logger.info(f"Enable scraping: {enable_scraping}")
+        if enable_scraping and product_name:
+            logger.info(f"Product name: {product_name}")
+            logger.info(f"Sources: {sources}")
+        
+        # Handle scraping if requested
+        if enable_scraping and product_name:
+            logger.info(f"Starting scraping pipeline for product: {product_name}")
+            try:
+                # Import scraping functionality
+                from data_pipeline import scrape_and_preprocess
+                
+                # Scrape reviews
+                scraped_data = scrape_and_preprocess(
+                    keyword=product_name,
+                    sources=sources,
+                    max_items_per_source=max_items_per_source
+                )
+                
+                if not scraped_data:
+                    logger.warning(f"No reviews found for {product_name}")
+                    review_text = f"No reviews found for {product_name}. Please try a different product name or check if the product exists on the specified platforms."
+                else:
+                    logger.info(f"Scraped {len(scraped_data)} reviews for {product_name}")
+                    
+                    # Combine reviews for comprehensive analysis
+                    review_text, scraping_metadata = combine_scraped_reviews(scraped_data, product_name)
+                    
+                    # Update product category if detected from scraped data
+                    if scraped_data and scraped_data[0].get('product_category'):
+                        detected_category = scraped_data[0]['product_category']
+                        logger.info(f"Detected product category: {detected_category}")
+                        product_category = detected_category
+                        
+            except ImportError:
+                logger.error("Data pipeline not available for scraping")
+                review_text = "Data scraping functionality is not available. Please provide review text directly."
+            except Exception as e:
+                logger.error(f"Scraping failed: {e}")
+                review_text = f"Failed to scrape reviews for {product_name}: {str(e)}. Please provide review text directly."
+        else:
+            # Use provided text directly
+            review_text = input_text
+            scraping_metadata = {}  # No scraping metadata for direct text
+        
+        logger.info(f"Analysis input text: {review_text[:100]}...")
         
         # Create or reconfigure coordinator if needed
         if (coordinator is None or 
@@ -146,6 +252,12 @@ async def rpc_handler(rpc_req: JsonRpcRequest) -> JsonRpcResponse:
         
         # Run coordinated analysis using your existing workflow
         analysis_result = coordinator.run_analysis(review_text)
+        
+        # Add scraping metadata to workflow metadata if available
+        if scraping_metadata:
+            if 'workflow_metadata' not in analysis_result:
+                analysis_result['workflow_metadata'] = {}
+            analysis_result['workflow_metadata']['scraping_metadata'] = scraping_metadata
         
         # Format result as JSON string for A2A response
         import json

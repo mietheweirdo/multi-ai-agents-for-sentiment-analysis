@@ -1,0 +1,104 @@
+{
+  "electronics": [
+    {
+      "review": "This wireless router has blazing fast speeds and excellent range throughout my house. The setup was straightforward and it handles multiple devices well. However, the security features are concerning - it uses outdated encryption by default and the admin interface has known vulnerabilities. Great performance, but I'm worried about security.",
+      "ground_truth": "negative",
+      "complexity": "conflict_resolution",
+      "reason": "Security vulnerabilities outweigh performance benefits"
+    },
+    {
+      "review": "The smartphone camera is outstanding in daylight - crisp photos with great color accuracy. The video recording is professional quality. But in low light, it's terrible - photos are grainy and dark. The night mode helps but still not great. Amazing for day photography, poor for evening use.",
+      "ground_truth": "positive",
+      "complexity": "conflict_resolution",
+      "reason": "Excellent primary use case (daylight) justifies purchase despite low-light limitations"
+    },
+    {
+      "review": "This laptop is incredibly powerful for professional video editing - renders 4K footage quickly and handles complex timelines smoothly. The color accuracy is perfect for professional work. However, it's heavy, has poor battery life, and the fan is loud. Perfect for studio work, terrible for travel.",
+      "ground_truth": "positive",
+      "complexity": "conflict_resolution",
+      "reason": "Excellent professional capabilities outweigh mobility issues for target users"
+    },
+    {
+      "review": "The smart home hub connects all my devices perfectly and the automation features are robust. The app is intuitive and setup was easy. But it requires constant internet connection and fails frequently when the internet is slow. Great when it works, frustrating when it doesn't.",
+      "ground_truth": "negative",
+      "complexity": "conflict_resolution",
+      "reason": "Reliability issues undermine otherwise excellent functionality"
+    },
+    {
+      "review": "This gaming headset has incredible sound quality and the microphone is crystal clear. The comfort is excellent for long gaming sessions. However, the build quality is questionable - plastic feels cheap and the hinges seem fragile. Amazing audio experience, but durability concerns.",
+      "ground_truth": "negative",
+      "complexity": "conflict_resolution",
+      "reason": "Poor build quality undermines excellent audio performance"
+    },
+    {
+      "review": "The tablet is perfect for reading and note-taking - the e-ink display is easy on the eyes and battery life is exceptional. The writing experience with the stylus is natural. But it's slow for anything else - web browsing is painful and videos are choppy. Excellent for its intended purpose, limited versatility.",
+      "ground_truth": "positive",
+      "complexity": "conflict_resolution",
+      "reason": "Excels at primary use case (reading/notes) despite general limitations"
+    }
+  ],
+  "fashion": [
+    {
+      "review": "These running shoes are incredibly comfortable and provide excellent support during workouts. The cushioning is perfect and they've helped reduce my knee pain. However, they're not waterproof and look worn after just a few months. Great for indoor gym use, not suitable for outdoor running.",
+      "ground_truth": "positive",
+      "complexity": "conflict_resolution",
+      "reason": "Excellent comfort and support justify purchase despite durability issues"
+    },
+    {
+      "review": "The winter coat is extremely warm and wind-resistant - perfect for harsh weather conditions. The quality is solid and it fits well. But it's so bulky that it's impractical for daily wear and looks unfashionable. Excellent for extreme weather, too much for regular use.",
+      "ground_truth": "negative",
+      "complexity": "conflict_resolution",
+      "reason": "Limited practicality outweighs excellent weather protection"
+    },
+    {
+      "review": "This dress shirt fits perfectly and the fabric quality is excellent. It looks professional and maintains its shape after washing. However, it requires ironing after every wash and wrinkles easily throughout the day. Great appearance, high maintenance.",
+      "ground_truth": "positive",
+      "complexity": "conflict_resolution",
+      "reason": "Professional appearance and fit justify maintenance requirements"
+    },
+    {
+      "review": "The jeans are incredibly comfortable and have a great fit. The denim quality is excellent and they're well-constructed. But the price is extremely high for jeans - $300 seems excessive. Great quality, but the value proposition is questionable.",
+      "ground_truth": "negative",
+      "complexity": "conflict_resolution",
+      "reason": "Price point too high despite excellent quality"
+    },
+    {
+      "review": "This handbag is beautifully designed and gets compliments constantly. The leather quality is exceptional and craftsmanship is top-notch. However, it's completely impractical for daily use - too small for essentials and the single strap is uncomfortable. Gorgeous but not functional.",
+      "ground_truth": "negative",
+      "complexity": "conflict_resolution",
+      "reason": "Poor functionality outweighs aesthetic appeal"
+    }
+  ],
+  "beauty_health": [
+    {
+      "review": "This skincare routine cleared up my acne completely after 8 weeks - my skin has never looked better. The results are dramatic and consistent. However, it's a 7-step process that takes 30 minutes twice daily and costs $400 per month. Amazing results, but extremely time-consuming and expensive.",
+      "ground_truth": "negative",
+      "complexity": "conflict_resolution",
+      "reason": "Time and cost burden outweigh excellent results"
+    },
+    {
+      "review": "The protein powder tastes great and mixes well without clumps. I've seen good muscle gain results over 3 months. But the ingredient list includes artificial sweeteners and fillers that I try to avoid. Effective for fitness goals, but not aligned with clean eating preferences.",
+      "ground_truth": "positive",
+      "complexity": "conflict_resolution",
+      "reason": "Fitness results justify ingredient compromises"
+    },
+    {
+      "review": "This hair treatment makes my hair incredibly soft and shiny - the best it's ever looked. The formula feels luxurious and works quickly. However, it contains sulfates and parabens that I know can damage hair long-term. Great immediate results, concerning long-term effects.",
+      "ground_truth": "negative",
+      "complexity": "conflict_resolution",
+      "reason": "Long-term damage concerns outweigh short-term benefits"
+    },
+    {
+      "review": "The vitamin supplement gave me noticeably more energy and improved my mood within weeks. Sleep quality improved and I feel more alert during the day. But it's expensive and some ingredients aren't third-party tested. Effective results, but quality assurance concerns.",
+      "ground_truth": "positive",
+      "complexity": "conflict_resolution",
+      "reason": "Significant health benefits justify quality concerns"
+    },
+    {
+      "review": "This perfume has a unique, sophisticated scent that lasts all day. I get compliments regularly and it's become my signature fragrance. However, it's extremely expensive and the bottle is small - poor value for money. Beautiful scent, but the price is hard to justify.",
+      "ground_truth": "negative",
+      "complexity": "conflict_resolution",
+      "reason": "High price outweighs scent quality"
+    }
+  ]
+} 

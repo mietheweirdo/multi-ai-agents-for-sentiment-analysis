@@ -1,0 +1,63 @@
+{
+                "id": "CONFLICT_001",
+                "name": "Quality vs Service Conflict",
+                "review": "This laptop has amazing performance, top-notch build quality, and cutting-edge specs that exceed expectations. The processor is lightning fast and the graphics are stunning. However, the customer service was absolutely terrible - they hung up on me twice, were rude and unprofessional, and delivery took 3 weeks with damaged packaging. Support team seems untrained and unhelpful.",
+                "category": "electronics",
+                "expected_sentiment": "negative",
+                "conflict_type": "quality_vs_service",
+                "complexity": "high"
+            },
+            {
+                "id": "CONFLICT_002", 
+                "name": "Price vs Value Trade-off",
+                "review": "Premium materials and luxury feel throughout the entire product. The craftsmanship is exceptional with attention to every detail. Build quality is absolutely top-tier and feels like it will last forever. However, it's honestly way overpriced for what you get. Similar products with identical features cost half the price from other brands. Hard to justify the premium cost.",
+                "category": "fashion",
+                "expected_sentiment": "negative",
+                "conflict_type": "quality_vs_business",
+                "complexity": "high"
+            },
+            {
+                "id": "CONFLICT_003",
+                "name": "Technical Excellence vs Usability",
+                "review": "Technically impressive with advanced features and powerful specifications that outperform competitors. The engineering is solid and performance benchmarks are excellent. However, the user interface is extremely confusing and the learning curve is very steep. Regular users will struggle with basic operations. Documentation is poor and setup is complicated.",
+                "category": "electronics",
+                "expected_sentiment": "negative", 
+                "conflict_type": "technical_vs_ux",
+                "complexity": "high"
+            },
+            {
+                "id": "TEMPORAL_001",
+                "name": "Short-term vs Long-term Perspective",
+                "review": "Initially worked great and first impressions were very positive. Setup was smooth and initial performance was impressive. However, after 6 months the quality significantly declined, battery life degraded substantially, and performance became very sluggish. Software updates made it worse. Now I deeply regret this purchase and would not recommend it.",
+                "category": "electronics",
+                "expected_sentiment": "negative",
+                "conflict_type": "temporal_conflict",
+                "complexity": "medium"
+            },
+            {
+                "id": "SUBJECTIVE_001",
+                "name": "Objective vs Subjective Aspects",
+                "review": "Objectively this product meets all technical specifications and performs exactly as advertised. Benchmark tests show excellent results and build quality is solid. However, I personally hate the design aesthetic and it doesn't match my style preferences at all. The color scheme is unappealing and the form factor feels wrong. Functionally perfect but aesthetically very disappointing.",
+                "category": "fashion",
+                "expected_sentiment": "neutral",
+                "conflict_type": "objective_vs_subjective", 
+                "complexity": "medium"
+            },
+            {
+                "id": "BALANCED_001",
+                "name": "Perfect Balance Test",
+                "review": "This product has both excellent and terrible aspects. The build quality is outstanding and materials are premium, which I absolutely love. The performance exceeds expectations and the design is beautiful. However, the customer service is completely awful and the delivery was a disaster - took forever and arrived damaged. The price is also unreasonably high for what you get. It's a mixed bag where the great product quality is perfectly balanced by terrible service and pricing issues.",
+                "category": "electronics",
+                "expected_sentiment": "negative",
+                "conflict_type": "perfect_balance",
+                "complexity": "high"
+            },
+            {
+                "id": "RECENCY_BIAS_001",
+                "name": "Recency Bias Test",
+                "review": "I had some initial concerns about this product and the first week was disappointing. The setup process was confusing and I wasn't sure if I made the right choice. However, after using it for a month now, I'm absolutely thrilled with the performance. The quality is exceptional, customer service resolved all my issues promptly, and I would definitely recommend this to others. It has exceeded my expectations in every way.",
+                "category": "electronics", 
+                "expected_sentiment": "positive",
+                "conflict_type": "recency_bias",
+                "complexity": "medium"
+            }

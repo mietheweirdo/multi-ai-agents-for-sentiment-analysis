@@ -1,0 +1,74 @@
+{
+  "name": "Conversational AI Agent",
+  "description": "Intelligent conversational agent with product analysis capabilities",
+  "version": "1.0.0",
+  "author": "Multi-Agent Sentiment Analysis Team",
+  "capabilities": [
+    "general_conversation",
+    "intent_detection", 
+    "product_analysis",
+    "sentiment_analysis",
+    "business_recommendations",
+    "review_scraping"
+  ],
+  "supported_languages": ["english"],
+  "protocols": ["a2a", "json-rpc-2.0"],
+  "endpoints": {
+    "rpc": "/rpc",
+    "health": "/health",
+    "config": "/config",
+    "agent_card": "/.well-known/agent.json"
+  },
+  "input_types": [
+    {
+      "type": "text",
+      "description": "General conversation or product analysis queries",
+      "examples": [
+        "What time is it?",
+        "What should I improve for iPhone 14?",
+        "How can I make my Samsung Galaxy better?",
+        "Give me business advice"
+      ]
+    }
+  ],
+  "output_types": [
+    {
+      "type": "conversation_response",
+      "description": "General chat responses"
+    },
+    {
+      "type": "product_analysis",
+      "description": "Comprehensive product analysis with business recommendations",
+      "includes": [
+        "sentiment_assessment",
+        "department_insights", 
+        "business_recommendations",
+        "key_customer_emotions",
+        "focus_areas"
+      ]
+    }
+  ],
+  "integration": {
+    "coordinator_endpoint": "http://localhost:8000/rpc",
+    "scraping_sources": ["youtube", "tiki"],
+    "analysis_agents": ["quality", "experience", "user_experience", "business", "technical"]
+  },
+  "configuration": {
+    "max_conversation_history": 50,
+    "product_analysis_timeout": 120,
+    "supported_categories": [
+      "electronics",
+      "fashion",
+      "home_garden", 
+      "beauty_health",
+      "sports_outdoors",
+      "books_media"
+    ]
+  },
+  "metadata": {
+    "created": "2024-01-01",
+    "updated": "2024-01-01",
+    "tags": ["conversational", "ai", "sentiment-analysis", "product-analysis", "a2a"],
+    "license": "MIT"
+  }
+} 

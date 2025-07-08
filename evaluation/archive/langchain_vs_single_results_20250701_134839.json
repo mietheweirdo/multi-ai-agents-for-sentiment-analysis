@@ -1,0 +1,526 @@
+{
+  "electronics": {
+    "category": "electronics",
+    "single_agent": {
+      "accuracy": 1.0,
+      "correct": 8,
+      "total": 8,
+      "processing_time": 23.095488786697388,
+      "avg_confidence": 0.85625,
+      "max_confidence": 0.95,
+      "min_confidence": 0.75,
+      "results": [
+        {
+          "review": "This phone is absolutely amazing! The camera quality is outstanding, battery lasts all day, and the performance is incredibly smooth. I couldn't be ha...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.95,
+          "reasoning": "The user expresses strong positive emotions, highlighting joy and satisfaction with the phone's features. Their happiness with the purchase indicates a deep emotional fulfillment and connection to the...",
+          "correct": true,
+          "test_case": "Clear positive - all agents should agree"
+        },
+        {
+          "review": "Terrible phone. Screen cracked after one week, battery dies in 4 hours, and customer support hung up on me twice. Complete waste of money.",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "reasoning": "The user expresses strong negative emotions due to product failures and poor customer service. Feelings of frustration and disappointment dominate, indicating a lack of emotional satisfaction and trus...",
+          "correct": true,
+          "test_case": "Clear negative - all agents should agree"
+        },
+        {
+          "review": "The phone works fine. Nothing special, nothing terrible. Does what it's supposed to do.",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.85,
+          "reasoning": "The review reflects a sense of indifference, indicating that the user feels neither particularly happy nor unhappy. While the phone meets basic expectations, it lacks emotional engagement or excitemen...",
+          "correct": true,
+          "test_case": "Clear neutral - all agents should agree"
+        },
+        {
+          "review": "This laptop has incredible technical specs - 32GB RAM, RTX 4090, 4K OLED display, benchmarks are off the charts! However, customer service is absolute...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "reasoning": "Despite the laptop's impressive features, the user's emotional experience is heavily marred by poor customer service. The frustration and disappointment from the lack of support overshadow any positiv...",
+          "correct": true,
+          "test_case": "Technical agent will say positive, Experience agent will say negative - need discussion"
+        },
+        {
+          "review": "Amazing gaming experience! This laptop runs every game at max settings flawlessly, cooling system is excellent, build quality feels premium. But at $4...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.9,
+          "reasoning": "The user expresses joy and satisfaction with the laptop's performance and build quality, highlighting a delightful gaming experience. However, the mention of high cost introduces a slight caveat, but ...",
+          "correct": true,
+          "test_case": "Quality/Technical positive, Business might be concerned about price point"
+        },
+        {
+          "review": "The smartwatch has basic fitness tracking features that work adequately. The interface is neither great nor terrible, just functional. Battery lasts a...",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.75,
+          "reasoning": "The review reflects a sense of indifference towards the smartwatch, indicating that while it meets basic needs, it does not evoke strong positive or negative feelings. Users may feel satisfied but not...",
+          "correct": true,
+          "test_case": "All aspects are neutral - agents should reach consensus easily"
+        },
+        {
+          "review": "Love the innovative features and cutting-edge technology in this phone! The AI camera is revolutionary, 5G speeds are incredible, and the new biometri...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.85,
+          "reasoning": "The user expresses excitement and satisfaction with the innovative features, indicating a strong emotional connection to the product. Although there is some frustration regarding battery life and over...",
+          "correct": true,
+          "test_case": "Technical agent very positive, Quality agent concerned about heat/battery - need synthesis"
+        },
+        {
+          "review": "Decent tablet for basic tasks like reading and web browsing. Screen is clear enough, battery is acceptable, and it handles simple apps without issues....",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.75,
+          "reasoning": "The user expresses a sense of indifference towards the tablet, noting it performs basic tasks adequately but lacks excitement. While there is a level of satisfaction with its functionality, the overal...",
+          "correct": true,
+          "test_case": "Straightforward neutral assessment across all dimensions"
+        }
+      ]
+    },
+    "langchain_system": {
+      "accuracy": 0.875,
+      "correct": 7,
+      "total": 8,
+      "processing_time": 171.33171105384827,
+      "avg_confidence": 0.86375,
+      "max_confidence": 0.95,
+      "min_confidence": 0.82,
+      "avg_discussion_rounds": 0.625,
+      "max_discussion_rounds": 5,
+      "results": [
+        {
+          "review": "This phone is absolutely amazing! The camera quality is outstanding, battery lasts all day, and the performance is incredibly smooth. I couldn't be ha...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.93,
+          "master_reasoning": "The review consistently highlights exceptional product quality and user satisfaction, with strong emotional expressions indicating delight. All departments largely agree on the positive sentiment, with the Experience Department noting a lack of service context but not detracting from the overall pos...",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Clear positive - all agents should agree"
+        },
+        {
+          "review": "Terrible phone. Screen cracked after one week, battery dies in 4 hours, and customer support hung up on me twice. Complete waste of money.",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "master_reasoning": "The review indicates severe issues with product quality, including a cracked screen and poor battery life, compounded by negative customer service experiences. All departments consistently assess the sentiment as negative due to these critical failures.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Clear negative - all agents should agree"
+        },
+        {
+          "review": "The phone works fine. Nothing special, nothing terrible. Does what it's supposed to do.",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.83,
+          "master_reasoning": "The review reflects a consistent neutral sentiment across all departments, indicating average performance without notable strengths or weaknesses. The user's indifference suggests a lack of emotional engagement, reinforcing the assessment of the product as satisfactory but unremarkable.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Clear neutral - all agents should agree"
+        },
+        {
+          "review": "This laptop has incredible technical specs - 32GB RAM, RTX 4090, 4K OLED display, benchmarks are off the charts! However, customer service is absolute...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "master_reasoning": "While the product's technical specifications are highly praised, the overwhelmingly negative experience with customer service significantly impacts the overall sentiment. The frustration expressed by the user regarding support issues outweighs the positive aspects of the laptop's performance.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Technical agent will say positive, Experience agent will say negative - need discussion"
+        },
+        {
+          "review": "Amazing gaming experience! This laptop runs every game at max settings flawlessly, cooling system is excellent, build quality feels premium. But at $4...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.85,
+          "master_reasoning": "The review predominantly emphasizes exceptional gaming performance, premium build quality, and effective cooling, leading to a strong positive sentiment. While the high price is noted, it does not overshadow the overall positive experience conveyed by the user.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Quality/Technical positive, Business might be concerned about price point"
+        },
+        {
+          "review": "The smartwatch has basic fitness tracking features that work adequately. The interface is neither great nor terrible, just functional. Battery lasts a...",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.82,
+          "master_reasoning": "The review reflects a consistent neutral sentiment across all departments, indicating that the smartwatch meets basic expectations but lacks standout features or emotional engagement. The overall assessment is one of adequacy without strong positive or negative feelings.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "All aspects are neutral - agents should reach consensus easily"
+        },
+        {
+          "review": "Love the innovative features and cutting-edge technology in this phone! The AI camera is revolutionary, 5G speeds are incredible, and the new biometri...",
+          "ground_truth": "positive",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "master_reasoning": "While the review expresses excitement about innovative features, the significant issues of battery drain and overheating dominate the sentiment. The negative assessments from the Quality, Business, and Technical Departments indicate that these drawbacks overshadow the positive emotional response.",
+          "discussion_rounds": 5,
+          "agent_analyses": {},
+          "correct": false,
+          "test_case": "Technical agent very positive, Quality agent concerned about heat/battery - need synthesis"
+        },
+        {
+          "review": "Decent tablet for basic tasks like reading and web browsing. Screen is clear enough, battery is acceptable, and it handles simple apps without issues....",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.83,
+          "master_reasoning": "The review consistently reflects a neutral sentiment across all departments, indicating that while the tablet performs adequately for basic tasks, it lacks excitement and differentiation. This suggests a satisfactory but uninspiring user experience.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Straightforward neutral assessment across all dimensions"
+        }
+      ]
+    },
+    "comparison": {
+      "accuracy_difference": -0.125,
+      "accuracy_improvement_percent": -12.5,
+      "confidence_difference": 0.007500000000000062,
+      "time_ratio": 7.418405933566231,
+      "langchain_has_discussions": true
+    }
+  },
+  "fashion": {
+    "category": "fashion",
+    "single_agent": {
+      "accuracy": 0.8333333333333334,
+      "correct": 5,
+      "total": 6,
+      "processing_time": 14.872716903686523,
+      "avg_confidence": 0.8916666666666666,
+      "max_confidence": 0.95,
+      "min_confidence": 0.8,
+      "results": [
+        {
+          "review": "Beautiful dress! The fabric is luxurious, the fit is perfect, and I received so many compliments. Delivery was fast and packaging was elegant. Highly ...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.95,
+          "reasoning": "The user expresses joy and satisfaction with the dress's luxurious fabric and perfect fit, highlighting the emotional uplift from receiving compliments. The positive experience with delivery and packa...",
+          "correct": true,
+          "test_case": "Clear positive across quality, experience, and user satisfaction"
+        },
+        {
+          "review": "Awful experience. The shirt arrived with holes, wrong size, and stained. Customer service was rude and refused refund. Will never buy from this brand ...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "reasoning": "The user expresses strong negative emotions due to receiving a defective product and experiencing poor customer service. This has led to feelings of frustration and disappointment, significantly impac...",
+          "correct": true,
+          "test_case": "Clear negative across all aspects"
+        },
+        {
+          "review": "The jeans are okay. Fit is decent, material feels average, nothing special but nothing wrong either. Standard clothing item.",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.8,
+          "reasoning": "The review reflects a sense of indifference, indicating that while the user is satisfied with the basic fit, there is no emotional connection or excitement. The average description suggests a lack of ...",
+          "correct": true,
+          "test_case": "Neutral product assessment"
+        },
+        {
+          "review": "The craftsmanship of these shoes is absolutely exquisite - genuine Italian leather, hand-stitched details, perfect construction. However, they're incr...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.9,
+          "reasoning": "While the user appreciates the exquisite craftsmanship and beauty of the shoes, the discomfort and pain experienced overshadow these positive aspects, leading to feelings of frustration and disappoint...",
+          "correct": true,
+          "test_case": "Quality agent positive, UX agent negative - functionality vs aesthetics"
+        },
+        {
+          "review": "Great quality jacket at an amazing price point! The material is durable, stitching is solid, and the style is timeless. For $50, this is an incredible...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.9,
+          "reasoning": "The user expresses happiness and satisfaction with the jacket's quality and price, indicating a strong emotional connection to the product. The mention of timeless style enhances feelings of delight a...",
+          "correct": true,
+          "test_case": "Quality positive, Business very positive about market positioning"
+        },
+        {
+          "review": "The dress has excellent fabric quality and the design is sophisticated. However, customer service made several mistakes with my order - wrong size fir...",
+          "ground_truth": "positive",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "reasoning": "While the user appreciates the dress's quality and design, the significant frustration and disappointment caused by poor customer service overshadow their satisfaction. This emotional turmoil indicate...",
+          "correct": false,
+          "test_case": "Quality positive, Experience negative, but product quality outweighs service issues"
+        }
+      ]
+    },
+    "langchain_system": {
+      "accuracy": 0.8333333333333334,
+      "correct": 5,
+      "total": 6,
+      "processing_time": 104.63432121276855,
+      "avg_confidence": 0.8983333333333333,
+      "max_confidence": 0.95,
+      "min_confidence": 0.85,
+      "avg_discussion_rounds": 0.0,
+      "max_discussion_rounds": 0,
+      "results": [
+        {
+          "review": "Beautiful dress! The fabric is luxurious, the fit is perfect, and I received so many compliments. Delivery was fast and packaging was elegant. Highly ...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.94,
+          "master_reasoning": "The review consistently highlights high-quality attributes such as luxurious fabric and perfect fit, alongside excellent service aspects like fast delivery and elegant packaging. All departments align in their positive sentiment, reinforcing a strong overall assessment.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Clear positive across quality, experience, and user satisfaction"
+        },
+        {
+          "review": "Awful experience. The shirt arrived with holes, wrong size, and stained. Customer service was rude and refused refund. Will never buy from this brand ...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "master_reasoning": "The review reflects significant dissatisfaction due to product defects and poor customer service. All departments consistently identified severe quality issues and a lack of support, leading to a strong negative sentiment.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Clear negative across all aspects"
+        },
+        {
+          "review": "The jeans are okay. Fit is decent, material feels average, nothing special but nothing wrong either. Standard clothing item.",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.85,
+          "master_reasoning": "The review conveys a sense of neutrality, highlighting average fit and material quality without any strong emotional connection or significant issues. This aligns with the consensus from all departments, indicating a lack of exceptional attributes.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Neutral product assessment"
+        },
+        {
+          "review": "The craftsmanship of these shoes is absolutely exquisite - genuine Italian leather, hand-stitched details, perfect construction. However, they're incr...",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.88,
+          "master_reasoning": "Despite high praise for craftsmanship and materials, the significant discomfort and blisters experienced overshadow these positives, leading to an overall negative sentiment. This indicates critical usability flaws that impact user experience.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Quality agent positive, UX agent negative - functionality vs aesthetics"
+        },
+        {
+          "review": "Great quality jacket at an amazing price point! The material is durable, stitching is solid, and the style is timeless. For $50, this is an incredible...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.92,
+          "master_reasoning": "The review consistently highlights high product quality, durability, and excellent value for money. Positive sentiments from multiple departments converge on the jacket's quality and price, leading to an overall positive sentiment assessment.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Quality positive, Business very positive about market positioning"
+        },
+        {
+          "review": "The dress has excellent fabric quality and the design is sophisticated. However, customer service made several mistakes with my order - wrong size fir...",
+          "ground_truth": "positive",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "master_reasoning": "While the product's quality and design are praised, the significant issues with order fulfillment and poor customer service create a negative overall sentiment. The negative experiences overshadow the positive aspects, leading to a predominantly negative assessment.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": false,
+          "test_case": "Quality positive, Experience negative, but product quality outweighs service issues"
+        }
+      ]
+    },
+    "comparison": {
+      "accuracy_difference": 0.0,
+      "accuracy_improvement_percent": 0.0,
+      "confidence_difference": 0.00666666666666671,
+      "time_ratio": 7.035319900887287,
+      "langchain_has_discussions": false
+    }
+  },
+  "beauty_health": {
+    "category": "beauty_health",
+    "single_agent": {
+      "accuracy": 0.6666666666666666,
+      "correct": 4,
+      "total": 6,
+      "processing_time": 16.79903483390808,
+      "avg_confidence": 0.8666666666666667,
+      "max_confidence": 0.95,
+      "min_confidence": 0.8,
+      "results": [
+        {
+          "review": "This skincare serum is incredible! My skin looks younger, feels smoother, and people keep asking what I'm using. Fast shipping and great customer serv...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.95,
+          "reasoning": "The user expresses strong positive emotions, highlighting happiness and satisfaction with visible skin improvements, which boosts their confidence. The mention of social validation indicates a deep em...",
+          "correct": true,
+          "test_case": "Clear positive results and experience"
+        },
+        {
+          "review": "Horrible product. Caused allergic reaction, customer service ignored my complaints, and they refused to refund. Dangerous and unprofessional.",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "reasoning": "The user expresses strong negative emotions due to a harmful experience with the product and inadequate customer service. Feelings of frustration and anger are prominent, indicating a significant emot...",
+          "correct": true,
+          "test_case": "Clear negative - safety and service issues"
+        },
+        {
+          "review": "The moisturizer is fine. Does what it says, doesn't cause irritation, reasonable price. Nothing amazing but no complaints either.",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.8,
+          "reasoning": "The review reflects a sense of indifference, indicating that while the product meets basic expectations, it does not evoke strong positive emotions or excitement. The user feels satisfied but not deli...",
+          "correct": true,
+          "test_case": "Standard neutral product assessment"
+        },
+        {
+          "review": "This supplement has amazing scientific formulation - clinically proven ingredients, optimal dosages, excellent bioavailability. The technical aspects ...",
+          "ground_truth": "positive",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "reasoning": "Despite the positive mention of scientific formulation, the user's strong negative feelings about the taste and size of the pills overshadow their satisfaction. This leads to frustration and disappoin...",
+          "correct": false,
+          "test_case": "Technical agent very positive about formulation, UX agent negative about experience"
+        },
+        {
+          "review": "Love the results from this anti-aging cream - my wrinkles are noticeably reduced and skin texture improved dramatically! But at $200 per ounce, it's e...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.8,
+          "reasoning": "The user expresses happiness and satisfaction with the visible results of the anti-aging cream, indicating a positive emotional experience. However, the frustration regarding its high price introduces...",
+          "correct": true,
+          "test_case": "Quality/UX positive about results, Business concerned about pricing strategy"
+        },
+        {
+          "review": "The vitamin supplement seems to work fine - I feel more energetic and healthy. The packaging is professional and ingredients list looks good. It's a s...",
+          "ground_truth": "neutral",
+          "predicted": "positive",
+          "confidence": 0.85,
+          "reasoning": "The user expresses feelings of increased energy and health, indicating a positive emotional response. The mention of the product being solid and reliable contributes to a sense of satisfaction, despit...",
+          "correct": false,
+          "test_case": "Consistent neutral assessment across effectiveness and presentation"
+        }
+      ]
+    },
+    "langchain_system": {
+      "accuracy": 0.5,
+      "correct": 3,
+      "total": 6,
+      "processing_time": 133.4574899673462,
+      "avg_confidence": 0.8583333333333334,
+      "max_confidence": 0.95,
+      "min_confidence": 0.8,
+      "avg_discussion_rounds": 1.6666666666666667,
+      "max_discussion_rounds": 10,
+      "results": [
+        {
+          "review": "This skincare serum is incredible! My skin looks younger, feels smoother, and people keep asking what I'm using. Fast shipping and great customer serv...",
+          "ground_truth": "positive",
+          "predicted": "positive",
+          "confidence": 0.92,
+          "master_reasoning": "The review consistently highlights significant improvements in skin appearance and texture, alongside excellent customer service and fast shipping. All departments indicate a positive sentiment, with the Quality, Experience, and User Experience departments showing high confidence levels, leading to ...",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Clear positive results and experience"
+        },
+        {
+          "review": "Horrible product. Caused allergic reaction, customer service ignored my complaints, and they refused to refund. Dangerous and unprofessional.",
+          "ground_truth": "negative",
+          "predicted": "negative",
+          "confidence": 0.95,
+          "master_reasoning": "The review consistently highlights severe issues related to product quality and customer service. The negative experiences reported by the user, including a serious allergic reaction and unresponsive customer service, lead to a definitive negative sentiment across all departments.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Clear negative - safety and service issues"
+        },
+        {
+          "review": "The moisturizer is fine. Does what it says, doesn't cause irritation, reasonable price. Nothing amazing but no complaints either.",
+          "ground_truth": "neutral",
+          "predicted": "neutral",
+          "confidence": 0.83,
+          "master_reasoning": "The review reflects a balanced perspective, indicating that the moisturizer meets basic expectations without causing irritation but lacks standout features or emotional engagement. This leads to a neutral sentiment across all departments.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": true,
+          "test_case": "Standard neutral product assessment"
+        },
+        {
+          "review": "This supplement has amazing scientific formulation - clinically proven ingredients, optimal dosages, excellent bioavailability. The technical aspects ...",
+          "ground_truth": "positive",
+          "predicted": "negative",
+          "confidence": 0.85,
+          "master_reasoning": "The review presents a strong scientific formulation but is overshadowed by significant negative aspects regarding taste and pill size. The emotional response indicates dissatisfaction, leading to an overall negative sentiment despite some positive technical merits.",
+          "discussion_rounds": 10,
+          "agent_analyses": {},
+          "correct": false,
+          "test_case": "Technical agent very positive about formulation, UX agent negative about experience"
+        },
+        {
+          "review": "Love the results from this anti-aging cream - my wrinkles are noticeably reduced and skin texture improved dramatically! But at $200 per ounce, it's e...",
+          "ground_truth": "positive",
+          "predicted": "neutral",
+          "confidence": 0.8,
+          "master_reasoning": "The review reflects a mix of positive sentiments regarding product effectiveness and emotional satisfaction, contrasted with concerns over high pricing. While the quality and technical performance are praised, the pricing issue creates a neutral overall sentiment due to its potential impact on custo...",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": false,
+          "test_case": "Quality/UX positive about results, Business concerned about pricing strategy"
+        },
+        {
+          "review": "The vitamin supplement seems to work fine - I feel more energetic and healthy. The packaging is professional and ingredients list looks good. It's a s...",
+          "ground_truth": "neutral",
+          "predicted": "positive",
+          "confidence": 0.8,
+          "master_reasoning": "The overall sentiment leans positive due to the user's expressed satisfaction with the product's effectiveness and quality. While some departments noted neutrality, the strong positive feelings from the user experience and quality assessments outweigh the neutral sentiments.",
+          "discussion_rounds": 0,
+          "agent_analyses": {},
+          "correct": false,
+          "test_case": "Consistent neutral assessment across effectiveness and presentation"
+        }
+      ]
+    },
+    "comparison": {
+      "accuracy_difference": -0.16666666666666663,
+      "accuracy_improvement_percent": -24.999999999999993,
+      "confidence_difference": -0.008333333333333304,
+      "time_ratio": 7.944354618395598,
+      "langchain_has_discussions": true
+    }
+  },
+  "overall_summary": {
+    "single_agent": {
+      "accuracy": 0.85,
+      "confidence": 0.8700000000000001,
+      "total_time": 54.76724052429199,
+      "total_correct": 17,
+      "total_samples": 20
+    },
+    "langchain_system": {
+      "accuracy": 0.75,
+      "confidence": 0.8724999999999999,
+      "total_time": 409.423522233963,
+      "total_correct": 15,
+      "total_samples": 20,
+      "avg_discussions_per_category": 0.763888888888889
+    },
+    "improvements": {
+      "accuracy": -0.09999999999999998,
+      "confidence": 0.0024999999999998357,
+      "time_ratio": 7.4757011365647195
+    }
+  }
+}

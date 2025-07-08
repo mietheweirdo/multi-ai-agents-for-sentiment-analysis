@@ -1,0 +1,477 @@
+{
+  "test_metadata": {
+    "workflows_compared": [
+      "manual_3_layer",
+      "langchain_discussion"
+    ],
+    "test_date": "2025-07-06T20:29:14.407946",
+    "dataset_used": "langchain_vs_manual_dataset.json",
+    "total_categories": 3,
+    "total_cases": 16
+  },
+  "results": {
+    "electronics": {
+      "category": "electronics",
+      "manual_workflow": {
+        "accuracy": 0.5,
+        "correct": 3,
+        "total": 6,
+        "processing_time": 109.0223228931427,
+        "avg_confidence": 0.8216666666666668,
+        "max_confidence": 0.85,
+        "min_confidence": 0.78,
+        "workflow_type": "3_layer_linear",
+        "results": [
+          {
+            "review": "This wireless router has blazing fast speeds and excellent range throughout my house. The setup was straightforward and it handles multiple devices we...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "Despite positive feedback on performance and ease of setup, the overwhelming concerns regarding outdated security features and vulnerabilities lead to a negative sentiment. The emotional impact of sec...",
+            "processing_time": 16.361155033111572,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The smartphone camera is outstanding in daylight - crisp photos with great color accuracy. The video recording is professional quality. But in low lig...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "The review reflects a strong negative sentiment due to the significant dissatisfaction with low-light camera performance, overshadowing the positive aspects of daylight photography. The emotional cont...",
+            "processing_time": 20.66189694404602,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This laptop is incredibly powerful for professional video editing - renders 4K footage quickly and handles complex timelines smoothly. The color accur...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.8,
+            "reasoning": "The overall sentiment is negative due to significant user frustrations regarding weight, battery life, and noise, despite strong appreciation for performance and color accuracy. This leads to a net ne...",
+            "processing_time": 17.1577410697937,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The smart home hub connects all my devices perfectly and the automation features are robust. The app is intuitive and setup was easy. But it requires ...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "The overall sentiment is negative due to significant concerns regarding the product's reliability, stemming from its dependency on a stable internet connection. Despite positive aspects like ease of s...",
+            "processing_time": 18.260509967803955,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This gaming headset has incredible sound quality and the microphone is crystal clear. The comfort is excellent for long gaming sessions. However, the ...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.8,
+            "reasoning": "The review highlights strong positive aspects in sound quality and comfort but is overshadowed by significant concerns regarding build quality and durability. The negative sentiment from the Quality a...",
+            "processing_time": 19.69483518600464,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The tablet is perfect for reading and note-taking - the e-ink display is easy on the eyes and battery life is exceptional. The writing experience with...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.78,
+            "reasoning": "The review presents a balanced view, highlighting strengths in reading and note-taking while acknowledging significant limitations in performance for other tasks. This results in an overall neutral se...",
+            "processing_time": 16.706974983215332,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          }
+        ]
+      },
+      "langchain_system": {
+        "accuracy": 0.5,
+        "correct": 3,
+        "total": 6,
+        "processing_time": 115.43699193000793,
+        "avg_confidence": 0.8416666666666667,
+        "max_confidence": 0.85,
+        "min_confidence": 0.8,
+        "avg_discussion_rounds": 0.16666666666666666,
+        "max_discussion_rounds": 1,
+        "workflow_type": "langgraph_discussion",
+        "results": [
+          {
+            "review": "This wireless router has blazing fast speeds and excellent range throughout my house. The setup was straightforward and it handles multiple devices we...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "Despite positive aspects such as speed and setup ease, the significant concerns regarding outdated security features and vulnerabilities dominate the sentiment. The consensus across departments indicates that security issues critically undermine the overall product perception.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.19999999999999996,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The smartphone camera is outstanding in daylight - crisp photos with great color accuracy. The video recording is professional quality. But in low lig...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review indicates a strong appreciation for daylight performance but highlights significant dissatisfaction with low light capabilities. This inconsistency leads to an overall negative sentiment, supported by multiple departments emphasizing the critical flaw in low light functionality.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.19999999999999996,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This laptop is incredibly powerful for professional video editing - renders 4K footage quickly and handles complex timelines smoothly. The color accur...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The overall sentiment is negative due to significant usability issues such as heavy weight, poor battery life, and loud fan noise, which overshadow the laptop's strong performance and color accuracy. This leads to a conflicted user experience.",
+            "discussion_rounds": 1,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The smart home hub connects all my devices perfectly and the automation features are robust. The app is intuitive and setup was easy. But it requires ...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The overall sentiment is negative due to significant frustrations stemming from the product's reliance on a stable internet connection, leading to frequent failures. Despite positive aspects like automation and ease of use, the negative experiences outweigh them.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.19999999999999996,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This gaming headset has incredible sound quality and the microphone is crystal clear. The comfort is excellent for long gaming sessions. However, the ...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review highlights strong positive aspects like sound quality and comfort but is significantly undermined by serious concerns regarding build quality and durability. This duality leads to an overall negative sentiment, particularly given the weight of the negative feedback.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The tablet is perfect for reading and note-taking - the e-ink display is easy on the eyes and battery life is exceptional. The writing experience with...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.8,
+            "master_reasoning": "The review reflects a balanced perspective, highlighting satisfaction with the tablet's core functions while acknowledging significant limitations in versatility. This duality leads to a neutral sentiment, as the strengths and weaknesses offset each other.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.0,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          }
+        ]
+      },
+      "comparison": {
+        "accuracy_difference": 0.0,
+        "accuracy_improvement_percent": 0.0,
+        "confidence_difference": 0.019999999999999907,
+        "time_ratio": 1.0588381247678287,
+        "cases_with_discussion": 1,
+        "discussion_advantage": true
+      }
+    },
+    "fashion": {
+      "category": "fashion",
+      "manual_workflow": {
+        "accuracy": 0.4,
+        "correct": 2,
+        "total": 5,
+        "processing_time": 82.07674503326416,
+        "avg_confidence": 0.8059999999999998,
+        "max_confidence": 0.85,
+        "min_confidence": 0.78,
+        "workflow_type": "3_layer_linear",
+        "results": [
+          {
+            "review": "These running shoes are incredibly comfortable and provide excellent support during workouts. The cushioning is perfect and they've helped reduce my k...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.8,
+            "reasoning": "The review highlights strong comfort and support, but significant concerns about durability and lack of waterproofing dominate the sentiment. The negative aspects outweigh the positives, leading to an...",
+            "processing_time": 16.69281506538391,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The winter coat is extremely warm and wind-resistant - perfect for harsh weather conditions. The quality is solid and it fits well. But it's so bulky ...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.8,
+            "reasoning": "The overall sentiment is negative due to the emphasis on bulkiness and impracticality for daily wear, despite positive attributes like warmth and quality. The conflicting feelings of satisfaction with...",
+            "processing_time": 16.343030214309692,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This dress shirt fits perfectly and the fabric quality is excellent. It looks professional and maintains its shape after washing. However, it requires...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.78,
+            "reasoning": "The review presents a balanced view, highlighting positive aspects like fit and fabric quality while also expressing frustration over the high maintenance required due to wrinkling. The consensus acro...",
+            "processing_time": 17.585634231567383,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The jeans are incredibly comfortable and have a great fit. The denim quality is excellent and they're well-constructed. But the price is extremely hig...",
+            "ground_truth": "negative",
+            "predicted": "neutral",
+            "confidence": 0.8,
+            "reasoning": "The review reflects a balanced perspective, praising product quality and comfort while expressing frustration over the high price. This leads to a neutral sentiment, as positive and negative aspects a...",
+            "processing_time": 16.466479063034058,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This handbag is beautifully designed and gets compliments constantly. The leather quality is exceptional and craftsmanship is top-notch. However, it's...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "The review highlights a strong appreciation for the handbag's design and quality but is overshadowed by significant usability issues. The consensus across departments indicates that functional deficie...",
+            "processing_time": 14.966939926147461,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          }
+        ]
+      },
+      "langchain_system": {
+        "accuracy": 0.4,
+        "correct": 2,
+        "total": 5,
+        "processing_time": 140.1558129787445,
+        "avg_confidence": 0.8300000000000001,
+        "max_confidence": 0.85,
+        "min_confidence": 0.8,
+        "avg_discussion_rounds": 0.6,
+        "max_discussion_rounds": 3,
+        "workflow_type": "langgraph_discussion",
+        "results": [
+          {
+            "review": "These running shoes are incredibly comfortable and provide excellent support during workouts. The cushioning is perfect and they've helped reduce my k...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review indicates high satisfaction with comfort and support, but significant concerns about durability and waterproofing lead to an overall negative sentiment. The conflicting emotions reflect a strong disappointment regarding the product's longevity and suitability for outdoor use.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The winter coat is extremely warm and wind-resistant - perfect for harsh weather conditions. The quality is solid and it fits well. But it's so bulky ...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.8,
+            "master_reasoning": "The overall sentiment leans negative due to the user's frustration with the coat's bulkiness, which undermines its practicality and fashion appeal despite its warmth and fit. This dissatisfaction is echoed across departments, particularly in user experience and business impact assessments.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This dress shirt fits perfectly and the fabric quality is excellent. It looks professional and maintains its shape after washing. However, it requires...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.8,
+            "master_reasoning": "The overall sentiment is neutral due to the positive aspects of fit and fabric quality being counterbalanced by the negative impact of high maintenance and wrinkling. While users appreciate the aesthetics, the upkeep concerns diminish overall satisfaction.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.19999999999999996,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The jeans are incredibly comfortable and have a great fit. The denim quality is excellent and they're well-constructed. But the price is extremely hig...",
+            "ground_truth": "negative",
+            "predicted": "neutral",
+            "confidence": 0.85,
+            "master_reasoning": "The review reflects satisfaction with the jeans' comfort and quality, but significant concerns about the high price create a conflicting emotional state. This leads to a neutral sentiment as positive aspects are overshadowed by perceived value issues.",
+            "discussion_rounds": 3,
+            "consensus_reached": false,
+            "disagreement_level": 0.6,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This handbag is beautifully designed and gets compliments constantly. The leather quality is exceptional and craftsmanship is top-notch. However, it's...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The handbag is praised for its beauty and craftsmanship, but significant concerns regarding its impractical size and uncomfortable strap overshadow these positives. This leads to an overall negative sentiment, as functionality is critical for daily use.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.19999999999999996,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          }
+        ]
+      },
+      "comparison": {
+        "accuracy_difference": 0.0,
+        "accuracy_improvement_percent": 0.0,
+        "confidence_difference": 0.024000000000000243,
+        "time_ratio": 1.7076190451015327,
+        "cases_with_discussion": 1,
+        "discussion_advantage": true
+      }
+    },
+    "beauty_health": {
+      "category": "beauty_health",
+      "manual_workflow": {
+        "accuracy": 0.2,
+        "correct": 1,
+        "total": 5,
+        "processing_time": 85.51321220397949,
+        "avg_confidence": 0.8039999999999999,
+        "max_confidence": 0.85,
+        "min_confidence": 0.75,
+        "workflow_type": "3_layer_linear",
+        "results": [
+          {
+            "review": "This skincare routine cleared up my acne completely after 8 weeks - my skin has never looked better. The results are dramatic and consistent. However,...",
+            "ground_truth": "negative",
+            "predicted": "positive",
+            "confidence": 0.82,
+            "reasoning": "The review conveys strong satisfaction with the product's effectiveness in clearing acne and improving skin appearance. While concerns about cost and time commitment are noted, the overall positive em...",
+            "processing_time": 16.162960052490234,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The protein powder tastes great and mixes well without clumps. I've seen good muscle gain results over 3 months. But the ingredient list includes arti...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.75,
+            "reasoning": "The review reflects a balanced perspective, with satisfaction in taste and effectiveness countered by disappointment regarding artificial ingredients. This duality results in an overall neutral sentim...",
+            "processing_time": 17.82211208343506,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This hair treatment makes my hair incredibly soft and shiny - the best it's ever looked. The formula feels luxurious and works quickly. However, it co...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "The review reflects a strong initial satisfaction with immediate results but is overshadowed by significant concerns regarding long-term hair health due to harmful ingredients. This duality leads to a...",
+            "processing_time": 17.392196893692017,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The vitamin supplement gave me noticeably more energy and improved my mood within weeks. Sleep quality improved and I feel more alert during the day. ...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "reasoning": "Despite the positive effects on energy and mood, significant concerns regarding quality assurance and the high price overshadow these benefits. The lack of third-party testing raises doubts about safe...",
+            "processing_time": 16.999393224716187,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This perfume has a unique, sophisticated scent that lasts all day. I get compliments regularly and it's become my signature fragrance. However, it's e...",
+            "ground_truth": "negative",
+            "predicted": "neutral",
+            "confidence": 0.75,
+            "reasoning": "The review reflects a balanced perspective. While the scent and quality are praised, significant concerns about the high price and small bottle size introduce frustration, leading to an overall neutra...",
+            "processing_time": 17.117526054382324,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          }
+        ]
+      },
+      "langchain_system": {
+        "accuracy": 0.2,
+        "correct": 1,
+        "total": 5,
+        "processing_time": 92.09888505935669,
+        "avg_confidence": 0.8160000000000001,
+        "max_confidence": 0.85,
+        "min_confidence": 0.78,
+        "avg_discussion_rounds": 0.0,
+        "max_discussion_rounds": 0,
+        "workflow_type": "langgraph_discussion",
+        "results": [
+          {
+            "review": "This skincare routine cleared up my acne completely after 8 weeks - my skin has never looked better. The results are dramatic and consistent. However,...",
+            "ground_truth": "negative",
+            "predicted": "positive",
+            "confidence": 0.8,
+            "master_reasoning": "The review indicates strong product effectiveness in treating acne, leading to significant user satisfaction. While concerns about cost and time commitment are noted, the overall sentiment leans positive due to the dramatic results achieved, supported by multiple departments' assessments.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The protein powder tastes great and mixes well without clumps. I've seen good muscle gain results over 3 months. But the ingredient list includes arti...",
+            "ground_truth": "positive",
+            "predicted": "neutral",
+            "confidence": 0.78,
+            "master_reasoning": "The review presents a balanced view, highlighting positive aspects like taste and effectiveness while expressing concerns over ingredient quality, particularly artificial sweeteners. This duality leads to an overall neutral sentiment, as positive and negative factors counterbalance each other.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.0,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This hair treatment makes my hair incredibly soft and shiny - the best it's ever looked. The formula feels luxurious and works quickly. However, it co...",
+            "ground_truth": "negative",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The review reflects a strong positive sentiment regarding immediate results but is overshadowed by significant concerns about harmful ingredients affecting long-term hair health. This leads to an overall negative sentiment due to the potential risks associated with product quality.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": true,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "The vitamin supplement gave me noticeably more energy and improved my mood within weeks. Sleep quality improved and I feel more alert during the day. ...",
+            "ground_truth": "positive",
+            "predicted": "negative",
+            "confidence": 0.85,
+            "master_reasoning": "The overall sentiment is negative due to significant concerns regarding quality assurance and the lack of third-party testing, despite positive personal experiences with the product's effectiveness. The high price further exacerbates these concerns, leading to a cautious outlook.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          },
+          {
+            "review": "This perfume has a unique, sophisticated scent that lasts all day. I get compliments regularly and it's become my signature fragrance. However, it's e...",
+            "ground_truth": "negative",
+            "predicted": "neutral",
+            "confidence": 0.8,
+            "master_reasoning": "The review expresses satisfaction with the perfume's scent and its longevity, but significant concerns about its high price and small bottle size create a conflict. This results in an overall neutral sentiment, as the positive aspects are undermined by perceived poor value.",
+            "discussion_rounds": 0,
+            "consensus_reached": true,
+            "disagreement_level": 0.4,
+            "correct": false,
+            "complexity": "conflict_resolution"
+          }
+        ]
+      },
+      "comparison": {
+        "accuracy_difference": 0.0,
+        "accuracy_improvement_percent": 0.0,
+        "confidence_difference": 0.012000000000000122,
+        "time_ratio": 1.0770135127150646,
+        "cases_with_discussion": 0,
+        "discussion_advantage": false
+      }
+    }
+  }
+}

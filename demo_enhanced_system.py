@@ -6,7 +6,7 @@ Demonstrates the department-based collaborative workflow with real agent disagre
 
 import json
 import os
-from workflow_manager import MultiAgentWorkflowManager, analyze_review
+from workflow_manager import analyze_review
 
 # Import the new data pipeline
 try:

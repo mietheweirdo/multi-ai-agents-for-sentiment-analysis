@@ -1,0 +1,73 @@
+{
+  "name": "Enhanced A2A Coordinator Agent",
+  "description": "Advanced coordinator using true Agent-to-Agent communication via JSON-RPC",
+  "version": "2.0.0",
+  "author": "Multi-Agent Sentiment Analysis Team",
+  "capabilities": [
+    "a2a_coordination",
+    "parallel_agent_calls", 
+    "async_processing",
+    "multi_agent_consensus",
+    "business_analysis",
+    "review_scraping"
+  ],
+  "communication_protocol": "A2A JSON-RPC 2.0",
+  "supported_languages": ["english"],
+  "protocols": ["a2a", "json-rpc-2.0"],
+  "endpoints": {
+    "rpc": "/rpc",
+    "health": "/health",
+    "agents": "/agents",
+    "agent_card": "/.well-known/agent.json"
+  },
+  "agent_network": {
+    "quality_agent": "http://localhost:8001/rpc",
+    "experience_agent": "http://localhost:8002/rpc",
+    "user_experience_agent": "http://localhost:8003/rpc",
+    "business_agent": "http://localhost:8004/rpc",
+    "technical_agent": "http://localhost:8005/rpc"
+  },
+  "features": {
+    "parallel_execution": true,
+    "async_coordination": true,
+    "fault_tolerance": true,
+    "auto_scraping": true,
+    "a2a_communication": true
+  },
+  "input_types": [
+    {
+      "type": "review_text",
+      "description": "Customer review text for analysis"
+    },
+    {
+      "type": "product_analysis_request",
+      "description": "Product analysis with auto-scraping",
+      "metadata_required": ["product_name", "enable_scraping"]
+    }
+  ],
+  "output_types": [
+    {
+      "type": "multi_agent_analysis",
+      "description": "Comprehensive analysis from multiple specialized agents",
+      "includes": [
+        "department_analyses",
+        "master_analysis", 
+        "business_recommendations",
+        "workflow_metadata"
+      ]
+    }
+  ],
+  "architecture": {
+    "communication_pattern": "Hub-and-Spoke A2A",
+    "execution_model": "Parallel Async",
+    "fault_handling": "Graceful Degradation",
+    "coordination_method": "Consensus-Based"
+  },
+  "metadata": {
+    "created": "2024-01-01",
+    "updated": "2024-01-01",
+    "tags": ["a2a", "coordinator", "multi-agent", "async", "parallel"],
+    "license": "MIT",
+    "documentation": "True Agent-to-Agent communication implementation"
+  }
+} 
