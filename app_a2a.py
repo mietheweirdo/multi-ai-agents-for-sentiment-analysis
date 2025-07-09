@@ -107,7 +107,7 @@ def run_product_response_analysis(user_input: str) -> Dict[str, Any]:
                 scraped_data = scrape_and_preprocess(
                     keyword=search_keywords,
                     sources=['youtube', 'tiki'],
-                    max_items_per_source=3  # Reduced for speed
+                    max_items_per_source=10  # Reduced for speed
                 )
                 print(f"✅ Found {len(scraped_data)} reviews to analyze")
             except Exception as scrape_inner_error:
@@ -159,8 +159,8 @@ def run_product_response_analysis(user_input: str) -> Dict[str, Any]:
             "disagreement_threshold": 0.6,
             "enable_consensus_debate": True,
             "max_tokens_per_agent": 150,
-            "max_tokens_master": 500,
-            "max_tokens_advisor": 600
+            "max_tokens_master": 2000,
+            "max_tokens_advisor": 2000
         }
         
         # Call A2A LangGraph coordinator
@@ -350,30 +350,185 @@ Examples:
         }
 
 def main():
-    """Main Streamlit application"""
+    """Main Streamlit application with enhanced UI"""
     st.set_page_config(
-        page_title="Smart Product Assistant",
+        page_title="Smart Product Assistant - AI-Powered Reviews",
         page_icon="🛍️",
         layout="wide",
-        initial_sidebar_state="expanded"
+        initial_sidebar_state="expanded",
+        menu_items={
+            'Get Help': 'https://github.com/your-repo/issues',
+            'Report a bug': 'https://github.com/your-repo/issues/new',
+            'About': """
+            # Smart Product Assistant 🛍️
+            
+            AI-powered product advisor that analyzes real reviews to give you expert insights!
+            
+            **Features:**
+            - 🔍 Smart product detection
+            - 🌐 Real-time review scraping  
+            - 🤖 Multi-agent AI analysis
+            - 💬 Personalized recommendations
+            
+            Built with ❤️ using Streamlit and OpenAI GPT-4
+            """
+        }
     )
     
-    # Main title
-    st.title("🛍️ Smart Product Assistant")
-    st.markdown("*AI-powered product advisor with real-time review analysis and expert consensus*")
+    # Custom CSS for dark theme and balanced chat layout
+    st.markdown("""
+    <style>
+    .main .block-container {
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        max-width: 100%;
+    }
+    .stApp > header {
+        background-color: transparent;
+    }
+    .stApp {
+        background-color: #0e1117;
+        color: #fafafa;
+    }
+    /* Dark theme for all components */
+    .stChatMessage {
+        background-color: #262730;
+        border: 1px solid #404040;
+        margin: 0.5rem 0;
+        border-radius: 10px;
+    }
+    /* Balanced chat message alignment */
+    .stChatMessage[data-testid="chat-message-user"] {
+        margin-left: 2rem;
+        margin-right: 1rem;
+        background-color: #1f4e79;
+        border-left: 4px solid #667eea;
+    }
+    .stChatMessage[data-testid="chat-message-assistant"] {
+        margin-left: 1rem;
+        margin-right: 2rem;
+        background-color: #262730;
+        border-left: 4px solid #764ba2;
+    }
+    /* Chat content padding */
+    .stChatMessage > div {
+        padding: 1rem 1.2rem;
+    }
+    .stExpander {
+        background-color: #262730;
+        border: 1px solid #404040;
+        margin: 0.5rem 0;
+    }
+    .stSidebar {
+        background-color: #262730;
+    }
+    /* Chat input styling */
+    .stChatInput > div > div {
+        background-color: #262730;
+        border: 1px solid #404040;
+    }
+    /* Spinner container */
+    .stSpinner {
+        text-align: center;
+        padding: 1rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
     
-    # Run the chatbot interface only (no sentiment analysis mode)
+    # Compact header
+    st.markdown("""
+    <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); padding: 1.5rem 2rem; border-radius: 10px; text-align: center; margin-bottom: 1.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h2 style="color: white; margin-bottom: 0.3rem; font-size: 1.8rem;">🛍️ Smart Product Assistant</h2>
+        <p style="color: rgba(255,255,255,0.9); font-size: 1rem; margin-bottom: 0;">AI-powered product advisor with real-time review analysis</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Run the chatbot interface
     run_chatbot_interface()
 
 def run_chatbot_interface():
-    """Simplified chatbot interface for product questions"""
-    st.markdown("### 💬 Ask About Any Product")
-    st.markdown("*Just type your question naturally! Examples:*")
-    st.markdown("• Should I buy Samsung Z-Fold?")
-    st.markdown("• What can iPhone 15 improve?")
-    st.markdown("• Is MacBook worth the price?")
+    """Enhanced chatbot interface with beautiful UI and detailed loading steps"""
     
-    # Initialize chat history
+    # Custom CSS for better dark theme styling and balanced chat layout
+    st.markdown("""
+    <style>
+    .main-header {
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        padding: 1.5rem;
+        border-radius: 10px;
+        color: white;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Chat message content styling */
+    .stChatMessage .stMarkdown {
+        padding: 0.5rem 0;
+    }
+    
+    /* Example questions styling */
+    .example-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 12px;
+        padding: 1rem;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 0.5rem 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .example-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* Improve chat alignment */
+    .stChatMessage > div > div {
+        max-width: none !important;
+        width: 100%;
+    }
+    
+    /* Better responsive margins */
+    @media (max-width: 768px) {
+        .stChatMessage[data-testid="chat-message-user"] {
+            margin-left: 1rem;
+            margin-right: 0.5rem;
+        }
+        .stChatMessage[data-testid="chat-message-assistant"] {
+            margin-left: 0.5rem;
+            margin-right: 1rem;
+        }
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # Example questions displayed by default (not in expander)
+    st.markdown("""
+    <div style="margin-bottom: 1.5rem;">
+        <h3 style="color: #667eea; margin-bottom: 1rem;">💡 Example Questions</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="example-card">
+                <strong>🛒 Purchase Decisions</strong><br>
+                <span style="color: rgba(255,255,255,0.9);">
+                • Should I buy Samsung Z-Fold?<br>
+                • Is MacBook worth the price?<br>
+                • Samsung vs iPhone comparison
+                </span>
+            </div>
+            <div class="example-card">
+                <strong>🔧 Product Improvements</strong><br>
+                <span style="color: rgba(255,255,255,0.9);">
+                • What can iPhone 15 improve?<br>
+                • How to make AirPods better?<br>
+                • Laptop battery life issues
+                </span>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Initialize chat history in session state
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
     
@@ -388,22 +543,32 @@ def run_chatbot_interface():
                 with st.chat_message("assistant"):
                     st.write(message['content'])
                     
-                    # Show simple analysis details
+                    # Show enhanced analysis details
                     if "metadata" in message and message["metadata"]:
                         metadata = message["metadata"]
-                        details = []
-                        if "product_detected" in metadata:
-                            details.append(f"Product: {metadata['product_detected']}")
-                        if "scraped_count" in metadata:
-                            details.append(f"Reviews analyzed: {metadata['scraped_count']}")
-                        if "processing_time" in metadata:
-                            details.append(f"Time: {metadata['processing_time']:.1f}s")
                         
-                        if details:
-                            st.caption(" • ".join(details))
+                        # Create beautiful metadata display
+                        with st.expander("📊 **Analysis Details**", expanded=False):
+                            col1, col2, col3 = st.columns(3)
+                            
+                            with col1:
+                                if "product_detected" in metadata:
+                                    st.metric("🎯 Product", metadata["product_detected"])
+                            
+                            with col2:
+                                if "scraped_count" in metadata:
+                                    st.metric("📚 Reviews", metadata["scraped_count"])
+                            
+                            with col3:
+                                if "processing_time" in metadata:
+                                    st.metric("⏱️ Time", f"{metadata['processing_time']:.1f}s")
+                            
+                            # Additional metadata
+                            if "question_type" in metadata:
+                                st.info(f"**Question Type:** {metadata['question_type'].replace('_', ' ').title()}")
     
-    # Chat input
-    user_input = st.chat_input("Ask me about any product...")
+    # Chat input at the bottom
+    user_input = st.chat_input("💭 Ask me about any product...")
     
     if user_input:
         # Add user message to history
@@ -416,47 +581,68 @@ def run_chatbot_interface():
         with st.chat_message("user"):
             st.write(user_input)
         
-        # Show thinking spinner and get response
-        with st.chat_message("assistant"):
-            with st.spinner("🔍 Detecting product... 🌐 Scraping reviews... 🤖 AI agents analyzing... 💬 Generating response..."):
-                start_time = time.time()
-                
-                # Get response from the complete pipeline
-                result = run_product_response_analysis(user_input)
-                
-                processing_time = time.time() - start_time
-            
-            # Process and display the result
-            if "error" in result:
-                assistant_response = f"I'm sorry, I encountered an error while analyzing your question. Please try rephrasing it or ask about a different product."
-                metadata = {}
-            else:
-                # Get the readable response from the product response agent
-                assistant_response = result.get("readable_response", "I've analyzed your question, but couldn't generate a clear response.")
-                
-                # Prepare metadata
-                metadata = {
-                    "processing_time": processing_time,
-                    "product_detected": result.get("product_name", "Unknown"),
-                    "question_type": result.get("question_type", "General"),
-                    "scraped_count": result.get("scraped_count", 0)
-                }
-            
-            # Display the response
+        # Create assistant message container and clear old content
+        assistant_container = st.chat_message("assistant")
+        
+        # Show loading indicator in a dedicated placeholder
+        loading_placeholder = assistant_container.empty()
+        
+        with loading_placeholder.container():
+            with st.spinner("🤖 AI is thinking..."):
+                try:
+                    # Get response from the complete pipeline
+                    result = run_product_response_analysis(user_input)
+                    
+                    if "error" not in result:
+                        # Get the readable response
+                        assistant_response = result.get("readable_response", "I've analyzed your question, but couldn't generate a clear response.")
+                        
+                        # Prepare metadata
+                        metadata = {
+                            "product_detected": result.get("product_name", "Unknown"),
+                            "question_type": result.get("question_type", "General"),
+                            "scraped_count": result.get("scraped_count", 0)
+                        }
+                        
+                    else:
+                        # Error occurred
+                        assistant_response = "I'm sorry, I encountered an error while analyzing your question. The A2A coordinator might not be running. Please try again or check the system status."
+                        metadata = {}
+                    
+                except Exception as e:
+                    # Handle any unexpected errors
+                    assistant_response = f"An unexpected error occurred: {str(e)}"
+                    metadata = {}
+        
+        # Clear loading and show final response
+        loading_placeholder.empty()
+        
+        with assistant_container:
+            # Display the final response with beautiful formatting
+            st.markdown("### 💬 **Response**")
             st.write(assistant_response)
             
             # Show enhanced metadata
             if metadata:
-                details = []
-                if "product_detected" in metadata:
-                    details.append(f"Product: {metadata['product_detected']}")
-                if "scraped_count" in metadata:
-                    details.append(f"Reviews analyzed: {metadata['scraped_count']}")
-                if "processing_time" in metadata:
-                    details.append(f"Time: {metadata['processing_time']:.1f}s")
-                
-                if details:
-                    st.caption(" • ".join(details))
+                with st.expander("📊 **Analysis Details**", expanded=True):
+                    col1, col2, col3 = st.columns(3)
+                    
+                    with col1:
+                        if "product_detected" in metadata:
+                            st.metric("🎯 Product", metadata["product_detected"])
+                    
+                    with col2:
+                        if "scraped_count" in metadata:
+                            st.metric("📚 Reviews", metadata["scraped_count"])
+                    
+                    with col3:
+                        # Skip processing time as we removed timing logic
+                        if "question_type" in metadata:
+                            st.metric("❓ Type", metadata["question_type"].replace('_', ' ').title())
+                    
+                    # Additional metadata
+                    if "question_type" in metadata:
+                        st.info(f"**Question Type:** {metadata['question_type'].replace('_', ' ').title()}")
         
         # Add assistant response to history
         st.session_state.chat_history.append({
@@ -465,28 +651,97 @@ def run_chatbot_interface():
             "metadata": metadata
         })
     
-    # Clear chat button in sidebar
+    # Enhanced sidebar with better styling
     with st.sidebar:
-        st.markdown("### 🔧 Options")
-        if st.button("🗑️ Clear Chat", use_container_width=True):
+        st.markdown("""
+        <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); padding: 1.5rem; border-radius: 10px; color: white; margin-bottom: 1rem;">
+            <h3>🔧 Control Panel</h3>
+            <p style="margin-bottom: 0;">Manage your chat experience</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Clear chat button with better styling
+        if st.button("🗑️ Clear Chat History", use_container_width=True, type="primary"):
             st.session_state.chat_history = []
             st.rerun()
         
-        st.markdown("### ℹ️ How it works")
-        st.markdown("""
-        1. **🔍 Product Detection** - AI identifies the product from your question
-        2. **🌐 Review Scraping** - Searches YouTube & Tiki for relevant reviews  
-        3. **🤖 Multi-Agent Analysis** - 5 AI agents analyze and debate
-        4. **💬 Smart Response** - Generates a personalized answer just for you
-        """)
+        st.markdown("---")
         
-        st.markdown("### 📝 Example Questions")
+        # How it works section
+        with st.expander("ℹ️ **How It Works**", expanded=True):
+            st.markdown("""
+            <div style="font-size: 0.9rem; color: #fafafa;">
+            <div style="margin-bottom: 1rem;">
+                <strong style="color: #667eea;">🔍 Step 1: Product Detection</strong><br>
+                <span style="color: #b3b3b3;">AI analyzes your question to identify the product and question type</span>
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <strong style="color: #667eea;">🌐 Step 2: Review Scraping</strong><br>
+                <span style="color: #b3b3b3;">Searches YouTube & Tiki for relevant product reviews</span>
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <strong style="color: #667eea;">🤖 Step 3: Multi-Agent Analysis</strong><br>
+                <span style="color: #b3b3b3;">5 specialized AI agents analyze and debate findings</span>
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+                <strong style="color: #667eea;">💬 Step 4: Smart Response</strong><br>
+                <span style="color: #b3b3b3;">Generates personalized recommendations just for you</span>
+            </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        # System status
+        with st.expander("📊 **System Status**", expanded=False):
+            st.markdown("""
+            <div style="font-size: 0.9rem; color: #fafafa;">
+            <div style="margin-bottom: 0.5rem;">
+                <span style="color: #4caf50;">●</span> <strong style="color: #fafafa;">A2A Coordinator:</strong> <span style="color: #b3b3b3;">Active</span>
+            </div>
+            <div style="margin-bottom: 0.5rem;">
+                <span style="color: #4caf50;">●</span> <strong style="color: #fafafa;">Data Pipeline:</strong> <span style="color: #b3b3b3;">Ready</span>
+            </div>
+            <div style="margin-bottom: 0.5rem;">
+                <span style="color: #4caf50;">●</span> <strong style="color: #fafafa;">AI Agents:</strong> <span style="color: #b3b3b3;">5 agents online</span>
+            </div>
+            <div style="margin-bottom: 0.5rem;">
+                <span style="color: #4caf50;">●</span> <strong style="color: #fafafa;">Review Sources:</strong> <span style="color: #b3b3b3;">YouTube + Tiki</span>
+            </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        # Tips section
+        with st.expander("💡 **Pro Tips**", expanded=False):
+            st.markdown("""
+            <div style="font-size: 0.9rem; color: #fafafa;">
+            <div style="margin-bottom: 0.8rem;">
+                <strong style="color: #667eea;">🎯 Be Specific:</strong><br>
+                <span style="color: #b3b3b3;">"Should I buy iPhone 15 Pro?" is better than "Tell me about iPhones"</span>
+            </div>
+            
+            <div style="margin-bottom: 0.8rem;">
+                <strong style="color: #667eea;">🗣️ Ask Naturally:</strong><br>
+                <span style="color: #b3b3b3;">Use natural language like you're talking to a friend</span>
+            </div>
+            
+            <div style="margin-bottom: 0.8rem;">
+                <strong style="color: #667eea;">🔄 Try Different Questions:</strong><br>
+                <span style="color: #b3b3b3;">Ask about features, problems, comparisons, or improvements</span>
+            </div>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        st.markdown("---")
+        
+        # Footer
         st.markdown("""
-        • Should I buy Samsung Z-Fold?
-        • What can iPhone 15 improve?
-        • Is MacBook worth the price?
-        • Samsung vs iPhone comparison
-        """)
+        <div style="text-align: center; font-size: 0.8rem; color: #b3b3b3; margin-top: 2rem;">
+            <p>🤖 Powered by AI Agents</p>
+            <p>Made with ❤️ using Streamlit</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
