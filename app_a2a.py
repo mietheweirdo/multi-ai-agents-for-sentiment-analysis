@@ -230,17 +230,20 @@ def detect_product_info(user_input: str) -> Dict[str, Any]:
         prompt = ChatPromptTemplate.from_messages([
             ("system", """Extract product information from user queries. Return valid JSON only.
 
+IMPORTANT: For search_keywords, only include the PRODUCT NAME and basic descriptors, DO NOT include question types like "improvement", "suggestions", "advice", etc.
+
 Format:
 {{
   "product_name": "exact product name",
   "category": "electronics|fashion|home_garden|beauty_health|sports_outdoors|books_media", 
   "question_type": "purchase_advice|improvement_suggestions|comparison|general",
-  "search_keywords": "2-3 keywords for searching reviews"
+  "search_keywords": "product name only, 2-3 words max"
 }}
 
 Examples:
 "Should I buy Samsung Z-Fold?" -> {{"product_name": "Samsung Galaxy Z-Fold", "category": "electronics", "question_type": "purchase_advice", "search_keywords": "samsung galaxy fold"}}
-"What is laptop lenovo legion strength?" -> {{"product_name": "Lenovo Legion", "category": "electronics", "question_type": "general", "search_keywords": "lenovo legion laptop"}}"""),
+"What is laptop lenovo legion strength?" -> {{"product_name": "Lenovo Legion", "category": "electronics", "question_type": "general", "search_keywords": "lenovo legion laptop"}}
+"Làm gì để cải thiện iPhone 16?" -> {{"product_name": "iPhone 16", "category": "electronics", "question_type": "improvement_suggestions", "search_keywords": "iphone 16"}}"""),
             ("human", "{query}")
         ])
         
@@ -326,6 +329,18 @@ Examples:
             question_type = "comparison"
         else:
             question_type = "general"
+        
+        # Clean search keywords to remove question-related words
+        question_words = ['improvement', 'suggestions', 'advice', 'recommend', 'better', 'fix', 'problem', 
+                         'cải thiện', 'đề xuất', 'khuyên', 'tốt hơn', 'sửa', 'vấn đề', 'làm gì', 'nên', 'should']
+        
+        # Remove question words from search keywords
+        clean_keywords = []
+        for keyword in search_keywords.split():
+            if keyword.lower() not in question_words:
+                clean_keywords.append(keyword)
+        
+        search_keywords = " ".join(clean_keywords) if clean_keywords else product_name.lower()
         
         return {
             "product_name": product_name,
