@@ -1,0 +1,28 @@
+🤖 LLM-OPTIMIZED PREPROCESSING REPORT
+============================================================
+
+📅 Processing Date: 2025-06-30 03:09:05
+🎯 Purpose: Agent-ready data for LLM sentiment analysis
+
+📊 INPUT STATISTICS:
+   • Total items loaded: 219
+   • Source distribution: {'tiki': 69, 'youtube': 150}
+
+🔍 FILTERING STATISTICS:
+   • Quality filter removed: 4 items
+   • Deduplication removed: 2 items
+   • Privacy redaction applied: 7 items
+   • Processing errors: 0 items
+
+✅ OUTPUT STATISTICS:
+   • Successfully processed: 213 items
+   • Language distribution: {'vi': 141, 'en': 71, 'mixed': 1}
+   • Overall success rate: 97.26%
+
+🎯 LLM AGENT READINESS:
+   ✅ Quality filtering applied (removes noise)
+   ✅ Deduplication completed (prevents bias)
+   ✅ Privacy redaction enabled (production safe)
+   ✅ Text normalization applied (consistent input)
+   ✅ Language detection completed (context aware)
+   ✅ Abbreviation expansion applied (clear meaning)

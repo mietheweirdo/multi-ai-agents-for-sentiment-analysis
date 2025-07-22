@@ -1,0 +1,4156 @@
+{
+  "preprocessing_metadata": {
+    "version": "2.0_LLM_optimized",
+    "processing_timestamp": "2025-07-01T04:54:55.285607",
+    "total_items": 213,
+    "preprocessing_pipeline": [
+      "quality_filtering",
+      "multi_level_deduplication",
+      "privacy_redaction",
+      "text_normalization",
+      "language_detection",
+      "abbreviation_expansion"
+    ],
+    "config": {
+      "min_text_length": 5,
+      "max_text_length": 1000,
+      "similarity_threshold": 0.85,
+      "privacy_redaction_enabled": true
+    }
+  },
+  "quality_metrics": {
+    "total_loaded": 219,
+    "successfully_processed": 213,
+    "quality_filtered": 4,
+    "duplicates_removed": 2,
+    "privacy_redactions": 7,
+    "processing_errors": 0,
+    "success_rate": 97.26027397260275
+  },
+  "data_distribution": {
+    "source_distribution": {
+      "tiki": 69,
+      "youtube": 150
+    },
+    "language_distribution": {
+      "vi": 141,
+      "en": 71,
+      "mixed": 1
+    }
+  },
+  "sentiment_analysis_ready_data": [
+    {
+      "id": 1,
+      "original_text": "Đề nghị Tiki giải thích tại sao tai nghe Airpods mới nhận ngày 16/06/2025 và kích hoạt cùng ngày lại có bảo hành tới ngày 23/05/2026.",
+      "cleaned_text": "Đề nghị Tiki giải thích tại sao tai nghe Airpods mới nhận ngày 16/06/2025 và kích hoạt cùng ngày lại có bảo hành tới ngày 23/05/2026.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20136466,
+        "content": "Đề nghị Tiki giải thích tại sao tai nghe Airpods mới nhận ngày 16/06/2025 và kích hoạt cùng ngày lại có bảo hành tới ngày 23/05/2026.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 2,
+      "original_text": "Airpods mới dùng đã hư. Chính sách bảo hành lòng vòng. Cần nhân viên trả lời mà cứ đưa AI. Mất thời gian. Không uy tín.",
+      "cleaned_text": "Airpods mới dùng đã hư. Chính sách bảo hành lòng vòng. Cần nhân viên trả lời mà cứ đưa AI. Mất thời gian. Không uy tín.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20102243,
+        "content": "Airpods mới dùng đã hư. Chính sách bảo hành lòng vòng. Cần nhân viên trả lời mà cứ đưa AI. Mất thời gian. Không uy tín.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 3,
+      "original_text": "Hộp hơi móp + dơ. Do tính chất máy chụp tự làm đẹp nên nhìn đỡ hơn thực tế.",
+      "cleaned_text": "Hộp hơi móp + dơ. Do tính chất máy chụp tự làm đẹp nên nhìn đỡ hơn thực tế.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20134006,
+        "content": "Hộp hơi móp + dơ. Do tính chất máy chụp tự làm đẹp nên nhìn đỡ hơn thực tế.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 4,
+      "original_text": "Giao hàng rất nhanh, đúng hẹn, sản phẩm mới xài nhưng rất OK, tốt hơn nhiều so với airpod 3 tuy chống ồn không được như airpod 2 pro nhưng nhìn chung đánh giá 8.5/10",
+      "cleaned_text": "Giao hàng rất nhanh, đúng hẹn, sản phẩm mới xài nhưng rất Được tốt hơn nhiều so với airpod 3 tuy chống ồn không được như airpod 2 pro nhưng nhìn chung đánh giá 8.5/10",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20106450,
+        "content": "Giao hàng rất nhanh, đúng hẹn, sản phẩm mới xài nhưng rất OK, tốt hơn nhiều so với airpod 3 tuy chống ồn không được như airpod 2 pro nhưng nhìn chung đánh giá 8.5/10",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 5,
+      "original_text": "Good chính hãng,xài ngon lành nha mọi người",
+      "cleaned_text": "Good chính hãng,xài ngon lành nha mọi người",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20028314,
+        "content": "Good chính hãng,xài ngon lành nha mọi người",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 6,
+      "original_text": "Sản phẩm mua ngày 26/3/2025 mà hạn bảo hành có đến tháng 24/12/2025",
+      "cleaned_text": "Sản phẩm mua ngày 26/3/2025 mà hạn bảo hành có đến tháng 24/12/2025",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20102254,
+        "content": "Sản phẩm mua ngày 26/3/2025 mà hạn bảo hành có đến tháng 24/12/2025",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 7,
+      "original_text": "Hàng còn nguyên seal. Luôn an tâm mua của tiki trading",
+      "cleaned_text": "Hàng còn nguyên seal. Luôn an tâm mua của tiki trading",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20048284,
+        "content": "Hàng còn nguyên seal. Luôn an tâm mua của tiki trading",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 8,
+      "original_text": "Product’s very good!!! Excellent sound quality, effective noise isolation , and a comfortable fit. The design is sleek and battery life is solid",
+      "cleaned_text": "Product’s very good!! Excellent sound quality, effective noise isolation , and a comfortable fit. The design is sleek and battery life is solid",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20047198,
+        "content": "Product’s very good!!! Excellent sound quality, effective noise isolation , and a comfortable fit. The design is sleek and battery life is solid",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 9,
+      "original_text": "Chất lượng không có gì bàn cải. Chống ồn tốt (thua bản pro 2 nha). Tiki giao siêu nhanh",
+      "cleaned_text": "Chất lượng không có gì bàn cải. Chống ồn tốt (thua bản pro 2 nha). Tiki giao siêu nhanh",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20029082,
+        "content": "Chất lượng không có gì bàn cải. Chống ồn tốt (thua bản pro 2 nha). Tiki giao siêu nhanh",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 10,
+      "original_text": "Giao hàng rất nhanh. Sản phẩm đóng gói cẩn thận.",
+      "cleaned_text": "Giao hàng rất nhanh. Sản phẩm đóng gói cẩn thận.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20103777,
+        "content": "Giao hàng rất nhanh. Sản phẩm đóng gói cẩn thận.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 11,
+      "original_text": "âm thanh ko hơn e3 , hoen chống ồn chủ động, chức năg khá hay",
+      "cleaned_text": "âm thanh không hơn e3 , hoen chống ồn chủ động, chức năg khá hay",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20067304,
+        "content": "âm thanh ko hơn e3 , hoen chống ồn chủ động, chức năg khá hay",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 12,
+      "original_text": "Âm thanh tuyệt vời.",
+      "cleaned_text": "Âm thanh tuyệt vời.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20047867,
+        "content": "Âm thanh tuyệt vời.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 13,
+      "original_text": "Âm thanh quá hay",
+      "cleaned_text": "Âm thanh quá hay",
+      "language": "vi",
+      "language_confidence": 0.85,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.85)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20102935,
+        "content": "Âm thanh quá hay",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 14,
+      "original_text": "Chất lượng tốt nhưng độ bám tai hơi kém, dễ bị rơi khi đeo",
+      "cleaned_text": "Chất lượng tốt nhưng độ bám tai hơi kém, dễ bị rơi khi đeo",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20069620,
+        "content": "Chất lượng tốt nhưng độ bám tai hơi kém, dễ bị rơi khi đeo",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 15,
+      "original_text": "Chống ồn tốt hơn Airpod 3, nhỏ gọn và khít tai. nói chung là rất hài lòng",
+      "cleaned_text": "Chống ồn tốt hơn Airpod 3, nhỏ gọn và khít tai. nói chung là rất hài lòng",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20037205,
+        "content": "Chống ồn tốt hơn Airpod 3, nhỏ gọn và khít tai. nói chung là rất hài lòng",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 16,
+      "original_text": "Hàng Tiki mua luôn uy tín",
+      "cleaned_text": "Hàng Tiki mua luôn uy tín",
+      "language": "vi",
+      "language_confidence": 0.84,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.84)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20066777,
+        "content": "Hàng Tiki mua luôn uy tín",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 17,
+      "original_text": "Đúng kỳ vọng. Giao hàng nhanh.",
+      "cleaned_text": "Đúng kỳ vọng. Giao hàng nhanh.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20037627,
+        "content": "Đúng kỳ vọng. Giao hàng nhanh.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 18,
+      "original_text": "Sp rất dơ. Đóng gói ko chèn lót.",
+      "cleaned_text": "Sản phẩm rất dơ. Đóng gói không chèn lót.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20108264,
+        "content": "Sp rất dơ. Đóng gói ko chèn lót.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 19,
+      "original_text": "Sản phẩm chất lượng, đóng gói đẹp",
+      "cleaned_text": "Sản phẩm chất lượng, đóng gói đẹp",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20090399,
+        "content": "Sản phẩm chất lượng, đóng gói đẹp",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 20,
+      "original_text": "giao hàng nhanh",
+      "cleaned_text": "giao hàng nhanh",
+      "language": "vi",
+      "language_confidence": 0.7333333333333333,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.73)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20051339,
+        "content": "giao hàng nhanh",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 4"
+      }
+    },
+    {
+      "id": 21,
+      "original_text": "âm thanh cực hay 👍 giao nhanh bất ngờ . Rất dễ kết nối , tham khảo các cmt mua hàng trước cũng lo cũng hơi phân vân nhưng cũng chốt đơn 🤣 . Có 1 điều không hài lòng là lệch ngày kích hoạt bảo hành 🫠 nhân viên có giải thích rồi nhưng cũng hơi buồn nhen",
+      "cleaned_text": "âm thanh cực hay 👍 giao nhanh bất ngờ . Rất dễ kết nối , tham khảo các cmt mua hàng trước cũng lo cũng hơi phân vân nhưng cũng chốt đơn 🤣 . Có 1 điều không hài lòng là lệch ngày kích hoạt bảo hành 🫠 nhân viên có giải thích rồi nhưng cũng hơi buồn nhen",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19878549,
+        "content": "âm thanh cực hay 👍 giao nhanh bất ngờ . Rất dễ kết nối , tham khảo các cmt mua hàng trước cũng lo cũng hơi phân vân nhưng cũng chốt đơn 🤣 . Có 1 điều không hài lòng là lệch ngày kích hoạt bảo hành 🫠 nhân viên có giải thích rồi nhưng cũng hơi buồn nhen",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 22,
+      "original_text": "Tất cả đều tốt từ sản phẩm đến thời gian giao hàng. Xong nhà bán hàng không biết vì quên hay nghĩ rằng người mua hàng để tặng không hỏi người được tặng nên không gửi kèm thiệp cho người nhận. Buồn quá!",
+      "cleaned_text": "Tất cả đều tốt từ sản phẩm đến thời gian giao hàng. Xong nhà bán hàng không biết vì quên hay nghĩ rằng người mua hàng để tặng không hỏi người được tặng nên không gửi kèm thiệp cho người nhận. Buồn quá!",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20032105,
+        "content": "Tất cả đều tốt từ sản phẩm đến thời gian giao hàng. Xong nhà bán hàng không biết vì quên hay nghĩ rằng người mua hàng để tặng không hỏi người được tặng nên không gửi kèm thiệp cho người nhận. Buồn quá!",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 23,
+      "original_text": "Hàng chính hãng Apple, nguyên seal, kích hoạt bảo hành đúng 1 năm, không bị lệch bảo hành. Phân vân giữa Airpods pro 2 và Airpods 3, cuối cùng vẫn chọn Airpods 3 vì sự thoải mái, tại mình hay nằm nghiêng trên nệm nghe nhạc, thoải mái ko đau tai.",
+      "cleaned_text": "Hàng chính hãng Apple, nguyên seal, kích hoạt bảo hành đúng 1 năm, không bị lệch bảo hành. Phân vân giữa Airpods pro 2 và Airpods 3, cuối cùng vẫn chọn Airpods 3 vì sự thoải mái, tại mình hay nằm nghiêng trên nệm nghe nhạc, thoải mái không đau tai.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19764806,
+        "content": "Hàng chính hãng Apple, nguyên seal, kích hoạt bảo hành đúng 1 năm, không bị lệch bảo hành. Phân vân giữa Airpods pro 2 và Airpods 3, cuối cùng vẫn chọn Airpods 3 vì sự thoải mái, tại mình hay nằm nghiêng trên nệm nghe nhạc, thoải mái ko đau tai.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 24,
+      "original_text": "Mới mua hôm nay. *** mà thời gian bảo hành chỉ tới 14.*** là chưa tới 3 tháng.? Chưa hiểu vấn đề này lắm. Còn hàng xài ok ko lỗi lầm gì hết.",
+      "cleaned_text": "Mới mua hôm nay. *** mà thời gian bảo hành chỉ tới 14.*** là chưa tới 3 tháng.? Chưa hiểu vấn đề này lắm. Còn hàng xài được không lỗi lầm gì hết.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20132458,
+        "content": "Mới mua hôm nay. *** mà thời gian bảo hành chỉ tới 14.*** là chưa tới 3 tháng.? Chưa hiểu vấn đề này lắm. Còn hàng xài ok ko lỗi lầm gì hết.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 25,
+      "original_text": "Mua rất nhiều đồ Apple trên tiki, đây là lần đầu tiên mua phải sản phẩm lỗi, mới dùng được 5 ngày đã không sạc đc 1 bên tai trái, không kết nối được với các thiết bị.\r\nBên Tiki đã hỗ trợ mình thu lại sản phẩm đổi trả, nhưng không thấy ngày hẹn đổi trả cụ thể.",
+      "cleaned_text": "Mua rất nhiều đồ Apple trên tiki, đây là lần đầu tiên mua phải sản phẩm lỗi, mới dùng được 5 ngày đã không sạc đc 1 bên tai trái, không kết nối được với các thiết bị. Bên Tiki đã hỗ trợ mình thu lại sản phẩm đổi trả, nhưng không thấy ngày hẹn đổi trả cụ thể.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19202174,
+        "content": "Mua rất nhiều đồ Apple trên tiki, đây là lần đầu tiên mua phải sản phẩm lỗi, mới dùng được 5 ngày đã không sạc đc 1 bên tai trái, không kết nối được với các thiết bị.\r\nBên Tiki đã hỗ trợ mình thu lại sản phẩm đổi trả, nhưng không thấy ngày hẹn đổi trả cụ thể.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 26,
+      "original_text": "Máy mua mới và giao 2h trong hôm nay 20 tháng 10 năm 2024, nhưng khi kích hoạt lại bảo hành giới hạn đến 14 tháng 08 năm 2025, trong khi Tiki ghi mô tả chi tiết bảo hảnh là 12 tháng. Vì sao lại như vậy?",
+      "cleaned_text": "Máy mua mới và giao 2h trong hôm nay 20 tháng 10 năm 2024, nhưng khi kích hoạt lại bảo hành giới hạn đến 14 tháng 08 năm 2025, trong khi Tiki ghi mô tả chi tiết bảo hảnh là 12 tháng. Vì sao lại như vậy?",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20010930,
+        "content": "Máy mua mới và giao 2h trong hôm nay 20 tháng 10 năm 2024, nhưng khi kích hoạt lại bảo hành giới hạn đến 14 tháng 08 năm 2025, trong khi Tiki ghi mô tả chi tiết bảo hảnh là 12 tháng. Vì sao lại như vậy?",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 27,
+      "original_text": "Shop giao sản phẩm đã qua sử dụng, mới kết nối đã thấy airpod được đặt tên Nhung' Airpod, Nhung không phải tên mình. Nắp hộp airpod lỏng lẻo, ko chắc chắn. Thất vọng, đây là lần mua hàng tiki cuối cùng.",
+      "cleaned_text": "Shop giao sản phẩm đã qua sử dụng, mới kết nối đã thấy airpod được đặt tên Nhung' Airpod, Nhung không phải tên mình. Nắp hộp airpod lỏng lẻo, không chắc chắn. Thất vọng, đây là lần mua hàng tiki cuối cùng.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20068413,
+        "content": "Shop giao sản phẩm đã qua sử dụng, mới kết nối đã thấy airpod được đặt tên Nhung' Airpod, Nhung không phải tên mình. Nắp hộp airpod lỏng lẻo, ko chắc chắn. Thất vọng, đây là lần mua hàng tiki cuối cùng.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 28,
+      "original_text": "Bán giá cao, từ nay không mua hàng trên tiki nữa. Tại sao tôi nhận hàng rồi về người khác bảo giá cao, tôi xem lại thì giá rẻ hơn 6*** dù giá báo ngay ngày nhận luôn… chỉ cách một đêm.",
+      "cleaned_text": "Bán giá cao, từ nay không mua hàng trên tiki nữa. Tại sao tôi nhận hàng rồi về người khác bảo giá cao, tôi xem lại thì giá rẻ hơn 6*** dù giá báo ngay ngày nhận luôn... chỉ cách một đêm.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20083924,
+        "content": "Bán giá cao, từ nay không mua hàng trên tiki nữa. Tại sao tôi nhận hàng rồi về người khác bảo giá cao, tôi xem lại thì giá rẻ hơn 6*** dù giá báo ngay ngày nhận luôn… chỉ cách một đêm.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 29,
+      "original_text": "Giao hàng nhanh sản phẩm tốt",
+      "cleaned_text": "Giao hàng nhanh sản phẩm tốt",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20009608,
+        "content": "Giao hàng nhanh sản phẩm tốt",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 30,
+      "original_text": "Giao nhanh chưa tới 2 tiếng đã nhận đc hàng\r\nHàng nguyên zin, còn seal. Có lót chống va đập cẩn thận.\r\nTai nghe kết nối nhanh. Nghe hay và ổn định",
+      "cleaned_text": "Giao nhanh chưa tới 2 tiếng đã nhận đc hàng Hàng nguyên zin, còn seal. Có lót chống va đập cẩn thận. Tai nghe kết nối nhanh. Nghe hay và ổn định",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19515562,
+        "content": "Giao nhanh chưa tới 2 tiếng đã nhận đc hàng\r\nHàng nguyên zin, còn seal. Có lót chống va đập cẩn thận.\r\nTai nghe kết nối nhanh. Nghe hay và ổn định",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 31,
+      "original_text": "Sản phẩm rất tốt trên cả tuyệt vời. Tự động điều chỉnh âm thanh phù hợp với người nghe. Thời lượng sử dụng pin của hộp đựng lâu. Tuy nhiên quá trình cài đặt ban đầu hơi phức tạp và tốn nhiều thời gian.",
+      "cleaned_text": "Sản phẩm rất tốt trên cả tuyệt vời. Tự động điều chỉnh âm thanh phù hợp với người nghe. Thời lượng sử dụng pin của hộp đựng lâu. Tuy nhiên quá trình cài đặt ban đầu hơi phức tạp và tốn nhiều thời gian.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19662113,
+        "content": "Sản phẩm rất tốt trên cả tuyệt vời. Tự động điều chỉnh âm thanh phù hợp với người nghe. Thời lượng sử dụng pin của hộp đựng lâu. Tuy nhiên quá trình cài đặt ban đầu hơi phức tạp và tốn nhiều thời gian.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 32,
+      "original_text": "Âm thanh xịn mịn, đang dùng con airpod 2 đổi sang con này đúng ảo luôn.. cứ phân vân mãi có nên đổi k mà đổi r thấy đúng đáng tiền nha mí bồ. Hơn 1tr5 nghe nó khác bọt hẳn luôn đấyyyy 😬😬😬",
+      "cleaned_text": "Âm thanh xịn mịn, đang dùng con airpod 2 đổi sang con này đúng ảo luôn.. cứ phân vân mãi có nên đổi không mà đổi are thấy đúng đáng tiền nha mí bồ. Hơn 1tr5 nghe nó khác bọt hẳn luôn đấyyyy 😬😬😬",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19923023,
+        "content": "Âm thanh xịn mịn, đang dùng con airpod 2 đổi sang con này đúng ảo luôn.. cứ phân vân mãi có nên đổi k mà đổi r thấy đúng đáng tiền nha mí bồ. Hơn 1tr5 nghe nó khác bọt hẳn luôn đấyyyy 😬😬😬",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 33,
+      "original_text": "Giao hàng nhanh, phù hợp với nhu cầu vì là quà cho vợ. Đóng gói kỹ, hàng đúng mẫu. Hiện nay vợ đã sử dụng một thời gian và đánh giá rất tốt, y như hàng mua ở apple store trước đây.",
+      "cleaned_text": "Giao hàng nhanh, phù hợp với nhu cầu vì là quà cho vợ. Đóng gói kỹ, hàng đúng mẫu. Hiện nay vợ đã sử dụng một thời gian và đánh giá rất tốt, y như hàng mua ở apple store trước đây.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19914026,
+        "content": "Giao hàng nhanh, phù hợp với nhu cầu vì là quà cho vợ. Đóng gói kỹ, hàng đúng mẫu. Hiện nay vợ đã sử dụng một thời gian và đánh giá rất tốt, y như hàng mua ở apple store trước đây.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 34,
+      "original_text": "Hàng đóng gói cẩn thận, giao hàng siêu nhanh trong TP. Rất hài lòng với chất lượng và dịch vụ của Tiki",
+      "cleaned_text": "Hàng đóng gói cẩn thận, giao hàng siêu nhanh trong TP. Rất hài lòng với chất lượng và dịch vụ của Tiki",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19921726,
+        "content": "Hàng đóng gói cẩn thận, giao hàng siêu nhanh trong TP. Rất hài lòng với chất lượng và dịch vụ của Tiki",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 35,
+      "original_text": "Giao nhanh,hàng đóng gói cản thận",
+      "cleaned_text": "Giao nhanh,hàng đóng gói cản thận",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19916606,
+        "content": "Giao nhanh,hàng đóng gói cản thận",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 36,
+      "original_text": "Cần check lại tt bảo hành của thiết bị",
+      "cleaned_text": "Cần check lại tt bảo hành của thiết bị",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20136269,
+        "content": "Cần check lại tt bảo hành của thiết bị",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 37,
+      "original_text": "Kiểm tra xem tại sao mới mua mà bảo hành còn có 5 tháng????",
+      "cleaned_text": "Kiểm tra xem tại sao mới mua mà bảo hành còn có 5 tháng??",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20100362,
+        "content": "Kiểm tra xem tại sao mới mua mà bảo hành còn có 5 tháng????",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 38,
+      "original_text": "Âm thanh tốt, hàng như hình. Sẽ còn ủng hộ shop các lần sau nếu mua hàng táo !!!",
+      "cleaned_text": "Âm thanh tốt, hàng như hình. Sẽ còn ủng hộ shop các lần sau nếu mua hàng táo !!",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20023759,
+        "content": "Âm thanh tốt, hàng như hình. Sẽ còn ủng hộ shop các lần sau nếu mua hàng táo !!!",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 39,
+      "original_text": "Tiki giao hàng siêu nhanh, tai đủ seal, còn mới đẹp. Chất lượng sao chưa thử do chưa khui. \r\n\r\nShipper vui vẻ, nhiệt tình.",
+      "cleaned_text": "Tiki giao hàng siêu nhanh, tai đủ seal, còn mới đẹp. Chất lượng sao chưa thử do chưa khui. Shipper vui vẻ, nhiệt tình.",
+      "language": "vi",
+      "language_confidence": 0.888135593220339,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.89)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19836498,
+        "content": "Tiki giao hàng siêu nhanh, tai đủ seal, còn mới đẹp. Chất lượng sao chưa thử do chưa khui. \r\n\r\nShipper vui vẻ, nhiệt tình.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 40,
+      "original_text": "lần đầu mua đồ điện tử đắt tiền nên cũng hơi rén, trộm vía m dùng hơn tháng chưa thấy có vấn đề gì dù đã đánh rơi mấy lần 🥲 k trôi bh như mn nói nữa ncl trộm vía..",
+      "cleaned_text": "lần đầu mua đồ điện tử đắt tiền nên cũng hơi rén, trộm vía m dùng hơn tháng chưa thấy có vấn đề gì dù đã đánh rơi mấy lần 🥲 không trôi bảo hành như mọi người nói nữa ncl trộm vía..",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19258854,
+        "content": "lần đầu mua đồ điện tử đắt tiền nên cũng hơi rén, trộm vía m dùng hơn tháng chưa thấy có vấn đề gì dù đã đánh rơi mấy lần 🥲 k trôi bh như mn nói nữa ncl trộm vía..",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods 3 cổng Lightning - MPNY3"
+      }
+    },
+    {
+      "id": 41,
+      "original_text": "Hàng nguyên seal TIKI , tuy nhiên đã được kích hoạt bảo hành trước và chỉ còn gần 10 tháng bảo hành Apple. Tự cập nhật bảo hành trên trang của nhà táo. Tiki nên có hướng dẫn để tránh hiểu lầm.",
+      "cleaned_text": "Hàng nguyên seal TIKI , tuy nhiên đã được kích hoạt bảo hành trước và chỉ còn gần 10 tháng bảo hành Apple. Tự cập nhật bảo hành trên trang của nhà táo. Tiki nên có hướng dẫn để tránh hiểu lầm.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20072656,
+        "content": "Hàng nguyên seal TIKI , tuy nhiên đã được kích hoạt bảo hành trước và chỉ còn gần 10 tháng bảo hành Apple. Tự cập nhật bảo hành trên trang của nhà táo. Tiki nên có hướng dẫn để tránh hiểu lầm.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 42,
+      "original_text": "Sau 5 năm vắt kiệt tai trái của ap2 do chỉ đeo vừa tai trái thì cũng có phân vân giữa ap3 và pro2 thì tui quyết định sài loại pro2 in-ear để phát huy đc công năng của cả 2 tai 🤣 ngang giá thì có nhiều sự lựa chọn hơn nhưng mua airpod chỉ để hợp với hệ sinh thái apple!",
+      "cleaned_text": "Sau 5 năm vắt kiệt tai trái của ap2 do chỉ đeo vừa tai trái thì cũng có phân vân giữa ap3 và pro2 thì tui quyết định sài loại pro2 in-ear để phát huy đc công năng của cả 2 tai 🤣 ngang giá thì có nhiều sự lựa chọn hơn nhưng mua airpod chỉ để hợp với hệ sinh thái apple!",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19926332,
+        "content": "Sau 5 năm vắt kiệt tai trái của ap2 do chỉ đeo vừa tai trái thì cũng có phân vân giữa ap3 và pro2 thì tui quyết định sài loại pro2 in-ear để phát huy đc công năng của cả 2 tai 🤣 ngang giá thì có nhiều sự lựa chọn hơn nhưng mua airpod chỉ để hợp với hệ sinh thái apple!",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 43,
+      "original_text": "Vỏ hộp quá bẩn. Ngoại quan không đáng tin chút nào đây là sản phẩm mới, chính hãng.",
+      "cleaned_text": "Vỏ hộp quá bẩn. Ngoại quan không đáng tin chút nào đây là sản phẩm mới, chính hãng.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20090471,
+        "content": "Vỏ hộp quá bẩn. Ngoại quan không đáng tin chút nào đây là sản phẩm mới, chính hãng.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 44,
+      "original_text": "Mua đồ công nghệ ở tiki thì khỏi lo về chất lượng. Mình mua iphone 15 ở đây, h mua thêm con airpod này. Đóng gói, ship hàng đều rất oke, mn yên tâm mua ko phải lo gì",
+      "cleaned_text": "Mua đồ công nghệ ở tiki thì khỏi lo về chất lượng. Mình mua iphone 15 ở đây, giờ mua thêm con airpod này. Đóng gói, ship hàng đều rất được mọi người yên tâm mua không phải lo gì",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19887884,
+        "content": "Mua đồ công nghệ ở tiki thì khỏi lo về chất lượng. Mình mua iphone 15 ở đây, h mua thêm con airpod này. Đóng gói, ship hàng đều rất oke, mn yên tâm mua ko phải lo gì",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 45,
+      "original_text": "Đóng gói cẩn thận đẹp , lúc đầu thời gian bảo hành ko chính xác,  mình đã sữa lại dc lỗi này bây giờ thời gian bão hành đúng roi. Rất hài lòng về sản phẩm và dịch vụ tiki",
+      "cleaned_text": "Đóng gói cẩn thận đẹp , lúc đầu thời gian bảo hành không chính xác, mình đã sữa lại được lỗi này bây giờ thời gian bão hành đúng roi. Rất hài lòng về sản phẩm và dịch vụ tiki",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19997617,
+        "content": "Đóng gói cẩn thận đẹp , lúc đầu thời gian bảo hành ko chính xác,  mình đã sữa lại dc lỗi này bây giờ thời gian bão hành đúng roi. Rất hài lòng về sản phẩm và dịch vụ tiki",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 46,
+      "original_text": "đóng gói kỹ càng, sản phẩm chất lượng, giá cả phù hợp, phù hợp với nhu cầu sử dụng",
+      "cleaned_text": "đóng gói kỹ càng, sản phẩm chất lượng, giá cả phù hợp, phù hợp với nhu cầu sử dụng",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20108218,
+        "content": "đóng gói kỹ càng, sản phẩm chất lượng, giá cả phù hợp, phù hợp với nhu cầu sử dụng",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 47,
+      "original_text": "Tiki bán hàng đã activate. Hàng mua tháng 3 nhưng đến tháng 11 đã hết hạn bảo hành apple",
+      "cleaned_text": "Tiki bán hàng đã activate. Hàng mua tháng 3 nhưng đến tháng 11 đã hết hạn bảo hành apple",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20101726,
+        "content": "Tiki bán hàng đã activate. Hàng mua tháng 3 nhưng đến tháng 11 đã hết hạn bảo hành apple",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 48,
+      "original_text": "tai nghe mua hôm nay 6/6 mà kết nối kích hoạt bảo hành ghi ngày 16/4 vậy là sao tiki bán đồ apple cũ à. đã liên hệ chat mà chưa thấy ai giải quyết",
+      "cleaned_text": "tai nghe mua hôm nay 6/6 mà kết nối kích hoạt bảo hành ghi ngày 16/4 vậy là sao tiki bán đồ apple cũ à. đã liên hệ chat mà chưa thấy ai giải quyết",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19893790,
+        "content": "tai nghe mua hôm nay 6/6 mà kết nối kích hoạt bảo hành ghi ngày 16/4 vậy là sao tiki bán đồ apple cũ à. đã liên hệ chat mà chưa thấy ai giải quyết",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 49,
+      "original_text": "Sản phẩm chính hãng của Nhà Táo, lại mua từ Tiki Trading quá yên tâm.\r\nTiki hỗ trợ sau bán hàng rất tốt",
+      "cleaned_text": "Sản phẩm chính hãng của Nhà Táo, lại mua từ Tiki Trading quá yên tâm. Tiki hỗ trợ sau bán hàng rất tốt",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19694034,
+        "content": "Sản phẩm chính hãng của Nhà Táo, lại mua từ Tiki Trading quá yên tâm.\r\nTiki hỗ trợ sau bán hàng rất tốt",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 50,
+      "original_text": "Chất lượng rất tốt, ngăn tiếng ồn đỉnh. Giao nhanh trong 1 tiếng",
+      "cleaned_text": "Chất lượng rất tốt, ngăn tiếng ồn đỉnh. Giao nhanh trong 1 tiếng",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19922911,
+        "content": "Chất lượng rất tốt, ngăn tiếng ồn đỉnh. Giao nhanh trong 1 tiếng",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 51,
+      "original_text": "Hàng đẹp, giao nhanh, hỗ trợ tốt!",
+      "cleaned_text": "Hàng đẹp, giao nhanh, hỗ trợ tốt!",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20035528,
+        "content": "Hàng đẹp, giao nhanh, hỗ trợ tốt!",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 52,
+      "original_text": "Giao nhanh.",
+      "cleaned_text": "Giao nhanh.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20093825,
+        "content": "Giao nhanh.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 53,
+      "original_text": "Luôn luôn yên tâm khi mua đồ điện tử từ Tiki Trading",
+      "cleaned_text": "Luôn luôn yên tâm khi mua đồ điện tử từ Tiki Trading",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20006776,
+        "content": "Luôn luôn yên tâm khi mua đồ điện tử từ Tiki Trading",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 54,
+      "original_text": "Âm thanh tốt. Còn bền thì để trải nghiệm một thời gian mới biết.",
+      "cleaned_text": "Âm thanh tốt. Còn bền thì để trải nghiệm một thời gian mới biết.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19938887,
+        "content": "Âm thanh tốt. Còn bền thì để trải nghiệm một thời gian mới biết.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 55,
+      "original_text": "Chính hãng ạ",
+      "cleaned_text": "Chính hãng ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20013154,
+        "content": "Chính hãng ạ",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 56,
+      "original_text": "HÀNG RẤT OK , NHẬN HÀNG NHANH TRONG 2H",
+      "cleaned_text": "HÀNG RẤT Được , NHẬN HÀNG NHANH TRONG 2H",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 20039279,
+        "content": "HÀNG RẤT OK , NHẬN HÀNG NHANH TRONG 2H",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 57,
+      "original_text": "Hàng giao đóng gói tốt và sản phẩm đúng chất lượng.",
+      "cleaned_text": "Hàng giao đóng gói tốt và sản phẩm đúng chất lượng.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19959099,
+        "content": "Hàng giao đóng gói tốt và sản phẩm đúng chất lượng.",
+        "source": "tiki",
+        "product_name": "Tai nghe Bluetooth Apple AirPods Pro 2 USB-C - MTJV3ZP/A"
+      }
+    },
+    {
+      "id": 58,
+      "original_text": "Sản phẩm quá tệ. Không ôm sát Airpods. Vỏ trên k ôm dc nắp luôn. Thất vọng. Yêu cầu hoàn tiền.",
+      "cleaned_text": "Sản phẩm quá tệ. Không ôm sát Airpods. Vỏ trên không ôm được nắp luôn. Thất vọng. Yêu cầu hoàn tiền.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 10253256,
+        "content": "Sản phẩm quá tệ. Không ôm sát Airpods. Vỏ trên k ôm dc nắp luôn. Thất vọng. Yêu cầu hoàn tiền.",
+        "source": "tiki",
+        "product_name": "BAO CASE AIRPODS VỎ ỐP CHO TAI NGHE AIRPODS 1, AIRPODS 2, AIRPODS PRO"
+      }
+    },
+    {
+      "id": 59,
+      "original_text": "Rất tệ. Gắn vào thì dc. Nhưng mở nắp ra lấy tai nghe ko dc. Do kẹt bảng lề của vỏ airpod. Mua 2 sp cùng nhà cấp hàng nhưng lại tách ra hai đơn làm phát sinh phí ship",
+      "cleaned_text": "Rất tệ. Gắn vào thì được Nhưng mở nắp ra lấy tai nghe không được Do kẹt bảng lề của vỏ airpod. Mua 2 sản phẩm cùng nhà cấp hàng nhưng lại tách ra hai đơn làm phát sinh phí ship",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 16427027,
+        "content": "Rất tệ. Gắn vào thì dc. Nhưng mở nắp ra lấy tai nghe ko dc. Do kẹt bảng lề của vỏ airpod. Mua 2 sp cùng nhà cấp hàng nhưng lại tách ra hai đơn làm phát sinh phí ship",
+        "source": "tiki",
+        "product_name": "BAO CASE AIRPODS VỎ ỐP CHO TAI NGHE AIRPODS 1, AIRPODS 2, AIRPODS PRO"
+      }
+    },
+    {
+      "id": 60,
+      "original_text": "Lần đầu tiên mua hàng của shop này, thấy có giảm giá + màu yêu thích nên quất luôn, màu sắc của sản phẩm y như hình, case khá chắc chắn, ôm vừa vặn hộp sạc, khá ổn",
+      "cleaned_text": "Lần đầu tiên mua hàng của shop này, thấy có giảm giá + màu yêu thích nên quất luôn, màu sắc của sản phẩm y như hình, case khá chắc chắn, ôm vừa vặn hộp sạc, khá ổn",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 6630577,
+        "content": "Lần đầu tiên mua hàng của shop này, thấy có giảm giá + màu yêu thích nên quất luôn, màu sắc của sản phẩm y như hình, case khá chắc chắn, ôm vừa vặn hộp sạc, khá ổn",
+        "source": "tiki",
+        "product_name": "BAO CASE AIRPODS VỎ ỐP CHO TAI NGHE AIRPODS 1, AIRPODS 2, AIRPODS PRO"
+      }
+    },
+    {
+      "id": 61,
+      "original_text": "Thiếu hỗ trợ/ unsupportive",
+      "cleaned_text": "Thiếu hỗ trợ/ unsupportive",
+      "language": "vi",
+      "language_confidence": 0.8307692307692307,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.83)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 19015144,
+        "content": "Thiếu hỗ trợ/ unsupportive",
+        "source": "tiki",
+        "product_name": "BAO CASE AIRPODS VỎ ỐP CHO TAI NGHE AIRPODS 1, AIRPODS 2, AIRPODS PRO"
+      }
+    },
+    {
+      "id": 62,
+      "original_text": "Vỏ nhựa quá cứng, nắp bỏ và thân bỏ không liền lạc với nhau. Trong miêu tả sản phẩm không đề cập đến vấn đề này",
+      "cleaned_text": "Vỏ nhựa quá cứng, nắp bỏ và thân bỏ không liền lạc với nhau. Trong miêu tả sản phẩm không đề cập đến vấn đề này",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 7034618,
+        "content": "Vỏ nhựa quá cứng, nắp bỏ và thân bỏ không liền lạc với nhau. Trong miêu tả sản phẩm không đề cập đến vấn đề này",
+        "source": "tiki",
+        "product_name": "BAO CASE AIRPODS VỎ ỐP CHO TAI NGHE AIRPODS 1, AIRPODS 2, AIRPODS PRO"
+      }
+    },
+    {
+      "id": 63,
+      "original_text": "sản phẩm ok\nnhưng màu nắp bị lem",
+      "cleaned_text": "sản phẩm được nhưng màu nắp bị lem",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 10821775,
+        "content": "sản phẩm ok\nnhưng màu nắp bị lem",
+        "source": "tiki",
+        "product_name": "BAO CASE AIRPODS VỎ ỐP CHO TAI NGHE AIRPODS 1, AIRPODS 2, AIRPODS PRO"
+      }
+    },
+    {
+      "id": 64,
+      "original_text": "Sử dụng được 2 tháng thì ốp bị tróc rất nặng",
+      "cleaned_text": "Sử dụng được 2 tháng thì ốp bị tróc rất nặng",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 7867950,
+        "content": "Sử dụng được 2 tháng thì ốp bị tróc rất nặng",
+        "source": "tiki",
+        "product_name": "BAO CASE AIRPODS VỎ ỐP BẢO VỆ CHO TAI NGHE AIRPODS 1, AIRPODS 2, AIRPODS PRO"
+      }
+    },
+    {
+      "id": 65,
+      "original_text": "Giao tới bị sươc nhẹ cần hoàn thiện hơn",
+      "cleaned_text": "Giao tới bị sươc nhẹ cần hoàn thiện hơn",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 8136828,
+        "content": "Giao tới bị sươc nhẹ cần hoàn thiện hơn",
+        "source": "tiki",
+        "product_name": "BAO CASE AIRPODS VỎ ỐP BẢO VỆ CHO TAI NGHE AIRPODS 1, AIRPODS 2, AIRPODS PRO"
+      }
+    },
+    {
+      "id": 66,
+      "original_text": "Mau tróccc",
+      "cleaned_text": "Mau tróccc",
+      "language": "vi",
+      "language_confidence": 0.8,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.80)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "review_id": 6496526,
+        "content": "Mau tróccc",
+        "source": "tiki",
+        "product_name": "BAO CASE AIRPODS VỎ ỐP BẢO VỆ CHO TAI NGHE AIRPODS 1, AIRPODS 2, AIRPODS PRO"
+      }
+    },
+    {
+      "id": 67,
+      "original_text": "Tham khảo AirPods 4 tại ShopDunk: https://sl.duyluandethuong.id.vn/airpods4-sd",
+      "cleaned_text": "Tham khảo AirPods 4 tại ShopDunk: [URL_REDACTED]",
+      "language": "en",
+      "language_confidence": 0.6,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "applied",
+        "text_normalization": "applied",
+        "language_detection": "en (0.60)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Tham khảo AirPods 4 tại ShopDunk: https://sl.duyluandethuong.id.vn/airpods4-sd",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 68,
+      "original_text": "Mình mới mua con airpod 4 cảm ứng trên tai nghe của mình ko dc mượt phải cầm trực tiếp vào cái phần lõm thiết kế mới bấm dc rất khó chịu hay do mình mới xài nên ko biết cách cài đặt mong mn chỉ giáo. Lúc xưa mình xài airpod 2 cảm ứng trên tai nghe rất mượt qua con này kì quá",
+      "cleaned_text": "Mình mới mua con airpod 4 cảm ứng trên tai nghe của mình không được mượt phải cầm trực tiếp vào cái phần lõm thiết kế mới bấm được rất khó chịu hay do mình mới xài nên không biết cách cài đặt mong mọi người chỉ giáo. Lúc xưa mình xài airpod 2 cảm ứng trên tai nghe rất mượt qua con này kì quá",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Mình mới mua con airpod 4 cảm ứng trên tai nghe của mình ko dc mượt phải cầm trực tiếp vào cái phần lõm thiết kế mới bấm dc rất khó chịu hay do mình mới xài nên ko biết cách cài đặt mong mn chỉ giáo. Lúc xưa mình xài airpod 2 cảm ứng trên tai nghe rất mượt qua con này kì quá",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 69,
+      "original_text": "có ai recommend cho em dòng tai nghe không dây match với macbook được ko ạ, em hết tiền mua airpods rồi :))), em dùng Baseus mà ko thể kết nối với mac đc ",
+      "cleaned_text": "có ai recommend cho em dòng tai nghe không dây match với macbook được không ạ, em hết tiền mua airpods rồi :))), em dùng Baseus mà không thể kết nối với mac đc",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "có ai recommend cho em dòng tai nghe không dây match với macbook được ko ạ, em hết tiền mua airpods rồi :))), em dùng Baseus mà ko thể kết nối với mac đc",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 70,
+      "original_text": "A chỉ e vs e xài ip14pm mà xài ap4 e sạc sao cho đúng cách xài chung vs củ sạc 20w đc ko a",
+      "cleaned_text": "A chỉ e và e xài ip14pm mà xài ap4 e sạc sao cho đúng cách xài chung và củ sạc 20w đc không a",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "A chỉ e vs e xài ip14pm mà xài ap4 e sạc sao cho đúng cách xài chung vs củ sạc 20w đc ko a",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 71,
+      "original_text": "Cho mình hỏi tai nghe cứ dùng 1 lúc lại để vào hộp như vậy có ảnh hưởng đến pin ko ạ?  Cám ơn ạ.",
+      "cleaned_text": "Cho mình hỏi tai nghe cứ dùng 1 lúc lại để vào hộp như vậy có ảnh hưởng đến pin không ạ? Cám ơn ạ.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Cho mình hỏi tai nghe cứ dùng 1 lúc lại để vào hộp như vậy có ảnh hưởng đến pin ko ạ?  Cám ơn ạ.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 72,
+      "original_text": "Sao mình dùng chế độ chống ồn cho một tai vẫn đc mà bạn, tại mình test thử chuyển qua lại giữa xuyên âm, thích ứng và bình thường thì thấy một tai vẫn có chống ồn ạh",
+      "cleaned_text": "Sao mình dùng chế độ chống ồn cho một tai vẫn đc mà bạn, tại mình test thử chuyển qua lại giữa xuyên âm, thích ứng và bình thường thì thấy một tai vẫn có chống ồn ạh",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Sao mình dùng chế độ chống ồn cho một tai vẫn đc mà bạn, tại mình test thử chuyển qua lại giữa xuyên âm, thích ứng và bình thường thì thấy một tai vẫn có chống ồn ạh",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 73,
+      "original_text": "Đợt mình mất giỏ trong đó có airpot của mình, chạy về đến nhà mới phát hiện là mất giỏ, check định vị thì thấy đc vị trí airpot đó xong mình vs 4 người bạn lại ngây điểm hiển thị trên iphone hiện air pot cách bạn 1m mà lạng dòng dòng đó 1 tiếng đồng hồ không tìm hay phát âm thanh đc cái airpot đó, mình cũng không hiểu luôn, vậy định vị mà không làm gì đc thì định vị để làm cái gì? 😂",
+      "cleaned_text": "Đợt mình mất giỏ trong đó có airpot của mình, chạy về đến nhà mới phát hiện là mất giỏ, check định vị thì thấy đc vị trí airpot đó xong mình và 4 người bạn lại ngây điểm hiển thị trên iphone hiện air pot cách bạn 1m mà lạng dòng dòng đó 1 tiếng đồng hồ không tìm hay phát âm thanh đc cái airpot đó, mình cũng không hiểu luôn, vậy định vị mà không làm gì đc thì định vị để làm cái gì? 😂",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Đợt mình mất giỏ trong đó có airpot của mình, chạy về đến nhà mới phát hiện là mất giỏ, check định vị thì thấy đc vị trí airpot đó xong mình vs 4 người bạn lại ngây điểm hiển thị trên iphone hiện air pot cách bạn 1m mà lạng dòng dòng đó 1 tiếng đồng hồ không tìm hay phát âm thanh đc cái airpot đó, mình cũng không hiểu luôn, vậy định vị mà không làm gì đc thì định vị để làm cái gì? 😂",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 74,
+      "original_text": "Anh cho e hỏi gáy của airpod 4 ANC ghi made in vietnam có phải hàng chuẩn không ạ",
+      "cleaned_text": "Anh cho e hỏi gáy của airpod 4 ANC ghi made in vietnam có phải hàng chuẩn không ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Anh cho e hỏi gáy của airpod 4 ANC ghi made in vietnam có phải hàng chuẩn không ạ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 75,
+      "original_text": "Mất tai nghe có tìm được ko",
+      "cleaned_text": "Mất tai nghe có tìm được không",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Mất tai nghe có tìm được ko",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 76,
+      "original_text": "Mình góp ý nhé. Airpod vẫn có thể nghe chống ồn chỉ 1 bên tai nhé. Vào phần setting trong phần mục trợ năng",
+      "cleaned_text": "Mình góp ý nhé. Airpod vẫn có thể nghe chống ồn chỉ 1 bên tai nhé. Vào phần setting trong phần mục trợ năng",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Mình góp ý nhé. Airpod vẫn có thể nghe chống ồn chỉ 1 bên tai nhé. Vào phần setting trong phần mục trợ năng",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 77,
+      "original_text": "Cùng quan điểm là airpod ko phải là hay nhưng vẫn ở thang điểm tầm 6/10 , nhưng bù lại có hệ sinh thái , kết nối sử dụng cho các sản phẩm Apple nói riêng và sản phẩm khác nói chung thì rất tốt",
+      "cleaned_text": "Cùng quan điểm là airpod không phải là hay nhưng vẫn ở thang điểm tầm 6/10 , nhưng bù lại có hệ sinh thái , kết nối sử dụng cho các sản phẩm Apple nói riêng và sản phẩm khác nói chung thì rất tốt",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Cùng quan điểm là airpod ko phải là hay nhưng vẫn ở thang điểm tầm 6/10 , nhưng bù lại có hệ sinh thái , kết nối sử dụng cho các sản phẩm Apple nói riêng và sản phẩm khác nói chung thì rất tốt",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 78,
+      "original_text": "Luân ơi . Mình thay pin iPhone ở đâu uy tín ở Sài Gòn vậy luân",
+      "cleaned_text": "Luân ơi . Mình thay pin iPhone ở đâu uy tín ở Sài Gòn vậy luân",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Luân ơi . Mình thay pin iPhone ở đâu uy tín ở Sài Gòn vậy luân",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 79,
+      "original_text": "Anh ơi biết là hơi trễ nhưng e ở Úc nó đang sale Air pod pro 2 = giá với airpod 4 anc thì nên mua con nào ạ. Em cảm ơn hy vọng anh rep",
+      "cleaned_text": "Anh ơi biết là hơi trễ nhưng e ở Úc nó đang sale Air pod pro 2 = giá với airpod 4 anc thì nên mua con nào ạ. Em cảm ơn hy vọng anh rep",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Anh ơi biết là hơi trễ nhưng e ở Úc nó đang sale Air pod pro 2 = giá với airpod 4 anc thì nên mua con nào ạ. Em cảm ơn hy vọng anh rep",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 80,
+      "original_text": "đã test thử và vẫn chưa ăn dc sony wf xm5 về khoản chống ồn",
+      "cleaned_text": "đã test thử và vẫn chưa ăn được sony wf xm5 về khoản chống ồn",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "đã test thử và vẫn chưa ăn dc sony wf xm5 về khoản chống ồn",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 81,
+      "original_text": "Đeo dễ rơi thì k nói, review càng ngày càng chán, nói chuyện nghe có vẻ hay nhưng toàn kiểu dĩ hoà vi quý, nhàm",
+      "cleaned_text": "Đeo dễ rơi thì không nói, review càng ngày càng chán, nói chuyện nghe có vẻ hay nhưng toàn kiểu dĩ hoà vi quý, nhàm",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Đeo dễ rơi thì k nói, review càng ngày càng chán, nói chuyện nghe có vẻ hay nhưng toàn kiểu dĩ hoà vi quý, nhàm",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 82,
+      "original_text": "Mình mua AirPods 4 rồi nhưng chỉ  dành cho người ngồi văn phòng đi ô tô và ngồi nguyên 1 chỗ thì hợp chứ bạn nào đi xe máy không hợp nhé dễ rơi mất .",
+      "cleaned_text": "Mình mua AirPods 4 rồi nhưng chỉ dành cho người ngồi văn phòng đi ô tô và ngồi nguyên 1 chỗ thì hợp chứ bạn nào đi xe máy không hợp nhé dễ rơi mất .",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Mình mua AirPods 4 rồi nhưng chỉ  dành cho người ngồi văn phòng đi ô tô và ngồi nguyên 1 chỗ thì hợp chứ bạn nào đi xe máy không hợp nhé dễ rơi mất .",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 83,
+      "original_text": "Bản chống ồn kết nối với laptop windown có chống ồn được không ạ,em chưa dùng khi nào nên không biết,em tính mua",
+      "cleaned_text": "Bản chống ồn kết nối với laptop windown có chống ồn được không ạ,em chưa dùng khi nào nên không biết,em tính mua",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Bản chống ồn kết nối với laptop windown có chống ồn được không ạ,em chưa dùng khi nào nên không biết,em tính mua",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 84,
+      "original_text": "Tai nghe này nó có chỉnh âm lượng ở ngoài dc không ( đưa tay nên kéo lên xuống ở ngoài ấy)",
+      "cleaned_text": "Tai nghe này nó có chỉnh âm lượng ở ngoài được không ( đưa tay nên kéo lên xuống ở ngoài ấy)",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Tai nghe này nó có chỉnh âm lượng ở ngoài dc không ( đưa tay nên kéo lên xuống ở ngoài ấy)",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 85,
+      "original_text": "airpod 4 anc nam nay thật sự rat đáng giá. no là sự cải tien vuot bậc tu airpod 3 ( ca ve chất âm cũng nhu cảm giac đeo ) và giai bài toan khuyết diem viec đeo kho chiu cua airpod pro❤😂🎉",
+      "cleaned_text": "airpod 4 anc nam nay thật sự rat đáng giá. no là sự cải tien vuot bậc tu airpod 3 ( ca ve chất âm cũng nhu cảm giac đeo ) và giai bài toan khuyết diem viec đeo kho chiu cua airpod pro❤😂🎉",
+      "language": "vi",
+      "language_confidence": 0.8935483870967741,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.89)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "airpod 4 anc nam nay thật sự rat đáng giá. no là sự cải tien vuot bậc tu airpod 3 ( ca ve chất âm cũng nhu cảm giac đeo ) và giai bài toan khuyết diem viec đeo kho chiu cua airpod pro❤😂🎉",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 86,
+      "original_text": "Loaij nay. Ko có nút mặt sau. Có thể định vị dc ko a",
+      "cleaned_text": "Loaij nay. Không có nút mặt sau. Có thể định vị được không a",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 năm nay thấy thơm ghê",
+        "content": "Loaij nay. Ko có nút mặt sau. Có thể định vị dc ko a",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 87,
+      "original_text": "Очередная электронная безделушка для потребителей!",
+      "cleaned_text": "Очередная электронная безделушка для потребителей!",
+      "language": "mixed",
+      "language_confidence": 0.5,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "mixed (0.50)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Очередная электронная безделушка для потребителей!",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 88,
+      "original_text": "Right one not working",
+      "cleaned_text": "Right one not working",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Right one not working",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 89,
+      "original_text": "Is the signal fast enough to produce music",
+      "cleaned_text": "Is the signal fast enough to produce music",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Is the signal fast enough to produce music",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 90,
+      "original_text": "nice to hear the low battery sound",
+      "cleaned_text": "nice to hear the low battery sound",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "nice to hear the low battery sound",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 91,
+      "original_text": "My noice canselation is not showing up. Only person optimized sound. Anyone know how to fix this?",
+      "cleaned_text": "My noice canselation is not showing up. Only person optimized sound. Anyone know how to fix this?",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "My noice canselation is not showing up. Only person optimized sound. Anyone know how to fix this?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 92,
+      "original_text": "What is price",
+      "cleaned_text": "What is price",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "What is price",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 93,
+      "original_text": "These fit good, I lost my new case but using my old one, it don’t fit but I made them fit an they work to charge lol",
+      "cleaned_text": "These fit good, I lost my new case but using my old one, it don’t fit but I made them fit an they work to charge laugh out loud",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "These fit good, I lost my new case but using my old one, it don’t fit but I made them fit an they work to charge lol",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 94,
+      "original_text": "jus thought my pros 2 can do the same thing at the end",
+      "cleaned_text": "jus thought my pros 2 can do the same thing at the end",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "jus thought my pros 2 can do the same thing at the end",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 95,
+      "original_text": "Air pods ❤❤",
+      "cleaned_text": "Air pods ❤❤",
+      "language": "en",
+      "language_confidence": 0.6,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.60)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Air pods ❤❤",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 96,
+      "original_text": "No control volumes?",
+      "cleaned_text": "No control volumes?",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "No control volumes?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 97,
+      "original_text": "They r not magnetic on mine?",
+      "cleaned_text": "They are not magnetic on mine?",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "They r not magnetic on mine?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 98,
+      "original_text": "Hey guys I have I question abt them , the cancellation vice mode is good but the problem is when u record a voicemail, voice message and yr not talking very loud it blocks out many words 😢 idk how to turn that off?!!",
+      "cleaned_text": "Hey guys I have I question abt them , the cancellation vice mode is good but the problem is when you record a voicemail, voice message and yr not talking very loud it blocks out many words 😢 I do not know how to turn that off!!",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Hey guys I have I question abt them , the cancellation vice mode is good but the problem is when u record a voicemail, voice message and yr not talking very loud it blocks out many words 😢 idk how to turn that off?!!",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 99,
+      "original_text": "Those things hurt your ears😂",
+      "cleaned_text": "Those things hurt your ears😂",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Those things hurt your ears😂",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 100,
+      "original_text": "Is it the special audio feature?",
+      "cleaned_text": "Is it the special audio feature?",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Is it the special audio feature?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 101,
+      "original_text": "Rough mine yesterday I love it but no  cap at the ear end makes it a bit uncomfortable to keep in yr ears",
+      "cleaned_text": "Rough mine yesterday I love it but no cap at the ear end makes it a bit uncomfortable to keep in yr ears",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Rough mine yesterday I love it but no  cap at the ear end makes it a bit uncomfortable to keep in yr ears",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 102,
+      "original_text": "Great Bluetooth headset. Our company is a Bluetooth headset manufacturer from China, do you want to know about it?❤❤❤❤",
+      "cleaned_text": "Great Bluetooth headset. Our company is a Bluetooth headset manufacturer from China, do you want to know about it?❤❤❤❤",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Great Bluetooth headset. Our company is a Bluetooth headset manufacturer from China, do you want to know about it?❤❤❤❤",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 103,
+      "original_text": "Imagine this was all reverse 😅😂",
+      "cleaned_text": "Imagine this was all reverse 😅😂",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Imagine this was all reverse 😅😂",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 104,
+      "original_text": "Looking incredible, could you recommend a good case for my Airpods? lmk",
+      "cleaned_text": "Looking incredible, could you recommend a good case for my Airpods? lmk",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 ACTIVE NOISE CANCELLING -  Unboxing and Setup",
+        "content": "Looking incredible, could you recommend a good case for my Airpods? lmk",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 105,
+      "original_text": "Các dòng AirPods tại ShopDunk: https://sl.duyluandethuong.id.vn/airpods4-sd",
+      "cleaned_text": "Các dòng AirPods tại ShopDunk: [URL_REDACTED]",
+      "language": "vi",
+      "language_confidence": 0.7333333333333333,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "applied",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.73)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Các dòng AirPods tại ShopDunk: https://sl.duyluandethuong.id.vn/airpods4-sd",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 106,
+      "original_text": "Cho hỏi có airpods trên thị trường tốt nhất ạ",
+      "cleaned_text": "Cho hỏi có airpods trên thị trường tốt nhất ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Cho hỏi có airpods trên thị trường tốt nhất ạ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 107,
+      "original_text": "airpod pro có nút cao su dễ bị ngứa tai cực khó chịu",
+      "cleaned_text": "airpod pro có nút cao su dễ bị ngứa tai cực khó chịu",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "airpod pro có nút cao su dễ bị ngứa tai cực khó chịu",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 108,
+      "original_text": "Thank you ! 👏👍",
+      "cleaned_text": "Thank you ! 👏👍",
+      "language": "en",
+      "language_confidence": 0.6,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.60)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Thank you ! 👏👍",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 109,
+      "original_text": "Anh Duy Luân review chi tiết thật, đúng cho người đang muốn mua airpod như em.",
+      "cleaned_text": "Anh Duy Luân review chi tiết thật, đúng cho người đang muốn mua airpod như em.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Anh Duy Luân review chi tiết thật, đúng cho người đang muốn mua airpod như em.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 110,
+      "original_text": "Mọi người cho mình hỏi khi nào Airpod pro 3 mới ra mắt? Tại vì mình đang muốn mua pro 2, nhưng sợ năm nay ra pro 3 thì lại bị hố.",
+      "cleaned_text": "Mọi người cho mình hỏi khi nào Airpod pro 3 mới ra mắt? Tại vì mình đang muốn mua pro 2, nhưng sợ năm nay ra pro 3 thì lại bị hố.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Mọi người cho mình hỏi khi nào Airpod pro 3 mới ra mắt? Tại vì mình đang muốn mua pro 2, nhưng sợ năm nay ra pro 3 thì lại bị hố.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 111,
+      "original_text": "Vậy hãng tai nghe nào chất lượng âm thanh tốt nhất vậy anh",
+      "cleaned_text": "Vậy hãng tai nghe nào chất lượng âm thanh tốt nhất vậy anh",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Vậy hãng tai nghe nào chất lượng âm thanh tốt nhất vậy anh",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 112,
+      "original_text": "Theo cảm nhận riêng:\n-  con 4 anc âm treble hơi cao, cảm giác bass cx ko ấm lắm, nhất là khi bật anc ở chỗ ồn thì đeo lâu cảm giác bị chói tai\n- âm thanh vòm trên con 4 anc cảm giác âm ko tách biệt như con pro 2\n- ưu điểm là thoáng tai, siêu nhẹ, bé tí…",
+      "cleaned_text": "Theo cảm nhận riêng: - con 4 anc âm treble hơi cao, cảm giác bass cũng không ấm lắm, nhất là khi bật anc ở chỗ ồn thì đeo lâu cảm giác bị chói tai - âm thanh vòm trên con 4 anc cảm giác âm không tách biệt như con pro 2 - ưu điểm là thoáng tai, siêu nhẹ, bé tí...",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Theo cảm nhận riêng:\n-  con 4 anc âm treble hơi cao, cảm giác bass cx ko ấm lắm, nhất là khi bật anc ở chỗ ồn thì đeo lâu cảm giác bị chói tai\n- âm thanh vòm trên con 4 anc cảm giác âm ko tách biệt như con pro 2\n- ưu điểm là thoáng tai, siêu nhẹ, bé tí…",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 113,
+      "original_text": "cho hỏi thời điểm này có lên mua air pods pro 2 không",
+      "cleaned_text": "cho hỏi thời điểm này có lên mua air pods pro 2 không",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "cho hỏi thời điểm này có lên mua air pods pro 2 không",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 114,
+      "original_text": "Em xin góp ý là Airpods 4 là earbuds chứ không phải open-ear ạ",
+      "cleaned_text": "Em xin góp ý là Airpods 4 là earbuds chứ không phải open-ear ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Em xin góp ý là Airpods 4 là earbuds chứ không phải open-ear ạ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 115,
+      "original_text": "Chủ động là ông chổng lên để hả",
+      "cleaned_text": "Chủ động là ông chổng lên để hả",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Chủ động là ông chổng lên để hả",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 116,
+      "original_text": "Khứa này cái đéo gì apple ra là thích",
+      "cleaned_text": "Khứa này cái đéo gì apple ra là thích",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Khứa này cái đéo gì apple ra là thích",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 117,
+      "original_text": "Mình đang dùng airport pro 2 thì cái case bị hết pin nhanh dù ko xài và khi đang dùng tại nghe khoảng 1 tiếng thì nó tự disconnect với Bluetooth. Có ai  bị vậy giống mình ko?",
+      "cleaned_text": "Mình đang dùng airport pro 2 thì cái case bị hết pin nhanh dù không xài và khi đang dùng tại nghe khoảng 1 tiếng thì nó tự disconnect với Bluetooth. Có ai bị vậy giống mình không",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Mình đang dùng airport pro 2 thì cái case bị hết pin nhanh dù ko xài và khi đang dùng tại nghe khoảng 1 tiếng thì nó tự disconnect với Bluetooth. Có ai  bị vậy giống mình ko?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 118,
+      "original_text": "Pro 2 t dùng nó còn k có cái chỉ hướng nào để tìm cơ",
+      "cleaned_text": "Pro 2 t dùng nó còn không có cái chỉ hướng nào để tìm cơ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Pro 2 t dùng nó còn k có cái chỉ hướng nào để tìm cơ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 119,
+      "original_text": "Ae tư vấn giúp em ạ\nCv em thợ trang trí nội thất hay di chuyển.hay bận tay.đg phân vâng air 4 và Pro gen 1",
+      "cleaned_text": "Anh em tư vấn giúp em ạ Công việc em thợ trang trí nội thất hay di chuyển.hay bận tay.đg phân vâng air 4 và Pro gen 1",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Ae tư vấn giúp em ạ\nCv em thợ trang trí nội thất hay di chuyển.hay bận tay.đg phân vâng air 4 và Pro gen 1",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 120,
+      "original_text": "Em thích Airpods Pro 2 hơn ạ, đang sử dụng để nghe clip của anh luôn nè!😊🎉",
+      "cleaned_text": "Em thích Airpods Pro 2 hơn ạ, đang sử dụng để nghe clip của anh luôn nè!😊🎉",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Em thích Airpods Pro 2 hơn ạ, đang sử dụng để nghe clip của anh luôn nè!😊🎉",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 121,
+      "original_text": "Mình lái xe tải. Nên lựa chọn tai nghe không dây nào phù hợp vậy các bạn ?",
+      "cleaned_text": "Mình lái xe tải. Nên lựa chọn tai nghe không dây nào phù hợp vậy các bạn ?",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Mình lái xe tải. Nên lựa chọn tai nghe không dây nào phù hợp vậy các bạn ?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 122,
+      "original_text": "Airpod 4 đeo để chạy bộ thì có dễ rớt ra ko ạ",
+      "cleaned_text": "Airpod 4 đeo để chạy bộ thì có dễ rớt ra không ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Airpod 4 đeo để chạy bộ thì có dễ rớt ra ko ạ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 123,
+      "original_text": "anh em cho mình hỏi tính năng ANC có bật tắt được không vậy",
+      "cleaned_text": "anh em cho mình hỏi tính năng ANC có bật tắt được không vậy",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "anh em cho mình hỏi tính năng ANC có bật tắt được không vậy",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 124,
+      "original_text": "Chống ồn 4 dc 60% so với pro 2",
+      "cleaned_text": "Chống ồn 4 được 60% so với pro 2",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "So sánh AirPods 4 vs AirPods Pro 2",
+        "content": "Chống ồn 4 dc 60% so với pro 2",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 125,
+      "original_text": "Trên tay AirPods 4 và xem giá bán chính hãng tại Việt Nam của iPhone 16 series: https://vatvostudio.vn/tren-tay-airpods-4/",
+      "cleaned_text": "Trên tay AirPods 4 và xem giá bán chính hãng tại Việt Nam của iPhone 16 series: [URL_REDACTED]",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "applied",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Trên tay AirPods 4 và xem giá bán chính hãng tại Việt Nam của iPhone 16 series: https://vatvostudio.vn/tren-tay-airpods-4/",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 126,
+      "original_text": "nếu không quan trọng nghe nhạc mà quan trọng nhất là đàm thoại thì nên lấy 4 ANC hay pro 2 vậy ạ",
+      "cleaned_text": "nếu không quan trọng nghe nhạc mà quan trọng nhất là đàm thoại thì nên lấy 4 ANC hay pro 2 vậy ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "nếu không quan trọng nghe nhạc mà quan trọng nhất là đàm thoại thì nên lấy 4 ANC hay pro 2 vậy ạ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 127,
+      "original_text": "Rất đáng tiền ( rất đáng tiền)",
+      "cleaned_text": "Rất đáng tiền ( rất đáng tiền)",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Rất đáng tiền ( rất đáng tiền)",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 128,
+      "original_text": "Tiếng chét to kinh ko biết chỉnh kiểu gì",
+      "cleaned_text": "Tiếng chét to kinh không biết chỉnh kiểu gì",
+      "language": "vi",
+      "language_confidence": 0.8999999999999999,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Tiếng chét to kinh ko biết chỉnh kiểu gì",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 129,
+      "original_text": "Sao đang đeo airpod 4 xong có người gọi đến thì không nghe ngta nói gì(đang kết nối) là bị sao v ạ",
+      "cleaned_text": "Sao đang đeo airpod 4 xong có người gọi đến thì không nghe ngta nói gì(đang kết nối) là bị sao v ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Sao đang đeo airpod 4 xong có người gọi đến thì không nghe ngta nói gì(đang kết nối) là bị sao v ạ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 130,
+      "original_text": "cho mình hỏi nó chống ồn mức độ nào . ví dụ đang ở quán bar đánh đùng đùng  mình đeo gần đó có miễn nhiễm ko",
+      "cleaned_text": "cho mình hỏi nó chống ồn mức độ nào . ví dụ đang ở quán bar đánh đùng đùng mình đeo gần đó có miễn nhiễm không",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "cho mình hỏi nó chống ồn mức độ nào . ví dụ đang ở quán bar đánh đùng đùng  mình đeo gần đó có miễn nhiễm ko",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 131,
+      "original_text": "Các anh cho e hỏi 4 anc em kết nói nhiều khi ko hiện poup vs có vuốt tăng giảm âm lượng được ko ạ. E cảm ơn ạ",
+      "cleaned_text": "Các anh cho e hỏi 4 anc em kết nói nhiều khi không hiện poup và có vuốt tăng giảm âm lượng được không ạ. E cảm ơn ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Các anh cho e hỏi 4 anc em kết nói nhiều khi ko hiện poup vs có vuốt tăng giảm âm lượng được ko ạ. E cảm ơn ạ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 132,
+      "original_text": "Thật sự rất tốt với con chống ông",
+      "cleaned_text": "Thật sự rất tốt với con chống ông",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Thật sự rất tốt với con chống ông",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 133,
+      "original_text": "không có chỗ nào có hàng để test mình sài pro2 tháo núm ra thấy kg chống ổn nên nghĩ nó kg chống ồn tốt nên mua cái thường chán ghê",
+      "cleaned_text": "không có chỗ nào có hàng để test mình sài pro2 tháo núm ra thấy kg chống ổn nên nghĩ nó kg chống ồn tốt nên mua cái thường chán ghê",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "không có chỗ nào có hàng để test mình sài pro2 tháo núm ra thấy kg chống ổn nên nghĩ nó kg chống ồn tốt nên mua cái thường chán ghê",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 134,
+      "original_text": "Mọi người cho em hỏi case airpods 4 của em khi cầm lên nó nhấp nháy đèn màu xanh lá cây và kêu liên tục một lúc rồi hết là bị làm sao ạ 😢",
+      "cleaned_text": "Mọi người cho em hỏi case airpods 4 của em khi cầm lên nó nhấp nháy đèn màu xanh lá cây và kêu liên tục một lúc rồi hết là bị làm sao ạ 😢",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Mọi người cho em hỏi case airpods 4 của em khi cầm lên nó nhấp nháy đèn màu xanh lá cây và kêu liên tục một lúc rồi hết là bị làm sao ạ 😢",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 135,
+      "original_text": "Xưa mua con pro 1 đeo nhiều nó bị ố với cả bí quá, nên năm nay mua con này thử xem, thấy đánh giá khá tốt",
+      "cleaned_text": "Xưa mua con pro 1 đeo nhiều nó bị ố với cả bí quá, nên năm nay mua con này thử xem, thấy đánh giá khá tốt",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Xưa mua con pro 1 đeo nhiều nó bị ố với cả bí quá, nên năm nay mua con này thử xem, thấy đánh giá khá tốt",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 136,
+      "original_text": "Ơ anh ơi  airpods4 thường lzj có chống ồn đâu ạ",
+      "cleaned_text": "Ơ anh ơi airpods4 thường lzj có chống ồn đâu ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Ơ anh ơi  airpods4 thường lzj có chống ồn đâu ạ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 137,
+      "original_text": "Sao giá bản 3 vẫn mắc hơn 4 nhỉ",
+      "cleaned_text": "Sao giá bản 3 vẫn mắc hơn 4 nhỉ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Sao giá bản 3 vẫn mắc hơn 4 nhỉ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 138,
+      "original_text": "Thích đeo có típ cao su hơn.",
+      "cleaned_text": "Thích đeo có típ cao su hơn.",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Thích đeo có típ cao su hơn.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 139,
+      "original_text": "Ở Vietnam Apple store ở đâu v ạ",
+      "cleaned_text": "Ở Vietnam Apple store ở đâu v ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Ở Vietnam Apple store ở đâu v ạ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 140,
+      "original_text": "không biết so với chất lượng âm thanh của pro2 với air4 anc thì cái nào hơn hay ngang nhau anh nhỉ, e tính mua pro2 mà nghe air4 có chống ồn nên phân vân quá",
+      "cleaned_text": "không biết so với chất lượng âm thanh của pro2 với air4 anc thì cái nào hơn hay ngang nhau anh nhỉ, e tính mua pro2 mà nghe air4 có chống ồn nên phân vân quá",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "không biết so với chất lượng âm thanh của pro2 với air4 anc thì cái nào hơn hay ngang nhau anh nhỉ, e tính mua pro2 mà nghe air4 có chống ồn nên phân vân quá",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 141,
+      "original_text": "sao ko bắt đk cuộc nhĩ",
+      "cleaned_text": "sao không bắt đk cuộc nhĩ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "sao ko bắt đk cuộc nhĩ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 142,
+      "original_text": "Đang dùng IP 15 thì nên chọn airpod pro 2 hay Sony wf-1000mx5 mấy ông phân vân quá",
+      "cleaned_text": "Đang dùng IP 15 thì nên chọn airpod pro 2 hay Sony wf-1000mx5 mấy ông phân vân quá",
+      "language": "vi",
+      "language_confidence": 0.8439024390243902,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.84)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "Đang dùng IP 15 thì nên chọn airpod pro 2 hay Sony wf-1000mx5 mấy ông phân vân quá",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 143,
+      "original_text": "1-2 ngày lương cơ bản ở Mỹ, 3 ngày lương ở HQ, Nhật. Ở vn  20 ngày 😢",
+      "cleaned_text": "1-2 ngày lương cơ bản ở Mỹ, 3 ngày lương ở HQ, Nhật. Ở vn 20 ngày 😢",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "1-2 ngày lương cơ bản ở Mỹ, 3 ngày lương ở HQ, Nhật. Ở vn  20 ngày 😢",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 144,
+      "original_text": "A Vinh chắc viêm cánh hơi nặng mà sao cứ gãi nách hoài vậy a 😂😂😂!",
+      "cleaned_text": "A Vinh chắc viêm cánh hơi nặng mà sao cứ gãi nách hoài vậy a 😂😂😂!",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 đây rồi: Y hệt nhau mà có bản CHỐNG ỒN và KHÔNG CHỐNG ỒN là sao?",
+        "content": "A Vinh chắc viêm cánh hơi nặng mà sao cứ gãi nách hoài vậy a 😂😂😂!",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 145,
+      "original_text": "Thu cũ lên đời AirPods 4 chính hãng, giảm giá thêm đến 5%, trả góp 0%: https://cellphones.com.vn/apple-airpods-4-chong-on-chu-dong.html?utm_source=pr&utm_medium=ThinkView&utm_campaign=apple-airpods-4-chong-on-chu-dong.html_05112024",
+      "cleaned_text": "Thu cũ lên đời AirPods 4 chính hãng, giảm giá thêm đến 5%, trả góp 0%: [URL_REDACTED]",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "applied",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Thu cũ lên đời AirPods 4 chính hãng, giảm giá thêm đến 5%, trả góp 0%: https://cellphones.com.vn/apple-airpods-4-chong-on-chu-dong.html?utm_source=pr&utm_medium=ThinkView&utm_campaign=apple-airpods-4-chong-on-chu-dong.html_05112024",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 146,
+      "original_text": "AirPods 4 van ngon",
+      "cleaned_text": "AirPods 4 van ngon",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "AirPods 4 van ngon",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 147,
+      "original_text": "không nói về tính năng hay pin thì chất âm ap2 vẫn hay nhất. bass hay hơn",
+      "cleaned_text": "không nói về tính năng hay pin thì chất âm ap2 vẫn hay nhất. bass hay hơn",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "không nói về tính năng hay pin thì chất âm ap2 vẫn hay nhất. bass hay hơn",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 148,
+      "original_text": "Thật sự đã quá quen với ap2 và với 1 ng tai trâu thì sự thoải mái là trên hết nên vẫn gắn bó với em nó cũng đc cỡ 3 năm =))",
+      "cleaned_text": "Thật sự đã quá quen với ap2 và với 1 người tai trâu thì sự thoải mái là trên hết nên vẫn gắn bó với em nó cũng đc cỡ 3 năm =))",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Thật sự đã quá quen với ap2 và với 1 ng tai trâu thì sự thoải mái là trên hết nên vẫn gắn bó với em nó cũng đc cỡ 3 năm =))",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 149,
+      "original_text": "airpod 2 850k thi sao a",
+      "cleaned_text": "airpod 2 850k thi sao a",
+      "language": "en",
+      "language_confidence": 0.6,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.60)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "airpod 2 850k thi sao a",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 150,
+      "original_text": "Airpods 4 thường nghe có hơn  Airpods 3 ko ạ",
+      "cleaned_text": "Airpods 4 thường nghe có hơn Airpods 3 không ạ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Airpods 4 thường nghe có hơn  Airpods 3 ko ạ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 151,
+      "original_text": "Quay video có dùng airpod 4 thu âm dc k bạn",
+      "cleaned_text": "Quay video có dùng airpod 4 thu âm được không bạn",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Quay video có dùng airpod 4 thu âm dc k bạn",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 152,
+      "original_text": "Aripods pro 2 này kết nối với Macbook có dùng được hết chức năng của chiếc tai nghe này ko ạ?",
+      "cleaned_text": "Aripods pro 2 này kết nối với Macbook có dùng được hết chức năng của chiếc tai nghe này không ạ?",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Aripods pro 2 này kết nối với Macbook có dùng được hết chức năng của chiếc tai nghe này ko ạ?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 153,
+      "original_text": "Mua earpod dây đi 😆😆😆",
+      "cleaned_text": "Mua earpod dây đi 😆😆😆",
+      "language": "vi",
+      "language_confidence": 0.7904761904761904,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.79)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Mua earpod dây đi 😆😆😆",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 154,
+      "original_text": "a tính mua airpod 4 ko ANC vì a ít đi khu ồn ào,e thấy sao",
+      "cleaned_text": "a tính mua airpod 4 không ANC vì a ít đi khu ồn ào,e thấy sao",
+      "language": "vi",
+      "language_confidence": 0.8413793103448276,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.84)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "a tính mua airpod 4 ko ANC vì a ít đi khu ồn ào,e thấy sao",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 155,
+      "original_text": "em bị mất một bên tai nghe đang ord tai nghe lẻ của một bên, bên đó nói những chiếc tai nghe lẻ chính hãng do ap cung cấp để bảo hành cho khách anh cho em\nhỏi em mua như vậy có đảm bảo và có thực sự là có những chiếc tai nghe lẻ case lẻ chính hãng như v k ?",
+      "cleaned_text": "em bị mất một bên tai nghe đang ord tai nghe lẻ của một bên, bên đó nói những chiếc tai nghe lẻ chính hãng do ap cung cấp để bảo hành cho khách anh cho em hỏi em mua như vậy có đảm bảo và có thực sự là có những chiếc tai nghe lẻ case lẻ chính hãng như v không ?",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "em bị mất một bên tai nghe đang ord tai nghe lẻ của một bên, bên đó nói những chiếc tai nghe lẻ chính hãng do ap cung cấp để bảo hành cho khách anh cho em\nhỏi em mua như vậy có đảm bảo và có thực sự là có những chiếc tai nghe lẻ case lẻ chính hãng như v k ?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 156,
+      "original_text": "Bản pro nó end game rồi",
+      "cleaned_text": "Bản pro nó end game rồi",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Bản pro nó end game rồi",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 157,
+      "original_text": "quá hay",
+      "cleaned_text": "quá hay",
+      "language": "vi",
+      "language_confidence": 0.8857142857142857,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.89)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "quá hay",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 158,
+      "original_text": "AirPods 4 thường dùng ok không sếp",
+      "cleaned_text": "AirPods 4 thường dùng được không sếp",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "AirPods 4 thường dùng ok không sếp",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 159,
+      "original_text": "Mình mình là một người thích nghe nhạc nên có vài cái tai nghe rẻ tien , vì deal ngon nên cố gồm mua app4 , trời ơi sound quality tệ ác",
+      "cleaned_text": "Mình mình là một người thích nghe nhạc nên có vài cái tai nghe rẻ tien , vì deal ngon nên cố gồm mua app4 , trời ơi sound quality tệ ác",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Mình mình là một người thích nghe nhạc nên có vài cái tai nghe rẻ tien , vì deal ngon nên cố gồm mua app4 , trời ơi sound quality tệ ác",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 160,
+      "original_text": "mình up từ Ap2 lên ap4 thấy chất âm quá chán, bass mỏng ko hay, và tai mình tai nữ nên bị đau rất khó chịu, lấy ra thì khó khăn. Hối hận muộn màng",
+      "cleaned_text": "mình up từ Ap2 lên ap4 thấy chất âm quá chán, bass mỏng không hay, và tai mình tai nữ nên bị đau rất khó chịu, lấy ra thì khó khăn. Hối hận muộn màng",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "mình up từ Ap2 lên ap4 thấy chất âm quá chán, bass mỏng ko hay, và tai mình tai nữ nên bị đau rất khó chịu, lấy ra thì khó khăn. Hối hận muộn màng",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 161,
+      "original_text": "Bạn ơi cho mình xin link mua cái mount Ipad với, mình cảm ơn nha",
+      "cleaned_text": "Bạn ơi cho mình xin link mua cái mount Ipad với, mình cảm ơn nha",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Bạn ơi cho mình xin link mua cái mount Ipad với, mình cảm ơn nha",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 162,
+      "original_text": "Sài 3 mua lâu rồi ,,, giờ có ai thu cũ  lên đời 4 ko nhỉ",
+      "cleaned_text": "Sài 3 mua lâu rồi ,,, giờ có ai thu cũ lên đời 4 không nhỉ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Sài 3 mua lâu rồi ,,, giờ có ai thu cũ  lên đời 4 ko nhỉ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 163,
+      "original_text": "vẫn đang dùng airpod pro 1 mua gần 3 năm r. cơ mà tai tría khi bật xuyên âm / chống ồn sẽ có tiếng lích kích mỗi khi cử động khá khó chịu nên h phải tắt tính năng xuyên âm/ chống ồn đi thì dùng bình thường, pin vẫn trâu ổn dùng tốt khi thể dục và trên văn phòng",
+      "cleaned_text": "vẫn đang dùng airpod pro 1 mua gần 3 năm are cơ mà tai tría khi bật xuyên âm / chống ồn sẽ có tiếng lích kích mỗi khi cử động khá khó chịu nên giờ phải tắt tính năng xuyên âm/ chống ồn đi thì dùng bình thường, pin vẫn trâu ổn dùng tốt khi thể dục và trên văn phòng",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "vẫn đang dùng airpod pro 1 mua gần 3 năm r. cơ mà tai tría khi bật xuyên âm / chống ồn sẽ có tiếng lích kích mỗi khi cử động khá khó chịu nên h phải tắt tính năng xuyên âm/ chống ồn đi thì dùng bình thường, pin vẫn trâu ổn dùng tốt khi thể dục và trên văn phòng",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 164,
+      "original_text": "Vì sao airpod 3 mắc hơn airpod4 thường vậy? Cả hai đều k có chức năng chống ồn mà sao đời mới rẻ hơn đời cũ",
+      "cleaned_text": "Vì sao airpod 3 mắc hơn airpod4 thường vậy? Cả hai đều không có chức năng chống ồn mà sao đời mới rẻ hơn đời cũ",
+      "language": "vi",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "2025, chọn Airpod nào cho chuẩn? Airpod 2 x 3 x 4 (ANC) x Pro 2",
+        "content": "Vì sao airpod 3 mắc hơn airpod4 thường vậy? Cả hai đều k có chức năng chống ồn mà sao đời mới rẻ hơn đời cũ",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 165,
+      "original_text": "Can you turn off the noise cancellation?",
+      "cleaned_text": "Can you turn off the noise cancellation?",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review: Which Ones To Get?",
+        "content": "Can you turn off the noise cancellation?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 166,
+      "original_text": "Are you repping a University of Wollongong shirt?",
+      "cleaned_text": "Are you repping a University of Wollongong shirt?",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review: Which Ones To Get?",
+        "content": "Are you repping a University of Wollongong shirt?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 167,
+      "original_text": "I have this form my galaxy fold and thier solid four out of five",
+      "cleaned_text": "I have this form my galaxy fold and thier solid four out of five",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review: Which Ones To Get?",
+        "content": "I have this form my galaxy fold and thier solid four out of five",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 168,
+      "original_text": "Terrible. Why upgrade design for the worse? Every aspect from the case to functioning is worse and more impracticable",
+      "cleaned_text": "Terrible. Why upgrade design for the worse? Every aspect from the case to functioning is worse and more impracticable",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review: Which Ones To Get?",
+        "content": "Terrible. Why upgrade design for the worse? Every aspect from the case to functioning is worse and more impracticable",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 169,
+      "original_text": "I buy lenovo earbuds on aliexpress for $10 - sounds the same to me",
+      "cleaned_text": "I buy lenovo earbuds on aliexpress for $10 - sounds the same to me",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review: Which Ones To Get?",
+        "content": "I buy lenovo earbuds on aliexpress for $10 - sounds the same to me",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 170,
+      "original_text": "I lost one airpod 😢",
+      "cleaned_text": "I lost one airpod 😢",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review: Which Ones To Get?",
+        "content": "I lost one airpod 😢",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 171,
+      "original_text": "MagSafe is trash. Uses induction to charge and hold. Induction uses electricity to generate heat and a magnetic field. Which heat is very bad for this type of electronic device.",
+      "cleaned_text": "MagSafe is trash. Uses induction to charge and hold. Induction uses electricity to generate heat and a magnetic field. Which heat is very bad for this type of electronic device.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review: Which Ones To Get?",
+        "content": "MagSafe is trash. Uses induction to charge and hold. Induction uses electricity to generate heat and a magnetic field. Which heat is very bad for this type of electronic device.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 172,
+      "original_text": "I have a question, I use AirPods gen 1 and my ears fit it well but when I lean down my head while I study it falls off. I think AirPods 4 will do the same so is there anyone who uses or used AirPods Pro that can tell whether it falls of when you lean down your head or not? \n\nCuz I think silicone can stick better but maybe with use it will do the same I need to know, thank you so much if anyone answers :)",
+      "cleaned_text": "I have a question, I use AirPods gen 1 and my ears fit it well but when I lean down my head while I study it falls off. I think AirPods 4 will do the same so is there anyone who uses or used AirPods Pro that can tell whether it falls of when you lean down your head or not? Cuz I think silicone can stick better but maybe with use it will do the same I need to know, thank you so much if anyone answers :)",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review: Which Ones To Get?",
+        "content": "I have a question, I use AirPods gen 1 and my ears fit it well but when I lean down my head while I study it falls off. I think AirPods 4 will do the same so is there anyone who uses or used AirPods Pro that can tell whether it falls of when you lean down your head or not? \n\nCuz I think silicone can stick better but maybe with use it will do the same I need to know, thank you so much if anyone answers :)",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 173,
+      "original_text": "Thanks Marcus. I tried the Pros but returned them. The silicon tips hurt my ears and I tried all the sizes. Currently using AirPods 3 but have lost the right one. May be time for  a new set.",
+      "cleaned_text": "Thanks Marcus. I tried the Pros but returned them. The silicon tips hurt my ears and I tried all the sizes. Currently using AirPods [ADDRESS_REDACTED] the right one. May be time for a new set.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "applied",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review: Which Ones To Get?",
+        "content": "Thanks Marcus. I tried the Pros but returned them. The silicon tips hurt my ears and I tried all the sizes. Currently using AirPods 3 but have lost the right one. May be time for  a new set.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 174,
+      "original_text": "\"So, there's two types of people in the world\"\n\nPeople who speed in school zones, and people who don't speed in school zones :)\n\nEdit: damnnn.. let Marc finish this bit and realized the version I ordered wasn't the ANC version.. good thing I watched this video 👍",
+      "cleaned_text": "\"So, there's two types of people in the world\" People who speed in school zones, and people who don't speed in school zones :) Edit: damnnn.. let Marc finish this bit and realized the version I ordered wasn't the ANC version.. good thing I watched this video 👍",
+      "language": "vi",
+      "language_confidence": 0.7,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "vi (0.70)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review: Which Ones To Get?",
+        "content": "\"So, there's two types of people in the world\"\n\nPeople who speed in school zones, and people who don't speed in school zones :)\n\nEdit: damnnn.. let Marc finish this bit and realized the version I ordered wasn't the ANC version.. good thing I watched this video 👍",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 175,
+      "original_text": "These are MUCH better than AirPods 3. I even prefer their fit over AirPods Pro 2",
+      "cleaned_text": "These are MUCH better than AirPods 3. I even prefer their fit over AirPods Pro 2",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review - SO GOOD!",
+        "content": "These are MUCH better than AirPods 3. I even prefer their fit over AirPods Pro 2",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 176,
+      "original_text": "I am watching this in my airpods 4 anc and they are great and fit perfectly on me and the anc is crazy good",
+      "cleaned_text": "I am watching this in my airpods 4 anc and they are great and fit perfectly on me and the anc is crazy good",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review - SO GOOD!",
+        "content": "I am watching this in my airpods 4 anc and they are great and fit perfectly on me and the anc is crazy good",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 177,
+      "original_text": "unfortunately the weak bass is kind of a dealbreaker for me. even the Airpods Pro2's bass is too weak. I bought one pair for my gf, I tried them and got real disappointed with the severe lack of bass. Even my $60 aukey buds from like 7 years ago and redmi 4 pro have way stronger basses. I had Pro1 before and thought Pro2 was gonna improve the bass, but nope, still so weak I wanna cry.. now that airpods4 have even weaker bass than Pro2, I don't think it's gonna be sufficient for me.. which is a damn shame 'cause I really want open tip buds without the rubbers, and I like its microphone quality and the squeeze controls..",
+      "cleaned_text": "unfortunately the weak bass is kind of a dealbreaker for me. even the Airpods Pro2's bass is too weak. I bought one pair for my gf, I tried them and got real disappointed with the severe lack of bass. Even my $60 aukey buds from like 7 years ago and redmi 4 pro have way stronger basses. I had Pro1 before and thought Pro2 was gonna improve the bass, but nope, still so weak I wanna cry.. now that airpods4 have even weaker bass than Pro2, I don't think it's gonna be sufficient for me.. which is a damn shame 'cause I really want open tip buds without the rubbers, and I like its microphone quality and the squeeze controls..",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review - SO GOOD!",
+        "content": "unfortunately the weak bass is kind of a dealbreaker for me. even the Airpods Pro2's bass is too weak. I bought one pair for my gf, I tried them and got real disappointed with the severe lack of bass. Even my $60 aukey buds from like 7 years ago and redmi 4 pro have way stronger basses. I had Pro1 before and thought Pro2 was gonna improve the bass, but nope, still so weak I wanna cry.. now that airpods4 have even weaker bass than Pro2, I don't think it's gonna be sufficient for me.. which is a damn shame 'cause I really want open tip buds without the rubbers, and I like its microphone quality and the squeeze controls..",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 178,
+      "original_text": "Wow how inventive the Apple team is! It took them eternity to put rubber tips on their AirPods.😒",
+      "cleaned_text": "Wow how inventive the Apple team is! It took them eternity to put rubber tips on their AirPods.😒",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review - SO GOOD!",
+        "content": "Wow how inventive the Apple team is! It took them eternity to put rubber tips on their AirPods.😒",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 179,
+      "original_text": "They fall out my ear .. bout to start using my pros again",
+      "cleaned_text": "They fall out my ear .. bout to start using my pros again",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review - SO GOOD!",
+        "content": "They fall out my ear .. bout to start using my pros again",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 180,
+      "original_text": "Managed to get a pair for only $87 USD. Fit nicely and better sound than the OG AirPods I had.",
+      "cleaned_text": "Managed to get a pair for only $87 USD. Fit nicely and better sound than the OG AirPods I had.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review - SO GOOD!",
+        "content": "Managed to get a pair for only $87 USD. Fit nicely and better sound than the OG AirPods I had.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 181,
+      "original_text": "when I put my Airpods 4 anc at first in office... I was like who turn off the AC, it took me couple of seconds to realize",
+      "cleaned_text": "when I put my Airpods [ADDRESS_REDACTED] in office... I was like who turn off the AC, it took me couple of seconds to realize",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "applied",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review - SO GOOD!",
+        "content": "when I put my Airpods 4 anc at first in office... I was like who turn off the AC, it took me couple of seconds to realize",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 182,
+      "original_text": "I just got them but they don't stay in my ears. What  can I do?",
+      "cleaned_text": "I just got them but they don't stay in my ears. What can I do?",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review - SO GOOD!",
+        "content": "I just got them but they don't stay in my ears. What  can I do?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 183,
+      "original_text": "Thanks gonna get these AirPods 4 tomorrow. Since my AirPods Pro (2019 gen) had unfortunately stopped working after having it for 4-5 years.",
+      "cleaned_text": "Thanks gonna get these AirPods 4 tomorrow. Since my AirPods Pro (2019 gen) had unfortunately stopped working after having it for 4-5 years.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review - SO GOOD!",
+        "content": "Thanks gonna get these AirPods 4 tomorrow. Since my AirPods Pro (2019 gen) had unfortunately stopped working after having it for 4-5 years.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 184,
+      "original_text": "I just got the airpods 4 today and started watching Django on Netflix... Fck me they are insanely good. It's like the sound is coming from the entire room and not just in your ears. Did not expect this level of quality",
+      "cleaned_text": "I just got the airpods 4 today and started watching Django on Netflix... Fck me they are insanely good. It's like the sound is coming from the entire room and not just in your ears. Did not expect this level of quality",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 Review - SO GOOD!",
+        "content": "I just got the airpods 4 today and started watching Django on Netflix... Fck me they are insanely good. It's like the sound is coming from the entire room and not just in your ears. Did not expect this level of quality",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 185,
+      "original_text": "Love that water bottle drop. Very funny",
+      "cleaned_text": "Love that water bottle drop. Very funny",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods Pro 2 Review: 1 Underrated Thing!",
+        "content": "Love that water bottle drop. Very funny",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 186,
+      "original_text": "After purchase my first airpods 2nd generation\nMy music experience on a another level ❤🎉",
+      "cleaned_text": "After purchase my first airpods 2nd generation My music experience on a another level ❤🎉",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods Pro 2 Review: 1 Underrated Thing!",
+        "content": "After purchase my first airpods 2nd generation\nMy music experience on a another level ❤🎉",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 187,
+      "original_text": "My tap to Play and Pause is not working, Just bought it today 😂",
+      "cleaned_text": "My tap to Play and Pause is not working, Just bought it today 😂",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods Pro 2 Review: 1 Underrated Thing!",
+        "content": "My tap to Play and Pause is not working, Just bought it today 😂",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 188,
+      "original_text": "These are so good",
+      "cleaned_text": "These are so good",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods Pro 2 Review: 1 Underrated Thing!",
+        "content": "These are so good",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 189,
+      "original_text": "Build quality is something else. Sound and battery hasn't degraded at all and I'm so happy I went for a leather case for it (Vionentus if anyone's curious).",
+      "cleaned_text": "Build quality is something else. Sound and battery hasn't degraded at all and I'm so happy I went for a leather case for it (Vionentus if anyone's curious).",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods Pro 2 Review: 1 Underrated Thing!",
+        "content": "Build quality is something else. Sound and battery hasn't degraded at all and I'm so happy I went for a leather case for it (Vionentus if anyone's curious).",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 190,
+      "original_text": "Hey Marquez, I'm not hear to start an argument, I'm just honestly curious; do you ever experience negative side affects from these airpods? There are folks around me who state that these cause cancer, or tumours of some sort. All the forums I've read and videos I have watched state that this a false idea, or at least that the data/studies do not say so. I just figured I'd ask a professional consumer his opinion based on experience. Thanks.",
+      "cleaned_text": "Hey Marquez, I'm not hear to start an argument, I'm just honestly curious; do you ever experience negative side affects from these airpods? There are folks around me who state that these cause cancer, or tumours of some sort. All the forums I've read and videos I have watched state that this a false idea, or at least that the data/studies do not say so. I just figured I'd ask a professional consumer his opinion based on experience. Thanks.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods Pro 2 Review: 1 Underrated Thing!",
+        "content": "Hey Marquez, I'm not hear to start an argument, I'm just honestly curious; do you ever experience negative side affects from these airpods? There are folks around me who state that these cause cancer, or tumours of some sort. All the forums I've read and videos I have watched state that this a false idea, or at least that the data/studies do not say so. I just figured I'd ask a professional consumer his opinion based on experience. Thanks.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 191,
+      "original_text": "Great explanation of adaptive transparency. Thanks Marcus",
+      "cleaned_text": "Great explanation of adaptive transparency. Thanks Marcus",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods Pro 2 Review: 1 Underrated Thing!",
+        "content": "Great explanation of adaptive transparency. Thanks Marcus",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 192,
+      "original_text": "3yrs later, still amazing!",
+      "cleaned_text": "3yrs later, still amazing!",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods Pro 2 Review: 1 Underrated Thing!",
+        "content": "3yrs later, still amazing!",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 193,
+      "original_text": "I want to use these in combination with earmuffs while doing woodworking. Double protection.",
+      "cleaned_text": "I want to use these in combination with earmuffs while doing woodworking. Double protection.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods Pro 2 Review: 1 Underrated Thing!",
+        "content": "I want to use these in combination with earmuffs while doing woodworking. Double protection.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 194,
+      "original_text": "The noise cancellation tech that you’re mind-blown about has been used on Electronic Ear Pro for a long time, mainly for construction or when you’re at the gun range. It’s both a microphone and noise-canceling ear plugs. \n\nI use Walker's Razor Slim Ultra at the range and it instantly reduces the loud gun bangs to a decibel you can handle without making you deaf to the smallest of sounds. In case folks weren’t aware.",
+      "cleaned_text": "The noise cancellation tech that you’re mind-blown about has been used on Electronic Ear Pro for a long time, mainly for construction or when you’re at the gun range. It’s both a microphone and noise-canceling ear plugs. I use Walker's Razor Slim Ultra at the range and it instantly reduces the loud gun bangs to a decibel you can handle without making you deaf to the smallest of sounds. In case folks weren’t aware.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods Pro 2 Review: 1 Underrated Thing!",
+        "content": "The noise cancellation tech that you’re mind-blown about has been used on Electronic Ear Pro for a long time, mainly for construction or when you’re at the gun range. It’s both a microphone and noise-canceling ear plugs. \n\nI use Walker's Razor Slim Ultra at the range and it instantly reduces the loud gun bangs to a decibel you can handle without making you deaf to the smallest of sounds. In case folks weren’t aware.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 195,
+      "original_text": "At 2:49, Linus says the charging case doesn't have a pairing button, while in reality both AirPods 4 models have a capacitive button for pairing (and it works fine with Android devices). We’ll adjust the video to reflect this information.",
+      "cleaned_text": "At 2:49, Linus says the charging case doesn't have a pairing button, while in reality both AirPods 4 models have a capacitive button for pairing (and it works fine with Android devices). We’ll adjust the video to reflect this information.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "These Defy Logic... - AirPods 4 Unboxing",
+        "content": "At 2:49, Linus says the charging case doesn't have a pairing button, while in reality both AirPods 4 models have a capacitive button for pairing (and it works fine with Android devices). We’ll adjust the video to reflect this information.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 196,
+      "original_text": "I never understood using air pods if you have an android. It’s like me with an iPhone using Galaxy Buds. Why would I ever do that?",
+      "cleaned_text": "I never understood using air pods if you have an android. It’s like me with an iPhone using Galaxy Buds. Why would I ever do that?",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "These Defy Logic... - AirPods 4 Unboxing",
+        "content": "I never understood using air pods if you have an android. It’s like me with an iPhone using Galaxy Buds. Why would I ever do that?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 197,
+      "original_text": "The volume sliding in the pro 2 is a hit and miss anyway/",
+      "cleaned_text": "The volume sliding in the pro 2 is a hit and miss anyway/",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "These Defy Logic... - AirPods 4 Unboxing",
+        "content": "The volume sliding in the pro 2 is a hit and miss anyway/",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 198,
+      "original_text": "It's not unboxing...",
+      "cleaned_text": "It's not unboxing...",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "These Defy Logic... - AirPods 4 Unboxing",
+        "content": "It's not unboxing...",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 199,
+      "original_text": "Finally, a reviewer that does a handstand test",
+      "cleaned_text": "Finally, a reviewer that does a handstand test",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "These Defy Logic... - AirPods 4 Unboxing",
+        "content": "Finally, a reviewer that does a handstand test",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 200,
+      "original_text": "I’ve never tried AirPods Pro but I’m actually pretty tired of buds and silicone tips. They either don’t seal properly, become uncomfortable, come out of place, you have to make sure to push them in properly whereas the non-pro without the tips, you don’t need to worry about any of that.",
+      "cleaned_text": "I’ve never tried AirPods Pro but I’m actually pretty tired of buds and silicone tips. They either don’t seal properly, become uncomfortable, come out of place, you have to make sure to push them in properly whereas the non-pro without the tips, you don’t need to worry about any of that.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "These Defy Logic... - AirPods 4 Unboxing",
+        "content": "I’ve never tried AirPods Pro but I’m actually pretty tired of buds and silicone tips. They either don’t seal properly, become uncomfortable, come out of place, you have to make sure to push them in properly whereas the non-pro without the tips, you don’t need to worry about any of that.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 201,
+      "original_text": "Just bought these and excited to try them out!",
+      "cleaned_text": "Just bought these and excited to try them out!",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "These Defy Logic... - AirPods 4 Unboxing",
+        "content": "Just bought these and excited to try them out!",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 202,
+      "original_text": "Your mileage may vary",
+      "cleaned_text": "Your mileage may vary",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "These Defy Logic... - AirPods 4 Unboxing",
+        "content": "Your mileage may vary",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 203,
+      "original_text": "Damn, the redness makes you look like a postal booth 2:20",
+      "cleaned_text": "Damn, the redness makes you look like a postal booth 2:20",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "These Defy Logic... - AirPods 4 Unboxing",
+        "content": "Damn, the redness makes you look like a postal booth 2:20",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 204,
+      "original_text": "Degrade in mic quality is a real issue. I am having to buy a new one as I use mine a lot for calls and people I speak to on these calls are complaining about bad audio. It happens more so with phone calls, but now it is happening with calls taken via laptop too.",
+      "cleaned_text": "Degrade in mic quality is a real issue. I am having to buy a new one as I use mine a lot for calls and people I speak to on these calls are complaining about bad audio. It happens more so with phone calls, but now it is happening with calls taken via laptop too.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "These Defy Logic... - AirPods 4 Unboxing",
+        "content": "Degrade in mic quality is a real issue. I am having to buy a new one as I use mine a lot for calls and people I speak to on these calls are complaining about bad audio. It happens more so with phone calls, but now it is happening with calls taken via laptop too.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 205,
+      "original_text": "I've been using standard 3rd gen AirPods. Gonna upgrade to the 4 with ANC as my old ones have just died. Pros are just a bit too expensive at over £200",
+      "cleaned_text": "I've been using standard 3rd gen AirPods. Gonna upgrade to the [ADDRESS_REDACTED] died. Pros are just a bit too expensive at over £200",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "applied",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 (ANC) vs. AirPods Pro 2 - Which Should You Buy?",
+        "content": "I've been using standard 3rd gen AirPods. Gonna upgrade to the 4 with ANC as my old ones have just died. Pros are just a bit too expensive at over £200",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 206,
+      "original_text": "I much prefer the older/a4 style for eat comfort. I've never liked ear phones with the rounder fit. Even back in the early 2000s. Im an android guy, but go for Airpods for that fit. The JBL ones are appealing too because they seem similar.",
+      "cleaned_text": "I much prefer the older/a4 style for eat comfort. I've never liked ear phones with the rounder fit. Even back in the early 2000s. Im an android guy, but go for Airpods for that fit. The JBL ones are appealing too because they seem similar.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 (ANC) vs. AirPods Pro 2 - Which Should You Buy?",
+        "content": "I much prefer the older/a4 style for eat comfort. I've never liked ear phones with the rounder fit. Even back in the early 2000s. Im an android guy, but go for Airpods for that fit. The JBL ones are appealing too because they seem similar.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 207,
+      "original_text": "Thanks for the reassurance man much appreciated",
+      "cleaned_text": "Thanks for the reassurance man much appreciated",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 (ANC) vs. AirPods Pro 2 - Which Should You Buy?",
+        "content": "Thanks for the reassurance man much appreciated",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 208,
+      "original_text": "How can I get the snap, crackle and pop sound?",
+      "cleaned_text": "How can I get the snap, crackle and pop sound?",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 (ANC) vs. AirPods Pro 2 - Which Should You Buy?",
+        "content": "How can I get the snap, crackle and pop sound?",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 209,
+      "original_text": "Got my pro 2 like 26 months ago. The battery life is no good now. Might consider the 4s",
+      "cleaned_text": "Got my pro 2 like 26 months ago. The battery life is no good now. Might consider the 4s",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 (ANC) vs. AirPods Pro 2 - Which Should You Buy?",
+        "content": "Got my pro 2 like 26 months ago. The battery life is no good now. Might consider the 4s",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 210,
+      "original_text": "The fact that I’m watching this video 6 months after 😭",
+      "cleaned_text": "The fact that I’m watching this video 6 months after 😭",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 (ANC) vs. AirPods Pro 2 - Which Should You Buy?",
+        "content": "The fact that I’m watching this video 6 months after 😭",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 211,
+      "original_text": "Sir, which of these two earbuds is the best to buy? Please advise.",
+      "cleaned_text": "Sir, which of these two earbuds is the best to buy? Please advise.",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 (ANC) vs. AirPods Pro 2 - Which Should You Buy?",
+        "content": "Sir, which of these two earbuds is the best to buy? Please advise.",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 212,
+      "original_text": "bought airpods 4 and didnt like them returned them and bought airpods 2 100%",
+      "cleaned_text": "bought airpods 4 and didnt like them returned them and bought airpods 2 100%",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 (ANC) vs. AirPods Pro 2 - Which Should You Buy?",
+        "content": "bought airpods 4 and didnt like them returned them and bought airpods 2 100%",
+        "source": "youtube"
+      }
+    },
+    {
+      "id": 213,
+      "original_text": "AirPods 4 is the ultimate thanks",
+      "cleaned_text": "AirPods 4 is the ultimate thanks",
+      "language": "en",
+      "language_confidence": 0.9,
+      "processing_steps": {
+        "quality_filter": "passed",
+        "privacy_redaction": "not_needed",
+        "text_normalization": "applied",
+        "language_detection": "en (0.90)",
+        "abbreviation_expansion": "applied"
+      },
+      "metadata": {
+        "video_title": "AirPods 4 (ANC) vs. AirPods Pro 2 - Which Should You Buy?",
+        "content": "AirPods 4 is the ultimate thanks",
+        "source": "youtube"
+      }
+    }
+  ]
+}
